@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+            http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
+	<bean id="payConfig" class="com.mrbt.pay.config.PayConfig">
+		<property name="channel" value="jd"></property>
+		<!-- 网关的正式商户号，测试能过 -->
+		<property name="gateway_no" value="110226189002"></property>
+		<property name="four_elements_no" value="300331"></property>
+		<property name="quick_no" value="110226189003"></property>
+		<property name="money_type" value="CNY"></property>
+		<property name="charset" value="UTF-8"></property>
+	</bean>
+	<!-- 秘钥的工厂类 -->
+	<bean id="secretFactory" class="com.mrbt.myutils.secret.SecretFactory">
+		<property name="charset" value="UTF-8"></property>
+	</bean>
+	<bean id="bankBind" class="com.mrbt.pay.jd.BankBindByJd">
+		<property name="token_url" value="https://dc.jdpay.com/certification/bankelem/getToken.do"></property>
+		<property name="verify_url" value="https://dc.jdpay.com/certification/card/authentication.do"></property>
+		<property name="confirm_url" value="https://dc.jdpay.com/certification/card/confirm.do"></property>
+		<property name="query_url" value=""></property>
+		<property name="version" value="1.0"></property>
+		<property name="accountId" value="test"></property>
+	</bean>       
+	<bean id="paySecret" class="com.mrbt.pay.jd.PaySecret">
+		<constructor-arg>
+			<value>mrbt$@!123.qaz</value>
+		</constructor-arg>
+		<property name="gateway_secret_file" value="d:/secret/bank_secret_md5.dat"></property>
+		<property name="four_elements_secret_file" value="d:/secret/four_elements_secret_file.dat"></property>
+		<property name="quick_secret_file" value="d:/secret/quick_secret_file.dat"></property>
+		<property name="quick_md5_secret_file" value="d:/secret/quick_secret_md5.dat"></property>
+	</bean>
+	<bean id="jdPay" class="com.mrbt.pay.jd.JdPayByRedirectBank">
+		<property name="pay_url" value="https://tmapi.jdpay.com/PayGate"></property>
+	</bean>
+	<bean id="qjdPay" class="com.mrbt.pay.jd.QuickJdPay">
+		<property name="pay_url" value="https://quick.chinabank.com.cn/express.htm"></property>
+		<property name="version" value="1.0.0"></property>
+		<!-- 终端号 -->
+		<property name="terminal" value="text"></property>
+		<property name="key_store" value="classpath:/quick.keystore"></property>
+	</bean>
+</beans>

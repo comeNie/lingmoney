@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0, minimum-scale=1.0">
+	<title>热销产品</title>
+	<link rel="stylesheet" href="../resource/css/register.css">
+     <script src="../resource/js/jquery-1.8.3.min.js"></script>
+</head>
+<body style="background:#fff">
+<div class="agreement-top"><a href="javascript:history.back(-1);">返回</a>热销产品</div>
+	<div class="main" style="top:0.88rem;" id="html">
+		<!-- <div class="product-box">
+			<p class="product-box-tip"><span >车贷宝-安心贷计划0103期</span></p>
+			<p class="product-box-kegou">剩余可购 0.00元</p>
+			<ul >
+				<li><div>6.0<b>%</b></div><p>预期年化收益</p></li>
+				<li><div>625<b>天</b></div><p>期限</p></li>
+				<li><span>立即购买</span></li>
+			</ul>
+		</div>	 -->
+		
+
+    </div>
+<script>
+(function (doc, win) {
+    var docEl = doc.documentElement,
+        resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+        recalc = function () {
+            var clientWidth = docEl.clientWidth;
+            if (!clientWidth) return;
+            if(clientWidth>=750){
+                docEl.style.fontSize = '100px';
+            }else{
+                docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+            }
+        };
+    if (!doc.addEventListener) return;
+    win.addEventListener(resizeEvt, recalc, false);
+    doc.addEventListener('DOMContentLoaded', recalc, false);
+})(document, window);	
+
+$(function(){
+	/*产品列表*/
+	$.ajax({
+		url: '/product/list',
+		type: 'post',
+		data:{
+			
+		},
+		dataType: 'json',
+		success: function(d) {
+			 var html=""
+			 $.each(d.rows, function(i, item){  
+				 var sy=item["priorMoney"]-item["reachMoney"]
+				 var yq=(item["fYield"] * 100).toFixed(1)
+				html+='<div class="product-box">';
+				html+='<p class="product-box-tip"><span >'+item["proType"]+'</span></p>'	
+				html+='<p class="product-box-kegou">剩余可购 '+sy+'元</p>'
+				html+='<ul>'
+				html+='<li><div>'+yq+'<b>%</b></div><p>预期年化收益</p></li>'	
+				html+='	<li><div>'+item["fTime"]+'<b>天</b></div><p>期限</p></li>'	
+				html+='<li><a href="/extension/download.html"><span>立即购买</span></a></li>'	
+			    html+='</ul>'
+				html+='</div>'
+			 })
+			  $('#html').html(html);
+	          
+		},
+		error: function(d) {}
+	});
+})
+
+</script>
+</body>
+</html>

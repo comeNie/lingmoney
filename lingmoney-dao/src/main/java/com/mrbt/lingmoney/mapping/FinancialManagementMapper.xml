@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.FinancialManagementMapper">
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.FinancialManagement">
+    <!--
+    @mbggenerated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="index_pic" jdbcType="VARCHAR" property="indexPic" />
+    <result column="pub_date" jdbcType="TIMESTAMP" property="pubDate" />
+    <result column="u_id" jdbcType="VARCHAR" property="uId" />
+    <result column="u_name" jdbcType="VARCHAR" property="uName" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.mrbt.lingmoney.model.FinancialManagement">
+    <!--
+    @mbggenerated
+    -->
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+    @mbggenerated
+    -->
+    id, title, index_pic, pub_date, u_id, u_name, status
+  </sql>
+  <sql id="Blob_Column_List">
+    <!--
+    @mbggenerated
+    -->
+    content
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.mrbt.lingmoney.model.FinancialManagementExample" resultMap="ResultMapWithBLOBs">
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from financial_management
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.mrbt.lingmoney.model.FinancialManagementExample" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from financial_management
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0">
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    <!--
+    @mbggenerated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from financial_management
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--
+    @mbggenerated
+    -->
+    delete from financial_management
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.FinancialManagementExample">
+    <!--
+    @mbggenerated
+    -->
+    delete from financial_management
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mrbt.lingmoney.model.FinancialManagement">
+    <!--
+    @mbggenerated
+    -->
+    insert into financial_management (id, title, index_pic, 
+      pub_date, u_id, u_name, 
+      status, content)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{indexPic,jdbcType=VARCHAR}, 
+      #{pubDate,jdbcType=TIMESTAMP}, #{uId,jdbcType=VARCHAR}, #{uName,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.FinancialManagement">
+    <!--
+    @mbggenerated
+    -->
+    insert into financial_management
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="indexPic != null">
+        index_pic,
+      </if>
+      <if test="pubDate != null">
+        pub_date,
+      </if>
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="uName != null">
+        u_name,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="indexPic != null">
+        #{indexPic,jdbcType=VARCHAR},
+      </if>
+      <if test="pubDate != null">
+        #{pubDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uId != null">
+        #{uId,jdbcType=VARCHAR},
+      </if>
+      <if test="uName != null">
+        #{uName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.FinancialManagementExample" resultType="java.lang.Long">
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from financial_management
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update financial_management
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.indexPic != null">
+        index_pic = #{record.indexPic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pubDate != null">
+        pub_date = #{record.pubDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.uId != null">
+        u_id = #{record.uId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uName != null">
+        u_name = #{record.uName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.content != null">
+        content = #{record.content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update financial_management
+    set id = #{record.id,jdbcType=INTEGER},
+      title = #{record.title,jdbcType=VARCHAR},
+      index_pic = #{record.indexPic,jdbcType=VARCHAR},
+      pub_date = #{record.pubDate,jdbcType=TIMESTAMP},
+      u_id = #{record.uId,jdbcType=VARCHAR},
+      u_name = #{record.uName,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=INTEGER},
+      content = #{record.content,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update financial_management
+    set id = #{record.id,jdbcType=INTEGER},
+      title = #{record.title,jdbcType=VARCHAR},
+      index_pic = #{record.indexPic,jdbcType=VARCHAR},
+      pub_date = #{record.pubDate,jdbcType=TIMESTAMP},
+      u_id = #{record.uId,jdbcType=VARCHAR},
+      u_name = #{record.uName,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mrbt.lingmoney.model.FinancialManagement">
+    <!--
+    @mbggenerated
+    -->
+    update financial_management
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="indexPic != null">
+        index_pic = #{indexPic,jdbcType=VARCHAR},
+      </if>
+      <if test="pubDate != null">
+        pub_date = #{pubDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uId != null">
+        u_id = #{uId,jdbcType=VARCHAR},
+      </if>
+      <if test="uName != null">
+        u_name = #{uName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mrbt.lingmoney.model.FinancialManagement">
+    <!--
+    @mbggenerated
+    -->
+    update financial_management
+    set title = #{title,jdbcType=VARCHAR},
+      index_pic = #{indexPic,jdbcType=VARCHAR},
+      pub_date = #{pubDate,jdbcType=TIMESTAMP},
+      u_id = #{uId,jdbcType=VARCHAR},
+      u_name = #{uName,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mrbt.lingmoney.model.FinancialManagement">
+    <!--
+    @mbggenerated
+    -->
+    update financial_management
+    set title = #{title,jdbcType=VARCHAR},
+      index_pic = #{indexPic,jdbcType=VARCHAR},
+      pub_date = #{pubDate,jdbcType=TIMESTAMP},
+      u_id = #{uId,jdbcType=VARCHAR},
+      u_name = #{uName,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- custom setting -->
+  <select id="listFinancialManagementId" resultType="java.lang.Integer">
+	select
+		id
+	from 
+		financial_management
+	where 
+		status = 1
+	order by 
+		pub_date desc
+  </select>
+</mapper>

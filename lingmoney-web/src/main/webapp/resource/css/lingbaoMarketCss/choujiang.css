@@ -1,0 +1,32 @@
+﻿/* 大转盘样式 */
+.choujiang-banner{
+	display:block;
+	width:235px;
+	height:235px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom: 20px;
+}
+.choujiang-banner .turnplate{
+	display:block;
+	width:100%;
+	height:100%;
+	position:relative;
+	z-index:10;
+}
+.choujiang-banner .turnplate canvas.item{
+	position:absolute;
+	z-index:90;
+	left:0;
+	top:0;
+	width:100%;
+}
+.choujiang-banner .turnplate img.pointer{
+	position:absolute;
+	z-index:100;
+	width:31.5%;
+	height:42.5%;
+	left:34.6%;
+	top:23%;
+}
+

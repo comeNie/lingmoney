@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- 新 Bootstrap 核心 CSS 文件 -->
+<link href="/resource/js/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script type="text/javascript" src="/resource/js/jquery-2.1.1.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="/resource/js/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="/resource/js/ajaxExt.js"></script>
+<script src="/resource/js/jquery.form.js"></script>
+<script src="/resource/js/hxbank/ajaxHxExt.js"></script>
+
+<style type="text/css">
+.input-group {
+	margin-bottom: 5px;
+}
+</style>
+<title>华兴银行跳转测试</title>
+</head>
+<body>
+	<div class="panel-group" id="accordion">
+	   <!-- 用户登录，退出登录 -->
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapse1">用户登录</a>
+			</div>
+			<div id="collapse1" class="panel-collapse collapse">
+				<div class="panel-body">
+					<div class="well">
+						<span>访问接口</span>
+						<ol class="breadcrumb">
+							<li>/users/login</li>
+						</ol>
+					</div>
+					<form id="loginForm" method="post">
+						<div class="input-group input-group-sm">
+							<span class="input-group-addon">登录名</span>
+							<input type="text" class="form-control" name="account" id="account" />
+						</div>
+						<div class="input-group input-group-sm">
+							<span class="input-group-addon">密码</span>
+                            <input type="text" class="form-control" name="password" id="password" />
+						</div>
+						<input type="submit" id="loginSubmit" class="btn btn-default btn-sm" value="登录" />
+						<input type="submit" id="loginOut" class="btn btn-default btn-sm" value="退出" />
+					</form>
+				</div>
+			</div>
+		</div>
+
+        <!-- 开通E账户 -->
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapse2">开通E账户</a>
+			</div>
+			<div id="collapse2" class="panel-collapse collapse">
+				<div class="panel-body">
+					<div class="well">
+						<span>访问接口</span>
+						<ol class="breadcrumb">
+							<li>/bank/accountOpen</li>
+						</ol>
+					</div>
+					<form id="accountOpenForm" method="post">
+						<div class="input-group input-group-sm">
+							<span class="input-group-addon">姓名</span> <input type="text"
+								class="form-control" name="acName" id="acName" />
+						</div>
+						<div class="input-group input-group-sm">
+							<span class="input-group-addon">身份号</span> <input type="text"
+								class="form-control" name="idNo" id="idNo" />
+						</div>
+						<div class="input-group input-group-sm">
+							<span class="input-group-addon">手机号</span> <input type="text"
+								class="form-control" name="mobile" id="mobile" />
+						</div>
+						<input type="submit" id="accountOpenSubmit"
+							class="btn btn-default btn-sm" value="开通账户" />
+					</form>
+				</div>
+			</div>
+		</div>
+		
+		<!-- 充值 -->
+		<div class="panel panel-default">
+            <div class="panel-heading">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">充值</a>
+            </div>
+            <div id="collapse3" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <div class="well">
+                        <span>访问接口</span>
+                        <ol class="breadcrumb">
+                            <li>/bank/accountRechargePage</li>
+                        </ol>
+                    </div>
+                    <form id="accountRechargeForm" method="post">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-addon">金额</span> <input type="text"
+                                class="form-control" name="amount" id="amount" />
+                        </div>
+                        <input type="submit" id="accountRecharge"
+                            class="btn btn-default btn-sm" value="充值" />
+                    </form>
+                </div>
+            </div>
+        </div>
+	</div>
+	
+	
+
+    <!-- 跳转银行表单提交 -->
+	<div>
+		<span>跳转华兴银行提交FORM</span>
+		<form id="bankForm" method="post" action="" target="_blank">
+			<input id="bankFormRequestData" name="RequestData" value="" />
+			<input id="bankFormTransCode" name="transCode" value="" />
+		</form>
+	</div>
+	
+	<!-- 模态框（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	    <div class="modal-dialog">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+	                    &times;
+	                </button>
+	                <h4 class="modal-title" id="myModalLabel">
+	                                                        模态框（Modal）标题
+	                </h4>
+	            </div>
+	            <div class="modal-body" id="myModalInfo">
+	                                           在这里添加一些文本
+	            </div>
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	                <button type="button" class="btn btn-primary" id="modal_ok_button">提交更改</button>
+	            </div>
+	        </div><!-- /.modal-content -->
+	    </div><!-- /.modal -->
+	</div>
+</body>
+</html>

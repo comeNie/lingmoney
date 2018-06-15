@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="/resource/js/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet" />
+    <script type="text/javascript" src="/resource/js/jquery-2.1.1.js"></script>
+    <script src="/resource/js/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <script src="/resource/js/ajaxExt.js"></script>
+    <script src="/resource/js/testBank.js"></script>
+    <style type="text/css">
+        .input-group {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body style="margin: 10px;">
+    <h3>华兴银行接口测试-PC端</h3>
+    <div id="errorDiv" style="margin-top: 0%; display: none; text-align: center; padding-top: 0%;">
+        <div id="sorryMsg" style="text-align: center; font-size: 16px; padding-top: 0%;color:#666;"></div>
+    </div>
+    <div class="panel-group" id="accordion">
+        <!-- 登录 -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">登录</a>
+            </div>
+            <div id="collapse1" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-addon">用户名</span>
+                        <input type="text" class="form-control" name="params" id="account" value="13683173295" />
+                    </div>
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-addon">密码</span>
+                        <input type="text" class="form-control" name="params" id="password" value="000000" />
+                    </div>
+                    <input id="login" type="submit" class="btn btn-default btn-sm" value="登录" />
+                    <input id="verifylogin" type="submit" class="btn btn-default btn-sm" value="验证登录" />
+                    <input id="loginOut" type="submit" class="btn btn-default btn-sm" value="退出" />
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- 账户开立 -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">开通E账户</a>
+            </div>
+            <div id="collapse2" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-addon">姓名</span>
+                        <input type="text" class="form-control" name="params" id="accountOpenName" />
+                    </div>
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-addon">身份证号</span>
+                        <input type="text" class="form-control" name="params" id="accountOpenIdCard" />
+                    </div>
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-addon">手机号</span>
+                        <input type="text" class="form-control" name="params" id="accountOpenMobile" />
+                    </div>
+                    <input id="accountOpenSubmit" type="submit" class="btn btn-default btn-sm" value="开通账户" />
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- 绑卡 -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">绑卡</a>
+            </div>
+            <div id="collapse3" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <input id="bindCardSubmit" type="submit" class="btn btn-default btn-sm" value="绑卡激活" />
+                    <input id="querybindCardSubmit" type="submit" class="btn btn-default btn-sm" value="查询绑定银行卡" />
+                    <input id="modifybindCardSubmit" type="submit" class="btn btn-default btn-sm" value="修改绑定银行卡" />
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- 充值 -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">充值</a>
+            </div>
+            <div id="collapse4" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-addon">充值金额</span>
+                        <input type="text" class="form-control" name="params" id="rechargeAmount" />
+                    </div>
+                    <input id="rechargeSubmit" type="submit" class="btn btn-default btn-sm" value="开通账户" />
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- 单笔投标 -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">投标</a>
+            </div>
+            <div id="collapse5" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-addon">tId</span>
+                        <input type="text" class="form-control" name="params" id="biddingTid" />
+                    </div>
+                    <input id="biddingSubmit" type="submit" class="btn btn-default btn-sm" value="投标" />
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- 提现 -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">提现</a>
+            </div>
+            <div id="collapse6" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-addon">姓名</span>
+                        <input type="text" class="form-control" name="params" id="withdrawAmount" />
+                    </div>
+                    <input id="withdrawSubmit" type="submit" class="btn btn-default btn-sm" value="提现" />
+                </div>
+            </div>
+        </div>
+
+
+        <!-- 修改交易密码 -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse7">修改交易密码</a>
+            </div>
+            <div id="collapse7" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <input id="modiTradPawSubmit" type="submit" class="btn btn-default btn-sm" value="修改交易密码" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <form id="accountOpenForm" method="post" action="" target="_blank">
+        <input type="hidden" id="accountOpenRequestData" name="RequestData" value="" />
+        <input type="hidden" id="accountOpenTransCode" name="transCode" value="" />
+    </form>
+</body>
+
+</html>

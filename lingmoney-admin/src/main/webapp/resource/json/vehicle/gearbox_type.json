@@ -1,0 +1,7 @@
+[
+	{"gearboxId":"0","gearboxName":"手动"},
+	{"gearboxId":"1","gearboxName":"自动"},
+	{"gearboxId":"2","gearboxName":"手自一体"},
+	{"gearboxId":"3","gearboxName":"无级变速"},
+	{"gearboxId":"4","gearboxName":"双离合"}
+]

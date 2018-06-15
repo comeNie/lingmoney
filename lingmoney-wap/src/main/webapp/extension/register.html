@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0, minimum-scale=1.0">
+	<title>领钱儿</title>
+	<link rel="stylesheet" href="../resource/css/register.css">
+    <script src="../resource/js/jquery-1.8.3.min.js"></script>
+	<script src="../resource/js/register.js"></script>
+</head>
+<body>
+	<div class="main">
+		 <div class="banner">
+			<img src="../resource/images/banner.png"/>
+			<div class="banner-link" style="cursor:pointer;"><img src="/resource/images/huodtu.png"/></div>
+		 </div>
+		 
+		 <div class="register-middle">
+			<div class="register-middle-2">
+				<ul style="position: relative;">
+					<li>
+						<div><img src="../resource/images/register2.png"/></div>
+						<p><input type="tel" maxlength="11" placeholder="请输入手机号（此号将作为您的注册号）" class="iphone index-input" index-data="手机格式不正确"></p>
+					</li>
+					<li style="width:4.17rem;">
+						<div><img src="../resource/images/register3.png"/></div>
+						<p style="width:3.2rem"><input type="text" style="width:3rem;" placeholder="请输入图形校验码" class="imgtuxing index-input" index-data="图形验证码不正确"> </p>
+						<img src="/resource/images/register4.png" class="img-tu"/>
+					</li>
+					<li style="border:0rem;display:none">
+						<span class="register-xieyi"><img src="../resource/images/register5.png" index-data="1" class="index-input xieyi"/>我已阅读并同意领钱儿<a href="/extension/agreement.html" style="color:#fa972e">《用户协议》</a></span>
+					</li>
+				</ul>
+			</div>
+			<div class="register-but-box"><input type="button" value="立即领取新手大礼包" class="register-but"/></div>
+			<p class="register-ttips"><a href="/extension/download.html" style="color:#757dfa;text-decoration:underline;">下载APP</a> <a href="http://static.lingmoney.cn/wap/index.html" style="color:#757dfa;text-decoration:underline;"><span class="lijilogin" style="text-decoration:underline;">我有账号，现在出借</span></a></p>
+			<!-- <p class="register-zhanghao"> 已有账号，<span class="lijilogin">立即登录</span></p> -->
+			
+			<!-- <h1 class="register-about">关于我们</h1>
+			<p class="register-wenben">“领钱儿”网是北京睿博盈通网络科技有限公司旗下的互联网金融平台，平台于2015年10月上线，依托“互联网+”及“全民理财”的发展理念，面向高端白领阶层人士，培养理财习惯，实现财富增值。<br>
+“领钱儿”网凭借集团多年的资产管理服务及风险控制经验，建立一整套安全、专业的风控体系，为用户提供便捷、透明、智能化的一站式金融服务。<br/>
+“领钱儿”网持有ICP经营许可证，并与广东华兴银行签署存管协议，拥抱监管，合规经营，致力于打造先进的互联网金融平台。</p>
+           <h1 class="register-about" style="padding-bottom:0.2rem;">平台优势</h1> -->
+		   
+		 </div>
+		 <div class="register-bottom-img"><img src="../resource/images/bottom-img.png"/></div>
+	     <!--  <div class="register-youshi">
+			   <img src="../resource/images/register9.png"/>
+			   <img src="../resource/images/register6.png"/>
+			   <img src="../resource/images/register7.png"/>
+			   <img src="../resource/images/register8.png"/>
+		   </div> -->
+		  <!--  <p class="register-over">客服热线：400-0051-655<br>
+Copyright©2015-2017领钱儿www.lingmoney.cn All Rights Reserved<br>
+京ICP证150899号 京ICP备15012687号-2</p> -->
+
+
+
+
+
+
+
+<div class="register-mask"></div>
+</div>
+<div class="error_tip"></div>
+<!-- 活动说明 -->
+<div class="register-warp-popup huoduoming" style="display:none;">
+    <p class="register-close"><img src="/resource/images/closed.png"/></p>
+	<div class="popup-box-hd">
+		<p class="popup-box-new-tippps">首次注册领钱儿的用户，注册将获得520元投资红包。<br>还可享受新手专属标10%，30天还本付息，100元起投哦！</p>
+    </div>
+</div>
+<!-- 活动说明end -->
+<!-- 注册 -->
+<div class="register-warp-popup register-regiser-open" style="display:none;">
+	<!--   -->
+	 <div class="popup-box">
+	  <p class="register-zhuren" style="position: absolute;top: 2.8rem;left: 0.6rem;">主人，就差一步大奖就是你的啦！</p>
+	<p class="register-close"><img src="/resource/images/closed.png"/></p>
+		<div class="register-middle-2" style="width: 3.6rem; padding-top: 3.4rem;">
+		
+			<ul>
+				<li style="background: #fff;border: 0rem; margin-bottom: 0.07rem;">
+				<!-- 	<div><img src="../resource/images/register10.png"/></div> -->
+					<p style="width:3.2rem;"><input type="text" placeholder="点击输入验证码" style="width:2.1rem;border: 0rem;text-indent: 0rem;" class="iphone-dx register-input" data-register="验证码不正确">
+						 <span class="iphone-tip">发送验证码</span> <span class="iphone-tips"></span>
+					</p>
+				</li>
+				<li style="background: #fff;border: 0rem;margin-bottom: 0.07rem;">
+					<!-- <div><img src="../resource/images/register11.png"/></div> -->
+					<p style="width:3.2rem;"><input type="password" style="width:3.4rem;border: 0rem;text-indent: 0rem;" placeholder="请输入(6-16位数字字母)" style="width:4.9rem;" class="password register-input" data-register="密码格式不正确"> </p>
+				</li>
+				<!-- <li >
+					<div><img src="../resource/images/register12.png"/></div>
+					<p style="width:5rem;"><input type="password" style="width:4.9rem;" placeholder="确认密码" style="width:4.9rem;" class="okpassword register-input" data-register="两次密码不一致"></p>
+				</li> -->
+				
+			</ul>
+		</div>
+		<div class="register-but-box" style="padding-top:0.13rem;width:100%;"><input type="button" value="确认领取新手大礼包" class="register-wancheng"/></div>
+	</div>
+</div>
+
+<!-- 注册 end-->
+
+<!-- 登录 -->
+<div class="register-warp-popup login" style="display:none;">
+    <p class="register-close"><img src="/resource/images/closed.png"/></p>
+	<div class="popup-box">
+	 <p class="register-zhuren" style="position: absolute;top: 2.8rem;left: 0.6rem;">主人，就差一步大奖就是你的啦！</p>
+		<div class="register-middle-2" style="width: 3.6rem; padding-top: 3.4rem;">
+		
+			<ul>
+				<li style="background: #fff;border: 0rem; margin-bottom: 0.07rem;">
+				<!-- 	<div><img src="../resource/images/register2.png"/></div> -->
+					<p style="width:3.2rem;"><input type="text" style="width:3rem;border: 0rem;text-indent: 0rem;" placeholder="手机号码" style="width:4.9rem;" class="login-iphone"> </p>
+				</li>
+				<li style="background: #fff;border: 0rem; margin-bottom: 0.07rem;">
+					<!-- <div><img src="../resource/images/register11.png"/></div> -->
+					<p style="width:3.2rem;"><input type="password" style="width:3rem;border: 0rem;text-indent: 0rem;" placeholder="输入登录密码" style="width:4.9rem;" class="loginpassword"></p>
+				</li>
+				
+			</ul>
+		</div>
+		<div class="register-but-box" style="padding-top:0.13rem;width:100%;"><input type="button" value="立即登录" class="login-but"/></div>
+    </div>
+</div>
+
+<!-- 登录 end-->
+
+
+<!-- 登录成功弹窗 -->
+<div class="register-warp-popup Success" style="display:none;">
+    <p class="register-close"><img src="/resource/images/closed.png"/></p>
+	<div class="popup-box-new">
+		<p class="popup-box-new-tip"><span style="font-size:0.28rem;">亲爱的主人，恭喜</span><br>
+<b style="font-size:0.32rem;">领取成功</b>（请到你的领钱儿账户-“我的优惠券中查看”）</p>
+		<div class="register-but-box" style="padding-top:0.13rem;width:100%;"><input type="button" value="我现在使用" class="login-but-new"/></div>
+     <p class="popup-box-new-tips"><a href="/extension/download.html" style="color:#fff;"/>我要下载领钱儿APP</a></p>
+    </div>
+</div>
+<!-- 登录成功弹窗end -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?546081b2cd6e4d26b5467ed1906b7bee";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+	
+<script>
+(function (doc, win) {
+    var docEl = doc.documentElement,
+        resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+        recalc = function () {
+            var clientWidth = docEl.clientWidth;
+            if (!clientWidth) return;
+            if(clientWidth>=750){
+                docEl.style.fontSize = '100px';
+            }else{
+                docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+            }
+        };
+    if (!doc.addEventListener) return;
+    win.addEventListener(resizeEvt, recalc, false);
+    doc.addEventListener('DOMContentLoaded', recalc, false);
+})(document, window);	
+</script>
+</body>
+</html>

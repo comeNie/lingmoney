@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.HxBorrowerInfoCustomerMapper">
+	<resultMap id="BaseResultMap"
+		type="com.mrbt.lingmoney.model.HxBorrowerInfoCustomer">
+		<id column="id" jdbcType="VARCHAR" property="id" />
+		<result column="ac_name" jdbcType="VARCHAR" property="bwAcname" />
+		<result column="bw_idtype" jdbcType="VARCHAR" property="bwIdtype" />
+		<result column="id_card" jdbcType="VARCHAR" property="bwIdno" />
+		<result column="bw_id" jdbcType="VARCHAR" property="bwId" />
+		<result column="mobile" jdbcType="VARCHAR" property="mobile" />
+		<result column="acc_id" jdbcType="VARCHAR" property="accId" />
+		<result column="ac_no" jdbcType="VARCHAR" property="bwAcno" />
+		<result column="bw_acbankid" jdbcType="VARCHAR" property="bwAcbankid" />
+		<result column="bw_acbankname" jdbcType="VARCHAR" property="bwAcbankname" />
+		<result column="bidding_id" jdbcType="VARCHAR" property="biddingId" />
+		<result column="bw_amt" jdbcType="DECIMAL" property="bwAmt" />
+		<result column="mortgage_id" jdbcType="VARCHAR" property="mortgageId" />
+		<result column="mortgage_info" jdbcType="VARCHAR" property="mortgageInfo" />
+		<result column="check_date" jdbcType="VARCHAR" property="checkDate" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+		<result column="status" jdbcType="VARCHAR" property="status" />
+
+		<result column="bw_age" property="bwAge" jdbcType="INTEGER" />
+		<result column="bw_marriage" property="bwMarriage" jdbcType="VARCHAR" />
+		<result column="bw_sex" property="bwSex" jdbcType="VARCHAR" />
+		<result column="bw_credit_record" property="bwCreditRecord"
+			jdbcType="VARCHAR" />
+		<result column="bw_orgin_place" property="bwOrginPlace"
+			jdbcType="VARCHAR" />
+		<result column="bw_use" property="bwUse" jdbcType="VARCHAR" />
+		<result column="bw_info" jdbcType="VARCHAR" property="bwInfo" />
+		<result column="mortgage_owner" property="mortgageOwner"
+			jdbcType="VARCHAR" />
+		<result column="mortgage_common" property="mortgageCommon"
+			jdbcType="VARCHAR" />
+		<result column="mortgage_own_style" property="mortgageOwnStyle"
+			jdbcType="VARCHAR" />
+		<result column="mortgage_region" property="mortgageRegion"
+			jdbcType="VARCHAR" />
+		<result column="mortgage_type" property="mortgageType"
+			jdbcType="VARCHAR" />
+		<result column="mortgage_buy_price" property="mortgageBuyPrice"
+			jdbcType="VARCHAR" />
+		<result column="mortgage_evaluate_price" property="mortgageEvaluatePrice"
+			jdbcType="VARCHAR" />
+		<result column="mortgage_rate" property="mortgageRate"
+			jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="findByCondition" parameterType="com.mrbt.lingmoney.utils.PageInfo"
+		resultMap="BaseResultMap">
+		select
+		hbi.id, hb.acc_id, hb.bw_idtype, 
+		ifnull(ha.ac_name, ea.enterprise_name) bwAcname, ifnull(ha.ac_no, ea.bank_no) bwAcno, 
+		ifnull(up.id_card, ea.id_number) bwIdno,
+		hb.bw_acbankid, hb.bw_acbankname, hbi.bw_id, ha.mobile, hbi.bidding_id,
+		hbi.bw_amt, hbi.mortgage_id, hbi.mortgage_info, hbi.check_date,
+		hbi.remark, hb.status, hb.bw_age, hb.bw_marriage, hb.bw_sex,
+		hb.bw_credit_record, hb.bw_orgin_place,
+		hbi.bw_use, hbi.bw_info, hbi.mortgage_owner, hbi.mortgage_common,
+		hbi.mortgage_own_style, hbi.mortgage_region, hbi.mortgage_type,
+		hbi.mortgage_buy_price, hbi.mortgage_evaluate_price, hbi.mortgage_rate
+		from
+		hx_borrower_info hbi
+		left join hx_borrower hb on hbi.bw_id = hb.id
+		left join hx_account ha on hb.acc_id = ha.id
+		left join users_properties up on ha.u_id = up.u_id
+		left join enterprise_account ea on hb.acc_id = ea.id
+		<where>
+			<if test=" condition.biddingId != null and condition.biddingId != '' ">
+				and hbi.bidding_id = #{condition.biddingId}
+			</if>
+			<if test=" condition.status != null ">
+				and hb.status = #{condition.status}
+			</if>
+			<if test=" condition.acName != null and conditionacName != ''  ">
+				and (ha.ac_name like concat ('%',#{condition.acName},'%') or ea.enterprise_name  like concat ('%',#{condition.acName},'%'))
+			</if>
+			<if test=" condition.acNo != null and condition.acNo != '' ">
+				and (ha.ac_no like concat ('%',#{condition.acNo},'%') or ea.bank_no like concat ('%',#{condition.acNo},'%'))
+			</if>
+			<if test=" condition.mobile != null and condition.mobile != ''  ">
+				and ha.mobile = #{condition.mobile}
+			</if>
+			and hb.status != -1
+		</where>
+		<if test="from !=0 or size!=0">
+			limit #{from},#{size}
+		</if>
+	</select>
+	<select id="findCountByCondition" parameterType="com.mrbt.lingmoney.utils.PageInfo"
+		resultType="java.lang.Integer">
+		select count(hbi.id)
+		from
+		hx_borrower_info hbi
+		left join hx_borrower hb on hbi.bw_id = hb.id
+		left join hx_account ha on hb.acc_id = ha.id
+		left join users_properties up on ha.u_id = up.u_id
+		<where>
+			<if test=" condition.biddingId != null and condition.biddingId != '' ">
+				and hbi.bidding_id = #{condition.biddingId}
+			</if>
+			<if test=" condition.status != null ">
+				and hb.status = #{condition.status}
+			</if>
+			<if test=" condition.acName != null ">
+				and ha.ac_name = #{condition.acName}
+			</if>
+			<if test=" condition.acNo != null ">
+				and ha.ac_no = #{condition.acNo}
+			</if>
+			<if test=" condition.mobile != null ">
+				and ha.mobile = #{condition.mobile}
+			</if>
+			and hb.status != -1
+		</where>
+	</select>
+</mapper>

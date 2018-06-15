@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.LoanCompanyMapper">
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.LoanCompany">
+    <!--
+    @mbggenerated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name_com" jdbcType="VARCHAR" property="nameCom" />
+    <result column="phone_com" jdbcType="VARCHAR" property="phoneCom" />
+    <result column="money_com" jdbcType="DECIMAL" property="moneyCom" />
+    <result column="deadline_com" jdbcType="INTEGER" property="deadlineCom" />
+    <result column="use_com" jdbcType="VARCHAR" property="useCom" />
+    <result column="company_com" jdbcType="VARCHAR" property="companyCom" />
+    <result column="job_com" jdbcType="VARCHAR" property="jobCom" />
+    <result column="area_com" jdbcType="VARCHAR" property="areaCom" />
+    <result column="establish_com" jdbcType="DATE" property="establishCom" />
+    <result column="regist_com" jdbcType="DECIMAL" property="registCom" />
+    <result column="bank_com" jdbcType="INTEGER" property="bankCom" />
+    <result column="status_com" jdbcType="INTEGER" property="statusCom" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+    @mbggenerated
+    -->
+    id, name_com, phone_com, money_com, deadline_com, use_com, company_com, job_com, 
+    area_com, establish_com, regist_com, bank_com, status_com
+  </sql>
+  <select id="selectByExample" parameterType="com.mrbt.lingmoney.model.LoanCompanyExample" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from loan_company
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0">
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from loan_company
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--
+    @mbggenerated
+    -->
+    delete from loan_company
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.LoanCompanyExample">
+    <!--
+    @mbggenerated
+    -->
+    delete from loan_company
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mrbt.lingmoney.model.LoanCompany">
+    <!--
+    @mbggenerated
+    -->
+    insert into loan_company (id, name_com, phone_com, 
+      money_com, deadline_com, use_com, 
+      company_com, job_com, area_com, 
+      establish_com, regist_com, bank_com, 
+      status_com)
+    values (#{id,jdbcType=INTEGER}, #{nameCom,jdbcType=VARCHAR}, #{phoneCom,jdbcType=VARCHAR}, 
+      #{moneyCom,jdbcType=DECIMAL}, #{deadlineCom,jdbcType=INTEGER}, #{useCom,jdbcType=VARCHAR}, 
+      #{companyCom,jdbcType=VARCHAR}, #{jobCom,jdbcType=VARCHAR}, #{areaCom,jdbcType=VARCHAR}, 
+      #{establishCom,jdbcType=DATE}, #{registCom,jdbcType=DECIMAL}, #{bankCom,jdbcType=INTEGER}, 
+      #{statusCom,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.LoanCompany">
+    <!--
+    @mbggenerated
+    -->
+    insert into loan_company
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="nameCom != null">
+        name_com,
+      </if>
+      <if test="phoneCom != null">
+        phone_com,
+      </if>
+      <if test="moneyCom != null">
+        money_com,
+      </if>
+      <if test="deadlineCom != null">
+        deadline_com,
+      </if>
+      <if test="useCom != null">
+        use_com,
+      </if>
+      <if test="companyCom != null">
+        company_com,
+      </if>
+      <if test="jobCom != null">
+        job_com,
+      </if>
+      <if test="areaCom != null">
+        area_com,
+      </if>
+      <if test="establishCom != null">
+        establish_com,
+      </if>
+      <if test="registCom != null">
+        regist_com,
+      </if>
+      <if test="bankCom != null">
+        bank_com,
+      </if>
+      <if test="statusCom != null">
+        status_com,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="nameCom != null">
+        #{nameCom,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneCom != null">
+        #{phoneCom,jdbcType=VARCHAR},
+      </if>
+      <if test="moneyCom != null">
+        #{moneyCom,jdbcType=DECIMAL},
+      </if>
+      <if test="deadlineCom != null">
+        #{deadlineCom,jdbcType=INTEGER},
+      </if>
+      <if test="useCom != null">
+        #{useCom,jdbcType=VARCHAR},
+      </if>
+      <if test="companyCom != null">
+        #{companyCom,jdbcType=VARCHAR},
+      </if>
+      <if test="jobCom != null">
+        #{jobCom,jdbcType=VARCHAR},
+      </if>
+      <if test="areaCom != null">
+        #{areaCom,jdbcType=VARCHAR},
+      </if>
+      <if test="establishCom != null">
+        #{establishCom,jdbcType=DATE},
+      </if>
+      <if test="registCom != null">
+        #{registCom,jdbcType=DECIMAL},
+      </if>
+      <if test="bankCom != null">
+        #{bankCom,jdbcType=INTEGER},
+      </if>
+      <if test="statusCom != null">
+        #{statusCom,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.LoanCompanyExample" resultType="java.lang.Long">
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from loan_company
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update loan_company
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.nameCom != null">
+        name_com = #{record.nameCom,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phoneCom != null">
+        phone_com = #{record.phoneCom,jdbcType=VARCHAR},
+      </if>
+      <if test="record.moneyCom != null">
+        money_com = #{record.moneyCom,jdbcType=DECIMAL},
+      </if>
+      <if test="record.deadlineCom != null">
+        deadline_com = #{record.deadlineCom,jdbcType=INTEGER},
+      </if>
+      <if test="record.useCom != null">
+        use_com = #{record.useCom,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyCom != null">
+        company_com = #{record.companyCom,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jobCom != null">
+        job_com = #{record.jobCom,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaCom != null">
+        area_com = #{record.areaCom,jdbcType=VARCHAR},
+      </if>
+      <if test="record.establishCom != null">
+        establish_com = #{record.establishCom,jdbcType=DATE},
+      </if>
+      <if test="record.registCom != null">
+        regist_com = #{record.registCom,jdbcType=DECIMAL},
+      </if>
+      <if test="record.bankCom != null">
+        bank_com = #{record.bankCom,jdbcType=INTEGER},
+      </if>
+      <if test="record.statusCom != null">
+        status_com = #{record.statusCom,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update loan_company
+    set id = #{record.id,jdbcType=INTEGER},
+      name_com = #{record.nameCom,jdbcType=VARCHAR},
+      phone_com = #{record.phoneCom,jdbcType=VARCHAR},
+      money_com = #{record.moneyCom,jdbcType=DECIMAL},
+      deadline_com = #{record.deadlineCom,jdbcType=INTEGER},
+      use_com = #{record.useCom,jdbcType=VARCHAR},
+      company_com = #{record.companyCom,jdbcType=VARCHAR},
+      job_com = #{record.jobCom,jdbcType=VARCHAR},
+      area_com = #{record.areaCom,jdbcType=VARCHAR},
+      establish_com = #{record.establishCom,jdbcType=DATE},
+      regist_com = #{record.registCom,jdbcType=DECIMAL},
+      bank_com = #{record.bankCom,jdbcType=INTEGER},
+      status_com = #{record.statusCom,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mrbt.lingmoney.model.LoanCompany">
+    <!--
+    @mbggenerated
+    -->
+    update loan_company
+    <set>
+      <if test="nameCom != null">
+        name_com = #{nameCom,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneCom != null">
+        phone_com = #{phoneCom,jdbcType=VARCHAR},
+      </if>
+      <if test="moneyCom != null">
+        money_com = #{moneyCom,jdbcType=DECIMAL},
+      </if>
+      <if test="deadlineCom != null">
+        deadline_com = #{deadlineCom,jdbcType=INTEGER},
+      </if>
+      <if test="useCom != null">
+        use_com = #{useCom,jdbcType=VARCHAR},
+      </if>
+      <if test="companyCom != null">
+        company_com = #{companyCom,jdbcType=VARCHAR},
+      </if>
+      <if test="jobCom != null">
+        job_com = #{jobCom,jdbcType=VARCHAR},
+      </if>
+      <if test="areaCom != null">
+        area_com = #{areaCom,jdbcType=VARCHAR},
+      </if>
+      <if test="establishCom != null">
+        establish_com = #{establishCom,jdbcType=DATE},
+      </if>
+      <if test="registCom != null">
+        regist_com = #{registCom,jdbcType=DECIMAL},
+      </if>
+      <if test="bankCom != null">
+        bank_com = #{bankCom,jdbcType=INTEGER},
+      </if>
+      <if test="statusCom != null">
+        status_com = #{statusCom,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mrbt.lingmoney.model.LoanCompany">
+    <!--
+    @mbggenerated
+    -->
+    update loan_company
+    set name_com = #{nameCom,jdbcType=VARCHAR},
+      phone_com = #{phoneCom,jdbcType=VARCHAR},
+      money_com = #{moneyCom,jdbcType=DECIMAL},
+      deadline_com = #{deadlineCom,jdbcType=INTEGER},
+      use_com = #{useCom,jdbcType=VARCHAR},
+      company_com = #{companyCom,jdbcType=VARCHAR},
+      job_com = #{jobCom,jdbcType=VARCHAR},
+      area_com = #{areaCom,jdbcType=VARCHAR},
+      establish_com = #{establishCom,jdbcType=DATE},
+      regist_com = #{registCom,jdbcType=DECIMAL},
+      bank_com = #{bankCom,jdbcType=INTEGER},
+      status_com = #{statusCom,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.WalletSummaryDayMapper">
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.WalletSummaryDay">
+    <!--
+    @mbggenerated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="u_id" jdbcType="VARCHAR" property="uId" />
+    <result column="p_id" jdbcType="INTEGER" property="pId" />
+    <result column="t_id" jdbcType="INTEGER" property="tId" />
+    <result column="buy_money" jdbcType="DECIMAL" property="buyMoney" />
+    <result column="sell_money" jdbcType="DECIMAL" property="sellMoney" />
+    <result column="yesterday_total" jdbcType="DECIMAL" property="yesterdayTotal" />
+    <result column="operate_date" jdbcType="DATE" property="operateDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+    @mbggenerated
+    -->
+    id, u_id, p_id, t_id, buy_money, sell_money, yesterday_total, operate_date
+  </sql>
+  <select id="selectByExample" parameterType="com.mrbt.lingmoney.model.WalletSummaryDayExample" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from wallet_summary_day
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0">
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from wallet_summary_day
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--
+    @mbggenerated
+    -->
+    delete from wallet_summary_day
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.WalletSummaryDayExample">
+    <!--
+    @mbggenerated
+    -->
+    delete from wallet_summary_day
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mrbt.lingmoney.model.WalletSummaryDay">
+    <!--
+    @mbggenerated
+    -->
+    insert into wallet_summary_day (id, u_id, p_id, 
+      t_id, buy_money, sell_money, 
+      yesterday_total, operate_date)
+    values (#{id,jdbcType=INTEGER}, #{uId,jdbcType=VARCHAR}, #{pId,jdbcType=INTEGER}, 
+      #{tId,jdbcType=INTEGER}, #{buyMoney,jdbcType=DECIMAL}, #{sellMoney,jdbcType=DECIMAL}, 
+      #{yesterdayTotal,jdbcType=DECIMAL}, #{operateDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.WalletSummaryDay">
+    <!--
+    @mbggenerated
+    -->
+    insert into wallet_summary_day
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="pId != null">
+        p_id,
+      </if>
+      <if test="tId != null">
+        t_id,
+      </if>
+      <if test="buyMoney != null">
+        buy_money,
+      </if>
+      <if test="sellMoney != null">
+        sell_money,
+      </if>
+      <if test="yesterdayTotal != null">
+        yesterday_total,
+      </if>
+      <if test="operateDate != null">
+        operate_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uId != null">
+        #{uId,jdbcType=VARCHAR},
+      </if>
+      <if test="pId != null">
+        #{pId,jdbcType=INTEGER},
+      </if>
+      <if test="tId != null">
+        #{tId,jdbcType=INTEGER},
+      </if>
+      <if test="buyMoney != null">
+        #{buyMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="sellMoney != null">
+        #{sellMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="yesterdayTotal != null">
+        #{yesterdayTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="operateDate != null">
+        #{operateDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.WalletSummaryDayExample" resultType="java.lang.Long">
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from wallet_summary_day
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update wallet_summary_day
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.uId != null">
+        u_id = #{record.uId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pId != null">
+        p_id = #{record.pId,jdbcType=INTEGER},
+      </if>
+      <if test="record.tId != null">
+        t_id = #{record.tId,jdbcType=INTEGER},
+      </if>
+      <if test="record.buyMoney != null">
+        buy_money = #{record.buyMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.sellMoney != null">
+        sell_money = #{record.sellMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.yesterdayTotal != null">
+        yesterday_total = #{record.yesterdayTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="record.operateDate != null">
+        operate_date = #{record.operateDate,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update wallet_summary_day
+    set id = #{record.id,jdbcType=INTEGER},
+      u_id = #{record.uId,jdbcType=VARCHAR},
+      p_id = #{record.pId,jdbcType=INTEGER},
+      t_id = #{record.tId,jdbcType=INTEGER},
+      buy_money = #{record.buyMoney,jdbcType=DECIMAL},
+      sell_money = #{record.sellMoney,jdbcType=DECIMAL},
+      yesterday_total = #{record.yesterdayTotal,jdbcType=DECIMAL},
+      operate_date = #{record.operateDate,jdbcType=DATE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mrbt.lingmoney.model.WalletSummaryDay">
+    <!--
+    @mbggenerated
+    -->
+    update wallet_summary_day
+    <set>
+      <if test="uId != null">
+        u_id = #{uId,jdbcType=VARCHAR},
+      </if>
+      <if test="pId != null">
+        p_id = #{pId,jdbcType=INTEGER},
+      </if>
+      <if test="tId != null">
+        t_id = #{tId,jdbcType=INTEGER},
+      </if>
+      <if test="buyMoney != null">
+        buy_money = #{buyMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="sellMoney != null">
+        sell_money = #{sellMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="yesterdayTotal != null">
+        yesterday_total = #{yesterdayTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="operateDate != null">
+        operate_date = #{operateDate,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mrbt.lingmoney.model.WalletSummaryDay">
+    <!--
+    @mbggenerated
+    -->
+    update wallet_summary_day
+    set u_id = #{uId,jdbcType=VARCHAR},
+      p_id = #{pId,jdbcType=INTEGER},
+      t_id = #{tId,jdbcType=INTEGER},
+      buy_money = #{buyMoney,jdbcType=DECIMAL},
+      sell_money = #{sellMoney,jdbcType=DECIMAL},
+      yesterday_total = #{yesterdayTotal,jdbcType=DECIMAL},
+      operate_date = #{operateDate,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

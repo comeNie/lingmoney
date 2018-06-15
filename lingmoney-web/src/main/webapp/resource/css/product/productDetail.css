@@ -1,0 +1,155 @@
+@CHARSET "UTF-8";
+
+#nav02 {
+	color: #ea5514;
+	background: url(/resource/images/bg_nava.png) no-repeat center bottom;
+}
+
+#f3 td {
+	text-align: left;
+	padding: 0 25px;
+	border-bottom: 0;
+}
+
+.shengyuTime {
+	float: left;
+	width: 300px;
+	height: 30px;
+	line-height: 30px;
+	padding-top: 15px;
+	margin: 0 0 0 270px;
+}
+
+.shengyuTime span {
+	font-size: 14px;
+	color: #4a4a4a;
+	float: left;
+}
+
+.shengyuTime a {
+	display: block;
+	float: left;
+	cursor: default;
+	padding-left: 30px;
+	width: 137px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	font-size: 18px;
+	color: #ffffff;
+	background: url("/resource/images/tobeTiem_bg.png") no-repeat;
+}
+
+.TipHuaXing {
+	z-index: 9999;
+	width: 470px;
+	height: 644px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	right: 50%;
+	bottom: 50%;
+	margin: -322px -235px -322px -235px;
+	background: url("/resource/images/hxAlert_bg.png") no-repeat;
+	border-radius: 10px;
+	-ms-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	overflow: hidden;
+}
+
+.TipHuaXing .th_box {
+	padding-top: 342px;
+	position: relative;
+}
+
+.TipHuaXing .th_box .hx_close {
+	display: block;
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	top: 80px;
+	right: 0px;
+}
+
+.TipHuaXing .th_box p {
+	font-size: 22px;
+	color: #ea5513;
+	text-align: center;
+	margin-bottom: 212px;
+}
+
+.TipHuaXing .th_box a.ckbtn {
+	display: block;
+	width: 470px;
+	height: 60px;
+	text-align: center;
+	line-height: 60px;
+	color: #ffffff;
+	background: #ea5513;
+	font-size: 22px;
+}
+
+.judgeTip {
+	z-index: 9999;
+	background: #ffffff;
+	position: fixed;
+	width: 300px;
+	height: 165px;
+	left: 50%;
+	right: 50%;
+	top: 50%;
+	bottom: 50%;
+	margin: -75px -150px -75px -150px;
+	border-radius: 20px;
+	-moz-border-radius: 20px;
+	-webkit-border-radius: 20px;
+	-ms-border-radius: 20px;
+	overflow: hidden;
+}
+
+.jtClose {
+	height: 30px;
+	line-height: 30px;
+	padding: 0 20px;
+	text-align: right;
+}
+
+.jtClose a {
+	color: #ff5a00;
+	font-size: 12px;
+}
+
+.jtContent {
+	padding: 25px 40px;
+	text-align: center;
+}
+
+.jt_ckbtn {
+	border-top: 1px solid #cccccc;
+	display: block;
+	width: 300px;
+	height: 45px;
+	line-height: 45px;
+	text-align: center;
+	font-size: 18px;
+	color: #ff5a00;
+}
+
+#increasedRates {
+	width: 780px;
+	height: 544px;
+	top: 50%;
+	left: 50%;
+	margin: -372px 0 0 -390px;
+}
+
+.increasingList {
+	height: 370px;
+	padding: 20px 32px;
+	overflow-y: scroll;
+}
+
+#increasedRates p {
+	text-align: left;
+}

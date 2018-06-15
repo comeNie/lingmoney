@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.HxRechargeWithdrawMapper">
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.HxRechargeWithdraw">
+    <!--
+    @mbggenerated
+    -->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="acc_id" jdbcType="VARCHAR" property="accId" />
+    <result column="app_id" jdbcType="VARCHAR" property="appId" />
+    <result column="seq_no" jdbcType="VARCHAR" property="seqNo" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="trans_type" jdbcType="INTEGER" property="transType" />
+    <result column="operate_time" jdbcType="TIMESTAMP" property="operateTime" />
+    <result column="bank_seq_no" jdbcType="VARCHAR" property="bankSeqNo" />
+    <result column="return_status" jdbcType="VARCHAR" property="returnStatus" />
+    <result column="error_msg" jdbcType="VARCHAR" property="errorMsg" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+    @mbggenerated
+    -->
+    id, acc_id, app_id, seq_no, amount, status, remark, trans_type, operate_time, bank_seq_no, 
+    return_status, error_msg
+  </sql>
+  <select id="selectByExample" parameterType="com.mrbt.lingmoney.model.HxRechargeWithdrawExample" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hx_recharge_withdraw
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart &gt;= 0">
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from hx_recharge_withdraw
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--
+    @mbggenerated
+    -->
+    delete from hx_recharge_withdraw
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.HxRechargeWithdrawExample">
+    <!--
+    @mbggenerated
+    -->
+    delete from hx_recharge_withdraw
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mrbt.lingmoney.model.HxRechargeWithdraw">
+    <!--
+    @mbggenerated
+    -->
+    insert into hx_recharge_withdraw (id, acc_id, app_id, 
+      seq_no, amount, status, 
+      remark, trans_type, operate_time, 
+      bank_seq_no, return_status, error_msg
+      )
+    values (#{id,jdbcType=VARCHAR}, #{accId,jdbcType=VARCHAR}, #{appId,jdbcType=VARCHAR}, 
+      #{seqNo,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, #{status,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{transType,jdbcType=INTEGER}, #{operateTime,jdbcType=TIMESTAMP}, 
+      #{bankSeqNo,jdbcType=VARCHAR}, #{returnStatus,jdbcType=VARCHAR}, #{errorMsg,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.HxRechargeWithdraw">
+    <!--
+    @mbggenerated
+    -->
+    insert into hx_recharge_withdraw
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="accId != null">
+        acc_id,
+      </if>
+      <if test="appId != null">
+        app_id,
+      </if>
+      <if test="seqNo != null">
+        seq_no,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="transType != null">
+        trans_type,
+      </if>
+      <if test="operateTime != null">
+        operate_time,
+      </if>
+      <if test="bankSeqNo != null">
+        bank_seq_no,
+      </if>
+      <if test="returnStatus != null">
+        return_status,
+      </if>
+      <if test="errorMsg != null">
+        error_msg,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="accId != null">
+        #{accId,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null">
+        #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="seqNo != null">
+        #{seqNo,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="transType != null">
+        #{transType,jdbcType=INTEGER},
+      </if>
+      <if test="operateTime != null">
+        #{operateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bankSeqNo != null">
+        #{bankSeqNo,jdbcType=VARCHAR},
+      </if>
+      <if test="returnStatus != null">
+        #{returnStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="errorMsg != null">
+        #{errorMsg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.HxRechargeWithdrawExample" resultType="java.lang.Long">
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from hx_recharge_withdraw
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update hx_recharge_withdraw
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accId != null">
+        acc_id = #{record.accId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appId != null">
+        app_id = #{record.appId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.seqNo != null">
+        seq_no = #{record.seqNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.amount != null">
+        amount = #{record.amount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transType != null">
+        trans_type = #{record.transType,jdbcType=INTEGER},
+      </if>
+      <if test="record.operateTime != null">
+        operate_time = #{record.operateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.bankSeqNo != null">
+        bank_seq_no = #{record.bankSeqNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.returnStatus != null">
+        return_status = #{record.returnStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.errorMsg != null">
+        error_msg = #{record.errorMsg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update hx_recharge_withdraw
+    set id = #{record.id,jdbcType=VARCHAR},
+      acc_id = #{record.accId,jdbcType=VARCHAR},
+      app_id = #{record.appId,jdbcType=VARCHAR},
+      seq_no = #{record.seqNo,jdbcType=VARCHAR},
+      amount = #{record.amount,jdbcType=DECIMAL},
+      status = #{record.status,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      trans_type = #{record.transType,jdbcType=INTEGER},
+      operate_time = #{record.operateTime,jdbcType=TIMESTAMP},
+      bank_seq_no = #{record.bankSeqNo,jdbcType=VARCHAR},
+      return_status = #{record.returnStatus,jdbcType=VARCHAR},
+      error_msg = #{record.errorMsg,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mrbt.lingmoney.model.HxRechargeWithdraw">
+    <!--
+    @mbggenerated
+    -->
+    update hx_recharge_withdraw
+    <set>
+      <if test="accId != null">
+        acc_id = #{accId,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null">
+        app_id = #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="seqNo != null">
+        seq_no = #{seqNo,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="transType != null">
+        trans_type = #{transType,jdbcType=INTEGER},
+      </if>
+      <if test="operateTime != null">
+        operate_time = #{operateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bankSeqNo != null">
+        bank_seq_no = #{bankSeqNo,jdbcType=VARCHAR},
+      </if>
+      <if test="returnStatus != null">
+        return_status = #{returnStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="errorMsg != null">
+        error_msg = #{errorMsg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mrbt.lingmoney.model.HxRechargeWithdraw">
+    <!--
+    @mbggenerated
+    -->
+    update hx_recharge_withdraw
+    set acc_id = #{accId,jdbcType=VARCHAR},
+      app_id = #{appId,jdbcType=VARCHAR},
+      seq_no = #{seqNo,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DECIMAL},
+      status = #{status,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      trans_type = #{transType,jdbcType=INTEGER},
+      operate_time = #{operateTime,jdbcType=TIMESTAMP},
+      bank_seq_no = #{bankSeqNo,jdbcType=VARCHAR},
+      return_status = #{returnStatus,jdbcType=VARCHAR},
+      error_msg = #{errorMsg,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

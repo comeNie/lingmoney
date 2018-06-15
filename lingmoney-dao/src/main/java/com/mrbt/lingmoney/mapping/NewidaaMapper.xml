@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.NewidaaMapper">
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.Newidaa">
+    <!--
+    @mbggenerated
+    -->
+    <result column="comp_name" jdbcType="VARCHAR" property="compName" />
+    <result column="department" jdbcType="VARCHAR" property="department" />
+    <result column="employee_name" jdbcType="VARCHAR" property="employeeName" />
+    <result column="employeeID" jdbcType="VARCHAR" property="employeeid" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="referral_code" jdbcType="VARCHAR" property="referralCode" />
+    <result column="u_id" jdbcType="VARCHAR" property="uId" />
+    <result column="referral_id" jdbcType="VARCHAR" property="referralId" />
+    <result column="level" jdbcType="VARCHAR" property="level" />
+    <result column="birthday" jdbcType="VARCHAR" property="birthday" />
+    <result column="age" jdbcType="DOUBLE" property="age" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+    @mbggenerated
+    -->
+    comp_name, department, employee_name, employeeID, telephone, name, referral_code, 
+    u_id, referral_id, level, birthday, age
+  </sql>
+  <select id="selectByExample" parameterType="com.mrbt.lingmoney.model.NewidaaExample" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from newidaa
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0">
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.NewidaaExample">
+    <!--
+    @mbggenerated
+    -->
+    delete from newidaa
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mrbt.lingmoney.model.Newidaa">
+    <!--
+    @mbggenerated
+    -->
+    insert into newidaa (comp_name, department, employee_name, 
+      employeeID, telephone, name, 
+      referral_code, u_id, referral_id, 
+      level, birthday, age
+      )
+    values (#{compName,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, #{employeeName,jdbcType=VARCHAR}, 
+      #{employeeid,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{referralCode,jdbcType=VARCHAR}, #{uId,jdbcType=VARCHAR}, #{referralId,jdbcType=VARCHAR}, 
+      #{level,jdbcType=VARCHAR}, #{birthday,jdbcType=VARCHAR}, #{age,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.Newidaa">
+    <!--
+    @mbggenerated
+    -->
+    insert into newidaa
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="compName != null">
+        comp_name,
+      </if>
+      <if test="department != null">
+        department,
+      </if>
+      <if test="employeeName != null">
+        employee_name,
+      </if>
+      <if test="employeeid != null">
+        employeeID,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="referralCode != null">
+        referral_code,
+      </if>
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="referralId != null">
+        referral_id,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="compName != null">
+        #{compName,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeName != null">
+        #{employeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeid != null">
+        #{employeeid,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="referralCode != null">
+        #{referralCode,jdbcType=VARCHAR},
+      </if>
+      <if test="uId != null">
+        #{uId,jdbcType=VARCHAR},
+      </if>
+      <if test="referralId != null">
+        #{referralId,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.NewidaaExample" resultType="java.lang.Long">
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from newidaa
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update newidaa
+    <set>
+      <if test="record.compName != null">
+        comp_name = #{record.compName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.department != null">
+        department = #{record.department,jdbcType=VARCHAR},
+      </if>
+      <if test="record.employeeName != null">
+        employee_name = #{record.employeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.employeeid != null">
+        employeeID = #{record.employeeid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.telephone != null">
+        telephone = #{record.telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.referralCode != null">
+        referral_code = #{record.referralCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uId != null">
+        u_id = #{record.uId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.referralId != null">
+        referral_id = #{record.referralId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.level != null">
+        level = #{record.level,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birthday != null">
+        birthday = #{record.birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="record.age != null">
+        age = #{record.age,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update newidaa
+    set comp_name = #{record.compName,jdbcType=VARCHAR},
+      department = #{record.department,jdbcType=VARCHAR},
+      employee_name = #{record.employeeName,jdbcType=VARCHAR},
+      employeeID = #{record.employeeid,jdbcType=VARCHAR},
+      telephone = #{record.telephone,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      referral_code = #{record.referralCode,jdbcType=VARCHAR},
+      u_id = #{record.uId,jdbcType=VARCHAR},
+      referral_id = #{record.referralId,jdbcType=VARCHAR},
+      level = #{record.level,jdbcType=VARCHAR},
+      birthday = #{record.birthday,jdbcType=VARCHAR},
+      age = #{record.age,jdbcType=DOUBLE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

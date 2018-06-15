@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/mvc 
+    http://www.springframework.org/schema/mvc/spring-mvc.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<!-- 拦截器 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<!-- 拦截路径 -->
+			<mvc:mapping path="/**/*" />
+			<!-- 过滤的接口路径 -->
+			<mvc:exclude-mapping path="/*/test" />
+			<!-- 网站文章 -->
+			<mvc:exclude-mapping path="/info/*" />
+			<!-- 登录 -->
+			<mvc:exclude-mapping path="/users/login" />
+			<!-- 注册 -->
+			<mvc:exclude-mapping path="/users/register" />
+			<!-- 忘记密码 -->
+			<mvc:exclude-mapping path="/users/register" />
+			<!-- 发送短信验证码 -->
+			<mvc:exclude-mapping path="/users/retrievePassword" />
+			<!-- 查询京东绑卡是否可用 -->
+			<mvc:exclude-mapping path="/users/isJDBindCardAvailable" />
+			<!-- 查询绑卡支持银行 -->
+			<mvc:exclude-mapping path="/users/listSupportBank" />
+			<!-- 根据银行卡前六位查询银行信息 -->
+			<mvc:exclude-mapping path="/users//queryBankInfoByTopSix" />
+			<!-- 首页产品 -->
+			<mvc:exclude-mapping path="/product/homeProduct" />
+			<!-- 产品列表/单个产品信息 -->
+			<mvc:exclude-mapping path="/product/productList" />
+			<!-- 产品详情 -->
+			<mvc:exclude-mapping path="/product/productDesc" />
+			<!-- 产品项目信息 -->
+			<mvc:exclude-mapping path="/product/productInfo" />
+			<!-- 产品图片 -->
+			<mvc:exclude-mapping path="/product/productPic" />
+			<!-- 产品投资记录 -->
+			<mvc:exclude-mapping path="/product/tradingRecordList" />
+			<!-- 活动列表 -->
+			<mvc:exclude-mapping path="/activity/activityList" />
+			<!-- 活动内页 -->
+			<mvc:exclude-mapping path="/activity/activityInfo" />
+			<!-- 活动产品说明 -->
+			<mvc:exclude-mapping path="/activity/activityDesc" />
+			<!-- 通过banner进入活动页面 -->
+			<mvc:exclude-mapping path="/activity/activityShow" />
+			<!-- 查询新手特供活动 -->
+			<mvc:exclude-mapping path="/activity/activityNovice" />
+			
+			<!-- 首页弹框提示 -->
+			<mvc:exclude-mapping path="/alertPrompt/alertPromptInfo" />
+
+			<!-- 理财课堂列表 -->
+			<mvc:exclude-mapping path="/financialClass/getList" />
+			<!-- 理财课堂详情-->
+			<mvc:exclude-mapping path="/financialClass/getDetailById" />
+			<!-- 我的领地首页信息 -->
+			<mvc:exclude-mapping path="/myPlace/getBannerList" />
+			<!-- 我的领地详情页 -->
+			<mvc:exclude-mapping path="/myPlace/getDetail" />
+			<!-- 我的领地 获取所有礼品类型 -->
+			<mvc:exclude-mapping path="/myPlace/getGiftTypeList"/>
+			<!-- 我的领地 获取根据条件查询礼品列表 -->
+    		<mvc:exclude-mapping path="/myPlace/getGiftListWithCondition"/>
+    		<!-- 我的领地抽奖 -->
+    		<mvc:exclude-mapping path="/myPlace/queryChoujiangItem"/>
+    		<mvc:exclude-mapping path="/myPlace/validateChoujiang"/>
+    		
+			<!-- 发送注册短信 -->
+    		<mvc:exclude-mapping path="/sms/sendreg"/>
+    		<!-- 发送忘记密码短信 -->
+    		<mvc:exclude-mapping path="/sms/sendModiPw"/>
+    		<!-- 查询短信验证码(测试用) -->
+    		<mvc:exclude-mapping path="/sms/querySmsVerify"/>
+    		<!-- 验证短信验证码(测试用) -->
+    		<mvc:exclude-mapping path="/sms/verify"/>
+    		<!-- 获取图片验证码 -->
+    		<mvc:exclude-mapping path="/commonset/pictureCode"/>
+    		<!-- 验证图片验证码(测试用) -->
+    		<mvc:exclude-mapping path="/commonset/verPicCode"/>
+    		<!-- 客户端首页BANNER -->
+    		<mvc:exclude-mapping path="/bannerInfo/homeMainBanner"/>
+    		<!-- app启动图片 -->
+    		<mvc:exclude-mapping path="/appbase/*"/>
+    		
+    		<!-- 微信分享相关 -->
+    		<mvc:exclude-mapping path="/MP_verify_aHjl1KS6QgSBRwtQ.txt"/>
+    		<mvc:exclude-mapping path="/wechat/*"/>
+    		
+    		<mvc:exclude-mapping path="/testBank/index"/>
+    		
+    		<mvc:exclude-mapping path="/bank/accountOpenCallBack/*"/>
+    		<mvc:exclude-mapping path="/bank/tiedCardCallBack/*"/>
+    		<mvc:exclude-mapping path="/bank/cashWithdrawCallBack/*"/>
+    		<mvc:exclude-mapping path="/bank/singleBiddingCallBack/*"/>
+    		<mvc:exclude-mapping path="/bank/accountRechargeCallBack/*"/>
+    		
+			<bean class="com.mrbt.lingmoney.mobile.filter.VerifyTokenInterceptor"></bean>
+		</mvc:interceptor>
+		<!-- 银行接口开关拦截器 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/bank/*" />
+			<bean class="com.mrbt.lingmoney.mobile.interceptor.BankInterfaceSwitchInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+</beans>

@@ -1,0 +1,242 @@
+.rechargeBtn {
+	background: #ea5413 none repeat scroll 0 0;
+	border-radius: 3px;
+	color: #fff;
+	display: inline-block;
+	font-size: 18px;
+	height: 40px;
+	line-height: 40px;
+	margin-right: 20px;
+	padding: 0;
+	text-align: center;
+	width: 150px;
+}
+
+.rechargeTab {
+	margin-top: 30px;
+	width: 100%;
+	height: 200px;
+	padding: 0 30px;
+	text-align: left;
+}
+
+.rechargeTab .td_1 {
+	width: 100px;
+}
+
+.rechargeTab .td_1, .rechargeTab .td_2 {
+	font-size: 16px;
+	color: #282828;
+	font-family: "微软雅黑";
+	font-weight: normal;
+}
+
+.rechargeTab .td_2 span {
+	font-size: 20px;
+	color: #ea5513;
+	margin-right: 5px;
+}
+
+.rechargeTab input {
+	border: 1px solid #c2c2c2;
+	height: 34px;
+	line-height: 34px;
+	padding: 0 10px;
+	width: 188px;
+}
+
+.TopupWay {
+	margin: 15px 30px 0 30px;
+/* 	border-top: 1px dashed #cccccc; */
+}
+
+.TopupWay .tw_tip_1 {
+	width: 70px;
+	height: 10px;
+	border-right: 1px dashed #cccccc;
+	border-left: 1px dashed #cccccc;
+	margin-left: 12px;
+}
+
+.TopupWay .tw_tip_2 {
+	width: 78px;
+	height: 24px;
+	line-height: 24px;
+	margin-left: 9px;
+	margin-bottom: 40px;
+	border: 1px solid #cccccc;
+	font-size: 16px;
+	color: #282828;
+	text-align: center;
+}
+
+.TopupWay .tw_tip_3 {
+	margin:10px 10px 0 0;
+	float: right;
+}
+
+.TopupWay .tw_tip_3 a {
+	color: #ea5514;
+}
+
+
+p.imgText {
+	font-size: 16px;
+	line-height: 23px;
+	color: #ea5514;
+	padding-left: 15px;
+}
+
+p.imgText a {
+	font-size: 14px;
+	color: #0483ef;
+	margin: 0 5px;
+	text-decoration: underline;
+}
+
+p.imgText img {
+	vertical-align: middle;
+}
+
+.steps {
+	padding-left: 40px;
+	margin: 20px 0 25px 0;
+}
+
+.steps .stepsBox {
+	width: 151px;
+	height: 55px;
+	line-height: 55px;
+	float: left;
+	margin-left: 20px;
+	text-align: center;
+	background: url("/resource/images/TopupWay_box_bg.png") no-repeat;
+}
+
+.sweetTip {
+	padding-left: 15px;
+	margin-top: 20px;
+	padding-bottom: 20px;
+	
+}
+
+.sweetTip p {
+	font-size: 14px;
+	color: #282828;
+	line-height: 30px;
+	font-family: "微软雅黑";
+}
+.chongzhi{
+	width:623px;
+	height:420px;
+	background: url("/resource/images/chongzhibackground.jpg") no-repeat;
+	position: relative;
+	margin-bottom: 30px;
+}
+.chongzhi .cz_cardbox{
+	font-size:14px;
+	color:#404040;
+	width:337px;
+	height:85px;
+	position: absolute;
+	top: 120px;
+	left: 220px;
+	padding: 15px 15px;
+}
+.chongzhi .cz_cardbox a{
+	display: inline-block;
+	background: #e48a62;
+	border-radius: 10px;
+	padding: 2px 10px;
+	font-size: 12px;
+	color: #ffffff;
+	margin-left: 20px;
+}
+
+/* ��ֵ�л� */
+.recharge-tabs{    
+	text-align: center;
+    font-size: 18px;
+    color: #333;
+    padding-top:22px;
+    width:272px;
+    margin-left:auto;
+    margin-right:auto;
+    overflow: hidden;
+        position: relative;
+        padding-left:25px;
+        padding-right:25px;
+}
+.recharge-tabs span{position: absolute;color:#fff;top:32px;padding:1px 8px;font-size:12px;background: #EA7032;border-radius:100px;left:0px;}
+.recharge-tabs li{float:left;    padding: 12px 14px;
+    margin-left: 12px;
+    margin-right: 12px;cursor:pointer}
+.tabs-border{border-bottom: solid 2px #EA7032; color:#EA7032;}
+.chongzhi-warp{position: absolute; top:315px;left:47px;}
+
+.rechargeBtn-btn {
+	background: #ea5413 none repeat scroll 0 0;
+	border-radius: 3px;
+	color: #fff;
+	display: inline-block;
+	font-size: 18px;
+	height: 40px;
+	line-height: 40px;
+	margin-right: 20px;
+	padding: 0;
+	text-align: center;
+	width: 150px;
+	margin-top:22px;
+}
+
+.chongzhi-warp input {
+    border: 1px solid #c2c2c2;
+    height: 34px;
+    line-height: 34px;
+    padding: 0 10px;
+    width: 188px;
+
+}
+.recharge-n-nox{ overflow: hidden;    padding-left: 38px;
+    margin-top: 60px;}
+.recharge-nox-left{width:241px;height:148px;float: left;border:solid #ec662b 1px;border-radius: 10px;overflow: hidden;}
+.recharge-nox-left-tip{height:44px;line-height:44px;    background: #fbddd0;
+    text-indent: 20px;
+    color: #333;
+    font-size: 16px;width:100%}
+    .recharge-nox-left ul{display:block;overflow: hidden;padding:24px 19px 0px 19px;  }
+.recharge-nox-left li div{    float: left;
+    font-size: 0px;
+    line-height: 0px;   }
+.recharge-nox-left li p{float: left; font-size: 14px;    
+    text-indent: 12px;
+    color: #000;line-height:24px; }
+.recharge-nox-leftka{    color: #333;
+    line-height: 46px;    clear: both;}
+.recharge-nox-midd{    width: 169px;
+    float: left;
+    padding-top: 53px;
+    padding-left: 12px;
+    padding-right: 12px;}
+.recharge-nox-right{width:266px;height:148px;border: solid #ec662b 1px;float: left;border-radius: 10px;overflow: hidden;}
+
+ .recharge-nox-right ul{display:block;overflow: hidden;padding:24px 19px 0px 19px;  }
+.recharge-nox-right li div{width:25px;height:25px;    float: left;
+    font-size: 0px;
+    line-height: 0px;    border: solid #000 1px;}
+.recharge-nox-right li p{float: left; font-size: 14px;    
+   
+    color: #000;line-height:24px;}
+
+
+
+.recharge-noxlink a {
+   
+    background: #e48a62;
+    border-radius: 10px;
+    padding: 2px 10px;
+    font-size: 12px;
+    color: #ffffff;
+    margin-left:22px;
+ }
+

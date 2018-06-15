@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.HxBiddingCustomerMapper">
+
+	<select id="findByCondition" parameterType="com.mrbt.lingmoney.utils.PageInfo"
+		resultType="com.mrbt.lingmoney.model.HxBiddingCustomer">
+		select hb.id, hb.p_id pId, hb.app_id appId, hb.loan_no loanNo, hb.invest_id investId, 
+		 hb.invest_obj_info investObjInfo, hb.repay_date repayDate, hb.rate_stype rateStype, 
+		 hb.invest_obj_state investObjState, hb.bw_total_num bwTotalNum, hb.remark remark, 
+		 hb.zr_flag zrFlag, hb.ref_loan_no refLoanNo, hb.old_reqseq oldReqseq,
+		 p.name investObjName, p.min_money minInvestAmt, if(p.buy_limit = 0, p.prior_money, p.buy_limit) maxInvestAmt,
+		 p.prior_money investObjAmt, date_format(p.st_dt, '%Y%m%d') investBeginDate, 
+		 date_format(p.ed_dt, '%Y%m%d') investEndDate, p.f_yield yearRate,
+		 p.f_time investRange, p.re_way repayStype, p.status pStatus 
+		from hx_bidding hb
+		left join product p on hb.p_id = p.id
+		<where>
+			<if test=" condition.id != null and condition.id != '' ">
+				and hb.id = #{condition.id}
+			</if>
+			<if test=" condition.pId != null ">
+				and hb.p_id = #{condition.pId}
+			</if>
+			<if test=" condition.investObjState != null and condition.investObjState != '' ">
+				and hb.invest_obj_state = #{condition.investObjState}
+			</if>
+			<if test=" condition.loanNo != null and condition.loanNo != '' ">
+				and hb.loan_no = #{condition.loanNo}
+			</if>
+			<if test=" condition.repayDate != null and condition.repayDate != '' ">
+                and hb.repay_date = #{condition.repayDate}
+            </if>
+			<if test=" condition.pStatus != null and condition.pStatus != '' ">
+                and p.status = #{condition.pStatus}
+            </if>
+		</where>
+		order by hb.p_id desc 
+		<if test="from !=0 or size!=0">
+			limit #{from},#{size}
+		</if>
+	</select>
+	<select id="findCountByCondition" parameterType="com.mrbt.lingmoney.utils.PageInfo"
+		resultType="java.lang.Integer">
+		select count(*)
+		from hx_bidding hb
+		left join product p on hb.p_id = p.id 
+		<where>
+			<if test=" condition.id != null and condition.id != '' ">
+				and hb.id = #{condition.id}
+			</if>
+			<if test=" condition.pId != null ">
+				and hb.p_id = #{condition.pId}
+			</if>
+			<if test=" condition.investObjState != null and condition.investObjState != '' ">
+				and hb.invest_obj_state = #{condition.investObjState}
+			</if>
+			<if test=" condition.loanNo != null and condition.loanNo != '' ">
+				and hb.loan_no = #{condition.loanNo}
+			</if>
+			<if test=" condition.repayDate != null and condition.repayDate != '' ">
+                and hb.repay_date = #{condition.repayDate}
+            </if>
+            <if test=" condition.pStatus != null and condition.pStatus != '' ">
+                and p.status = #{condition.pStatus}
+            </if>
+		</where>
+	</select>
+</mapper>

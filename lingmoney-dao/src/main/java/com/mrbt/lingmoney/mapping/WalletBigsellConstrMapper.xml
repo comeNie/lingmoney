@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.WalletBigsellConstrMapper">
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.WalletBigsellConstr">
+    <!--
+    @mbggenerated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="max_money" jdbcType="INTEGER" property="maxMoney" />
+    <result column="min_money" jdbcType="INTEGER" property="minMoney" />
+    <result column="wallet_dt" jdbcType="DATE" property="walletDt" />
+    <result column="oper_dt" jdbcType="TIMESTAMP" property="operDt" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+    @mbggenerated
+    -->
+    id, max_money, min_money, wallet_dt, oper_dt
+  </sql>
+  <select id="selectByExample" parameterType="com.mrbt.lingmoney.model.WalletBigsellConstrExample" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from wallet_bigsell_constr
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0">
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from wallet_bigsell_constr
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--
+    @mbggenerated
+    -->
+    delete from wallet_bigsell_constr
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.WalletBigsellConstrExample">
+    <!--
+    @mbggenerated
+    -->
+    delete from wallet_bigsell_constr
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mrbt.lingmoney.model.WalletBigsellConstr">
+    <!--
+    @mbggenerated
+    -->
+    insert into wallet_bigsell_constr (id, max_money, min_money, 
+      wallet_dt, oper_dt)
+    values (#{id,jdbcType=INTEGER}, #{maxMoney,jdbcType=INTEGER}, #{minMoney,jdbcType=INTEGER}, 
+      #{walletDt,jdbcType=DATE}, #{operDt,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.WalletBigsellConstr">
+    <!--
+    @mbggenerated
+    -->
+    insert into wallet_bigsell_constr
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="maxMoney != null">
+        max_money,
+      </if>
+      <if test="minMoney != null">
+        min_money,
+      </if>
+      <if test="walletDt != null">
+        wallet_dt,
+      </if>
+      <if test="operDt != null">
+        oper_dt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="maxMoney != null">
+        #{maxMoney,jdbcType=INTEGER},
+      </if>
+      <if test="minMoney != null">
+        #{minMoney,jdbcType=INTEGER},
+      </if>
+      <if test="walletDt != null">
+        #{walletDt,jdbcType=DATE},
+      </if>
+      <if test="operDt != null">
+        #{operDt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.WalletBigsellConstrExample" resultType="java.lang.Long">
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from wallet_bigsell_constr
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update wallet_bigsell_constr
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxMoney != null">
+        max_money = #{record.maxMoney,jdbcType=INTEGER},
+      </if>
+      <if test="record.minMoney != null">
+        min_money = #{record.minMoney,jdbcType=INTEGER},
+      </if>
+      <if test="record.walletDt != null">
+        wallet_dt = #{record.walletDt,jdbcType=DATE},
+      </if>
+      <if test="record.operDt != null">
+        oper_dt = #{record.operDt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update wallet_bigsell_constr
+    set id = #{record.id,jdbcType=INTEGER},
+      max_money = #{record.maxMoney,jdbcType=INTEGER},
+      min_money = #{record.minMoney,jdbcType=INTEGER},
+      wallet_dt = #{record.walletDt,jdbcType=DATE},
+      oper_dt = #{record.operDt,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mrbt.lingmoney.model.WalletBigsellConstr">
+    <!--
+    @mbggenerated
+    -->
+    update wallet_bigsell_constr
+    <set>
+      <if test="maxMoney != null">
+        max_money = #{maxMoney,jdbcType=INTEGER},
+      </if>
+      <if test="minMoney != null">
+        min_money = #{minMoney,jdbcType=INTEGER},
+      </if>
+      <if test="walletDt != null">
+        wallet_dt = #{walletDt,jdbcType=DATE},
+      </if>
+      <if test="operDt != null">
+        oper_dt = #{operDt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mrbt.lingmoney.model.WalletBigsellConstr">
+    <!--
+    @mbggenerated
+    -->
+    update wallet_bigsell_constr
+    set max_money = #{maxMoney,jdbcType=INTEGER},
+      min_money = #{minMoney,jdbcType=INTEGER},
+      wallet_dt = #{walletDt,jdbcType=DATE},
+      oper_dt = #{operDt,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

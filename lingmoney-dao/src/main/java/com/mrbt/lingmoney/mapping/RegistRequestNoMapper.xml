@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.RegistRequestNoMapper">
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.RegistRequestNo">
+    <!--
+    @mbggenerated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="fid" jdbcType="INTEGER" property="fid" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="rquestNO" jdbcType="VARCHAR" property="rquestno" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="failReasion" jdbcType="VARCHAR" property="failreasion" />
+    <result column="submitDt" jdbcType="TIMESTAMP" property="submitdt" />
+    <result column="handleDt" jdbcType="TIMESTAMP" property="handledt" />
+    <result column="platform_User_no" jdbcType="VARCHAR" property="platformUserNo" />
+    <result column="u_id" jdbcType="VARCHAR" property="uId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+    @mbggenerated
+    -->
+    id, fid, type, rquestNO, status, failReasion, submitDt, handleDt, platform_User_no, 
+    u_id
+  </sql>
+  <select id="selectByExample" parameterType="com.mrbt.lingmoney.model.RegistRequestNoExample" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from regist_request_no
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0">
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from regist_request_no
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--
+    @mbggenerated
+    -->
+    delete from regist_request_no
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.RegistRequestNoExample">
+    <!--
+    @mbggenerated
+    -->
+    delete from regist_request_no
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mrbt.lingmoney.model.RegistRequestNo">
+    <!--
+    @mbggenerated
+    -->
+    insert into regist_request_no (id, fid, type, 
+      rquestNO, status, failReasion, 
+      submitDt, handleDt, platform_User_no, 
+      u_id)
+    values (#{id,jdbcType=INTEGER}, #{fid,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
+      #{rquestno,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{failreasion,jdbcType=VARCHAR}, 
+      #{submitdt,jdbcType=TIMESTAMP}, #{handledt,jdbcType=TIMESTAMP}, #{platformUserNo,jdbcType=VARCHAR}, 
+      #{uId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.RegistRequestNo">
+    <!--
+    @mbggenerated
+    -->
+    insert into regist_request_no
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="fid != null">
+        fid,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="rquestno != null">
+        rquestNO,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="failreasion != null">
+        failReasion,
+      </if>
+      <if test="submitdt != null">
+        submitDt,
+      </if>
+      <if test="handledt != null">
+        handleDt,
+      </if>
+      <if test="platformUserNo != null">
+        platform_User_no,
+      </if>
+      <if test="uId != null">
+        u_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="fid != null">
+        #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="rquestno != null">
+        #{rquestno,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="failreasion != null">
+        #{failreasion,jdbcType=VARCHAR},
+      </if>
+      <if test="submitdt != null">
+        #{submitdt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="handledt != null">
+        #{handledt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="platformUserNo != null">
+        #{platformUserNo,jdbcType=VARCHAR},
+      </if>
+      <if test="uId != null">
+        #{uId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.RegistRequestNoExample" resultType="java.lang.Long">
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from regist_request_no
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update regist_request_no
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.fid != null">
+        fid = #{record.fid,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.rquestno != null">
+        rquestNO = #{record.rquestno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.failreasion != null">
+        failReasion = #{record.failreasion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.submitdt != null">
+        submitDt = #{record.submitdt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.handledt != null">
+        handleDt = #{record.handledt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.platformUserNo != null">
+        platform_User_no = #{record.platformUserNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uId != null">
+        u_id = #{record.uId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update regist_request_no
+    set id = #{record.id,jdbcType=INTEGER},
+      fid = #{record.fid,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=INTEGER},
+      rquestNO = #{record.rquestno,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=INTEGER},
+      failReasion = #{record.failreasion,jdbcType=VARCHAR},
+      submitDt = #{record.submitdt,jdbcType=TIMESTAMP},
+      handleDt = #{record.handledt,jdbcType=TIMESTAMP},
+      platform_User_no = #{record.platformUserNo,jdbcType=VARCHAR},
+      u_id = #{record.uId,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mrbt.lingmoney.model.RegistRequestNo">
+    <!--
+    @mbggenerated
+    -->
+    update regist_request_no
+    <set>
+      <if test="fid != null">
+        fid = #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="rquestno != null">
+        rquestNO = #{rquestno,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="failreasion != null">
+        failReasion = #{failreasion,jdbcType=VARCHAR},
+      </if>
+      <if test="submitdt != null">
+        submitDt = #{submitdt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="handledt != null">
+        handleDt = #{handledt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="platformUserNo != null">
+        platform_User_no = #{platformUserNo,jdbcType=VARCHAR},
+      </if>
+      <if test="uId != null">
+        u_id = #{uId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mrbt.lingmoney.model.RegistRequestNo">
+    <!--
+    @mbggenerated
+    -->
+    update regist_request_no
+    set fid = #{fid,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      rquestNO = #{rquestno,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      failReasion = #{failreasion,jdbcType=VARCHAR},
+      submitDt = #{submitdt,jdbcType=TIMESTAMP},
+      handleDt = #{handledt,jdbcType=TIMESTAMP},
+      platform_User_no = #{platformUserNo,jdbcType=VARCHAR},
+      u_id = #{uId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

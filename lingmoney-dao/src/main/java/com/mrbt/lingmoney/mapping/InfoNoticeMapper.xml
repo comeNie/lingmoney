@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.InfoNoticeMapper">
+	<resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.InfoNotice">
+		<!-- @mbggenerated -->
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="title" jdbcType="VARCHAR" property="title" />
+		<result column="ct_dt" jdbcType="TIMESTAMP" property="ctDt" />
+		<result column="status" jdbcType="INTEGER" property="status" />
+		<result column="p_dt" jdbcType="TIMESTAMP" property="pDt" />
+		<result column="order_index" jdbcType="INTEGER" property="orderIndex" />
+	</resultMap>
+	<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs"
+		type="com.mrbt.lingmoney.model.InfoNotice">
+		<!-- @mbggenerated -->
+		<result column="content" jdbcType="LONGVARCHAR" property="content" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<!-- @mbggenerated -->
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" prefixOverrides="and" suffix=")">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach close=")" collection="criterion.value" item="listItem"
+										open="(" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<!-- @mbggenerated -->
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" prefixOverrides="and" suffix=")">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach close=")" collection="criterion.value" item="listItem"
+										open="(" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		<!-- @mbggenerated -->
+		id, title, ct_dt, status, p_dt, order_index
+	</sql>
+	<sql id="Blob_Column_List">
+		<!-- @mbggenerated -->
+		content
+	</sql>
+	<select id="selectByExampleWithBLOBs" parameterType="com.mrbt.lingmoney.model.InfoNoticeExample"
+		resultMap="ResultMapWithBLOBs">
+		<!-- @mbggenerated -->
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from info_notice
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByExample" parameterType="com.mrbt.lingmoney.model.InfoNoticeExample"
+		resultMap="BaseResultMap">
+		<!-- @mbggenerated -->
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from info_notice
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+		<if test="limitStart >= 0">
+			limit ${limitStart} , ${limitEnd}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="ResultMapWithBLOBs">
+		<!-- @mbggenerated -->
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from info_notice
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		<!-- @mbggenerated -->
+		delete from info_notice
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.InfoNoticeExample">
+		<!-- @mbggenerated -->
+		delete from info_notice
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.mrbt.lingmoney.model.InfoNotice">
+		<!-- @mbggenerated -->
+		insert into info_notice (id, title, ct_dt,
+		status, p_dt, order_index,
+		content)
+		values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR},
+		#{ctDt,jdbcType=TIMESTAMP},
+		#{status,jdbcType=INTEGER}, #{pDt,jdbcType=TIMESTAMP}, #{orderIndex,jdbcType=INTEGER},
+		#{content,jdbcType=LONGVARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.InfoNotice">
+		<!-- @mbggenerated -->
+		insert into info_notice
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="title != null">
+				title,
+			</if>
+			<if test="ctDt != null">
+				ct_dt,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="pDt != null">
+				p_dt,
+			</if>
+			<if test="orderIndex != null">
+				order_index,
+			</if>
+			<if test="content != null">
+				content,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="title != null">
+				#{title,jdbcType=VARCHAR},
+			</if>
+			<if test="ctDt != null">
+				#{ctDt,jdbcType=TIMESTAMP},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="pDt != null">
+				#{pDt,jdbcType=TIMESTAMP},
+			</if>
+			<if test="orderIndex != null">
+				#{orderIndex,jdbcType=INTEGER},
+			</if>
+			<if test="content != null">
+				#{content,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.mrbt.lingmoney.model.InfoNoticeExample"
+		resultType="java.lang.Long">
+		<!-- @mbggenerated -->
+		select count(*) from info_notice
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		<!-- @mbggenerated -->
+		update info_notice
+		<set>
+			<if test="record.id != null">
+				id = #{record.id,jdbcType=INTEGER},
+			</if>
+			<if test="record.title != null">
+				title = #{record.title,jdbcType=VARCHAR},
+			</if>
+			<if test="record.ctDt != null">
+				ct_dt = #{record.ctDt,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.status != null">
+				status = #{record.status,jdbcType=INTEGER},
+			</if>
+			<if test="record.pDt != null">
+				p_dt = #{record.pDt,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.orderIndex != null">
+				order_index = #{record.orderIndex,jdbcType=INTEGER},
+			</if>
+			<if test="record.content != null">
+				content = #{record.content,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExampleWithBLOBs" parameterType="map">
+		<!-- @mbggenerated -->
+		update info_notice
+		set id = #{record.id,jdbcType=INTEGER},
+		title = #{record.title,jdbcType=VARCHAR},
+		ct_dt = #{record.ctDt,jdbcType=TIMESTAMP},
+		status = #{record.status,jdbcType=INTEGER},
+		p_dt = #{record.pDt,jdbcType=TIMESTAMP},
+		order_index = #{record.orderIndex,jdbcType=INTEGER},
+		content = #{record.content,jdbcType=LONGVARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		<!-- @mbggenerated -->
+		update info_notice
+		set id = #{record.id,jdbcType=INTEGER},
+		title = #{record.title,jdbcType=VARCHAR},
+		ct_dt = #{record.ctDt,jdbcType=TIMESTAMP},
+		status = #{record.status,jdbcType=INTEGER},
+		p_dt = #{record.pDt,jdbcType=TIMESTAMP},
+		order_index = #{record.orderIndex,jdbcType=INTEGER}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.mrbt.lingmoney.model.InfoNotice">
+		<!-- @mbggenerated -->
+		update info_notice
+		<set>
+			<if test="title != null">
+				title = #{title,jdbcType=VARCHAR},
+			</if>
+			<if test="ctDt != null">
+				ct_dt = #{ctDt,jdbcType=TIMESTAMP},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="pDt != null">
+				p_dt = #{pDt,jdbcType=TIMESTAMP},
+			</if>
+			<if test="orderIndex != null">
+				order_index = #{orderIndex,jdbcType=INTEGER},
+			</if>
+			<if test="content != null">
+				content = #{content,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mrbt.lingmoney.model.InfoNotice">
+		<!-- @mbggenerated -->
+		update info_notice
+		set title = #{title,jdbcType=VARCHAR},
+		ct_dt = #{ctDt,jdbcType=TIMESTAMP},
+		status = #{status,jdbcType=INTEGER},
+		p_dt = #{pDt,jdbcType=TIMESTAMP},
+		order_index = #{orderIndex,jdbcType=INTEGER},
+		content = #{content,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.mrbt.lingmoney.model.InfoNotice">
+		<!-- @mbggenerated -->
+		update info_notice
+		set title = #{title,jdbcType=VARCHAR},
+		ct_dt = #{ctDt,jdbcType=TIMESTAMP},
+		status = #{status,jdbcType=INTEGER},
+		p_dt = #{pDt,jdbcType=TIMESTAMP},
+		order_index = #{orderIndex,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<!-- custom setting -->
+	<select id="selectIdList" resultType="java.lang.Integer">
+		select
+		id
+		from info_notice
+		where status=1
+		order by p_dt desc
+	</select>
+
+	<!-- 自定义方法 -->
+	<select id="selectByPrimaryKeyNotBlob" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.Integer">
+		<!-- WARNING - @mbggenerated This element is automatically generated by 
+			MyBatis Generator, do not modify. This element was generated on Tue Jun 16 
+			09:35:34 CST 2015. -->
+		select
+		<include refid="Base_Column_List" />
+		from info_notice
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<!--结束 自定义方法 -->
+</mapper>

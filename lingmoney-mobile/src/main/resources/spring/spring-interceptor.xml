@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/mvc 
+    http://www.springframework.org/schema/mvc/spring-mvc.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<!-- 拦截器 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<!-- 拦截路径 -->
+			<mvc:mapping path="/**/*" />
+			<!-- 过滤的接口路径 -->
+			<mvc:exclude-mapping path="/*/test" />
+			<!-- 债权转让协议 -->
+			<mvc:exclude-mapping path="/debtTransferAgreement" />
+			<!-- 用户注册协议 -->
+			<mvc:exclude-mapping path="/userRegistAgreement" />
+			<!-- 网站文章 -->
+			<mvc:exclude-mapping path="/info/*" />
+			<!-- 登录 -->
+			<mvc:exclude-mapping path="/users/login" />
+			<!-- 注册 -->
+			<mvc:exclude-mapping path="/users/register" />
+			<!-- 忘记密码 -->
+			<mvc:exclude-mapping path="/users/register" />
+			<!-- 发送短信验证码 -->
+			<mvc:exclude-mapping path="/users/retrievePassword" />
+			<!-- 查询京东绑卡是否可用 -->
+			<mvc:exclude-mapping path="/users/isJDBindCardAvailable" />
+			<!-- 查询绑卡支持银行 -->
+			<mvc:exclude-mapping path="/users/listSupportBank" />
+			<!-- 根据银行卡前六位查询银行信息 -->
+			<mvc:exclude-mapping path="/users/queryBankInfoByTopSix" />
+			<!-- 首页产品 -->
+			<mvc:exclude-mapping path="/product/homeProduct" />
+			<!-- 产品列表/单个产品信息 -->
+			<mvc:exclude-mapping path="/product/productList" />
+			<!-- 产品详情 -->
+			<mvc:exclude-mapping path="/product/productDesc" />
+			<!-- 产品项目信息 -->
+			<mvc:exclude-mapping path="/product/productInfo" />
+			<!-- 产品图片 -->
+			<mvc:exclude-mapping path="/product/productPic" />
+			<!-- 通过产品批次获取产品 -->
+			<mvc:exclude-mapping path="/product/queryProductByBatch" />
+			<!-- 产品投资记录 -->
+			<mvc:exclude-mapping path="/product/tradingRecordList" />
+			<!-- 产品分类 -->
+			<mvc:exclude-mapping path="/product/queryProductType" />
+			<!-- 活动列表 -->
+			<mvc:exclude-mapping path="/activity/activityList" />
+			<!-- 活动内页 -->
+			<mvc:exclude-mapping path="/activity/activityInfo" />
+			<!-- 活动产品说明 -->
+			<mvc:exclude-mapping path="/activity/activityDesc" />
+			<!-- 通过banner进入活动页面 -->
+			<mvc:exclude-mapping path="/activity/activityShow" />
+			<!-- 查询新手特供活动 -->
+			<mvc:exclude-mapping path="/activity/activityNovice" />
+			
+			<!-- 首页弹框提示 -->
+			<mvc:exclude-mapping path="/alertPrompt/alertPromptInfo" />
+
+			<!-- 理财课堂列表 -->
+			<mvc:exclude-mapping path="/financialClass/getList" />
+			<!-- 理财课堂详情-->
+			<mvc:exclude-mapping path="/financialClass/getDetailById" />
+			<!-- 我的领地首页信息 -->
+			<mvc:exclude-mapping path="/myPlace/getBannerList" />
+			<!-- 我的领地详情页 -->
+			<mvc:exclude-mapping path="/myPlace/getDetail" />
+			<!-- 我的领地 获取所有礼品类型 -->
+			<mvc:exclude-mapping path="/myPlace/getGiftTypeList"/>
+			<!-- 我的领地 获取根据条件查询礼品列表 -->
+    		<mvc:exclude-mapping path="/myPlace/getGiftListWithCondition"/>
+    		<!-- 我的领地抽奖 -->
+    		<mvc:exclude-mapping path="/myPlace/queryChoujiangItem"/>
+    		<mvc:exclude-mapping path="/myPlace/validateChoujiang"/>
+    		
+			<!-- 发送注册短信 -->
+    		<mvc:exclude-mapping path="/sms/sendreg"/>
+    		<!-- 发送忘记密码短信 -->
+    		<mvc:exclude-mapping path="/sms/sendModiPw"/>
+    		<!-- 查询短信验证码(测试用) -->
+    		<mvc:exclude-mapping path="/sms/querySmsVerify"/>
+    		<!-- 验证短信验证码(测试用) -->
+    		<mvc:exclude-mapping path="/sms/verify"/>
+    		<!-- 获取图片验证码 -->
+    		<mvc:exclude-mapping path="/commonset/pictureCode"/>
+    		<!-- 验证图片验证码(测试用) -->
+    		<mvc:exclude-mapping path="/commonset/verPicCode"/>
+    		<!-- 客户端首页BANNER -->
+    		<mvc:exclude-mapping path="/bannerInfo/homeMainBanner"/>
+    		<!-- app启动图片 -->
+    		<mvc:exclude-mapping path="/appbase/*"/>
+    		
+    		<!-- 微信分享相关 -->
+    		<mvc:exclude-mapping path="/MP_verify_aHjl1KS6QgSBRwtQ.txt"/>
+    		<mvc:exclude-mapping path="/wechat/*"/>
+    		
+    		<mvc:exclude-mapping path="/testBank/index"/>
+    		<mvc:exclude-mapping path="/testBank/bankCall"/>
+    		
+    		<mvc:exclude-mapping path="/bank/accountOpenCallBack/*"/>
+    		<mvc:exclude-mapping path="/bank/tiedCardCallBack/*"/>
+    		<mvc:exclude-mapping path="/bank/cashWithdrawCallBack/*"/>
+    		<mvc:exclude-mapping path="/bank/singleBiddingCallBack/*"/>
+    		<mvc:exclude-mapping path="/bank/accountRechargeCallBack/*"/>
+    		
+    		<!-- 手机UI样式 -->
+    		<mvc:exclude-mapping path="/appbase/bootImage"/>
+    		<!-- app引导页 -->
+    		<mvc:exclude-mapping path="/uiStyle/*"/>
+    		
+    		<!-- 注册后弹出红包赠送图片 -->
+    		<mvc:exclude-mapping path="/appRedPacket/isDisplayInfo"/>
+    		
+    		<!-- 随心取查询利率列表 -->
+    		<mvc:exclude-mapping path="/purchase/getAllTakeHeartFixRate"/>
+    		
+    		<!-- 京东回调接口 -->
+            <mvc:exclude-mapping path="/purchase/quickNotice/*"/>
+            
+            <!-- 分享页面 -->
+            <mvc:exclude-mapping path="/infoInterface/recommend"/>
+            <mvc:exclude-mapping path="/infoInterface/sendSMS"/>
+            <mvc:exclude-mapping path="/infoInterface/register" />
+            <!-- 分享页面 -->
+            
+            <!-- 优选产品， 新手产品查询 -->
+            <mvc:exclude-mapping path="/product/listNewerProduct"/>
+            <mvc:exclude-mapping path="/product/listRecommendProduct"/>
+            <!-- 优选产品， 新手产品查询 -->
+            <!-- 获取项目详情 -->
+            <mvc:exclude-mapping path="/product/getProductDetailInfo"/>
+            <mvc:exclude-mapping path="/bank/changePersonalBindCardCallback/*"/>
+            
+    		<!-- 查看投资人人列表-->
+    		<mvc:exclude-mapping path="/product/gotoInvesterListPage"/>
+    		
+    		<!-- 消息中心 -->
+    		<mvc:exclude-mapping path="/usersMessage/listMessageInfo"/>
+    		<mvc:exclude-mapping path="/usersMessage/getMessageInfoDetail"/>
+    		
+    		<!-- 公益相关 -->
+    		<mvc:exclude-mapping path="/commonweal/openListPage"/>
+    		<mvc:exclude-mapping path="/commonweal/list"/>
+    		<mvc:exclude-mapping path="/commonweal/getUserLoveNum"/>
+    		<mvc:exclude-mapping path="/commonweal/openDetailsPage"/>
+    		
+    		<!-- 项目详情 -->
+    		<mvc:exclude-mapping path="/product/productDetailInfoData"/>
+    		<!-- 新版获取理财记录 -->
+    		<mvc:exclude-mapping path="/product/tradingRecordListVersionOne"/>
+    		
+    		<!-- 风险评估 -->
+    		<mvc:exclude-mapping path="/users/riskAssessmentResult"/>
+    		
+    		<!-- 安全保障 -->
+    		<mvc:exclude-mapping path="/safety"/>
+    		<!-- 我的推荐码 -->
+    		<mvc:exclude-mapping path="/myRefferCode"/>
+    		<mvc:exclude-mapping path="/users/getMyRefferCode"/>
+    		<!-- 我推荐的人 -->
+    		<mvc:exclude-mapping path="/users/listMyRecommenders/*"/>
+    		<!-- 进入我的推荐人页面 -->
+    		<mvc:exclude-mapping path="/users/gotoListMyRecommendersPage"/>
+    		
+    		<!-- 邀请好友 -->
+    		<mvc:exclude-mapping path="/invitingFriends/invitingHtml"/>
+    		<mvc:exclude-mapping path="/invitingFriends/invitingFriendsLevel"/>
+    		<mvc:exclude-mapping path="/invitingFriends/myInviting"/>
+    		<mvc:exclude-mapping path="/invitingFriends/invitingFriendsList"/>
+    		<mvc:exclude-mapping path="/invitingFriends/invitingRewards"/>
+    		
+    		<!-- 风险测评 -->
+    		<mvc:exclude-mapping path="/users/riskAssessmentQA"/>
+    		
+    		<!-- 陪伴天数 -->
+    		<mvc:exclude-mapping path="/userfinance/getAccompanyDays"/>
+    		
+    		<!-- wonder+备用借款 -->
+    		<mvc:exclude-mapping path="/users/getWonderPlusUrl"/>
+    		
+    		<!-- 梦想相关 -->
+            <mvc:exclude-mapping path="/dream/dreamHtml"/>
+            <mvc:exclude-mapping path="/dream/queryDreamInfo"/>
+            <mvc:exclude-mapping path="/dream/queryBaseDreamInfo"/>
+            <mvc:exclude-mapping path="/dream/dreamAdd"/>
+            <mvc:exclude-mapping path="/dream/dreamHold"/>
+            <mvc:exclude-mapping path="/dream/dreamComplete"/>
+            <mvc:exclude-mapping path="/dream/selectDream"/>
+            <mvc:exclude-mapping path="/dream/queryUsersDreamInfo"/>
+            
+            
+            <!-- 特享 -->
+            <mvc:exclude-mapping path="/enjoy/enjoyHtml"/>
+            
+            <!-- 用户任务 -->
+            <mvc:exclude-mapping path="/task/waitHtml"/>
+            
+            <!-- 保险增信 -->
+            <mvc:exclude-mapping path="/insurance/*"/>
+            
+             <!-- 世界杯 -->
+            <mvc:exclude-mapping path="/worldCup/*"/>
+    		
+    		
+    		
+			<bean class="com.mrbt.lingmoney.mobile.filter.VerifyTokenInterceptor"></bean>
+		</mvc:interceptor>
+		<!-- 银行接口开关拦截器 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/bank/*" />
+			<bean class="com.mrbt.lingmoney.mobile.interceptor.BankInterfaceSwitchInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+</beans>

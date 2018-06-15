@@ -1,0 +1,77 @@
+body{
+
+		background-image: url(/resource/images/lingbaoMarketImages/choujiang/cjbg.jpg);
+		background-repeat: no-repeat;
+		background-size: 100%;
+	}
+	*{
+		margin-left: 0;padding-left: 0;
+	}
+	#title{
+		width: 560px;
+		height: 321px;
+		margin: 200px auto 0 auto;
+	}
+
+	.shanDeng,.shanDeng2{
+		width: 942px;
+		height: 535px;
+		padding:41px 41px;
+		background-repeat: no-repeat;
+		background-position:10px 3px;
+		margin:0 auto;
+	}
+
+	.shanDeng{
+		background-image: url(/resource/images/lingbaoMarketImages/choujiang/shandeng1.png);
+	}
+	.shanDeng2{
+		background-image: url(/resource/images/lingbaoMarketImages/choujiang/shandeng2.png);
+	}
+	#btn{
+		height:74px;
+		padding-top: 191px;
+		line-height: 24px;
+		color: #ea5514;
+		font-size: 16px;
+		font-weight: bold;
+	}
+
+	#btn .cjBtnDom,#btn .cjBtn,.shanDeng .active,.shanDeng td{
+		width: 231px;
+		height: 132px;
+		background-repeat: no-repeat;
+	}
+
+	#btn.cjBtn{
+	
+		width:464px;
+		height:264px;
+		background-image: url(/resource/images/lingbaoMarketImages/choujiang/buttonUp.png);
+	}
+	#btn.cjBtnDom{
+		background-image: url(/resource/images/lingbaoMarketImages/choujiang/buttonDown.png);
+	}
+
+
+	#luck .active{
+		background-image: url(/resource/images/lingbaoMarketImages/choujiang/active.png);
+	}
+	.shanDeng table{
+		background: #ff6d34;
+	}
+	.shanDeng td{
+		text-align: center;
+		background-image: url(/resource/images/lingbaoMarketImages/choujiang/proBj.png);
+	}
+	.shanDeng td img{
+		width: 95%;
+		height: 90%;
+	}
+	.shanDeng td.luck-unit-9,.shanDeng td.luck-unit-4{
+		height: 265px;
+		background-image: url(/resource/images/lingbaoMarketImages/choujiang/proBj_h.png);
+	}
+	#luck .luck-unit-9.active,#luck .luck-unit-4.active{
+		background-image: url(/resource/images/lingbaoMarketImages/choujiang/active_h.png);
+	}

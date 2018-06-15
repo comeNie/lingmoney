@@ -1,0 +1,150 @@
+	html{
+    font-size: 100%;
+}
+/* 鏁翠綋绋冲畾缁撴瀯--------------------- */
+html,body,.screen{
+            position: relative;
+            width: 100%;
+            height: 100%;
+             /*  overflow: hidden;   */
+            margin: 0 auto;
+			
+        }
+body, h1, h2, h3, h4, h5, h6, hr, p, /* structural elements 缁撴瀯鍏冪礌 */
+dl, dt, dd, ul, ol, li, /* list elements 鍒楄〃鍏冪礌 */
+fieldset, button, input, textarea, /* form elements 琛ㄥ崟鍏冪礌 */
+th, td,img,section,div,span, a,header,section{ /* table elements 琛ㄦ牸鍏冪礌 */
+    margin: 0rem;
+    padding: 0rem;
+    color: #333;
+    list-style: none;display:block;  
+
+  /*   -webkit-tap-highlight-color:transparent;  */
+   
+}
+
+h1, h2, h3, h4, h5, h6{ font-weight: 400; color: #292929;}
+h1 { font-size: 0.32rem; /* 18px / 12px = 1.5 */ }
+h2 { font-size: 0.26rem; }
+h3 { font-size: 0.18rem; }
+h4, h5, h6 { font-size: 100%;}
+img{vertical-align:middle;}
+input{text-indent:0.13rem;}
+/* 閲嶇疆鏂囨湰鏍煎紡鍏冪礌 */
+a { text-decoration: none; -webkit-tap-highlight-color:transparent; -webkit-user-select: none;-moz-user-focus: none;-moz-user-select: none; color: #000;}
+a:hover { text-decoration: none; }		
+			
+.main{
+	position: absolute;
+	width: 100%;
+	max-width: 7.5rem;
+	left: 50%;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+	z-index: 9;
+	transform: translate(-50%,0);
+	-webkit-transform: translate(-50%,0);
+	-moz-transform: translate(-50%,0);
+	-o-transform: translate(-50%,0);	
+	transform: translate(-50%,0);
+}
+
+
+.error_tip {position:fixed; top: 50%; height: 0.68rem;width: 3.45rem;font-size: .24rem;line-height: .68rem;border-radius: 3px;background: rgba(0,0,0,0.5);text-align: center;color: #fff;
+left: 50%; 
+  /*  transform: translate(-50%,-50%); */z-index: 100;opacity: 0;display: none; margin-left:-1.72rem;}
+
+
+/*甯哥敤鏂规硶*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+section{margin:0 auto;width:100%;max-width:960px;_width:expression((document.documentElement.clientWidth||document.body.clientWidth)>960?"960px":""); }
+
+
+
+/* 婊戝姩闂ㄩ�氱敤鏍峰紡*/
+
+/* tabbed_content */
+
+.tabbed_content{background-color:none;max-width:960px;_width:expression((document.documentElement.clientWidth||document.body.clientWidth)>960?"960px":"");position:relative;}
+
+.tabs{width:100%;height:45px;line-height:45px;position:fixed;z-index:100000;overflow:hidden;font-size:0.3rem;background:#fff; top:0rem;}
+
+.tabs h2{padding-left:10px;float:left;}
+
+.tabs .moving_bg{width:33.3%;_width:15%;color:#4A4B5D;height:43px;border-bottom:solid 2px #FC724C;background-color:#FFF;position:absolute;z-index:190;left:0;background-position:bottom left;background-repeat:no-repeat;overflow:hidden;}
+
+/* .tabs2 .moving_bg{width:20%} */
+
+/* .tabs3 .moving_bg{width:16.6666666%;} */
+
+.tabs .tab_item{display:block;float:left;width:33.3%;text-align:center;z-index:200;position:relative;cursor:pointer;color:#868798;overflow:hidden;}
+
+/* .tabs2 .tab_item{width:20%;} */
+
+
+
+/* .tabs3 .tab_item{width:16.6666666%;} */
+
+/* .tabs .tab_item:hover{color:#4A4B5D;} */
+
+.tabbed_content .slide_content{overflow:hidden;background-color:none;position:relative;width:100%;top:45px;}
+
+.tabslider{width:400%}
+
+.tabslider2{width:500%}
+
+.tabslider3{width:600%}
+
+.tabslider ul{float:left;margin:0rem;width:25%;text-align:left;-ms-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;/* padding鍜宐order琚寘鍚湪瀹氫箟鐨剋idth鍜宧eight涔嬪唴 */background:none;
+ 
+overflow-y: auto;-webkit-overflow-scrolling:touch;}
+
+.tebs-box{background:#fff;width:7.02rem; margin:0.24rem 0rem 0rem 0rem; padding:0rem 0.24rem;overflow:hidden;position:relative;}
+.project-tip img{width:0.19rem;position:absolute;right:0.24rem;line-height:0rem;top:0.38rem;}
+.project-tip{font-size:0.3rem;color:#4A4B5D; padding:0.32rem 0rem;overflow:hidden; }
+.project-box-pro{overflow:hidden; margin-bottom:0.24rem;}
+.project-left{width:1.98rem;display:black;float:left;line-height:0.37rem;color:#868798;font-size:0.26rem;text-align:right;}
+.project-right{width:4.88rem;word-break:break-all;word-wrap: break-word;display:block;float:right;line-height:0.37rem;color:#4A4B5D;font-size:0.26rem;}
+.mortgages{overflow:hidden;width:100%; padding-bottom:0.24rem}
+/* .mortgages img{width:3.39rem;float:left; margin-right:0.12rem; margin-bottom:0.12rem;} */
+.problem-box{overflow:hidden;border-bottom:solid #EBEBEB 1px;}
+.problem-tip{height:1.06rem; line-height:1.06rem;font-size:0.3rem;color:#4A4B5D;position:relative;cursor:pointer;}
+.problem-tip img{width:0.36rem;position:absolute;right:0.12rem;top:0.3rem;}
+.problem-content{font-size:0.26rem;color:#9C9CA6;line-height:0.37rem; margin-bottom:0.32rem;display:none;}
+.records-box{height:0.88rem;background:#fff; width:7.5rem;display:block}
+
+.records-box li{float:left;width:33.3%;font-size:0.28rem;color:#666666;text-align:center; line-height:0.88rem;}
+.records-list {margin-top:0.24rem;}
+.records-list li{height:0.78rem;background:#fff;border-bottom:solid #e5e5e5 1px; }
+.records-list li span{float:left;width:33.3%;font-size:0.24rem;color:#666666;text-align:center; line-height:0.78rem;}
+
+.records{width:7.5rem;}
+.no-data{text-align:center;}
+.no-data p{font-size:0.26rem;color:#999;text-align:center;line-height:1rem;}
+.no-data img{width:3.54rem;margin-left:auto;margin-right:auto;}
+.project-jilv{ cursor:pointer}
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.TakeheartFixRateMapper">
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.TakeheartFixRate">
+    <!--
+    @mbggenerated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="r_day" jdbcType="INTEGER" property="rDay" />
+    <result column="rate" jdbcType="DECIMAL" property="rate" />
+    <result column="c_id" jdbcType="INTEGER" property="cId" />
+    <result column="c_name" jdbcType="VARCHAR" property="cName" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+    @mbggenerated
+    -->
+    id, r_day, rate, c_id, c_name
+  </sql>
+  <select id="selectByExample" parameterType="com.mrbt.lingmoney.model.TakeheartFixRateExample" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from takeheart_fix_rate
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0">
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from takeheart_fix_rate
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--
+    @mbggenerated
+    -->
+    delete from takeheart_fix_rate
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.TakeheartFixRateExample">
+    <!--
+    @mbggenerated
+    -->
+    delete from takeheart_fix_rate
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mrbt.lingmoney.model.TakeheartFixRate">
+    <!--
+    @mbggenerated
+    -->
+    insert into takeheart_fix_rate (id, r_day, rate, 
+      c_id, c_name)
+    values (#{id,jdbcType=INTEGER}, #{rDay,jdbcType=INTEGER}, #{rate,jdbcType=DECIMAL}, 
+      #{cId,jdbcType=INTEGER}, #{cName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.TakeheartFixRate">
+    <!--
+    @mbggenerated
+    -->
+    insert into takeheart_fix_rate
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="rDay != null">
+        r_day,
+      </if>
+      <if test="rate != null">
+        rate,
+      </if>
+      <if test="cId != null">
+        c_id,
+      </if>
+      <if test="cName != null">
+        c_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="rDay != null">
+        #{rDay,jdbcType=INTEGER},
+      </if>
+      <if test="rate != null">
+        #{rate,jdbcType=DECIMAL},
+      </if>
+      <if test="cId != null">
+        #{cId,jdbcType=INTEGER},
+      </if>
+      <if test="cName != null">
+        #{cName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.TakeheartFixRateExample" resultType="java.lang.Long">
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from takeheart_fix_rate
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update takeheart_fix_rate
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.rDay != null">
+        r_day = #{record.rDay,jdbcType=INTEGER},
+      </if>
+      <if test="record.rate != null">
+        rate = #{record.rate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.cId != null">
+        c_id = #{record.cId,jdbcType=INTEGER},
+      </if>
+      <if test="record.cName != null">
+        c_name = #{record.cName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update takeheart_fix_rate
+    set id = #{record.id,jdbcType=INTEGER},
+      r_day = #{record.rDay,jdbcType=INTEGER},
+      rate = #{record.rate,jdbcType=DECIMAL},
+      c_id = #{record.cId,jdbcType=INTEGER},
+      c_name = #{record.cName,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mrbt.lingmoney.model.TakeheartFixRate">
+    <!--
+    @mbggenerated
+    -->
+    update takeheart_fix_rate
+    <set>
+      <if test="rDay != null">
+        r_day = #{rDay,jdbcType=INTEGER},
+      </if>
+      <if test="rate != null">
+        rate = #{rate,jdbcType=DECIMAL},
+      </if>
+      <if test="cId != null">
+        c_id = #{cId,jdbcType=INTEGER},
+      </if>
+      <if test="cName != null">
+        c_name = #{cName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mrbt.lingmoney.model.TakeheartFixRate">
+    <!--
+    @mbggenerated
+    -->
+    update takeheart_fix_rate
+    set r_day = #{rDay,jdbcType=INTEGER},
+      rate = #{rate,jdbcType=DECIMAL},
+      c_id = #{cId,jdbcType=INTEGER},
+      c_name = #{cName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  <!-- custom setting -->
+  <select id="getTakeHeartFixRate" resultType="java.util.Map" parameterType="java.util.Map">
+      select 
+      	tak.id rId, tak.rate rate, tg.id cId, tg.name name, tg.upper_limit upperLimit, tg.lower_limit lowerLimit, tg.status state  
+      from 
+      	takeheart_fix_rate tak ,takeheart_category tg  
+      where 
+      	tg.status = 2 and tak.r_day <![CDATA[<=]]>  #{rDay} and tg.upper_limit > #{financialMoney} and tg.lower_limit <![CDATA[<=]]> #{financialMoney} and tg.id = tak.c_id  
+      order by tak.r_day desc limit 0 ,1
+  </select>
+  
+  <select id="getUpDayTakeHeartFixRate" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select 
+     <include refid="Base_Column_List" /> 
+    from
+     takeheart_fix_rate 
+    where
+     r_day > #{rDay} and c_id = #{cId} ORDER BY r_day limit 1
+  </select>
+  
+  <select id="getAllTakeHeartFixRate" resultType="java.util.Map">
+     select 
+        tfr.id id, tfr.r_day rDay, tfr.rate rate, tfr.c_id cId, tfr.c_name cName, 
+        tc.lower_limit lowerLimit, tc.upper_limit upperLimit, tc.status status  
+     from takeheart_category tc,takeheart_fix_rate tfr 
+     where tc.`status` = 2 and tc.id = tfr.c_id ORDER BY tc.`name`,tfr.r_day
+  </select>
+  
+</mapper>

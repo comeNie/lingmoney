@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/mvc 
+    http://www.springframework.org/schema/mvc/spring-mvc.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- 启用CGliB -->
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+
+    <context:component-scan base-package="com.mrbt"/>
+    
+    <!-- 配置结果页面 前缀和后缀 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="order" value="10"></property>
+        <property name="prefix" value="/WEB-INF/jsp/"></property>
+        <property name="suffix" value=".jsp"></property>
+    </bean>
+
+    <!-- 配置哪些是静态资源，缺省Servlet 直接返回  -->
+    <mvc:resources mapping="/resource/**" location="/resource/" cache-period="31556926"/>
+    <mvc:resources mapping="/favicon.ico" location="/resource/images/ico.ico" cache-period="31556926"/>
+    <mvc:resources mapping="/test/**" location="/test/" cache-period="31556926"/>
+    <mvc:resources mapping="/wap/**" location="/wap/" cache-period="31556926"/>
+    <mvc:resources mapping="/extension/**" location="/extension/" cache-period="31556926"/>
+    <mvc:resources mapping="/appshare/**" location="/appshare/" cache-period="31556926"/>
+    <mvc:resources mapping="/activity/**" location="/activity/" cache-period="31556926"/>
+    <mvc:resources mapping="/MP_verify_8dMmbKrV6TABafhR.txt" location="/MP_verify_8dMmbKrV6TABafhR.txt" cache-period="31556926"/>
+
+	<mvc:annotation-driven content-negotiation-manager="cnManager" />
+	<bean id="cnManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+		<property name="favorPathExtension" value="false" />
+		<property name="favorParameter" value="false" />
+		<property name="ignoreAcceptHeader" value="false" />
+		<property name="useJaf" value="false" />
+		<property name="defaultContentType" value="application/json" />
+		<property name="mediaTypes">
+			<map>
+				<entry key="json" value="application/json" />
+				<entry key="html" value="text/html" />
+			</map>
+		</property>
+	</bean>
+    <mvc:annotation-driven>
+        <mvc:message-converters register-defaults="false">
+           <!--  将StringHttpMessageConverter的默认编码设为UTF-8 -->
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <constructor-arg value="UTF-8"/>
+            </bean>
+            <ref bean="jacksonMessageConverter" />
+        </mvc:message-converters>
+    </mvc:annotation-driven> 
+	
+    <bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+        <property name="supportedMediaTypes">
+            <list>
+            	<value>text/plain;charset=UTF-8</value> 
+                <value>text/html;charset=UTF-8</value>
+                <value>application/json;charset=UTF-8</value>
+            </list>
+        </property>
+    </bean> 
+    
+	<bean id="formula" class="com.mrbt.lingmoney.commons.formula.ExchangeRateByFormula">
+		<property name="c_pre_r_formula" value="pp*c_pre_r"></property>
+		<property name="c_after_r_formula" value="(o_nv-i_nv)>0?(o_nv-i_nv)*num*c_after_r:0"></property>
+		<property name="fix_day_r_formula" value="pp*r/365*hold"></property>
+		<property name="fix_month_r_formula" value="pp*r/12*hold"></property>
+		<property name="float_formula" value="(o_nv-i_nv)*num"></property>
+		<property name="float_after_formula" value="(o_nv-i_nv)>0?(o_nv-i_nv)*num*(1-c_after_r):(o_nv-i_nv)*num"></property>
+	</bean>
+	<!-- <import resource="classpath:spring/spring-interceptor.xml"/> -->
+</beans>

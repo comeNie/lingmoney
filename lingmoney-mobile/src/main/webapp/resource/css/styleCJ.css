@@ -1,0 +1,294 @@
+html{
+	padding: 0;
+	background:#ffffff url('../images/choujiangImg/choujiang_bg.jpg') top no-repeat;
+}
+.clearfix:after{content:"";display:block;clear:both}.clearfix{zoom:1}
+body{
+		width: 640px;
+		padding: 0;
+		padding-top: 400px;
+		margin: 0;
+		font-family: "黑体"
+
+	}
+	*{
+		margin-left: 0;padding-left: 0;
+	}
+
+	.shanDeng,.shanDeng2{
+		width: 620px;
+		height: 620px;
+		background-repeat: no-repeat;
+		margin:0 auto;
+		position: relative;
+		margin-left: 20px;
+	}
+
+	.shanDeng{
+		background-image: url(../images/choujiangImg/shandeng1.png);
+	}
+	.shanDeng2{
+		background-image: url(../images/choujiangImg/shandeng2.png);
+	}
+
+	#btn .cjBtnDom,#btn .cjBtn,.shanDeng .active,.shanDeng td{
+		width: 120px;
+		height: 165px;
+		background: #fda066;
+		border: 5px solid #fda066;
+		
+	}
+	#btn .cjBtnDom,#btn .cjBtn,.shanDeng .active,.shanDeng td div{
+		height: 165px;
+		width: 120px;
+		background: #ffcd10;
+		border-radius: 20px;
+		overflow: hidden;
+	}
+	.shanDeng td div img{
+		width: 120px;
+		height: 125px;
+		display: block;
+	}
+	.shanDeng td div span{
+		display: block;
+		width: 120px;
+		height: 40px;
+		line-height: 40px;
+		text-align: center;
+		background: #ffffff;
+    	font-size: 18px;
+    	color: #000000;
+	}
+
+	#btn.cjBtn{
+		/*background-image: url(../img/buttonUp.png);*/
+	}
+	#btn.cjBtnDom{
+		/*background-image: url(../img/buttonDown.png);*/
+	}choujiangImg
+	#luck .active{
+		width: 120px;
+		border: 5px solid #ffe688;
+		border-radius: 20px;
+	}
+	#luck .active div{
+		height: 165px;
+		width: 120px;
+		border-radius: 20px;
+	}
+	#btn.cjBtn div{
+		width: 252px;
+		line-height: 165px;
+		text-align: center;
+		font-size: 50px;
+		color: #5a1515;
+	}
+	.shanDeng td{
+		text-align: center;
+	}
+	#luck{
+		height: 800px;
+		padding: 31px 0 0 33px;
+	}
+	.hdgz p{
+		padding: 0 20px;
+		font-size: 18px;
+		color: #e30021;
+		line-height: 35px;
+	}
+	.hdgz p span{
+		font-weight: bold;
+	}
+	.zhongjiangmd{
+		width: 640px;
+		height: 410px;
+		margin: 0px auto;
+		padding-top: 70px;
+		background: url('../images/choujiangImg/body_bottom.png') no-repeat;
+	}
+	.zhongjiangmd h3{
+		text-align: center;
+		color: #da5f3a;
+		font-size: 24px;
+		margin: 0;
+	}
+	.mingdan{
+		width:560px;
+		height:320px;
+		margin: 0px auto;
+		background: #ffdac2;
+		border-radius: 10px;
+		padding: 15px 0;
+	}
+	.mingdan li{
+		display:block;
+		height:40px;
+		line-height:40px;
+		padding: 0 20px;
+		color:#e07c5d;
+		font-size: 20px;
+		text-align: center;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+	.mingdan .tempWrap{
+		height: 320px;
+	}
+	
+	.hdgz span{
+	    display: inline-block;
+	    width: 22px;
+	    height: 22px;
+	    text-align: center;
+	    line-height: 35px;
+	    font-size: 30px;
+	    float: left;
+	    color: #e30021;
+	}
+	
+	.hdgz i {
+		font-style: normal;
+    	font-size: 25px;
+   	 	padding-left: 5px;
+	}
+	/*抽奖边框色*/
+	.shanDeng .active{
+		border: 5px solid #ffffff;
+	}
+	/******************中将提示框*****************/
+	.mask{
+		width: 100%;
+		height: 100%;
+		position: fixed;
+		top: 0px;
+		left: 0px;
+		background: rgba(0,0,0,0.8);
+		z-index: 9998;
+		display: none;
+	}
+	.alertShow{
+		z-index: 9999;
+		width: 461px;
+		height: 340px;
+		background: url('../images/choujiangImg/zhongjiang_bg.png') no-repeat;
+		position: fixed;
+		top: 50%;
+		bottom: 50%;
+		left: 50%;
+		right: 50%;
+		margin: -170px -230px -170px -230px;
+	}
+	.alertShow .showTitle{
+		height: 40px;
+		line-height: 40px;
+		font-weight: bold;
+		text-align: center;
+		font-family: "黑体";
+		color: #ffffff;
+		font-size: 18px;
+		margin-top: 20px;
+	}
+	.alertShow .giftName{
+	font-size: 30px;
+	font-weight: bold;
+	font-family: "黑体";
+	color: #e60021;
+	text-align: center;
+	margin-top: 60px;
+	line-height: 30px;
+	}
+	.alertShow .giftName.cor{
+	color: #666666;
+	}
+	.alertShow .price{
+	text-align: center;
+	font-size: 15px;
+	color: #666666;
+	margin-top: 25px;
+	}
+	.alertShow .lian{
+	text-align: center;
+	font-size: 40px;
+	color: #e60021;
+	margin-top: 25px;
+	font-family: "黑体";
+	}
+	.alertShow .showBtnBox{
+	width: 411px;
+	margin: 50px auto 0px;
+	}
+	.alertShow .showBtnBox a{
+	display: block;
+	outline: none;
+	}
+	.alertShow .showBtnBox a.goCar{
+	width: 239px;
+	height: 62px;
+	float: left;
+	display: none;
+	}
+	.alertShow .showBtnBox a.close{
+	width: 153px;
+	height: 62px;
+	float: right;
+	}
+	.alertShow .showBtnBox a.close.only{
+	width: 153px;
+	height: 62px;
+	float: none;
+	margin: 0px auto;
+	}
+	.alertShow p.tip{
+	margin: 0px;
+	text-align: center;
+	font-size: 14px;
+	font-weight: bold;
+	font-family: "黑体";
+	line-height: 30px;
+	color: #ffffff;
+	letter-spacing: 2px;
+	}
+	.jifenAlert{
+	padding:0 10px;
+	z-index: 9999;
+	position: fixed;
+	top: 50%;
+	bottom: 50%;
+	left: 50%;
+	right: 50%;
+	width: 412px;
+	height: 145px;
+	background: #ffcd10;
+	border-radius: 5px;
+	margin: -72px -206px -72px -206px;
+	}
+	.jifenAlert .jifenTop{
+	height: 40px;
+	line-height: 40px;
+	
+	font-size: 22px;
+	color: #ea0021;
+	}
+	.jifenAlert .jifenTop span{
+	float: left;
+	}
+	.jifenAlert .jifenTop a{
+	float: right;
+	text-decoration: none;
+	color: #ea0021;
+	font-size: 30px;
+	}
+	.jifenAlert .jifenBox{
+	height: 94px;
+	line-height: 94px;
+	text-align: center;
+	font-size: 40px;
+	font-family: "黑体";
+	color: #e60021;
+	background: #ffffff;
+	}
+	.hdgz{
+		padding: 0 20px;
+	}

@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.ProductStatisticsMapper">
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.ProductStatistics">
+    <!--
+    @mbggenerated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="p_id" jdbcType="INTEGER" property="pId" />
+    <result column="p_name" jdbcType="VARCHAR" property="pName" />
+    <result column="yesterday_balance" jdbcType="DECIMAL" property="yesterdayBalance" />
+    <result column="rose_money" jdbcType="DECIMAL" property="roseMoney" />
+    <result column="drop_money" jdbcType="DECIMAL" property="dropMoney" />
+    <result column="balance" jdbcType="DECIMAL" property="balance" />
+    <result column="statistics_date" jdbcType="DATE" property="statisticsDate" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+    @mbggenerated
+    -->
+    id, p_id, p_name, yesterday_balance, rose_money, drop_money, balance, statistics_date, 
+    remark
+  </sql>
+  <select id="selectByExample" parameterType="com.mrbt.lingmoney.model.ProductStatisticsExample" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from product_statistics
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0">
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from product_statistics
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--
+    @mbggenerated
+    -->
+    delete from product_statistics
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.ProductStatisticsExample">
+    <!--
+    @mbggenerated
+    -->
+    delete from product_statistics
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mrbt.lingmoney.model.ProductStatistics">
+    <!--
+    @mbggenerated
+    -->
+    insert into product_statistics (id, p_id, p_name, 
+      yesterday_balance, rose_money, drop_money, 
+      balance, statistics_date, remark
+      )
+    values (#{id,jdbcType=INTEGER}, #{pId,jdbcType=INTEGER}, #{pName,jdbcType=VARCHAR}, 
+      #{yesterdayBalance,jdbcType=DECIMAL}, #{roseMoney,jdbcType=DECIMAL}, #{dropMoney,jdbcType=DECIMAL}, 
+      #{balance,jdbcType=DECIMAL}, #{statisticsDate,jdbcType=DATE}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.ProductStatistics">
+    <!--
+    @mbggenerated
+    -->
+    insert into product_statistics
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="pId != null">
+        p_id,
+      </if>
+      <if test="pName != null">
+        p_name,
+      </if>
+      <if test="yesterdayBalance != null">
+        yesterday_balance,
+      </if>
+      <if test="roseMoney != null">
+        rose_money,
+      </if>
+      <if test="dropMoney != null">
+        drop_money,
+      </if>
+      <if test="balance != null">
+        balance,
+      </if>
+      <if test="statisticsDate != null">
+        statistics_date,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="pId != null">
+        #{pId,jdbcType=INTEGER},
+      </if>
+      <if test="pName != null">
+        #{pName,jdbcType=VARCHAR},
+      </if>
+      <if test="yesterdayBalance != null">
+        #{yesterdayBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="roseMoney != null">
+        #{roseMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="dropMoney != null">
+        #{dropMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="balance != null">
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="statisticsDate != null">
+        #{statisticsDate,jdbcType=DATE},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.ProductStatisticsExample" resultType="java.lang.Long">
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from product_statistics
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update product_statistics
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.pId != null">
+        p_id = #{record.pId,jdbcType=INTEGER},
+      </if>
+      <if test="record.pName != null">
+        p_name = #{record.pName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yesterdayBalance != null">
+        yesterday_balance = #{record.yesterdayBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.roseMoney != null">
+        rose_money = #{record.roseMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.dropMoney != null">
+        drop_money = #{record.dropMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.balance != null">
+        balance = #{record.balance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.statisticsDate != null">
+        statistics_date = #{record.statisticsDate,jdbcType=DATE},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update product_statistics
+    set id = #{record.id,jdbcType=INTEGER},
+      p_id = #{record.pId,jdbcType=INTEGER},
+      p_name = #{record.pName,jdbcType=VARCHAR},
+      yesterday_balance = #{record.yesterdayBalance,jdbcType=DECIMAL},
+      rose_money = #{record.roseMoney,jdbcType=DECIMAL},
+      drop_money = #{record.dropMoney,jdbcType=DECIMAL},
+      balance = #{record.balance,jdbcType=DECIMAL},
+      statistics_date = #{record.statisticsDate,jdbcType=DATE},
+      remark = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mrbt.lingmoney.model.ProductStatistics">
+    <!--
+    @mbggenerated
+    -->
+    update product_statistics
+    <set>
+      <if test="pId != null">
+        p_id = #{pId,jdbcType=INTEGER},
+      </if>
+      <if test="pName != null">
+        p_name = #{pName,jdbcType=VARCHAR},
+      </if>
+      <if test="yesterdayBalance != null">
+        yesterday_balance = #{yesterdayBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="roseMoney != null">
+        rose_money = #{roseMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="dropMoney != null">
+        drop_money = #{dropMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="balance != null">
+        balance = #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="statisticsDate != null">
+        statistics_date = #{statisticsDate,jdbcType=DATE},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mrbt.lingmoney.model.ProductStatistics">
+    <!--
+    @mbggenerated
+    -->
+    update product_statistics
+    set p_id = #{pId,jdbcType=INTEGER},
+      p_name = #{pName,jdbcType=VARCHAR},
+      yesterday_balance = #{yesterdayBalance,jdbcType=DECIMAL},
+      rose_money = #{roseMoney,jdbcType=DECIMAL},
+      drop_money = #{dropMoney,jdbcType=DECIMAL},
+      balance = #{balance,jdbcType=DECIMAL},
+      statistics_date = #{statisticsDate,jdbcType=DATE},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  <select id="findProductStatistics" resultMap="BaseResultMap">
+  		select 
+  			p.id as p_id, p.name as p_name, sum(if(at.type=2,at.money,0)) as rose_money, 
+  			sum(if(at.type=3,at.money,0)) as drop_money 
+		FROM 
+			product p 
+		left join 
+			(select t.p_id as pid,af.money,type from trading t,account_flow af 
+			where t.id = af.t_id and af.status = 1 and (af.type = 2 or af.type = 3) 
+			and date_format(af.operate_time,'%Y-%m-%d') = date_sub(curdate(),interval 1 day)) as at 
+		on at.pid = p.id where (p.status = 0 or p.status =1 or p.status = 2) 
+		group by 
+			p.id
+  </select>
+  
+  <select id="findYesterdayRecommendLineStatistics" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  		select 
+  			balance 
+  		from 
+  			product_statistics 
+  		where 
+  			p_id = #{pid,jdbcType=INTEGER} and date_format(statistics_date,'%Y-%m-%d') = date_sub(curdate(),interval 2 day)
+  </select>
+</mapper>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mrbt.lingmoney.mapper.HxRedPacketCustomMapper" >
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.HxRedPacketVo" >
+    
+    <!--
+    @mbggenerated
+    -->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="hrp_type" jdbcType="INTEGER" property="hrpType" />
+    <result column="hrp_name" jdbcType="VARCHAR" property="hrpName" />
+    <result column="hrp_remarks" jdbcType="VARCHAR" property="hrpRemarks" />
+    <result column="hrp_doc" jdbcType="VARCHAR" property="hrpDoc" />
+    <result column="hrp_number" jdbcType="DOUBLE" property="hrpNumber" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="acquis_mode" jdbcType="INTEGER" property="acquisMode" />
+    <result column="a_start_time" jdbcType="TIMESTAMP" property="aStartTime" />
+    <result column="a_end_time" jdbcType="TIMESTAMP" property="aEndTime" />
+    <result column="a_invest_pro_batch" jdbcType="VARCHAR" property="aInvestProBatch" />
+    <result column="a_invest_pro_type" jdbcType="VARCHAR" property="aInvestProType" />
+    <result column="a_invest_pro_day" jdbcType="INTEGER" property="aInvestProDay" />
+    <result column="a_invest_pro_amount" jdbcType="DOUBLE" property="aInvestProAmount" />
+    <result column="validity_time" jdbcType="TIMESTAMP" property="validityTime" />
+    <result column="u_invest_pro_batch" jdbcType="VARCHAR" property="uInvestProBatch" />
+    <result column="u_invest_pro_type" jdbcType="VARCHAR" property="uInvestProType" />
+    <result column="u_invest_pro_day" jdbcType="INTEGER" property="uInvestProDay" />
+    <result column="u_invest_pro_mixday" jdbcType="INTEGER" property="uInvestProMixday" />
+    <result column="u_invest_pro_amount" jdbcType="DOUBLE" property="uInvestProAmount" />
+    <result column="document" jdbcType="VARCHAR" property="document" />
+    
+    <result column="productName" property="productName" jdbcType="VARCHAR" />
+    <result column="productTypeName" property="productTypeName" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="findBycondition" parameterType="com.mrbt.lingmoney.utils.PageInfo" 
+		resultMap="BaseResultMap">
+		select hrp.*, pc.name productTypeName
+		from hx_red_packet hrp left join product_category pc on hrp.a_invest_pro_type = pc.id
+		<where>
+			<if test="condition.hrpType != null">
+                and hrp.hrp_type = #{condition.hrpType}
+            </if>
+            <if test="condition.acquisMode != null">
+                and hrp.acquis_mode = #{condition.acquisMode}
+            </if>
+            <choose>
+            	<when test="condition.status != null">
+            		and hrp.status = #{condition.status}
+            	</when>
+            	<otherwise>
+            		and hrp.status != -1
+            	</otherwise>
+            </choose>
+        </where>
+        order by a_start_time desc, a_end_time desc 
+        LIMIT #{from}, #{size}
+	</select>
+	<select id="countBycondition" parameterType="com.mrbt.lingmoney.utils.PageInfo" resultType="int">
+		select count(1)
+		from hx_red_packet hrp 
+			left join product_category pc on hrp.a_invest_pro_type = pc.id
+		<where>
+			<if test="condition.hrpType != null">
+                and hrp.hrp_type = #{condition.hrpType}
+            </if>
+            <if test="condition.acquisMode != null">
+                and hrp.acquis_mode = #{condition.acquisMode}
+            </if>
+            <choose>
+            	<when test="condition.status != null">
+            		and hrp.status = #{condition.status}
+            	</when>
+            	<otherwise>
+            		and hrp.status != -1
+            	</otherwise>
+            </choose>
+        </where>
+	</select>
+  
+</mapper>

@@ -1,0 +1,1203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.ProductMapper">
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.Product">
+    <!--
+    @mbggenerated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="re_way" jdbcType="VARCHAR" property="reWay" />
+    <result column="rule" jdbcType="INTEGER" property="rule" />
+    <result column="st_dt" jdbcType="TIMESTAMP" property="stDt" />
+    <result column="ed_dt" jdbcType="TIMESTAMP" property="edDt" />
+    <result column="prior_money" jdbcType="DECIMAL" property="priorMoney" />
+    <result column="reach_money" jdbcType="DECIMAL" property="reachMoney" />
+    <result column="approval" jdbcType="INTEGER" property="approval" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="pc_id" jdbcType="INTEGER" property="pcId" />
+    <result column="pc_name" jdbcType="VARCHAR" property="pcName" />
+    <result column="tags" jdbcType="VARCHAR" property="tags" />
+    <result column="l_time" jdbcType="INTEGER" property="lTime" />
+    <result column="h_time" jdbcType="INTEGER" property="hTime" />
+    <result column="f_time" jdbcType="INTEGER" property="fTime" />
+    <result column="unit_time" jdbcType="INTEGER" property="unitTime" />
+    <result column="value_dt" jdbcType="DATE" property="valueDt" />
+    <result column="establish_dt" jdbcType="TIMESTAMP" property="establishDt" />
+    <result column="wait_rate" jdbcType="DECIMAL" property="waitRate" />
+    <result column="min_money" jdbcType="INTEGER" property="minMoney" />
+    <result column="increa_money" jdbcType="INTEGER" property="increaMoney" />
+    <result column="l_yield" jdbcType="DECIMAL" property="lYield" />
+    <result column="h_yield" jdbcType="DECIMAL" property="hYield" />
+    <result column="f_yield" jdbcType="DECIMAL" property="fYield" />
+    <result column="fees" jdbcType="INTEGER" property="fees" />
+    <result column="fees_rate" jdbcType="DECIMAL" property="feesRate" />
+    <result column="exception_rate" jdbcType="DECIMAL" property="exceptionRate" />
+    <result column="fix_invest" jdbcType="INTEGER" property="fixInvest" />
+    <result column="allocation" jdbcType="INTEGER" property="allocation" />
+    <result column="activity" jdbcType="INTEGER" property="activity" />
+    <result column="platform_user_no" jdbcType="INTEGER" property="platformUserNo" />
+    <result column="cost_value" jdbcType="DECIMAL" property="costValue" />
+    <result column="p_model" jdbcType="INTEGER" property="pModel" />
+    <result column="pictrue_url" jdbcType="VARCHAR" property="pictrueUrl" />
+    <result column="p_type" jdbcType="INTEGER" property="pType" />
+    <result column="city_code" jdbcType="VARCHAR" property="cityCode" />
+    <result column="buy_limit" jdbcType="DECIMAL" property="buyLimit" />
+    <result column="batch" jdbcType="VARCHAR" property="batch" />
+    <result column="sort" jdbcType="TINYINT" property="sort" />
+    <result column="background_url" jdbcType="VARCHAR" property="backgroundUrl" />
+    <result column="background_frosted" jdbcType="INTEGER" property="backgroundFrosted" />
+    <result column="background_url_nav" jdbcType="VARCHAR" property="backgroundUrlNav" />
+    <result column="background_url_ios" jdbcType="VARCHAR" property="backgroundUrlIos" />
+    <result column="insurance_trust" jdbcType="INTEGER" property="insuranceTrust" />
+    <result column="is_red_packet" jdbcType="INTEGER" property="isRedPacket" />
+    <result column="add_yield" jdbcType="DECIMAL" property="addYield" />
+    <result column="is_debt" jdbcType="INTEGER" property="isDebt" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.mrbt.lingmoney.model.ProductWithBLOBs">
+    <!--
+    @mbggenerated
+    -->
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
+    <result column="introduction" jdbcType="LONGVARCHAR" property="introduction" />
+    <result column="project_info" jdbcType="LONGVARCHAR" property="projectInfo" />
+    <result column="project_info_mobile" jdbcType="LONGVARCHAR" property="projectInfoMobile" />
+    <result column="lonner_info" jdbcType="LONGVARCHAR" property="lonnerInfo" />
+    <result column="normal_problem" jdbcType="LONGVARCHAR" property="normalProblem" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+    @mbggenerated
+    -->
+    id, code, name, re_way, rule, st_dt, ed_dt, prior_money, reach_money, approval, status, 
+    pc_id, pc_name, tags, l_time, h_time, f_time, unit_time, value_dt, establish_dt, 
+    wait_rate, min_money, increa_money, l_yield, h_yield, f_yield, fees, fees_rate, exception_rate, 
+    fix_invest, allocation, activity, platform_user_no, cost_value, p_model, pictrue_url, 
+    p_type, city_code, buy_limit, batch, sort, background_url, background_frosted, background_url_nav, 
+    background_url_ios, insurance_trust, is_red_packet, add_yield, is_debt
+  </sql>
+  <sql id="Blob_Column_List">
+    <!--
+    @mbggenerated
+    -->
+    description, introduction, project_info, project_info_mobile, lonner_info, normal_problem
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.mrbt.lingmoney.model.ProductExample" resultMap="ResultMapWithBLOBs">
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from product
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.mrbt.lingmoney.model.ProductExample" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from product
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0">
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    <!--
+    @mbggenerated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from product
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--
+    @mbggenerated
+    -->
+    delete from product
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.ProductExample">
+    <!--
+    @mbggenerated
+    -->
+    delete from product
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mrbt.lingmoney.model.ProductWithBLOBs" keyProperty="id" useGeneratedKeys="true">
+    <!--
+    @mbggenerated
+    -->
+    insert into product (id, code, name, 
+      re_way, rule, st_dt, 
+      ed_dt, prior_money, reach_money, 
+      approval, status, pc_id, 
+      pc_name, tags, l_time, 
+      h_time, f_time, unit_time, 
+      value_dt, establish_dt, wait_rate, 
+      min_money, increa_money, l_yield, 
+      h_yield, f_yield, fees, 
+      fees_rate, exception_rate, fix_invest, 
+      allocation, activity, platform_user_no, 
+      cost_value, p_model, pictrue_url, 
+      p_type, city_code, buy_limit, 
+      batch, sort, background_url, 
+      background_frosted, background_url_nav, background_url_ios, 
+      description, introduction, project_info, 
+      project_info_mobile, lonner_info, 
+      normal_problem,insurance_trust, is_red_packet, add_yield, is_debt)
+    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{reWay,jdbcType=VARCHAR}, #{rule,jdbcType=INTEGER}, #{stDt,jdbcType=TIMESTAMP}, 
+      #{edDt,jdbcType=TIMESTAMP}, #{priorMoney,jdbcType=DECIMAL}, #{reachMoney,jdbcType=DECIMAL}, 
+      #{approval,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{pcId,jdbcType=INTEGER}, 
+      #{pcName,jdbcType=VARCHAR}, #{tags,jdbcType=VARCHAR}, #{lTime,jdbcType=INTEGER}, 
+      #{hTime,jdbcType=INTEGER}, #{fTime,jdbcType=INTEGER}, #{unitTime,jdbcType=INTEGER}, 
+      #{valueDt,jdbcType=DATE}, #{establishDt,jdbcType=TIMESTAMP}, #{waitRate,jdbcType=DECIMAL}, 
+      #{minMoney,jdbcType=INTEGER}, #{increaMoney,jdbcType=INTEGER}, #{lYield,jdbcType=DECIMAL}, 
+      #{hYield,jdbcType=DECIMAL}, #{fYield,jdbcType=DECIMAL}, #{fees,jdbcType=INTEGER}, 
+      #{feesRate,jdbcType=DECIMAL}, #{exceptionRate,jdbcType=DECIMAL}, #{fixInvest,jdbcType=INTEGER}, 
+      #{allocation,jdbcType=INTEGER}, #{activity,jdbcType=INTEGER}, #{platformUserNo,jdbcType=INTEGER}, 
+      #{costValue,jdbcType=DECIMAL}, #{pModel,jdbcType=INTEGER}, #{pictrueUrl,jdbcType=VARCHAR}, 
+      #{pType,jdbcType=INTEGER}, #{cityCode,jdbcType=VARCHAR}, #{buyLimit,jdbcType=DECIMAL}, 
+      #{batch,jdbcType=VARCHAR}, #{sort,jdbcType=TINYINT}, #{backgroundUrl,jdbcType=VARCHAR}, 
+      #{backgroundFrosted,jdbcType=INTEGER}, #{backgroundUrlNav,jdbcType=VARCHAR}, #{backgroundUrlIos,jdbcType=VARCHAR}, 
+      #{description,jdbcType=LONGVARCHAR}, #{introduction,jdbcType=LONGVARCHAR}, #{projectInfo,jdbcType=LONGVARCHAR}, 
+      #{projectInfoMobile,jdbcType=LONGVARCHAR}, #{lonnerInfo,jdbcType=LONGVARCHAR}, 
+      #{normalProblem,jdbcType=LONGVARCHAR}, #{insuranceTrust,jdbcType=INTEGER}, #{isRedPacket,jdbcType=INTEGER},
+      #{addYield,jdbcType=DECIMAL}, #{isDebt,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.ProductWithBLOBs"  keyProperty="id" useGeneratedKeys="true" >
+    <!--
+    @mbggenerated
+    -->
+    insert into product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="reWay != null">
+        re_way,
+      </if>
+      <if test="rule != null">
+        rule,
+      </if>
+      <if test="stDt != null">
+        st_dt,
+      </if>
+      <if test="edDt != null">
+        ed_dt,
+      </if>
+      <if test="priorMoney != null">
+        prior_money,
+      </if>
+      <if test="reachMoney != null">
+        reach_money,
+      </if>
+      <if test="approval != null">
+        approval,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="pcId != null">
+        pc_id,
+      </if>
+      <if test="pcName != null">
+        pc_name,
+      </if>
+      <if test="tags != null">
+        tags,
+      </if>
+      <if test="lTime != null">
+        l_time,
+      </if>
+      <if test="hTime != null">
+        h_time,
+      </if>
+      <if test="fTime != null">
+        f_time,
+      </if>
+      <if test="unitTime != null">
+        unit_time,
+      </if>
+      <if test="valueDt != null">
+        value_dt,
+      </if>
+      <if test="establishDt != null">
+        establish_dt,
+      </if>
+      <if test="waitRate != null">
+        wait_rate,
+      </if>
+      <if test="minMoney != null">
+        min_money,
+      </if>
+      <if test="increaMoney != null">
+        increa_money,
+      </if>
+      <if test="lYield != null">
+        l_yield,
+      </if>
+      <if test="hYield != null">
+        h_yield,
+      </if>
+      <if test="fYield != null">
+        f_yield,
+      </if>
+      <if test="fees != null">
+        fees,
+      </if>
+      <if test="feesRate != null">
+        fees_rate,
+      </if>
+      <if test="exceptionRate != null">
+        exception_rate,
+      </if>
+      <if test="fixInvest != null">
+        fix_invest,
+      </if>
+      <if test="allocation != null">
+        allocation,
+      </if>
+      <if test="activity != null">
+        activity,
+      </if>
+      <if test="platformUserNo != null">
+        platform_user_no,
+      </if>
+      <if test="costValue != null">
+        cost_value,
+      </if>
+      <if test="pModel != null">
+        p_model,
+      </if>
+      <if test="pictrueUrl != null">
+        pictrue_url,
+      </if>
+      <if test="pType != null">
+        p_type,
+      </if>
+      <if test="cityCode != null">
+        city_code,
+      </if>
+      <if test="buyLimit != null">
+        buy_limit,
+      </if>
+      <if test="batch != null">
+        batch,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="backgroundUrl != null">
+        background_url,
+      </if>
+      <if test="backgroundFrosted != null">
+        background_frosted,
+      </if>
+      <if test="backgroundUrlNav != null">
+        background_url_nav,
+      </if>
+      <if test="backgroundUrlIos != null">
+        background_url_ios,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="introduction != null">
+        introduction,
+      </if>
+      <if test="projectInfo != null">
+        project_info,
+      </if>
+      <if test="projectInfoMobile != null">
+        project_info_mobile,
+      </if>
+      <if test="lonnerInfo != null">
+        lonner_info,
+      </if>
+      <if test="normalProblem != null">
+        normal_problem,
+      </if>
+      <if test="insuranceTrust != null">
+        insurance_trust,
+      </if>
+      <if test="isRedPacket != null">
+        is_red_packet,
+      </if>
+      <if test="addYield != null">
+        add_yield,
+      </if>
+      <if test="isDebt != null">
+        is_debt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="reWay != null">
+        #{reWay,jdbcType=VARCHAR},
+      </if>
+      <if test="rule != null">
+        #{rule,jdbcType=INTEGER},
+      </if>
+      <if test="stDt != null">
+        #{stDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="edDt != null">
+        #{edDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="priorMoney != null">
+        #{priorMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="reachMoney != null">
+        #{reachMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="approval != null">
+        #{approval,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="pcId != null">
+        #{pcId,jdbcType=INTEGER},
+      </if>
+      <if test="pcName != null">
+        #{pcName,jdbcType=VARCHAR},
+      </if>
+      <if test="tags != null">
+        #{tags,jdbcType=VARCHAR},
+      </if>
+      <if test="lTime != null">
+        #{lTime,jdbcType=INTEGER},
+      </if>
+      <if test="hTime != null">
+        #{hTime,jdbcType=INTEGER},
+      </if>
+      <if test="fTime != null">
+        #{fTime,jdbcType=INTEGER},
+      </if>
+      <if test="unitTime != null">
+        #{unitTime,jdbcType=INTEGER},
+      </if>
+      <if test="valueDt != null">
+        #{valueDt,jdbcType=DATE},
+      </if>
+      <if test="establishDt != null">
+        #{establishDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="waitRate != null">
+        #{waitRate,jdbcType=DECIMAL},
+      </if>
+      <if test="minMoney != null">
+        #{minMoney,jdbcType=INTEGER},
+      </if>
+      <if test="increaMoney != null">
+        #{increaMoney,jdbcType=INTEGER},
+      </if>
+      <if test="lYield != null">
+        #{lYield,jdbcType=DECIMAL},
+      </if>
+      <if test="hYield != null">
+        #{hYield,jdbcType=DECIMAL},
+      </if>
+      <if test="fYield != null">
+        #{fYield,jdbcType=DECIMAL},
+      </if>
+      <if test="fees != null">
+        #{fees,jdbcType=INTEGER},
+      </if>
+      <if test="feesRate != null">
+        #{feesRate,jdbcType=DECIMAL},
+      </if>
+      <if test="exceptionRate != null">
+        #{exceptionRate,jdbcType=DECIMAL},
+      </if>
+      <if test="fixInvest != null">
+        #{fixInvest,jdbcType=INTEGER},
+      </if>
+      <if test="allocation != null">
+        #{allocation,jdbcType=INTEGER},
+      </if>
+      <if test="activity != null">
+        #{activity,jdbcType=INTEGER},
+      </if>
+      <if test="platformUserNo != null">
+        #{platformUserNo,jdbcType=INTEGER},
+      </if>
+      <if test="costValue != null">
+        #{costValue,jdbcType=DECIMAL},
+      </if>
+      <if test="pModel != null">
+        #{pModel,jdbcType=INTEGER},
+      </if>
+      <if test="pictrueUrl != null">
+        #{pictrueUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="pType != null">
+        #{pType,jdbcType=INTEGER},
+      </if>
+      <if test="cityCode != null">
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="buyLimit != null">
+        #{buyLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="batch != null">
+        #{batch,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=TINYINT},
+      </if>
+      <if test="backgroundUrl != null">
+        #{backgroundUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="backgroundFrosted != null">
+        #{backgroundFrosted,jdbcType=INTEGER},
+      </if>
+      <if test="backgroundUrlNav != null">
+        #{backgroundUrlNav,jdbcType=VARCHAR},
+      </if>
+      <if test="backgroundUrlIos != null">
+        #{backgroundUrlIos,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="introduction != null">
+        #{introduction,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="projectInfo != null">
+        #{projectInfo,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="projectInfoMobile != null">
+        #{projectInfoMobile,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="lonnerInfo != null">
+        #{lonnerInfo,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="normalProblem != null">
+        #{normalProblem,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="insuranceTrust != null">
+        #{insuranceTrust,jdbcType=INTEGER},
+      </if>
+      <if test="isRedPacket != null">
+        #{isRedPacket,jdbcType=INTEGER},
+      </if>
+      <if test="addYield != null">
+        #{addYield,jdbcType=DECIMAL},
+      </if>
+      <if test="isDebt != null">
+        #{isDebt,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.ProductExample" resultType="java.lang.Integer">
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from product
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update product
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.code != null">
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reWay != null">
+        re_way = #{record.reWay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rule != null">
+        rule = #{record.rule,jdbcType=INTEGER},
+      </if>
+      <if test="record.stDt != null">
+        st_dt = #{record.stDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.edDt != null">
+        ed_dt = #{record.edDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.priorMoney != null">
+        prior_money = #{record.priorMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.reachMoney != null">
+        reach_money = #{record.reachMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.approval != null">
+        approval = #{record.approval,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.pcId != null">
+        pc_id = #{record.pcId,jdbcType=INTEGER},
+      </if>
+      <if test="record.pcName != null">
+        pc_name = #{record.pcName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tags != null">
+        tags = #{record.tags,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lTime != null">
+        l_time = #{record.lTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.hTime != null">
+        h_time = #{record.hTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.fTime != null">
+        f_time = #{record.fTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.unitTime != null">
+        unit_time = #{record.unitTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.valueDt != null">
+        value_dt = #{record.valueDt,jdbcType=DATE},
+      </if>
+      <if test="record.establishDt != null">
+        establish_dt = #{record.establishDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.waitRate != null">
+        wait_rate = #{record.waitRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.minMoney != null">
+        min_money = #{record.minMoney,jdbcType=INTEGER},
+      </if>
+      <if test="record.increaMoney != null">
+        increa_money = #{record.increaMoney,jdbcType=INTEGER},
+      </if>
+      <if test="record.lYield != null">
+        l_yield = #{record.lYield,jdbcType=DECIMAL},
+      </if>
+      <if test="record.hYield != null">
+        h_yield = #{record.hYield,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fYield != null">
+        f_yield = #{record.fYield,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fees != null">
+        fees = #{record.fees,jdbcType=INTEGER},
+      </if>
+      <if test="record.feesRate != null">
+        fees_rate = #{record.feesRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.exceptionRate != null">
+        exception_rate = #{record.exceptionRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fixInvest != null">
+        fix_invest = #{record.fixInvest,jdbcType=INTEGER},
+      </if>
+      <if test="record.allocation != null">
+        allocation = #{record.allocation,jdbcType=INTEGER},
+      </if>
+      <if test="record.activity != null">
+        activity = #{record.activity,jdbcType=INTEGER},
+      </if>
+      <if test="record.platformUserNo != null">
+        platform_user_no = #{record.platformUserNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.costValue != null">
+        cost_value = #{record.costValue,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pModel != null">
+        p_model = #{record.pModel,jdbcType=INTEGER},
+      </if>
+      <if test="record.pictrueUrl != null">
+        pictrue_url = #{record.pictrueUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pType != null">
+        p_type = #{record.pType,jdbcType=INTEGER},
+      </if>
+      <if test="record.cityCode != null">
+        city_code = #{record.cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyLimit != null">
+        buy_limit = #{record.buyLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.batch != null">
+        batch = #{record.batch,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sort != null">
+        sort = #{record.sort,jdbcType=TINYINT},
+      </if>
+      <if test="record.backgroundUrl != null">
+        background_url = #{record.backgroundUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.backgroundFrosted != null">
+        background_frosted = #{record.backgroundFrosted,jdbcType=INTEGER},
+      </if>
+      <if test="record.backgroundUrlNav != null">
+        background_url_nav = #{record.backgroundUrlNav,jdbcType=VARCHAR},
+      </if>
+      <if test="record.backgroundUrlIos != null">
+        background_url_ios = #{record.backgroundUrlIos,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null">
+        description = #{record.description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.introduction != null">
+        introduction = #{record.introduction,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.projectInfo != null">
+        project_info = #{record.projectInfo,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.projectInfoMobile != null">
+        project_info_mobile = #{record.projectInfoMobile,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.lonnerInfo != null">
+        lonner_info = #{record.lonnerInfo,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.normalProblem != null">
+        normal_problem = #{record.normalProblem,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.insuranceTrust != null">
+        insurance_trust = #{record.insuranceTrust,jdbcType=INTEGER},
+      </if>
+      <if test="record.isRedPacket != null">
+        is_red_packet = #{record.isRedPacket,jdbcType=INTEGER},
+      </if>
+      <if test="record.addYield != null">
+        add_yield = #{record.addYield,jdbcType=DECIMAL},
+      </if>
+      <if test="record.isDebt != null">
+        is_debt = #{record.isDebt,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update product
+    set id = #{record.id,jdbcType=INTEGER},
+      code = #{record.code,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      re_way = #{record.reWay,jdbcType=VARCHAR},
+      rule = #{record.rule,jdbcType=INTEGER},
+      st_dt = #{record.stDt,jdbcType=TIMESTAMP},
+      ed_dt = #{record.edDt,jdbcType=TIMESTAMP},
+      prior_money = #{record.priorMoney,jdbcType=DECIMAL},
+      reach_money = #{record.reachMoney,jdbcType=DECIMAL},
+      approval = #{record.approval,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      pc_id = #{record.pcId,jdbcType=INTEGER},
+      pc_name = #{record.pcName,jdbcType=VARCHAR},
+      tags = #{record.tags,jdbcType=VARCHAR},
+      l_time = #{record.lTime,jdbcType=INTEGER},
+      h_time = #{record.hTime,jdbcType=INTEGER},
+      f_time = #{record.fTime,jdbcType=INTEGER},
+      unit_time = #{record.unitTime,jdbcType=INTEGER},
+      value_dt = #{record.valueDt,jdbcType=DATE},
+      establish_dt = #{record.establishDt,jdbcType=TIMESTAMP},
+      wait_rate = #{record.waitRate,jdbcType=DECIMAL},
+      min_money = #{record.minMoney,jdbcType=INTEGER},
+      increa_money = #{record.increaMoney,jdbcType=INTEGER},
+      l_yield = #{record.lYield,jdbcType=DECIMAL},
+      h_yield = #{record.hYield,jdbcType=DECIMAL},
+      f_yield = #{record.fYield,jdbcType=DECIMAL},
+      fees = #{record.fees,jdbcType=INTEGER},
+      fees_rate = #{record.feesRate,jdbcType=DECIMAL},
+      exception_rate = #{record.exceptionRate,jdbcType=DECIMAL},
+      fix_invest = #{record.fixInvest,jdbcType=INTEGER},
+      allocation = #{record.allocation,jdbcType=INTEGER},
+      activity = #{record.activity,jdbcType=INTEGER},
+      platform_user_no = #{record.platformUserNo,jdbcType=INTEGER},
+      cost_value = #{record.costValue,jdbcType=DECIMAL},
+      p_model = #{record.pModel,jdbcType=INTEGER},
+      pictrue_url = #{record.pictrueUrl,jdbcType=VARCHAR},
+      p_type = #{record.pType,jdbcType=INTEGER},
+      city_code = #{record.cityCode,jdbcType=VARCHAR},
+      buy_limit = #{record.buyLimit,jdbcType=DECIMAL},
+      batch = #{record.batch,jdbcType=VARCHAR},
+      sort = #{record.sort,jdbcType=TINYINT},
+      background_url = #{record.backgroundUrl,jdbcType=VARCHAR},
+      background_frosted = #{record.backgroundFrosted,jdbcType=INTEGER},
+      background_url_nav = #{record.backgroundUrlNav,jdbcType=VARCHAR},
+      background_url_ios = #{record.backgroundUrlIos,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=LONGVARCHAR},
+      introduction = #{record.introduction,jdbcType=LONGVARCHAR},
+      project_info = #{record.projectInfo,jdbcType=LONGVARCHAR},
+      project_info_mobile = #{record.projectInfoMobile,jdbcType=LONGVARCHAR},
+      lonner_info = #{record.lonnerInfo,jdbcType=LONGVARCHAR},
+      normal_problem = #{record.normalProblem,jdbcType=LONGVARCHAR},
+      insurance_trust = #{record.insuranceTrust,jdbcType=INTEGER},
+      is_red_packet = #{record.isRedPacket,jdbcType=INTEGER},
+      add_yield = #{record.addYield,jdbcType=DECIMAL},
+      is_debt = #{record.isDebt,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update product
+    set id = #{record.id,jdbcType=INTEGER},
+      code = #{record.code,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      re_way = #{record.reWay,jdbcType=VARCHAR},
+      rule = #{record.rule,jdbcType=INTEGER},
+      st_dt = #{record.stDt,jdbcType=TIMESTAMP},
+      ed_dt = #{record.edDt,jdbcType=TIMESTAMP},
+      prior_money = #{record.priorMoney,jdbcType=DECIMAL},
+      reach_money = #{record.reachMoney,jdbcType=DECIMAL},
+      approval = #{record.approval,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      pc_id = #{record.pcId,jdbcType=INTEGER},
+      pc_name = #{record.pcName,jdbcType=VARCHAR},
+      tags = #{record.tags,jdbcType=VARCHAR},
+      l_time = #{record.lTime,jdbcType=INTEGER},
+      h_time = #{record.hTime,jdbcType=INTEGER},
+      f_time = #{record.fTime,jdbcType=INTEGER},
+      unit_time = #{record.unitTime,jdbcType=INTEGER},
+      value_dt = #{record.valueDt,jdbcType=DATE},
+      establish_dt = #{record.establishDt,jdbcType=TIMESTAMP},
+      wait_rate = #{record.waitRate,jdbcType=DECIMAL},
+      min_money = #{record.minMoney,jdbcType=INTEGER},
+      increa_money = #{record.increaMoney,jdbcType=INTEGER},
+      l_yield = #{record.lYield,jdbcType=DECIMAL},
+      h_yield = #{record.hYield,jdbcType=DECIMAL},
+      f_yield = #{record.fYield,jdbcType=DECIMAL},
+      fees = #{record.fees,jdbcType=INTEGER},
+      fees_rate = #{record.feesRate,jdbcType=DECIMAL},
+      exception_rate = #{record.exceptionRate,jdbcType=DECIMAL},
+      fix_invest = #{record.fixInvest,jdbcType=INTEGER},
+      allocation = #{record.allocation,jdbcType=INTEGER},
+      activity = #{record.activity,jdbcType=INTEGER},
+      platform_user_no = #{record.platformUserNo,jdbcType=INTEGER},
+      cost_value = #{record.costValue,jdbcType=DECIMAL},
+      p_model = #{record.pModel,jdbcType=INTEGER},
+      pictrue_url = #{record.pictrueUrl,jdbcType=VARCHAR},
+      p_type = #{record.pType,jdbcType=INTEGER},
+      city_code = #{record.cityCode,jdbcType=VARCHAR},
+      buy_limit = #{record.buyLimit,jdbcType=DECIMAL},
+      batch = #{record.batch,jdbcType=VARCHAR},
+      sort = #{record.sort,jdbcType=TINYINT},
+      background_url = #{record.backgroundUrl,jdbcType=VARCHAR},
+      background_frosted = #{record.backgroundFrosted,jdbcType=INTEGER},
+      background_url_nav = #{record.backgroundUrlNav,jdbcType=VARCHAR},
+      background_url_ios = #{record.backgroundUrlIos,jdbcType=VARCHAR},
+      insurance_trust = #{record.insuranceTrust,jdbcType=INTEGER},
+      is_red_packet = #{record.isRedPacket,jdbcType=INTEGER},
+      add_yield = #{record.addYield,jdbcType=DECIMAL},
+      is_debt = #{record.isDebt,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mrbt.lingmoney.model.ProductWithBLOBs">
+    <!--
+    @mbggenerated
+    -->
+    update product
+    <set>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="reWay != null">
+        re_way = #{reWay,jdbcType=VARCHAR},
+      </if>
+      <if test="rule != null">
+        rule = #{rule,jdbcType=INTEGER},
+      </if>
+      <if test="stDt != null">
+        st_dt = #{stDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="edDt != null">
+        ed_dt = #{edDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="priorMoney != null">
+        prior_money = #{priorMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="reachMoney != null">
+        reach_money = #{reachMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="approval != null">
+        approval = #{approval,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="pcId != null">
+        pc_id = #{pcId,jdbcType=INTEGER},
+      </if>
+      <if test="pcName != null">
+        pc_name = #{pcName,jdbcType=VARCHAR},
+      </if>
+      <if test="tags != null">
+        tags = #{tags,jdbcType=VARCHAR},
+      </if>
+      <if test="lTime != null">
+        l_time = #{lTime,jdbcType=INTEGER},
+      </if>
+      <if test="hTime != null">
+        h_time = #{hTime,jdbcType=INTEGER},
+      </if>
+      <if test="fTime != null">
+        f_time = #{fTime,jdbcType=INTEGER},
+      </if>
+      <if test="unitTime != null">
+        unit_time = #{unitTime,jdbcType=INTEGER},
+      </if>
+      <if test="valueDt != null">
+        value_dt = #{valueDt,jdbcType=DATE},
+      </if>
+      <if test="establishDt != null">
+        establish_dt = #{establishDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="waitRate != null">
+        wait_rate = #{waitRate,jdbcType=DECIMAL},
+      </if>
+      <if test="minMoney != null">
+        min_money = #{minMoney,jdbcType=INTEGER},
+      </if>
+      <if test="increaMoney != null">
+        increa_money = #{increaMoney,jdbcType=INTEGER},
+      </if>
+      <if test="lYield != null">
+        l_yield = #{lYield,jdbcType=DECIMAL},
+      </if>
+      <if test="hYield != null">
+        h_yield = #{hYield,jdbcType=DECIMAL},
+      </if>
+      <if test="fYield != null">
+        f_yield = #{fYield,jdbcType=DECIMAL},
+      </if>
+      <if test="fees != null">
+        fees = #{fees,jdbcType=INTEGER},
+      </if>
+      <if test="feesRate != null">
+        fees_rate = #{feesRate,jdbcType=DECIMAL},
+      </if>
+      <if test="exceptionRate != null">
+        exception_rate = #{exceptionRate,jdbcType=DECIMAL},
+      </if>
+      <if test="fixInvest != null">
+        fix_invest = #{fixInvest,jdbcType=INTEGER},
+      </if>
+      <if test="allocation != null">
+        allocation = #{allocation,jdbcType=INTEGER},
+      </if>
+      <if test="activity != null">
+        activity = #{activity,jdbcType=INTEGER},
+      </if>
+      <if test="platformUserNo != null">
+        platform_user_no = #{platformUserNo,jdbcType=INTEGER},
+      </if>
+      <if test="costValue != null">
+        cost_value = #{costValue,jdbcType=DECIMAL},
+      </if>
+      <if test="pModel != null">
+        p_model = #{pModel,jdbcType=INTEGER},
+      </if>
+      <if test="pictrueUrl != null">
+        pictrue_url = #{pictrueUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="pType != null">
+        p_type = #{pType,jdbcType=INTEGER},
+      </if>
+      <if test="cityCode != null">
+        city_code = #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="buyLimit != null">
+        buy_limit = #{buyLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="batch != null">
+        batch = #{batch,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=TINYINT},
+      </if>
+      <if test="backgroundUrl != null">
+        background_url = #{backgroundUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="backgroundFrosted != null">
+        background_frosted = #{backgroundFrosted,jdbcType=INTEGER},
+      </if>
+      <if test="backgroundUrlNav != null">
+        background_url_nav = #{backgroundUrlNav,jdbcType=VARCHAR},
+      </if>
+      <if test="backgroundUrlIos != null">
+        background_url_ios = #{backgroundUrlIos,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="introduction != null">
+        introduction = #{introduction,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="projectInfo != null">
+        project_info = #{projectInfo,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="projectInfoMobile != null">
+        project_info_mobile = #{projectInfoMobile,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="lonnerInfo != null">
+        lonner_info = #{lonnerInfo,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="normalProblem != null">
+        normal_problem = #{normalProblem,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="insuranceTrust != null">
+        insurance_trust = #{insuranceTrust,jdbcType=INTEGER},
+      </if>
+      <if test="isRedPacket != null">
+        is_red_packet = #{isRedPacket,jdbcType=INTEGER},
+      </if>
+      <if test="addYield != null">
+        add_yield = #{addYield,jdbcType=DECIMAL},
+      </if>
+      <if test="isDebt != null">
+        is_debt = #{isDebt,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mrbt.lingmoney.model.ProductWithBLOBs">
+    <!--
+    @mbggenerated
+    -->
+    update product
+    set code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      re_way = #{reWay,jdbcType=VARCHAR},
+      rule = #{rule,jdbcType=INTEGER},
+      st_dt = #{stDt,jdbcType=TIMESTAMP},
+      ed_dt = #{edDt,jdbcType=TIMESTAMP},
+      prior_money = #{priorMoney,jdbcType=DECIMAL},
+      reach_money = #{reachMoney,jdbcType=DECIMAL},
+      approval = #{approval,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      pc_id = #{pcId,jdbcType=INTEGER},
+      pc_name = #{pcName,jdbcType=VARCHAR},
+      tags = #{tags,jdbcType=VARCHAR},
+      l_time = #{lTime,jdbcType=INTEGER},
+      h_time = #{hTime,jdbcType=INTEGER},
+      f_time = #{fTime,jdbcType=INTEGER},
+      unit_time = #{unitTime,jdbcType=INTEGER},
+      value_dt = #{valueDt,jdbcType=DATE},
+      establish_dt = #{establishDt,jdbcType=TIMESTAMP},
+      wait_rate = #{waitRate,jdbcType=DECIMAL},
+      min_money = #{minMoney,jdbcType=INTEGER},
+      increa_money = #{increaMoney,jdbcType=INTEGER},
+      l_yield = #{lYield,jdbcType=DECIMAL},
+      h_yield = #{hYield,jdbcType=DECIMAL},
+      f_yield = #{fYield,jdbcType=DECIMAL},
+      fees = #{fees,jdbcType=INTEGER},
+      fees_rate = #{feesRate,jdbcType=DECIMAL},
+      exception_rate = #{exceptionRate,jdbcType=DECIMAL},
+      fix_invest = #{fixInvest,jdbcType=INTEGER},
+      allocation = #{allocation,jdbcType=INTEGER},
+      activity = #{activity,jdbcType=INTEGER},
+      platform_user_no = #{platformUserNo,jdbcType=INTEGER},
+      cost_value = #{costValue,jdbcType=DECIMAL},
+      p_model = #{pModel,jdbcType=INTEGER},
+      pictrue_url = #{pictrueUrl,jdbcType=VARCHAR},
+      p_type = #{pType,jdbcType=INTEGER},
+      city_code = #{cityCode,jdbcType=VARCHAR},
+      buy_limit = #{buyLimit,jdbcType=DECIMAL},
+      batch = #{batch,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=TINYINT},
+      background_url = #{backgroundUrl,jdbcType=VARCHAR},
+      background_frosted = #{backgroundFrosted,jdbcType=INTEGER},
+      background_url_nav = #{backgroundUrlNav,jdbcType=VARCHAR},
+      background_url_ios = #{backgroundUrlIos,jdbcType=VARCHAR},
+      description = #{description,jdbcType=LONGVARCHAR},
+      introduction = #{introduction,jdbcType=LONGVARCHAR},
+      project_info = #{projectInfo,jdbcType=LONGVARCHAR},
+      project_info_mobile = #{projectInfoMobile,jdbcType=LONGVARCHAR},
+      lonner_info = #{lonnerInfo,jdbcType=LONGVARCHAR},
+      normal_problem = #{normalProblem,jdbcType=LONGVARCHAR},
+      insurance_trust = #{insuranceTrust,jdbcType=INTEGER},
+      is_red_packet = #{isRedPacket,jdbcType=INTEGER},
+      add_yield = #{addYield,jdbcType=DECIMAL},
+      is_debt = #{isDebt,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mrbt.lingmoney.model.Product">
+    <!--
+    @mbggenerated
+    -->
+    update product
+    set code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      re_way = #{reWay,jdbcType=VARCHAR},
+      rule = #{rule,jdbcType=INTEGER},
+      st_dt = #{stDt,jdbcType=TIMESTAMP},
+      ed_dt = #{edDt,jdbcType=TIMESTAMP},
+      prior_money = #{priorMoney,jdbcType=DECIMAL},
+      reach_money = #{reachMoney,jdbcType=DECIMAL},
+      approval = #{approval,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      pc_id = #{pcId,jdbcType=INTEGER},
+      pc_name = #{pcName,jdbcType=VARCHAR},
+      tags = #{tags,jdbcType=VARCHAR},
+      l_time = #{lTime,jdbcType=INTEGER},
+      h_time = #{hTime,jdbcType=INTEGER},
+      f_time = #{fTime,jdbcType=INTEGER},
+      unit_time = #{unitTime,jdbcType=INTEGER},
+      value_dt = #{valueDt,jdbcType=DATE},
+      establish_dt = #{establishDt,jdbcType=TIMESTAMP},
+      wait_rate = #{waitRate,jdbcType=DECIMAL},
+      min_money = #{minMoney,jdbcType=INTEGER},
+      increa_money = #{increaMoney,jdbcType=INTEGER},
+      l_yield = #{lYield,jdbcType=DECIMAL},
+      h_yield = #{hYield,jdbcType=DECIMAL},
+      f_yield = #{fYield,jdbcType=DECIMAL},
+      fees = #{fees,jdbcType=INTEGER},
+      fees_rate = #{feesRate,jdbcType=DECIMAL},
+      exception_rate = #{exceptionRate,jdbcType=DECIMAL},
+      fix_invest = #{fixInvest,jdbcType=INTEGER},
+      allocation = #{allocation,jdbcType=INTEGER},
+      activity = #{activity,jdbcType=INTEGER},
+      platform_user_no = #{platformUserNo,jdbcType=INTEGER},
+      cost_value = #{costValue,jdbcType=DECIMAL},
+      p_model = #{pModel,jdbcType=INTEGER},
+      pictrue_url = #{pictrueUrl,jdbcType=VARCHAR},
+      p_type = #{pType,jdbcType=INTEGER},
+      city_code = #{cityCode,jdbcType=VARCHAR},
+      buy_limit = #{buyLimit,jdbcType=DECIMAL},
+      batch = #{batch,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=TINYINT},
+      background_url = #{backgroundUrl,jdbcType=VARCHAR},
+      background_frosted = #{backgroundFrosted,jdbcType=INTEGER},
+      background_url_nav = #{backgroundUrlNav,jdbcType=VARCHAR},
+      background_url_ios = #{backgroundUrlIos,jdbcType=VARCHAR},
+      insurance_trust = #{insuranceTrust,jdbcType=INTEGER},
+      is_red_packet = #{isRedPacket,jdbcType=INTEGER},
+      add_yield = #{addYield,jdbcType=DECIMAL},
+      is_debt = #{isDebt,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 根据code找到产品，并显示产品销售记录 -->
+   <select id="selectProductByCode" resultMap="BaseResultMap" parameterType="java.lang.String">            
+       select p.id,p.code,p.name,p.re_way,p.rule,p.st_dt,p.ed_dt,p.prior_money,p.reach_money,p.pc_id,p.pc_name,p.status,p.tags,
+       p.l_time,p.h_time,p.f_time,p.unit_time,p.value_dt,p.establish_dt,p.wait_rate,p.min_money,p.increa_money,p.l_yield,p.h_yield,p.f_yield,p.fees,p.fees_rate,
+       p.cost_value,p.p_model,p.pictrue_url,COUNT(tr.p_id) as buy_count, p.p_type
+       from product p LEFT JOIN 
+       (select t.p_id  from trading t where t.p_code = #{code} and  t.financial_money > 0 and t.status in (1,2,3)) as tr
+       on p.id = tr.p_id
+       where p.`code` = #{code}                
+   </select>
+</mapper>

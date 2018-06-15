@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.SynUserDataMapper">
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.SynUserData">
+    <!--
+    @mbggenerated
+    -->
+    <result column="u_id" jdbcType="VARCHAR" property="uId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="reg_date" jdbcType="TIMESTAMP" property="regDate" />
+    <result column="certification" jdbcType="INTEGER" property="certification" />
+    <result column="bank" jdbcType="INTEGER" property="bank" />
+    <result column="id_card" jdbcType="VARCHAR" property="idCard" />
+    <result column="referral_code" jdbcType="VARCHAR" property="referralCode" />
+    <result column="referral_id" jdbcType="VARCHAR" property="referralId" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+    @mbggenerated
+    -->
+    u_id, name, reg_date, certification, bank, id_card, referral_code, referral_id, telephone
+  </sql>
+  <select id="selectByExample" parameterType="com.mrbt.lingmoney.model.SynUserDataExample" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from syn_user_data
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0">
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.SynUserDataExample">
+    <!--
+    @mbggenerated
+    -->
+    delete from syn_user_data
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mrbt.lingmoney.model.SynUserData">
+    <!--
+    @mbggenerated
+    -->
+    insert into syn_user_data (u_id, name, reg_date, 
+      certification, bank, id_card, 
+      referral_code, referral_id, telephone
+      )
+    values (#{uId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{regDate,jdbcType=TIMESTAMP}, 
+      #{certification,jdbcType=INTEGER}, #{bank,jdbcType=INTEGER}, #{idCard,jdbcType=VARCHAR}, 
+      #{referralCode,jdbcType=VARCHAR}, #{referralId,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.SynUserData">
+    <!--
+    @mbggenerated
+    -->
+    insert into syn_user_data
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="regDate != null">
+        reg_date,
+      </if>
+      <if test="certification != null">
+        certification,
+      </if>
+      <if test="bank != null">
+        bank,
+      </if>
+      <if test="idCard != null">
+        id_card,
+      </if>
+      <if test="referralCode != null">
+        referral_code,
+      </if>
+      <if test="referralId != null">
+        referral_id,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uId != null">
+        #{uId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="regDate != null">
+        #{regDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="certification != null">
+        #{certification,jdbcType=INTEGER},
+      </if>
+      <if test="bank != null">
+        #{bank,jdbcType=INTEGER},
+      </if>
+      <if test="idCard != null">
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="referralCode != null">
+        #{referralCode,jdbcType=VARCHAR},
+      </if>
+      <if test="referralId != null">
+        #{referralId,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.SynUserDataExample" resultType="java.lang.Long">
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from syn_user_data
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update syn_user_data
+    <set>
+      <if test="record.uId != null">
+        u_id = #{record.uId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regDate != null">
+        reg_date = #{record.regDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.certification != null">
+        certification = #{record.certification,jdbcType=INTEGER},
+      </if>
+      <if test="record.bank != null">
+        bank = #{record.bank,jdbcType=INTEGER},
+      </if>
+      <if test="record.idCard != null">
+        id_card = #{record.idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.referralCode != null">
+        referral_code = #{record.referralCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.referralId != null">
+        referral_id = #{record.referralId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.telephone != null">
+        telephone = #{record.telephone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update syn_user_data
+    set u_id = #{record.uId,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      reg_date = #{record.regDate,jdbcType=TIMESTAMP},
+      certification = #{record.certification,jdbcType=INTEGER},
+      bank = #{record.bank,jdbcType=INTEGER},
+      id_card = #{record.idCard,jdbcType=VARCHAR},
+      referral_code = #{record.referralCode,jdbcType=VARCHAR},
+      referral_id = #{record.referralId,jdbcType=VARCHAR},
+      telephone = #{record.telephone,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

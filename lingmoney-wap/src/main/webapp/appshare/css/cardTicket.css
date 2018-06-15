@@ -1,0 +1,155 @@
+.clearfix:after{content:"";display:block;clear:both}.clearfix{zoom:1}
+.main{
+	bottom: 0;
+}
+#ct_box{
+	width: 7.5rem;
+	line-height: 1rem;
+	min-height: 100%;
+	font-size: 0.3rem;
+}
+#ct_box #ct_tab{
+	width: 100%;
+	height: 1rem;
+	background:#ffffff;
+}
+#ct_box #ct_tab a{
+	display: block;
+	width: 2.94rem;
+	height: 1rem;
+	line-height: 1rem;
+	text-align: center;
+	margin: 0 0.405rem;
+	float: left;
+}
+#ct_box #ct_tab a:hover,#ct_box #ct_tab a.active{
+	height: 0.98rem;
+	color: #EA5513;
+	border-bottom: 0.02px solid #EA5513;
+}
+#ct_box #ct_rule{
+	width: 7.1rem;
+	height: 0.8rem;
+	line-height: 0.8rem;
+	margin: 0rem auto;
+	text-align: right;
+	background:url('http://static.lingmoney.cn/lingmoneywap/images/cardTicket-question.png')  5.75rem 0.28rem no-repeat;
+	background-size: 0.3rem;
+}
+#ct_box #ct_rule a{
+	font-size: 0.24rem;
+	font-size: #333333;
+}
+#ct_box #ct_cardbox{
+	padding-bottom: 1.47rem;
+}
+#ct_box #ct_cardbox .ct_cards{
+	overflow: hidden;
+	width: 7.08rem;
+	height: 2.62rem;
+	padding: 0.2rem 0.2rem 0rem 0.2rem;
+	background: url('http://static.lingmoney.cn/lingmoneywap/images/cardTicket-cardbg.png') no-repeat;
+	background-size: 7.48rem 3.02rem;
+}
+#ct_box #ct_cardbox.use .ct_cards{
+	background: url('http://static.lingmoney.cn/lingmoneywap/images/cardTicket-cardbg-use.png') no-repeat;
+	background-size: 7.48rem 3.02rem;
+}
+
+#ct_box #ct_cardbox .ct_cards .ct_cardsleft{
+	width: 2.03rem;
+	height: 2.62rem;
+	float: left;
+	text-align: center;
+}
+#ct_box #ct_cardbox .ct_cards .ct_cardsleft .ct_cdl_top{
+	margin: 0px;
+	margin-top: 0.6rem;
+	font-size: 0.64rem;
+	color: #ffffff;
+	font-weight: bold;
+	padding: 0;
+	height: 0.9rem;
+}
+#ct_box #ct_cardbox .ct_cards .ct_cardsleft .ct_cdl_top em{
+	font-style: normal;
+	font-size: 0.3rem;
+}
+#ct_box #ct_cardbox .ct_cards .ct_cardsleft .ct_cdl_bottom{
+	height: 0.33rem;
+	font-size: 0.3rem;
+	line-height: 0.33rem;
+}
+#ct_box #ct_cardbox .ct_cards .ct_cardsleft span{
+	color: #ffffff;
+}
+#ct_box #ct_cardbox .ct_cards .ct_cardsright{
+	padding: 0.3rem;
+	width: 4.45rem;
+	height: 2.02rem;
+	float: left;
+}
+#ct_box #ct_cardbox .ct_cards .ct_cardsright .ct_cr_top{
+	height: 1.49rem;
+	border-bottom: 0.01rem dashed #ccc;
+}
+#ct_box #ct_cardbox .ct_cards .ct_cardsright .ct_cr_top p{
+	line-height: 0.38rem;
+	font-size: 0.24rem;
+	color: #B2B2B2;
+}
+#ct_box #ct_cardbox .ct_cards .ct_cardsright .ct_cr_top p span{
+	color: #2A2A2A;
+}
+#ct_box #ct_cardbox .ct_cards .ct_cardsright .ct_cr_bottom{
+	height: 0.53px;
+	line-height: 0.7rem;
+	font-size: 0.24rem;
+}
+#ct_box #ct_cardbox .ct_cards .ct_cardsright .ct_cr_bottom span{
+	color: #B2B2B2;
+	float: left;
+}
+#ct_box #ct_cardbox .ct_cards .ct_cardsright .ct_cr_bottom em{
+	color: #FF8138;
+	font-size: 0.22rem;
+	float: right;
+	font-style: normal;
+	line-height: 0.72rem;
+}
+#ct_box #ct_cardbox.ct_touse .ct_cards .ct_cardsright{
+	/* background: url('http://static.lingmoney.cn/lingmoneywap/images/cardTicket-checkN.png') 4.38rem 0.69rem no-repeat; */
+	background-size: 0.42rem;
+}
+#ct_box #ct_cardbox.ct_touse .ct_cards.active .ct_cardsright{
+	/* background: url('http://static.lingmoney.cn/lingmoneywap/images/cardTicket-checkY.png') 4.38rem 0.69rem no-repeat; */
+	background-size: 0.42rem;
+}
+.ct_img{
+	 background: url('http://static.lingmoney.cn/lingmoneywap/images/cardTicket-checkN.png') 4.38rem 0.69rem no-repeat;background-size: 0.42rem;
+}
+.ct_img-active{
+	background: url('http://static.lingmoney.cn/lingmoneywap/images/cardTicket-checkY.png') 4.38rem 0.69rem no-repeat;background-size: 0.42rem;
+}
+
+#ct_box .ct_viewCard{
+	text-align: center;
+}
+#ct_box .ct_viewCard a{
+	font-size: 0.24rem;
+	color: #FF8138;
+}
+/********规则说明*********/
+#ct_ruleContent{
+	min-height: 100%;
+	background: #ffffff;
+}
+#ct_ruleContent #ct_rulecont-box{
+	padding: 0.45rem;
+}
+#ct_ruleContent #ct_rulecont-box p{
+	color: #666666;
+	font-size: 0.24rem;
+	line-height: 0.33rem;
+	margin-bottom: 0.3rem;
+}

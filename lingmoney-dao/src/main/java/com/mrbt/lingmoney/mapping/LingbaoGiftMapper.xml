@@ -1,0 +1,1080 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.LingbaoGiftMapper">
+	<resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.LingbaoGift">
+		<!-- @mbggenerated -->
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="code" jdbcType="VARCHAR" property="code" />
+		<result column="type_id" jdbcType="INTEGER" property="typeId" />
+		<result column="type" jdbcType="INTEGER" property="type" />
+		<result column="integral" jdbcType="INTEGER" property="integral" />
+		<result column="preferential_integral" jdbcType="INTEGER"
+			property="preferentialIntegral" />
+		<result column="has_store" jdbcType="INTEGER" property="hasStore" />
+		<result column="store" jdbcType="INTEGER" property="store" />
+		<result column="warning_store" jdbcType="INTEGER" property="warningStore" />
+		<result column="attribution" jdbcType="VARCHAR" property="attribution" />
+		<result column="cost_price" jdbcType="DECIMAL" property="costPrice" />
+		<result column="market_price" jdbcType="DECIMAL" property="marketPrice" />
+		<result column="shelf_status" jdbcType="INTEGER" property="shelfStatus" />
+		<result column="new_status" jdbcType="INTEGER" property="newStatus" />
+		<result column="recommend" jdbcType="INTEGER" property="recommend" />
+		<result column="exchange_count" jdbcType="INTEGER" property="exchangeCount" />
+		<result column="exchange_number" jdbcType="INTEGER" property="exchangeNumber" />
+		<result column="receive_way" jdbcType="INTEGER" property="receiveWay" />
+		<result column="instore_name" jdbcType="VARCHAR" property="instoreName" />
+		<result column="instore_time" jdbcType="TIMESTAMP" property="instoreTime" />
+		<result column="operate_name" jdbcType="VARCHAR" property="operateName" />
+		<result column="operate_time" jdbcType="TIMESTAMP" property="operateTime" />
+		<result column="level" jdbcType="INTEGER" property="level" />
+		<result column="picture_big" jdbcType="VARCHAR" property="pictureBig" />
+		<result column="picture_middle" jdbcType="VARCHAR" property="pictureMiddle" />
+		<result column="picture_small" jdbcType="VARCHAR" property="pictureSmall" />
+		<result column="size" jdbcType="VARCHAR" property="size" />
+		<result column="volume" jdbcType="VARCHAR" property="volume" />
+		<result column="color" jdbcType="VARCHAR" property="color" />
+		<result column="shape" jdbcType="VARCHAR" property="shape" />
+		<result column="cost_value" jdbcType="VARCHAR" property="costValue" />
+		<result column="supplier_id" jdbcType="INTEGER" property="supplierId" />
+		<result column="apply_type" jdbcType="INTEGER" property="applyType" />
+		<result column="property_desc" jdbcType="VARCHAR" property="propertyDesc" />
+		<result column="picture_mobile" jdbcType="VARCHAR" property="pictureMobile" />
+		<result column="redpacket_id" jdbcType="VARCHAR" property="redpacketId" />
+	</resultMap>
+	<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs"
+		type="com.mrbt.lingmoney.model.LingbaoGiftWithBLOBs">
+		<!-- @mbggenerated -->
+		<result column="introduction" jdbcType="LONGVARCHAR" property="introduction" />
+		<result column="property" jdbcType="LONGVARCHAR" property="property" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<!-- @mbggenerated -->
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" prefixOverrides="and" suffix=")">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach close=")" collection="criterion.value" item="listItem"
+										open="(" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<!-- @mbggenerated -->
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" prefixOverrides="and" suffix=")">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach close=")" collection="criterion.value" item="listItem"
+										open="(" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		<!-- @mbggenerated -->
+		id, name, code, type_id, type, integral, preferential_integral,
+		has_store, store,
+		warning_store, attribution, cost_price, market_price, shelf_status, new_status,
+		recommend,
+		exchange_count, exchange_number, receive_way, instore_name, instore_time,
+		operate_name,
+		operate_time, level, picture_big, picture_middle, picture_small, size, volume,
+		color,
+		shape, cost_value, supplier_id, apply_type, property_desc, picture_mobile,
+		redpacket_id
+	</sql>
+	<sql id="Blob_Column_List">
+		<!-- @mbggenerated -->
+		introduction, property
+	</sql>
+	<select id="selectByExampleWithBLOBs" parameterType="com.mrbt.lingmoney.model.LingbaoGiftExample"
+		resultMap="ResultMapWithBLOBs">
+		<!-- @mbggenerated -->
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from lingbao_gift
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByExample" parameterType="com.mrbt.lingmoney.model.LingbaoGiftExample"
+		resultMap="BaseResultMap">
+		<!-- @mbggenerated -->
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from lingbao_gift
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+		<if test="limitStart >= 0">
+			limit ${limitStart} , ${limitEnd}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="ResultMapWithBLOBs">
+		<!-- @mbggenerated -->
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from lingbao_gift
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		<!-- @mbggenerated -->
+		delete from lingbao_gift
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.LingbaoGiftExample">
+		<!-- @mbggenerated -->
+		delete from lingbao_gift
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.mrbt.lingmoney.model.LingbaoGiftWithBLOBs"
+		useGeneratedKeys="true" keyProperty="id">
+		<!-- @mbggenerated -->
+		insert into lingbao_gift (id, name, code,
+		type_id, type, integral,
+		preferential_integral, has_store, store,
+		warning_store, attribution, cost_price,
+		market_price, shelf_status, new_status,
+		recommend, exchange_count, exchange_number,
+		receive_way, instore_name, instore_time,
+		operate_name, operate_time, level,
+		picture_big, picture_middle, picture_small,
+		size, volume, color,
+		shape, cost_value, supplier_id,
+		apply_type, property_desc, picture_mobile,
+		redpacket_id, introduction, property
+		)
+		values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+		#{code,jdbcType=VARCHAR},
+		#{typeId,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{integral,jdbcType=INTEGER},
+		#{preferentialIntegral,jdbcType=INTEGER},
+		#{hasStore,jdbcType=INTEGER}, #{store,jdbcType=INTEGER},
+		#{warningStore,jdbcType=INTEGER}, #{attribution,jdbcType=VARCHAR},
+		#{costPrice,jdbcType=DECIMAL},
+		#{marketPrice,jdbcType=DECIMAL}, #{shelfStatus,jdbcType=INTEGER}, #{newStatus,jdbcType=INTEGER},
+		#{recommend,jdbcType=INTEGER}, #{exchangeCount,jdbcType=INTEGER},
+		#{exchangeNumber,jdbcType=INTEGER},
+		#{receiveWay,jdbcType=INTEGER}, #{instoreName,jdbcType=VARCHAR}, #{instoreTime,jdbcType=TIMESTAMP},
+		#{operateName,jdbcType=VARCHAR}, #{operateTime,jdbcType=TIMESTAMP},
+		#{level,jdbcType=INTEGER},
+		#{pictureBig,jdbcType=VARCHAR}, #{pictureMiddle,jdbcType=VARCHAR}, #{pictureSmall,jdbcType=VARCHAR},
+		#{size,jdbcType=VARCHAR}, #{volume,jdbcType=VARCHAR},
+		#{color,jdbcType=VARCHAR},
+		#{shape,jdbcType=VARCHAR}, #{costValue,jdbcType=VARCHAR}, #{supplierId,jdbcType=INTEGER},
+		#{applyType,jdbcType=INTEGER}, #{propertyDesc,jdbcType=VARCHAR},
+		#{pictureMobile,jdbcType=VARCHAR},
+		#{redpacketId,jdbcType=VARCHAR}, #{introduction,jdbcType=LONGVARCHAR},
+		#{property,jdbcType=LONGVARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.LingbaoGiftWithBLOBs">
+		<!-- @mbggenerated -->
+		insert into lingbao_gift
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="code != null">
+				code,
+			</if>
+			<if test="typeId != null">
+				type_id,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="integral != null">
+				integral,
+			</if>
+			<if test="preferentialIntegral != null">
+				preferential_integral,
+			</if>
+			<if test="hasStore != null">
+				has_store,
+			</if>
+			<if test="store != null">
+				store,
+			</if>
+			<if test="warningStore != null">
+				warning_store,
+			</if>
+			<if test="attribution != null">
+				attribution,
+			</if>
+			<if test="costPrice != null">
+				cost_price,
+			</if>
+			<if test="marketPrice != null">
+				market_price,
+			</if>
+			<if test="shelfStatus != null">
+				shelf_status,
+			</if>
+			<if test="newStatus != null">
+				new_status,
+			</if>
+			<if test="recommend != null">
+				recommend,
+			</if>
+			<if test="exchangeCount != null">
+				exchange_count,
+			</if>
+			<if test="exchangeNumber != null">
+				exchange_number,
+			</if>
+			<if test="receiveWay != null">
+				receive_way,
+			</if>
+			<if test="instoreName != null">
+				instore_name,
+			</if>
+			<if test="instoreTime != null">
+				instore_time,
+			</if>
+			<if test="operateName != null">
+				operate_name,
+			</if>
+			<if test="operateTime != null">
+				operate_time,
+			</if>
+			<if test="level != null">
+				level,
+			</if>
+			<if test="pictureBig != null">
+				picture_big,
+			</if>
+			<if test="pictureMiddle != null">
+				picture_middle,
+			</if>
+			<if test="pictureSmall != null">
+				picture_small,
+			</if>
+			<if test="size != null">
+				size,
+			</if>
+			<if test="volume != null">
+				volume,
+			</if>
+			<if test="color != null">
+				color,
+			</if>
+			<if test="shape != null">
+				shape,
+			</if>
+			<if test="costValue != null">
+				cost_value,
+			</if>
+			<if test="supplierId != null">
+				supplier_id,
+			</if>
+			<if test="applyType != null">
+				apply_type,
+			</if>
+			<if test="propertyDesc != null">
+				property_desc,
+			</if>
+			<if test="pictureMobile != null">
+				picture_mobile,
+			</if>
+			<if test="redpacketId != null">
+				redpacket_id,
+			</if>
+			<if test="introduction != null">
+				introduction,
+			</if>
+			<if test="property != null">
+				property,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="code != null">
+				#{code,jdbcType=VARCHAR},
+			</if>
+			<if test="typeId != null">
+				#{typeId,jdbcType=INTEGER},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=INTEGER},
+			</if>
+			<if test="integral != null">
+				#{integral,jdbcType=INTEGER},
+			</if>
+			<if test="preferentialIntegral != null">
+				#{preferentialIntegral,jdbcType=INTEGER},
+			</if>
+			<if test="hasStore != null">
+				#{hasStore,jdbcType=INTEGER},
+			</if>
+			<if test="store != null">
+				#{store,jdbcType=INTEGER},
+			</if>
+			<if test="warningStore != null">
+				#{warningStore,jdbcType=INTEGER},
+			</if>
+			<if test="attribution != null">
+				#{attribution,jdbcType=VARCHAR},
+			</if>
+			<if test="costPrice != null">
+				#{costPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="marketPrice != null">
+				#{marketPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="shelfStatus != null">
+				#{shelfStatus,jdbcType=INTEGER},
+			</if>
+			<if test="newStatus != null">
+				#{newStatus,jdbcType=INTEGER},
+			</if>
+			<if test="recommend != null">
+				#{recommend,jdbcType=INTEGER},
+			</if>
+			<if test="exchangeCount != null">
+				#{exchangeCount,jdbcType=INTEGER},
+			</if>
+			<if test="exchangeNumber != null">
+				#{exchangeNumber,jdbcType=INTEGER},
+			</if>
+			<if test="receiveWay != null">
+				#{receiveWay,jdbcType=INTEGER},
+			</if>
+			<if test="instoreName != null">
+				#{instoreName,jdbcType=VARCHAR},
+			</if>
+			<if test="instoreTime != null">
+				#{instoreTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="operateName != null">
+				#{operateName,jdbcType=VARCHAR},
+			</if>
+			<if test="operateTime != null">
+				#{operateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="level != null">
+				#{level,jdbcType=INTEGER},
+			</if>
+			<if test="pictureBig != null">
+				#{pictureBig,jdbcType=VARCHAR},
+			</if>
+			<if test="pictureMiddle != null">
+				#{pictureMiddle,jdbcType=VARCHAR},
+			</if>
+			<if test="pictureSmall != null">
+				#{pictureSmall,jdbcType=VARCHAR},
+			</if>
+			<if test="size != null">
+				#{size,jdbcType=VARCHAR},
+			</if>
+			<if test="volume != null">
+				#{volume,jdbcType=VARCHAR},
+			</if>
+			<if test="color != null">
+				#{color,jdbcType=VARCHAR},
+			</if>
+			<if test="shape != null">
+				#{shape,jdbcType=VARCHAR},
+			</if>
+			<if test="costValue != null">
+				#{costValue,jdbcType=VARCHAR},
+			</if>
+			<if test="supplierId != null">
+				#{supplierId,jdbcType=INTEGER},
+			</if>
+			<if test="applyType != null">
+				#{applyType,jdbcType=INTEGER},
+			</if>
+			<if test="propertyDesc != null">
+				#{propertyDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="pictureMobile != null">
+				#{pictureMobile,jdbcType=VARCHAR},
+			</if>
+			<if test="redpacketId != null">
+				#{redpacketId,jdbcType=VARCHAR},
+			</if>
+			<if test="introduction != null">
+				#{introduction,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="property != null">
+				#{property,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.mrbt.lingmoney.model.LingbaoGiftExample"
+		resultType="java.lang.Long">
+		<!-- @mbggenerated -->
+		select count(*) from lingbao_gift
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		<!-- @mbggenerated -->
+		update lingbao_gift
+		<set>
+			<if test="record.id != null">
+				id = #{record.id,jdbcType=INTEGER},
+			</if>
+			<if test="record.name != null">
+				name = #{record.name,jdbcType=VARCHAR},
+			</if>
+			<if test="record.code != null">
+				code = #{record.code,jdbcType=VARCHAR},
+			</if>
+			<if test="record.typeId != null">
+				type_id = #{record.typeId,jdbcType=INTEGER},
+			</if>
+			<if test="record.type != null">
+				type = #{record.type,jdbcType=INTEGER},
+			</if>
+			<if test="record.integral != null">
+				integral = #{record.integral,jdbcType=INTEGER},
+			</if>
+			<if test="record.preferentialIntegral != null">
+				preferential_integral = #{record.preferentialIntegral,jdbcType=INTEGER},
+			</if>
+			<if test="record.hasStore != null">
+				has_store = #{record.hasStore,jdbcType=INTEGER},
+			</if>
+			<if test="record.store != null">
+				store = #{record.store,jdbcType=INTEGER},
+			</if>
+			<if test="record.warningStore != null">
+				warning_store = #{record.warningStore,jdbcType=INTEGER},
+			</if>
+			<if test="record.attribution != null">
+				attribution = #{record.attribution,jdbcType=VARCHAR},
+			</if>
+			<if test="record.costPrice != null">
+				cost_price = #{record.costPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="record.marketPrice != null">
+				market_price = #{record.marketPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="record.shelfStatus != null">
+				shelf_status = #{record.shelfStatus,jdbcType=INTEGER},
+			</if>
+			<if test="record.newStatus != null">
+				new_status = #{record.newStatus,jdbcType=INTEGER},
+			</if>
+			<if test="record.recommend != null">
+				recommend = #{record.recommend,jdbcType=INTEGER},
+			</if>
+			<if test="record.exchangeCount != null">
+				exchange_count = #{record.exchangeCount,jdbcType=INTEGER},
+			</if>
+			<if test="record.exchangeNumber != null">
+				exchange_number = #{record.exchangeNumber,jdbcType=INTEGER},
+			</if>
+			<if test="record.receiveWay != null">
+				receive_way = #{record.receiveWay,jdbcType=INTEGER},
+			</if>
+			<if test="record.instoreName != null">
+				instore_name = #{record.instoreName,jdbcType=VARCHAR},
+			</if>
+			<if test="record.instoreTime != null">
+				instore_time = #{record.instoreTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.operateName != null">
+				operate_name = #{record.operateName,jdbcType=VARCHAR},
+			</if>
+			<if test="record.operateTime != null">
+				operate_time = #{record.operateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.level != null">
+				level = #{record.level,jdbcType=INTEGER},
+			</if>
+			<if test="record.pictureBig != null">
+				picture_big = #{record.pictureBig,jdbcType=VARCHAR},
+			</if>
+			<if test="record.pictureMiddle != null">
+				picture_middle = #{record.pictureMiddle,jdbcType=VARCHAR},
+			</if>
+			<if test="record.pictureSmall != null">
+				picture_small = #{record.pictureSmall,jdbcType=VARCHAR},
+			</if>
+			<if test="record.size != null">
+				size = #{record.size,jdbcType=VARCHAR},
+			</if>
+			<if test="record.volume != null">
+				volume = #{record.volume,jdbcType=VARCHAR},
+			</if>
+			<if test="record.color != null">
+				color = #{record.color,jdbcType=VARCHAR},
+			</if>
+			<if test="record.shape != null">
+				shape = #{record.shape,jdbcType=VARCHAR},
+			</if>
+			<if test="record.costValue != null">
+				cost_value = #{record.costValue,jdbcType=VARCHAR},
+			</if>
+			<if test="record.supplierId != null">
+				supplier_id = #{record.supplierId,jdbcType=INTEGER},
+			</if>
+			<if test="record.applyType != null">
+				apply_type = #{record.applyType,jdbcType=INTEGER},
+			</if>
+			<if test="record.propertyDesc != null">
+				property_desc = #{record.propertyDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="record.pictureMobile != null">
+				picture_mobile = #{record.pictureMobile,jdbcType=VARCHAR},
+			</if>
+			<if test="record.redpacketId != null">
+				redpacket_id = #{record.redpacketId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.introduction != null">
+				introduction = #{record.introduction,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="record.property != null">
+				property = #{record.property,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExampleWithBLOBs" parameterType="map">
+		<!-- @mbggenerated -->
+		update lingbao_gift
+		set id = #{record.id,jdbcType=INTEGER},
+		name = #{record.name,jdbcType=VARCHAR},
+		code = #{record.code,jdbcType=VARCHAR},
+		type_id = #{record.typeId,jdbcType=INTEGER},
+		type = #{record.type,jdbcType=INTEGER},
+		integral = #{record.integral,jdbcType=INTEGER},
+		preferential_integral = #{record.preferentialIntegral,jdbcType=INTEGER},
+		has_store = #{record.hasStore,jdbcType=INTEGER},
+		store = #{record.store,jdbcType=INTEGER},
+		warning_store = #{record.warningStore,jdbcType=INTEGER},
+		attribution = #{record.attribution,jdbcType=VARCHAR},
+		cost_price = #{record.costPrice,jdbcType=DECIMAL},
+		market_price = #{record.marketPrice,jdbcType=DECIMAL},
+		shelf_status = #{record.shelfStatus,jdbcType=INTEGER},
+		new_status = #{record.newStatus,jdbcType=INTEGER},
+		recommend = #{record.recommend,jdbcType=INTEGER},
+		exchange_count = #{record.exchangeCount,jdbcType=INTEGER},
+		exchange_number = #{record.exchangeNumber,jdbcType=INTEGER},
+		receive_way = #{record.receiveWay,jdbcType=INTEGER},
+		instore_name = #{record.instoreName,jdbcType=VARCHAR},
+		instore_time = #{record.instoreTime,jdbcType=TIMESTAMP},
+		operate_name = #{record.operateName,jdbcType=VARCHAR},
+		operate_time = #{record.operateTime,jdbcType=TIMESTAMP},
+		level = #{record.level,jdbcType=INTEGER},
+		picture_big = #{record.pictureBig,jdbcType=VARCHAR},
+		picture_middle = #{record.pictureMiddle,jdbcType=VARCHAR},
+		picture_small = #{record.pictureSmall,jdbcType=VARCHAR},
+		size = #{record.size,jdbcType=VARCHAR},
+		volume = #{record.volume,jdbcType=VARCHAR},
+		color = #{record.color,jdbcType=VARCHAR},
+		shape = #{record.shape,jdbcType=VARCHAR},
+		cost_value = #{record.costValue,jdbcType=VARCHAR},
+		supplier_id = #{record.supplierId,jdbcType=INTEGER},
+		apply_type = #{record.applyType,jdbcType=INTEGER},
+		property_desc = #{record.propertyDesc,jdbcType=VARCHAR},
+		picture_mobile = #{record.pictureMobile,jdbcType=VARCHAR},
+		redpacket_id = #{record.redpacketId,jdbcType=VARCHAR},
+		introduction = #{record.introduction,jdbcType=LONGVARCHAR},
+		property = #{record.property,jdbcType=LONGVARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		<!-- @mbggenerated -->
+		update lingbao_gift
+		set id = #{record.id,jdbcType=INTEGER},
+		name = #{record.name,jdbcType=VARCHAR},
+		code = #{record.code,jdbcType=VARCHAR},
+		type_id = #{record.typeId,jdbcType=INTEGER},
+		type = #{record.type,jdbcType=INTEGER},
+		integral = #{record.integral,jdbcType=INTEGER},
+		preferential_integral = #{record.preferentialIntegral,jdbcType=INTEGER},
+		has_store = #{record.hasStore,jdbcType=INTEGER},
+		store = #{record.store,jdbcType=INTEGER},
+		warning_store = #{record.warningStore,jdbcType=INTEGER},
+		attribution = #{record.attribution,jdbcType=VARCHAR},
+		cost_price = #{record.costPrice,jdbcType=DECIMAL},
+		market_price = #{record.marketPrice,jdbcType=DECIMAL},
+		shelf_status = #{record.shelfStatus,jdbcType=INTEGER},
+		new_status = #{record.newStatus,jdbcType=INTEGER},
+		recommend = #{record.recommend,jdbcType=INTEGER},
+		exchange_count = #{record.exchangeCount,jdbcType=INTEGER},
+		exchange_number = #{record.exchangeNumber,jdbcType=INTEGER},
+		receive_way = #{record.receiveWay,jdbcType=INTEGER},
+		instore_name = #{record.instoreName,jdbcType=VARCHAR},
+		instore_time = #{record.instoreTime,jdbcType=TIMESTAMP},
+		operate_name = #{record.operateName,jdbcType=VARCHAR},
+		operate_time = #{record.operateTime,jdbcType=TIMESTAMP},
+		level = #{record.level,jdbcType=INTEGER},
+		picture_big = #{record.pictureBig,jdbcType=VARCHAR},
+		picture_middle = #{record.pictureMiddle,jdbcType=VARCHAR},
+		picture_small = #{record.pictureSmall,jdbcType=VARCHAR},
+		size = #{record.size,jdbcType=VARCHAR},
+		volume = #{record.volume,jdbcType=VARCHAR},
+		color = #{record.color,jdbcType=VARCHAR},
+		shape = #{record.shape,jdbcType=VARCHAR},
+		cost_value = #{record.costValue,jdbcType=VARCHAR},
+		supplier_id = #{record.supplierId,jdbcType=INTEGER},
+		apply_type = #{record.applyType,jdbcType=INTEGER},
+		property_desc = #{record.propertyDesc,jdbcType=VARCHAR},
+		picture_mobile = #{record.pictureMobile,jdbcType=VARCHAR},
+		redpacket_id = #{record.redpacketId,jdbcType=VARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.mrbt.lingmoney.model.LingbaoGiftWithBLOBs">
+		<!-- @mbggenerated -->
+		update lingbao_gift
+		<set>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="code != null">
+				code = #{code,jdbcType=VARCHAR},
+			</if>
+			<if test="typeId != null">
+				type_id = #{typeId,jdbcType=INTEGER},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=INTEGER},
+			</if>
+			<if test="integral != null">
+				integral = #{integral,jdbcType=INTEGER},
+			</if>
+			<if test="preferentialIntegral != null">
+				preferential_integral = #{preferentialIntegral,jdbcType=INTEGER},
+			</if>
+			<if test="hasStore != null">
+				has_store = #{hasStore,jdbcType=INTEGER},
+			</if>
+			<if test="store != null">
+				store = #{store,jdbcType=INTEGER},
+			</if>
+			<if test="warningStore != null">
+				warning_store = #{warningStore,jdbcType=INTEGER},
+			</if>
+			<if test="attribution != null">
+				attribution = #{attribution,jdbcType=VARCHAR},
+			</if>
+			<if test="costPrice != null">
+				cost_price = #{costPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="marketPrice != null">
+				market_price = #{marketPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="shelfStatus != null">
+				shelf_status = #{shelfStatus,jdbcType=INTEGER},
+			</if>
+			<if test="newStatus != null">
+				new_status = #{newStatus,jdbcType=INTEGER},
+			</if>
+			<if test="recommend != null">
+				recommend = #{recommend,jdbcType=INTEGER},
+			</if>
+			<if test="exchangeCount != null">
+				exchange_count = #{exchangeCount,jdbcType=INTEGER},
+			</if>
+			<if test="exchangeNumber != null">
+				exchange_number = #{exchangeNumber,jdbcType=INTEGER},
+			</if>
+			<if test="receiveWay != null">
+				receive_way = #{receiveWay,jdbcType=INTEGER},
+			</if>
+			<if test="instoreName != null">
+				instore_name = #{instoreName,jdbcType=VARCHAR},
+			</if>
+			<if test="instoreTime != null">
+				instore_time = #{instoreTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="operateName != null">
+				operate_name = #{operateName,jdbcType=VARCHAR},
+			</if>
+			<if test="operateTime != null">
+				operate_time = #{operateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="level != null">
+				level = #{level,jdbcType=INTEGER},
+			</if>
+			<if test="pictureBig != null">
+				picture_big = #{pictureBig,jdbcType=VARCHAR},
+			</if>
+			<if test="pictureMiddle != null">
+				picture_middle = #{pictureMiddle,jdbcType=VARCHAR},
+			</if>
+			<if test="pictureSmall != null">
+				picture_small = #{pictureSmall,jdbcType=VARCHAR},
+			</if>
+			<if test="size != null">
+				size = #{size,jdbcType=VARCHAR},
+			</if>
+			<if test="volume != null">
+				volume = #{volume,jdbcType=VARCHAR},
+			</if>
+			<if test="color != null">
+				color = #{color,jdbcType=VARCHAR},
+			</if>
+			<if test="shape != null">
+				shape = #{shape,jdbcType=VARCHAR},
+			</if>
+			<if test="costValue != null">
+				cost_value = #{costValue,jdbcType=VARCHAR},
+			</if>
+			<if test="supplierId != null">
+				supplier_id = #{supplierId,jdbcType=INTEGER},
+			</if>
+			<if test="applyType != null">
+				apply_type = #{applyType,jdbcType=INTEGER},
+			</if>
+			<if test="propertyDesc != null">
+				property_desc = #{propertyDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="pictureMobile != null">
+				picture_mobile = #{pictureMobile,jdbcType=VARCHAR},
+			</if>
+			<if test="redpacketId != null">
+				redpacket_id = #{redpacketId,jdbcType=VARCHAR},
+			</if>
+			<if test="introduction != null">
+				introduction = #{introduction,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="property != null">
+				property = #{property,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mrbt.lingmoney.model.LingbaoGiftWithBLOBs">
+		<!-- @mbggenerated -->
+		update lingbao_gift
+		set name = #{name,jdbcType=VARCHAR},
+		code = #{code,jdbcType=VARCHAR},
+		type_id = #{typeId,jdbcType=INTEGER},
+		type = #{type,jdbcType=INTEGER},
+		integral = #{integral,jdbcType=INTEGER},
+		preferential_integral = #{preferentialIntegral,jdbcType=INTEGER},
+		has_store = #{hasStore,jdbcType=INTEGER},
+		store = #{store,jdbcType=INTEGER},
+		warning_store = #{warningStore,jdbcType=INTEGER},
+		attribution = #{attribution,jdbcType=VARCHAR},
+		cost_price = #{costPrice,jdbcType=DECIMAL},
+		market_price = #{marketPrice,jdbcType=DECIMAL},
+		shelf_status = #{shelfStatus,jdbcType=INTEGER},
+		new_status = #{newStatus,jdbcType=INTEGER},
+		recommend = #{recommend,jdbcType=INTEGER},
+		exchange_count = #{exchangeCount,jdbcType=INTEGER},
+		exchange_number = #{exchangeNumber,jdbcType=INTEGER},
+		receive_way = #{receiveWay,jdbcType=INTEGER},
+		instore_name = #{instoreName,jdbcType=VARCHAR},
+		instore_time = #{instoreTime,jdbcType=TIMESTAMP},
+		operate_name = #{operateName,jdbcType=VARCHAR},
+		operate_time = #{operateTime,jdbcType=TIMESTAMP},
+		level = #{level,jdbcType=INTEGER},
+		picture_big = #{pictureBig,jdbcType=VARCHAR},
+		picture_middle = #{pictureMiddle,jdbcType=VARCHAR},
+		picture_small = #{pictureSmall,jdbcType=VARCHAR},
+		size = #{size,jdbcType=VARCHAR},
+		volume = #{volume,jdbcType=VARCHAR},
+		color = #{color,jdbcType=VARCHAR},
+		shape = #{shape,jdbcType=VARCHAR},
+		cost_value = #{costValue,jdbcType=VARCHAR},
+		supplier_id = #{supplierId,jdbcType=INTEGER},
+		apply_type = #{applyType,jdbcType=INTEGER},
+		property_desc = #{propertyDesc,jdbcType=VARCHAR},
+		picture_mobile = #{pictureMobile,jdbcType=VARCHAR},
+		redpacket_id = #{redpacketId,jdbcType=VARCHAR},
+		introduction = #{introduction,jdbcType=LONGVARCHAR},
+		property = #{property,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.mrbt.lingmoney.model.LingbaoGift">
+		<!-- @mbggenerated -->
+		update lingbao_gift
+		set name = #{name,jdbcType=VARCHAR},
+		code = #{code,jdbcType=VARCHAR},
+		type_id = #{typeId,jdbcType=INTEGER},
+		type = #{type,jdbcType=INTEGER},
+		integral = #{integral,jdbcType=INTEGER},
+		preferential_integral = #{preferentialIntegral,jdbcType=INTEGER},
+		has_store = #{hasStore,jdbcType=INTEGER},
+		store = #{store,jdbcType=INTEGER},
+		warning_store = #{warningStore,jdbcType=INTEGER},
+		attribution = #{attribution,jdbcType=VARCHAR},
+		cost_price = #{costPrice,jdbcType=DECIMAL},
+		market_price = #{marketPrice,jdbcType=DECIMAL},
+		shelf_status = #{shelfStatus,jdbcType=INTEGER},
+		new_status = #{newStatus,jdbcType=INTEGER},
+		recommend = #{recommend,jdbcType=INTEGER},
+		exchange_count = #{exchangeCount,jdbcType=INTEGER},
+		exchange_number = #{exchangeNumber,jdbcType=INTEGER},
+		receive_way = #{receiveWay,jdbcType=INTEGER},
+		instore_name = #{instoreName,jdbcType=VARCHAR},
+		instore_time = #{instoreTime,jdbcType=TIMESTAMP},
+		operate_name = #{operateName,jdbcType=VARCHAR},
+		operate_time = #{operateTime,jdbcType=TIMESTAMP},
+		level = #{level,jdbcType=INTEGER},
+		picture_big = #{pictureBig,jdbcType=VARCHAR},
+		picture_middle = #{pictureMiddle,jdbcType=VARCHAR},
+		picture_small = #{pictureSmall,jdbcType=VARCHAR},
+		size = #{size,jdbcType=VARCHAR},
+		volume = #{volume,jdbcType=VARCHAR},
+		color = #{color,jdbcType=VARCHAR},
+		shape = #{shape,jdbcType=VARCHAR},
+		cost_value = #{costValue,jdbcType=VARCHAR},
+		supplier_id = #{supplierId,jdbcType=INTEGER},
+		apply_type = #{applyType,jdbcType=INTEGER},
+		property_desc = #{propertyDesc,jdbcType=VARCHAR},
+		picture_mobile = #{pictureMobile,jdbcType=VARCHAR},
+		redpacket_id = #{redpacketId,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectViewColumnByExample" parameterType="com.mrbt.lingmoney.model.LingbaoGiftExample"
+		resultType="java.util.HashMap">
+		<!-- @mbggenerated -->
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		id, name, integral, preferential_integral, store, picture_big,
+		picture_middle, picture_small
+		from lingbao_gift
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+		<if test="limitStart >= 0">
+			limit ${limitStart} , ${limitEnd}
+		</if>
+	</select>
+
+	<!-- custom setting -->
+	<select id="selectColumnsById" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		id,name,code,type_id,type,integral,preferential_integral,store,market_price,
+		introduction,shelf_status,exchange_number,receive_way,apply_type,picture_big,
+		picture_middle,picture_small,property_desc
+		from
+		lingbao_gift
+		where
+		id = #{id,jdbcType=INTEGER}
+	</select>
+
+	<select id="queryGiftListWithCondition" parameterType="java.util.Map"
+		resultMap="BaseResultMap">
+		select
+		id, name, code, type_id ,integral,preferential_integral ,picture_middle ,
+		picture_big , picture_small, store , property_desc
+		from
+		lingbao_gift
+		where
+		shelf_status = 1 and store > 0 and apply_type in (0,2)
+		<if test="typeId!=null">
+			and type_id = #{typeId,jdbcType=INTEGER}
+		</if>
+		<if test="isRecommend!=null">
+			and recommend = #{isRecommend,jdbcType=INTEGER}
+		</if>
+		<if test="giftName!=null">
+			and name like CONCAT('%',CONCAT(#{giftName,jdbcType=VARCHAR},'%'))
+		</if>
+		order by recommend desc,instore_time desc
+		<if test="number!=null">
+			limit 0,#{number,jdbcType=INTEGER}
+		</if>
+	</select>
+
+	<insert id="insertBeach" parameterType="java.util.List">
+		insert into lingbao_gift (name, code,
+		type_id, integral,
+		preferential_integral,
+		has_store, store, warning_store,
+		attribution,
+		cost_price, market_price,
+		shelf_status,
+		new_status, recommend,
+		exchange_count,
+		exchange_number, receive_way,
+		instore_name,
+		instore_time, operate_name, operate_time,
+		level,
+		picture_big,
+		picture_middle,
+		picture_small, picture_mobile, size, volume,
+		color,
+		shape,
+		cost_value,
+		supplier_id, apply_type, introduction,
+		property,property_desc
+		)
+		values
+		<foreach collection="list" separator="," item="item">
+			(#{item.name},#{item.code},#{item.typeId},#{item.integral},#{item.preferentialIntegral},
+			#{item.hasStore},#{item.store},#{item.warningStore},#{item.attribution},#{item.costPrice},
+			#{item.marketPrice},#{item.shelfStatus},#{item.newStatus},
+			#{item.recommend},#{item.exchangeCount},#{item.exchangeNumber},#{item.receiveWay},
+			#{item.instoreName},#{item.instoreTime},#{item.operateName},#{item.operateTime},#{item.level},
+			#{item.pictureBig},#{item.pictureMiddle},#{item.pictureSmall},#{item.pictureMobile},#{item.size},#{item.volume},#{item.color},
+			#{item.shape},#{item.costValue},#{item.supplierId},#{item.applyType},#{item.introduction},
+			#{item.property},#{item.propertyDesc})
+		</foreach>
+	</insert>
+
+	<resultMap id="ResultMapWithVo" type="com.mrbt.lingmoney.model.LingbaoGiftVo"
+		extends="BaseResultMap">
+		<result column="type_name" property="typeName" jdbcType="VARCHAR" />
+		<result column="supplier_name" property="supplierName"
+			jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="selectByExampleVo" resultMap="ResultMapWithVo"
+		parameterType="com.mrbt.lingmoney.model.LingbaoGiftExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		lingbao_gift.id, lingbao_gift.name, code, type_id, type, integral,
+		preferential_integral,
+		has_store, store,
+		warning_store, attribution,
+		cost_price, market_price,
+		shelf_status,
+		new_status, recommend, exchange_count, exchange_number, receive_way,
+		instore_name,
+		instore_time, operate_name, operate_time,
+		lingbao_gift.level,
+		picture_big, picture_middle,
+		picture_small,
+		picture_mobile,
+		size, volume, color, shape,
+		cost_value, supplier_id, apply_type,
+		property_desc
+		,lingbao_gift_type.name as type_name,
+		lingbao_supplier.name as
+		supplier_name
+		from lingbao_gift
+		left join
+		lingbao_gift_type on
+		lingbao_gift.type_id = lingbao_gift_type.id
+		left
+		join lingbao_supplier
+		on lingbao_gift.supplier_id = lingbao_supplier.id
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+		<if test="limitStart >= 0">
+			limit ${limitStart} , ${limitEnd}
+		</if>
+	</select>
+
+	<select id="selectGiftByTypeRange" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		select
+		id, name, integral, picture_middle , preferential_integral
+		from
+		lingbao_gift
+		where
+		shelf_status = 1 and store > 0 and apply_type in (0,2)
+		<if test="typeId != -1">
+			and type_id = #{typeId,jdbcType=INTEGER}
+		</if>
+		<if test="rangestart != null and rangeend != null">
+			and integral between #{rangestart,jdbcType=INTEGER} and
+			#{rangeend,jdbcType=INTEGER}
+		</if>
+		limit #{start,jdbcType=INTEGER}, #{number,jdbcType=INTEGER}
+	</select>
+
+	<select id="countGiftByTypeRange" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		select
+		count(1)
+		from
+		lingbao_gift
+		where
+		shelf_status = 1 and store > 0 and apply_type in (0,2)
+		<if test="typeId != -1">
+			and type_id = #{typeId,jdbcType=INTEGER}
+		</if>
+		<if test="rangestart != null and rangeend != null">
+			and integral between #{rangestart,jdbcType=INTEGER} and
+			#{rangeend,jdbcType=INTEGER}
+		</if>
+	</select>
+</mapper>

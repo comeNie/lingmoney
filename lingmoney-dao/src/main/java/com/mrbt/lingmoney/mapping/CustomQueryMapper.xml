@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.CustomQueryMapper">
+	<update id="updateProductByRun" parameterType="java.util.Map">
+		update 
+			trading_fix_info tfi, product p, trading t 
+		set 
+			p.status = #{set_p_status}, 
+			p.value_dt = #{set_p_value_dt}, 
+			p.establish_dt = #{set_p_establish_dt},
+			t.value_dt = #{set_t_value_dt}, 
+			t.min_sell_dt = #{set_t_min_sell_dt}, 
+			tfi.expiry_dt = #{set_tfi_expiry_dt}, 
+			tfi.w_time=DATEDIFF(#{set_tfi_w_time}, 
+			IFNULL(t.w_value_dt,now())),
+			tfi.interest = 
+				(t.financial_money*p.f_yield / 365 * #{set_time1})+
+				(t.financial_money * p.wait_rate/365 * 
+				(DATEDIFF(#{set_time2},IFNULL(t.w_value_dt,now()))))
+		where 
+			p.id = #{p_id} 
+			and tfi.t_id = t.id 
+			and t.p_id = p.id 
+			and p.status = #{p_status} 
+			and t.status = #{t_status}
+	</update>
+	
+	<select id="customQuery" parameterType="java.util.List" resultType="java.util.HashMap">
+		select code, name from product where code = ${1}
+	</select>
+	
+	
+	<resultMap id="BaseResultMap" type="com.mrbt.lingmoney.mongo.UsersInfoMysql">
+		<!-- @mbggenerated -->
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="u_id" jdbcType="VARCHAR" property="uId" />
+		<result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="sex" jdbcType="VARCHAR" property="sex" />
+		<result column="picture" jdbcType="VARCHAR" property="picture" />
+		<result column="province" jdbcType="VARCHAR" property="province" />
+		<result column="city" jdbcType="VARCHAR" property="city" />
+		<result column="town" jdbcType="VARCHAR" property="town" />
+		<result column="education" jdbcType="VARCHAR" property="education" />
+		<result column="job" jdbcType="VARCHAR" property="job" />
+		<result column="email" jdbcType="VARCHAR" property="email" />
+		<result column="reg_date" jdbcType="DATE" property="regDate" />
+		<result column="certification" jdbcType="INTEGER" property="certification" />
+		<result column="bank" jdbcType="INTEGER" property="bank" />
+		<result column="id_card" jdbcType="VARCHAR" property="idCard" />
+		<result column="referral_code" jdbcType="VARCHAR" property="referralCode" />
+		<result column="referral_id" jdbcType="VARCHAR" property="referralId" />
+		<result column="buy_total" jdbcType="DECIMAL" property="buyTotal" />
+		<result column="level" jdbcType="INTEGER" property="level" />
+		<result column="code_path" jdbcType="VARCHAR" property="codePath" />
+		<result column="auto_pay" jdbcType="INTEGER" property="autoPay" />
+		<result column="first_buy" jdbcType="INTEGER" property="firstBuy" />
+		<result column="platform_type" jdbcType="INTEGER" property="platformType" />
+		<result column="user_level" jdbcType="INTEGER" property="userLevel" />
+		<result column="recommended_level" jdbcType="VARCHAR" property="recommendedLevel" />
+		<result column="wechat" jdbcType="VARCHAR" property="wechat" />
+		<result column="wallet_auto_pay" jdbcType="INTEGER" property="walletAutoPay" />
+		<result column="address" jdbcType="VARCHAR" property="address" />
+		<result column="department" jdbcType="VARCHAR" property="department" />
+		<result column="telephone" jdbcType="VARCHAR" property="telephone" />
+	</resultMap>
+	<select id="queryUsersInfo" resultMap="BaseResultMap" parameterType="java.util.Map">
+		select up.*,us.telephone 
+		from users_properties up, users us 
+		where up.u_id = us.id and platform_type = 0 
+		<if test="regDate != null">
+			and reg_date = #{regDate}
+		</if>
+	</select>
+	
+	<select id="listWenYingBaoAutoRedeemTrading" resultType="com.mrbt.lingmoney.model.schedule.TradingObject">
+		select 
+			tr.id id, tr.u_id uId,pt.id pId 
+		from 
+			trading as tr ,product as pt 
+		where 
+			min_sell_dt &lt; sysdate() and tr.p_id = pt.id and substr(tr.p_code,9,1) = 0 
+			and substr(tr.p_code, 10, 1) = 1 and pt.f_time != 0 and tr.status = 1 
+		limit 1000
+	</select>
+	
+	<select id="querySellTradingInfo" parameterType="java.lang.Integer" resultType="com.mrbt.lingmoney.model.schedule.SellTrading">
+		select 
+			t.id tid, t.status status, t.u_id uid, t.sell_dt sellDt, t.p_code pCode, t.financial_money financialMoney, t.biz_code bizCode,
+			t.min_sell_dt minSellDt, p.rule rule, p.f_yield fYield, tfi.interest_rate interestRate, tfi.id infoId, tfi.expiry_dt expireDt
+		from 
+			trading t 
+		left join 
+			product p on t.p_id = p.id 
+		left join 
+			trading_fix_info tfi on t.id = tfi.t_id  
+		where 
+			t.id = #{tid} and t.p_id = p.id and t.id = tfi.t_id
+	</select>
+	
+	<update id="updateTradingInfoAftersellWenYing" parameterType="com.mrbt.lingmoney.model.schedule.SellTrading">
+		update 
+			trading t, trading_fix_info info 
+		set 
+			t.status = #{status, jdbcType=INTEGER}, t.sell_dt = #{sellDt, jdbcType=TIMESTAMP},
+			t.sell_money = #{sellMoney, jdbcType=DECIMAL}, t.out_biz_code = #{outBizCode, jdbcType=VARCHAR}, info.status = t.status 
+		where 
+			t.id = #{tid, jdbcType=INTEGER} and info.t_id = t.id and t.status = 1
+	</update>
+	
+	<select id="listAutoPlayMoney" resultType="com.mrbt.lingmoney.model.schedule.WenYingBaoRedeem" parameterType="java.util.Map">
+		select  
+			sum(sbi.sell_money) as sellCount, sum(sbi.buy_money) as buyMonney,
+			sbi.p_code as pCode, sbi.u_id as uId, sbi.t_id as tId, p.p_type as pType, 
+			p.cost_value costValue, ua.id aId
+		from 
+			sell_batch_info as sbi, product p, users_account ua
+		where 
+			sbi.status = #{status, jdbcType=INTEGER} and p.code = sbi.p_code and ua.u_id = sbi.u_id 
+			and p.p_type = #{pType, jdbcType=INTEGER} 
+			<if test=" pType == 2 ">
+				and p.status = 11 
+			</if>
+		group by 
+			sbi.t_id 
+		limit 200 
+	</select>
+	
+	<select id="queryPaymentBankInfoByUid" parameterType="java.lang.String" resultType="java.util.Map">
+		select
+			sb.bank_short bankShort, ub.number number, ub.tel tel, sb.bank_name bankName 
+		from 
+			users_bank ub, support_bank sb 
+		where 
+			ub.status = 1 and u_id = #{uId, jdbcType=VARCHAR} and ub.bankcode = sb.bank_code 
+		order by 
+			ub.isdefault desc;
+	</select>
+	
+	<update id="updateDataAfterSell" parameterType="java.util.Map">
+		update 
+			sell_batch_info as sbi, trading_fix_info as tf, trading as tr 
+		set 
+			tr.card_pan = #{cardPan, jdbcType=VARCHAR}, sbi.status = #{sbiStatus, jdbcType=INTEGER}, 
+			tr.status = #{tradingStatus, jdbcType=INTEGER}, tf.status = #{tradingStatus, jdbcType=INTEGER}
+	 	where 
+	 		sbi.t_id = #{tid, jdbcType=INTEGER} and tf.t_id = #{tid, jdbcType=INTEGER} 
+	 		and tr.id = #{tid, jdbcType=INTEGER}
+	</update>
+	
+	<update id="updateSellBatchAfterRepayment">
+		update 
+			sell_batch set status = 3 
+		where 
+			status=2 and batch not in (select batch from sell_batch_info where status = 2 group by batch)
+	</update>
+	
+	<select id="listTakeHeartPlayMoney" resultType="com.mrbt.lingmoney.model.schedule.TakeHeartRedeem" parameterType="java.lang.Integer">
+		select 
+			wsp.id as id ,wsp.u_id as uId, wsp.p_code as pCode, wsp.t_id as tId, wsp.sell_money as sellMoney, 
+			wsp.redeem_type as redeemType, wsp.tf_id as tfId, ua.id as aId , ttf.number as number, 
+			ttf.card_pan as cardnumber
+		from 
+			takeheart_sell_pay as wsp, users_account as ua, takeheart_transaction_flow ttf
+		where 
+			wsp.u_id = ua.u_id  and wsp.state = #{status, jdbcType=INTEGER} and ttf.id = wsp.tf_id
+	</select>
+	
+	<select id="listAutoRepaymentProduct" resultType="java.util.Map" parameterType="java.util.Map">
+		select 
+			p.id, p.code, p.name, ha.ac_no acNo, p.re_way reWay, p.rule, p.st_dt stDt, p.ed_dt edDt, p.prior_money priorMoney,
+			p.reach_money reachMoney, p.status status, p.f_time fTime, p.unit_time unitTime, p.value_dt valueDt, 
+			p.establish_dt establishDt, p.f_yield fYield, p.platform_user_no platformUserNo, p.cost_value costValue, 
+			p.p_model pModel, p.p_type pType, p.city_code cityCode, p.buy_limit buyLimit
+		from 
+			product p 
+		left join 
+			hx_auto_repayment_apply_info har on p.code = har.loan_no 
+		left join hx_borrower borrower on borrower.id = har.borrower_id
+		left join hx_account ha on ha.id = borrower.acc_id
+		where 
+			har.state = 1 and p.status in (3, 11) and p.p_type = 2
+		order by ha.ac_no, p.status 
+		limit #{start, jdbcType=INTEGER}, #{number, jdbcType=INTEGER}
+	</select>
+	
+	<select id="countAutoRepaymentProduct" resultType="java.lang.Integer">
+		select 
+			count(1) 
+		from 
+			product p 
+		left join 
+			hx_auto_repayment_apply_info har on p.code = har.loan_no 
+		where 
+			har.state = 1 and p.status in (3, 11) and p.p_type = 2
+	</select>
+	
+	<select id="queryBorrowerInfoByPid" resultType="java.util.Map" parameterType="java.lang.Integer">
+		select 
+            hbi.bw_amt amount, case when bor.bw_idtype = '1010' then ha.ac_no else ea.bank_no end acNo  
+        from hx_bidding hb 
+        left join hx_borrower_info hbi on hb.id = hbi.bidding_id 
+        left join hx_borrower bor on hbi.bw_id = bor.id 
+        left join hx_account ha on ha.id = bor.acc_id 
+        left join enterprise_account ea on ea.id = bor.acc_id 
+		where hb.p_id = #{pid, jdbcType=INTEGER} limit 1
+	</select>
+	
+	<select id="sumRedPacketMoneyByPid" parameterType="java.lang.Integer" resultType="java.math.BigDecimal">
+		select 
+			ifnull(sum(urp.actual_amount), 0) money 
+		from 
+			users_red_packet urp 
+		left join 
+			trading t 
+		on 
+			urp.t_id = t.id 
+		where 
+			urp.`status` = 1 and urp.t_id is not null and t.p_id = #{pid, jdbcType=INTEGER} 
+	</select>
+	
+	<select id="queryBuyerInfoByPidAndStatus" resultType="java.util.Map" parameterType="java.util.Map">
+		select 
+			t.id id, t.financial_money money, u.telephone tel, up.name name, up.recommended_level recomLevel,
+			case when t.`status` = 0 then '待支付' when t.`status` = 1 then '支付成功' when t.`status` = 4 then '待成立' when `status` = 12 then '支付中' else '支付失败' end as buyStatus 
+		from 
+			trading t 
+		left join users u on t.u_id = u.id 
+		left join users_properties up on up.u_id = t.u_id 
+		where 
+			t.p_id = #{pid, jdbcType=INTEGER} 
+			<choose>
+				<when test="status == -1">
+					and t.`status` in (0, 1, 4, 5, 18) 
+				</when>
+				<otherwise>
+					and t.`status` = #{status, jdbcType=INTEGER} 
+				</otherwise>
+			</choose>
+		order by t.`status` , t.buy_dt desc
+		limit #{start, jdbcType=INTEGER}, #{number, jdbcType=INTEGER}
+	</select>
+	
+	<select id="countBuyerInfoByPidAndStatus" resultType="java.lang.Integer" parameterType="java.util.Map">
+		select 
+			count(1) 
+		from 
+			trading t 
+		where 
+			t.p_id = #{pid, jdbcType=INTEGER}
+			<choose>
+				<when test="status == -1">
+					and t.`status` in (0, 1, 4, 5, 18)  
+				</when>
+				<otherwise>
+					and t.`status` = #{status, jdbcType=INTEGER} 
+				</otherwise>
+			</choose>
+	</select>
+	
+	<select id="sumProductSellInfoByPid" parameterType="java.lang.Integer" resultType="java.util.Map">
+		select 
+			p.prior_money priorMoney, p.reach_money reachMoney, 
+			sum(if(t.`status` = 0, t.financial_money, 0)) waitMoney, 
+			sum(if(t.`status` = 1, t.financial_money, 0)) availableMoney 
+		from 
+			trading t 
+		left join product p on t.p_id = p.id 
+		where 
+			t.p_id = #{pid, jdbcType=INTEGER}
+	</select>
+	
+	<select id="queryEmployeeInfoByUid" parameterType="java.lang.String" resultType="com.mrbt.lingmoney.model.EmployeeRelationsMapping">
+		select 
+			erm.id id, erm.`type` type, erm.comp_name compName, erm.department department, 
+			erm.employee_name employeeName, erm.employeeID employeeID, erm.newID newID, 
+			erm.`status` status 
+		from 
+			users_properties up 
+		left join employee_relations_mapping erm 
+		on (up.referral_code = erm.employeeID or up.referral_code = erm.newID) 
+		where 
+			up.u_id = #{uid, jdbcType=VARCHAR}
+	</select>
+	
+	<select id="sumAllRepaymentMoney" parameterType="java.lang.Integer" resultType="java.math.BigDecimal">
+		select 
+			(ifnull(sum(tfi.interest), 0) + ifnull(sum(tfi.financial_money), 0)) allMoney 
+		from 
+			trading_fix_info tfi 
+		left join trading t on tfi.t_id = t.id 
+		left join product p on p.id = t.p_id 
+		where 
+			p.id = #{pid, jdbcType=INTEGER} and t.`status` in (1, 2)
+	</select>
+	
+	<select id="queryPidByHxPaymentId" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select 
+			hb.p_id pid 
+		from 
+			hx_borrower_info hbi 
+		left join hx_payment hp on hbi.id = hp.bw_id 
+		left join hx_bidding hb on hb.id = hbi.bidding_id 
+		where 
+			hp.id = #{id, jdbcType=VARCHAR}
+	</select>
+	
+	<select id="listAutoQueryBindCardUsers" resultType="java.util.Map">
+	   SELECT 
+		    hc.id AS hcId,
+		    hc.acc_id AS accId,
+		    hc.status AS hxStatus,
+		    hc.tied_date as tiedDate,
+		    ha.u_id AS uId,
+		    ha.ac_no acNo,
+		    ha.ac_name AS acName
+		FROM
+		    hx_card hc
+		        INNER JOIN
+		    hx_account ha ON hc.acc_id = ha.id
+		WHERE
+		    hc.status = 2 AND ha.status = 1;
+	   
+	   <!-- 
+	   select 
+	       ha.id aId, ha.ac_no acNo, ha.ac_name acName, hc.id cardId 
+	   from 
+	       hx_account ha 
+	   left join 
+	       hx_card hc on ha.id = hc.acc_id 
+	   where 
+	       ha.status = 1 and (hc.`status` in (2, 3) or hc.id is null)
+	    -->
+	</select>
+	
+	<select id="queryValidTradingMoney" resultType="java.math.BigDecimal" parameterType="java.lang.Integer">
+	   select ifnull(sum(financial_money), 0) money from trading where p_id = #{0, jdbcType=INTEGER} and status = 4
+	</select>
+	
+	<select id="queryUsersAccountByAcno" resultType="java.lang.Integer" parameterType="java.lang.String">
+	   select ua.id from hx_account ha left join users_account ua on ua.u_id = ha.u_id where ha.ac_no = #{0, jdbcType=VARCHAR}
+	</select>
+	
+	<select id="listDailyReconciliateBidding" resultType="java.util.Map" parameterType="java.lang.String">
+	   select 1 as type, t.biz_code bizCode, ha.ac_no acNo, t.financial_money money, t.status state from trading t left join hx_account ha on ha.u_id = t.u_id where t.status in (1, 4, 5, 8, 9, 12) and t.biz_code like 'P2P%' and date(t.buy_dt) = #{fileDate}
+	</select>
+	
+	<select id="listDailyReconciliateBiddingCancel" resultType="java.util.Map" parameterType="java.lang.String">
+	   select 2 as type, hc.channel_flow bizCode, ha.ac_no acNo, t.financial_money money, hc.`status` state from hx_bidding_cancel_record hc left join trading t on hc.t_id = t.id left join hx_account ha on ha.u_id = t.u_id where date(hc.request_date) =  #{fileDate}
+	</select>
+	
+	<select id="listDailyReconciliateBiddingLoss" resultType="java.util.Map" parameterType="java.lang.String">
+	   select 3 as type, hr.channel_flow bizCode, hr.state state, p.reach_money money, case hbor.bw_idtype when '1010' then ha.ac_no when '2020' then ea.bank_no end as acNo from hx_bidding_loss_record hr left join hx_bidding hb on hr.loan_no = hb.loan_no left join hx_borrower_info hbi on hb.id = hbi.bidding_id left join hx_borrower hbor on hbor.id = hbi.bw_id left join hx_account ha on hbor.acc_id = ha.id left join enterprise_account ea on ea.id = hbor.acc_id left join product p on hr.loan_no = p.code where date(hr.apply_time) = #{fileDate}
+	</select>
+	
+	<select id="listDailyReconciliateBankLendding" resultType="java.util.Map" parameterType="java.lang.String">
+	   select 4 as type, hl.channel_flow bizCode, hl.state state, case hbor.bw_idtype when '1010' then ha.ac_no when '2020' then ea.bank_no end as acNo, p.reach_money - ifnull(hl.ac_mng_amt, 0) - ifnull(hl.guarant_amt, 0) as money from hx_banklendding_info hl left join hx_bidding hb on hl.loan_no = hb.loan_no left join hx_borrower_info hbi on hb.id = hbi.bidding_id left join hx_borrower hbor on hbor.id = hbi.bw_id left join hx_account ha on hbor.acc_id = ha.id left join enterprise_account ea on ea.id = hbor.acc_id left join product p on hl.loan_no = p.code where date(hl.apply_time) = #{fileDate}
+	</select>
+	
+	<select id="listDailyReconciliateRePayment" resultType="java.util.Map" parameterType="java.lang.String">
+	   select case hp.payment_type when 1 then 5 when 3 then 21 when 4 then 33 end as type, hp.channel_flow bizCode, hp.`status` state, hp.amount money, case hb.bw_idtype when '1010' then ha.ac_no when '2020' then ea.bank_no end as acNo from hx_payment hp left join hx_borrower_info hbi on hp.bw_id = hbi.id  left join hx_borrower hb on hbi.bw_id = hb.id left join hx_account ha on hb.acc_id = ha.id left join enterprise_account ea on hb.acc_id = ea.id where date(hp.payment_date) = #{fileDate}
+	</select>
+	
+	<select id="listDailyReconciliateAccountFlow" resultType="java.util.Map" parameterType="java.lang.String">
+       select case af.`type` when 0 then 20 when 1 then 24 when 4 then 23 end as type, af.money money, ha.ac_no acNo, af.`status` state, af.number bizCode from account_flow af left join users_account ua on af.a_id = ua.id left join hx_account ha on ha.u_id = ua.u_id where af.`type` in (0, 1, 4) and date(af.operate_time) = #{fileDate}
+    </select>
+
+	<select id="queryTotalSumMoney" resultType="java.math.BigDecimal">
+		select sum(buy_money) from trading where status in (1, 2, 3);
+	</select>
+
+	<select id="queryTotalInterest" resultType="java.math.BigDecimal">
+		select sum(interest) from trading;
+	</select>
+
+</mapper>

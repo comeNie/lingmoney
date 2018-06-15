@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.DataSynWenyingFlowMapper">
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.DataSynWenyingFlow">
+    <!--
+    @mbggenerated
+    -->
+    <result column="employeeId" jdbcType="VARCHAR" property="employeeid" />
+    <result column="up_u_id" jdbcType="VARCHAR" property="upUId" />
+    <result column="up_nick_name" jdbcType="VARCHAR" property="upNickName" />
+    <result column="up_name" jdbcType="VARCHAR" property="upName" />
+    <result column="up2_u_id" jdbcType="VARCHAR" property="up2UId" />
+    <result column="up2_nick_name" jdbcType="VARCHAR" property="up2NickName" />
+    <result column="up2_name" jdbcType="VARCHAR" property="up2Name" />
+    <result column="up2_id_card" jdbcType="VARCHAR" property="up2IdCard" />
+    <result column="t_id" jdbcType="INTEGER" property="tId" />
+    <result column="t_p_id" jdbcType="INTEGER" property="tPId" />
+    <result column="t_p_code" jdbcType="VARCHAR" property="tPCode" />
+    <result column="t_pc_id" jdbcType="INTEGER" property="tPcId" />
+    <result column="t_buy_money" jdbcType="DECIMAL" property="tBuyMoney" />
+    <result column="t_buy_dt" jdbcType="TIMESTAMP" property="tBuyDt" />
+    <result column="t_vakue_dt" jdbcType="DATE" property="tVakueDt" />
+    <result column="t_min_sell_dt" jdbcType="DATE" property="tMinSellDt" />
+    <result column="t_status" jdbcType="INTEGER" property="tStatus" />
+    <result column="t_biz_code" jdbcType="VARCHAR" property="tBizCode" />
+    <result column="p_name" jdbcType="VARCHAR" property="pName" />
+    <result column="p_pc_name" jdbcType="VARCHAR" property="pPcName" />
+    <result column="p_st_dt" jdbcType="TIMESTAMP" property="pStDt" />
+    <result column="p_ed_dt" jdbcType="TIMESTAMP" property="pEdDt" />
+    <result column="p_prior_money" jdbcType="DECIMAL" property="pPriorMoney" />
+    <result column="p_reach_money" jdbcType="DECIMAL" property="pReachMoney" />
+    <result column="p_f_time" jdbcType="INTEGER" property="pFTime" />
+    <result column="p_f_yield" jdbcType="DECIMAL" property="pFYield" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+    @mbggenerated
+    -->
+    employeeId, up_u_id, up_nick_name, up_name, up2_u_id, up2_nick_name, up2_name, up2_id_card, 
+    t_id, t_p_id, t_p_code, t_pc_id, t_buy_money, t_buy_dt, t_vakue_dt, t_min_sell_dt, 
+    t_status, t_biz_code, p_name, p_pc_name, p_st_dt, p_ed_dt, p_prior_money, p_reach_money, 
+    p_f_time, p_f_yield
+  </sql>
+  <select id="selectByExample" parameterType="com.mrbt.lingmoney.model.DataSynWenyingFlowExample" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from data_syn_wenying_flow
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0">
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.DataSynWenyingFlowExample">
+    <!--
+    @mbggenerated
+    -->
+    delete from data_syn_wenying_flow
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mrbt.lingmoney.model.DataSynWenyingFlow">
+    <!--
+    @mbggenerated
+    -->
+    insert into data_syn_wenying_flow (employeeId, up_u_id, up_nick_name, 
+      up_name, up2_u_id, up2_nick_name, 
+      up2_name, up2_id_card, t_id, 
+      t_p_id, t_p_code, t_pc_id, 
+      t_buy_money, t_buy_dt, t_vakue_dt, 
+      t_min_sell_dt, t_status, t_biz_code, 
+      p_name, p_pc_name, p_st_dt, 
+      p_ed_dt, p_prior_money, p_reach_money, 
+      p_f_time, p_f_yield)
+    values (#{employeeid,jdbcType=VARCHAR}, #{upUId,jdbcType=VARCHAR}, #{upNickName,jdbcType=VARCHAR}, 
+      #{upName,jdbcType=VARCHAR}, #{up2UId,jdbcType=VARCHAR}, #{up2NickName,jdbcType=VARCHAR}, 
+      #{up2Name,jdbcType=VARCHAR}, #{up2IdCard,jdbcType=VARCHAR}, #{tId,jdbcType=INTEGER}, 
+      #{tPId,jdbcType=INTEGER}, #{tPCode,jdbcType=VARCHAR}, #{tPcId,jdbcType=INTEGER}, 
+      #{tBuyMoney,jdbcType=DECIMAL}, #{tBuyDt,jdbcType=TIMESTAMP}, #{tVakueDt,jdbcType=DATE}, 
+      #{tMinSellDt,jdbcType=DATE}, #{tStatus,jdbcType=INTEGER}, #{tBizCode,jdbcType=VARCHAR}, 
+      #{pName,jdbcType=VARCHAR}, #{pPcName,jdbcType=VARCHAR}, #{pStDt,jdbcType=TIMESTAMP}, 
+      #{pEdDt,jdbcType=TIMESTAMP}, #{pPriorMoney,jdbcType=DECIMAL}, #{pReachMoney,jdbcType=DECIMAL}, 
+      #{pFTime,jdbcType=INTEGER}, #{pFYield,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.DataSynWenyingFlow">
+    <!--
+    @mbggenerated
+    -->
+    insert into data_syn_wenying_flow
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="employeeid != null">
+        employeeId,
+      </if>
+      <if test="upUId != null">
+        up_u_id,
+      </if>
+      <if test="upNickName != null">
+        up_nick_name,
+      </if>
+      <if test="upName != null">
+        up_name,
+      </if>
+      <if test="up2UId != null">
+        up2_u_id,
+      </if>
+      <if test="up2NickName != null">
+        up2_nick_name,
+      </if>
+      <if test="up2Name != null">
+        up2_name,
+      </if>
+      <if test="up2IdCard != null">
+        up2_id_card,
+      </if>
+      <if test="tId != null">
+        t_id,
+      </if>
+      <if test="tPId != null">
+        t_p_id,
+      </if>
+      <if test="tPCode != null">
+        t_p_code,
+      </if>
+      <if test="tPcId != null">
+        t_pc_id,
+      </if>
+      <if test="tBuyMoney != null">
+        t_buy_money,
+      </if>
+      <if test="tBuyDt != null">
+        t_buy_dt,
+      </if>
+      <if test="tVakueDt != null">
+        t_vakue_dt,
+      </if>
+      <if test="tMinSellDt != null">
+        t_min_sell_dt,
+      </if>
+      <if test="tStatus != null">
+        t_status,
+      </if>
+      <if test="tBizCode != null">
+        t_biz_code,
+      </if>
+      <if test="pName != null">
+        p_name,
+      </if>
+      <if test="pPcName != null">
+        p_pc_name,
+      </if>
+      <if test="pStDt != null">
+        p_st_dt,
+      </if>
+      <if test="pEdDt != null">
+        p_ed_dt,
+      </if>
+      <if test="pPriorMoney != null">
+        p_prior_money,
+      </if>
+      <if test="pReachMoney != null">
+        p_reach_money,
+      </if>
+      <if test="pFTime != null">
+        p_f_time,
+      </if>
+      <if test="pFYield != null">
+        p_f_yield,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="employeeid != null">
+        #{employeeid,jdbcType=VARCHAR},
+      </if>
+      <if test="upUId != null">
+        #{upUId,jdbcType=VARCHAR},
+      </if>
+      <if test="upNickName != null">
+        #{upNickName,jdbcType=VARCHAR},
+      </if>
+      <if test="upName != null">
+        #{upName,jdbcType=VARCHAR},
+      </if>
+      <if test="up2UId != null">
+        #{up2UId,jdbcType=VARCHAR},
+      </if>
+      <if test="up2NickName != null">
+        #{up2NickName,jdbcType=VARCHAR},
+      </if>
+      <if test="up2Name != null">
+        #{up2Name,jdbcType=VARCHAR},
+      </if>
+      <if test="up2IdCard != null">
+        #{up2IdCard,jdbcType=VARCHAR},
+      </if>
+      <if test="tId != null">
+        #{tId,jdbcType=INTEGER},
+      </if>
+      <if test="tPId != null">
+        #{tPId,jdbcType=INTEGER},
+      </if>
+      <if test="tPCode != null">
+        #{tPCode,jdbcType=VARCHAR},
+      </if>
+      <if test="tPcId != null">
+        #{tPcId,jdbcType=INTEGER},
+      </if>
+      <if test="tBuyMoney != null">
+        #{tBuyMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="tBuyDt != null">
+        #{tBuyDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tVakueDt != null">
+        #{tVakueDt,jdbcType=DATE},
+      </if>
+      <if test="tMinSellDt != null">
+        #{tMinSellDt,jdbcType=DATE},
+      </if>
+      <if test="tStatus != null">
+        #{tStatus,jdbcType=INTEGER},
+      </if>
+      <if test="tBizCode != null">
+        #{tBizCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pName != null">
+        #{pName,jdbcType=VARCHAR},
+      </if>
+      <if test="pPcName != null">
+        #{pPcName,jdbcType=VARCHAR},
+      </if>
+      <if test="pStDt != null">
+        #{pStDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pEdDt != null">
+        #{pEdDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pPriorMoney != null">
+        #{pPriorMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="pReachMoney != null">
+        #{pReachMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="pFTime != null">
+        #{pFTime,jdbcType=INTEGER},
+      </if>
+      <if test="pFYield != null">
+        #{pFYield,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.DataSynWenyingFlowExample" resultType="java.lang.Long">
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from data_syn_wenying_flow
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update data_syn_wenying_flow
+    <set>
+      <if test="record.employeeid != null">
+        employeeId = #{record.employeeid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.upUId != null">
+        up_u_id = #{record.upUId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.upNickName != null">
+        up_nick_name = #{record.upNickName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.upName != null">
+        up_name = #{record.upName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.up2UId != null">
+        up2_u_id = #{record.up2UId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.up2NickName != null">
+        up2_nick_name = #{record.up2NickName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.up2Name != null">
+        up2_name = #{record.up2Name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.up2IdCard != null">
+        up2_id_card = #{record.up2IdCard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tId != null">
+        t_id = #{record.tId,jdbcType=INTEGER},
+      </if>
+      <if test="record.tPId != null">
+        t_p_id = #{record.tPId,jdbcType=INTEGER},
+      </if>
+      <if test="record.tPCode != null">
+        t_p_code = #{record.tPCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tPcId != null">
+        t_pc_id = #{record.tPcId,jdbcType=INTEGER},
+      </if>
+      <if test="record.tBuyMoney != null">
+        t_buy_money = #{record.tBuyMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tBuyDt != null">
+        t_buy_dt = #{record.tBuyDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.tVakueDt != null">
+        t_vakue_dt = #{record.tVakueDt,jdbcType=DATE},
+      </if>
+      <if test="record.tMinSellDt != null">
+        t_min_sell_dt = #{record.tMinSellDt,jdbcType=DATE},
+      </if>
+      <if test="record.tStatus != null">
+        t_status = #{record.tStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.tBizCode != null">
+        t_biz_code = #{record.tBizCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pName != null">
+        p_name = #{record.pName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pPcName != null">
+        p_pc_name = #{record.pPcName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pStDt != null">
+        p_st_dt = #{record.pStDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.pEdDt != null">
+        p_ed_dt = #{record.pEdDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.pPriorMoney != null">
+        p_prior_money = #{record.pPriorMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pReachMoney != null">
+        p_reach_money = #{record.pReachMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pFTime != null">
+        p_f_time = #{record.pFTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.pFYield != null">
+        p_f_yield = #{record.pFYield,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update data_syn_wenying_flow
+    set employeeId = #{record.employeeid,jdbcType=VARCHAR},
+      up_u_id = #{record.upUId,jdbcType=VARCHAR},
+      up_nick_name = #{record.upNickName,jdbcType=VARCHAR},
+      up_name = #{record.upName,jdbcType=VARCHAR},
+      up2_u_id = #{record.up2UId,jdbcType=VARCHAR},
+      up2_nick_name = #{record.up2NickName,jdbcType=VARCHAR},
+      up2_name = #{record.up2Name,jdbcType=VARCHAR},
+      up2_id_card = #{record.up2IdCard,jdbcType=VARCHAR},
+      t_id = #{record.tId,jdbcType=INTEGER},
+      t_p_id = #{record.tPId,jdbcType=INTEGER},
+      t_p_code = #{record.tPCode,jdbcType=VARCHAR},
+      t_pc_id = #{record.tPcId,jdbcType=INTEGER},
+      t_buy_money = #{record.tBuyMoney,jdbcType=DECIMAL},
+      t_buy_dt = #{record.tBuyDt,jdbcType=TIMESTAMP},
+      t_vakue_dt = #{record.tVakueDt,jdbcType=DATE},
+      t_min_sell_dt = #{record.tMinSellDt,jdbcType=DATE},
+      t_status = #{record.tStatus,jdbcType=INTEGER},
+      t_biz_code = #{record.tBizCode,jdbcType=VARCHAR},
+      p_name = #{record.pName,jdbcType=VARCHAR},
+      p_pc_name = #{record.pPcName,jdbcType=VARCHAR},
+      p_st_dt = #{record.pStDt,jdbcType=TIMESTAMP},
+      p_ed_dt = #{record.pEdDt,jdbcType=TIMESTAMP},
+      p_prior_money = #{record.pPriorMoney,jdbcType=DECIMAL},
+      p_reach_money = #{record.pReachMoney,jdbcType=DECIMAL},
+      p_f_time = #{record.pFTime,jdbcType=INTEGER},
+      p_f_yield = #{record.pFYield,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mrbt.lingmoney.mapper.UsersRedPacketUnionMapper" >
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.UsersRedPacketUnion" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="hrp_type" property="hrpType" jdbcType="INTEGER" />
+    <result column="hrp_name" property="hrpName" jdbcType="VARCHAR" />
+    <result column="hrp_remarks" property="hrpRemarks" jdbcType="VARCHAR" />
+    <result column="hrp_number" property="hrpNumber" jdbcType="DOUBLE" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="a_start_time" property="aStartTime" jdbcType="TIMESTAMP" />
+    <result column="a_end_time" property="aEndTime" jdbcType="TIMESTAMP" />
+    <result column="acquis_mode" property="acquisMode" jdbcType="INTEGER" />
+    <result column="a_invest_pro_batch" property="aInvestProBatch" jdbcType="VARCHAR" />
+    <result column="a_invest_pro_type" property="aInvestProType" jdbcType="VARCHAR" />
+    <result column="a_invest_pro_day" property="aInvestProDay" jdbcType="INTEGER" />
+    <result column="a_invest_pro_amount" property="aInvestProAmount" jdbcType="DOUBLE" />
+    <result column="u_invest_pro_batch" property="uInvestProBatch" jdbcType="VARCHAR" />
+    <result column="u_invest_pro_type" property="uInvestProType" jdbcType="VARCHAR" />
+    <result column="u_invest_pro_day" property="uInvestProDay" jdbcType="INTEGER" />
+    <result column="u_invest_pro_mixday" jdbcType="INTEGER" property="uInvestProMixday" />
+    <result column="u_invest_pro_amount" property="uInvestProAmount" jdbcType="DOUBLE" />
+    
+    <result column="userRedPacketId" property="userRedPacketId"  jdbcType="INTEGER" />
+    <result column="u_id" property="uId" jdbcType="VARCHAR" />
+    <result column="userStatus" property="userStatus" jdbcType="INTEGER" />
+    <result column="t_id" property="tId" jdbcType="VARCHAR" />
+    <result column="actual_amount" property="actualAmount" jdbcType="DOUBLE" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+     <result column="validity_time" property="validityTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <!--
+    @mbggenerated
+    -->
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <!--
+    @mbggenerated
+    -->
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <!--
+    @mbggenerated
+    -->
+    hx_red_packet.id, 
+    hx_red_packet.hrp_type, 
+    hx_red_packet.hrp_number, 
+    hx_red_packet.a_start_time, 
+    hx_red_packet.a_end_time, 
+    hx_red_packet.acquis_mode, 
+    hx_red_packet.a_invest_pro_amount, 
+    hx_red_packet.u_invest_pro_amount, 
+    hx_red_packet.hrp_remarks, 
+    hx_red_packet.status, 
+    hx_red_packet.a_invest_pro_day,
+    hx_red_packet.a_invest_pro_type,
+    hx_red_packet.a_invest_pro_batch,
+    hx_red_packet.u_invest_pro_day,
+    hx_red_packet.u_invest_pro_mixday,
+    hx_red_packet.u_invest_pro_type,
+    hx_red_packet.u_invest_pro_batch,
+    users_red_packet.id userRedPacketId, 
+    users_red_packet.u_id, 
+    users_red_packet.status userStatus, 
+    users_red_packet.t_id, 
+    users_red_packet.actual_amount, 
+    users_red_packet.create_time,
+    users_red_packet.validity_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mrbt.lingmoney.model.UsersRedPacketUnionExample" >
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from users_red_packet left join hx_red_packet on users_red_packet.rp_id = hx_red_packet.id
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    <!--
+    @mbggenerated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from users_red_packet left join hx_red_packet on users_red_packet.rp_id = hx_red_packet.id
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.UsersRedPacketUnionExample" resultType="java.lang.Integer" >
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from users_red_packet left join hx_red_packet on users_red_packet.rp_id = hx_red_packet.id
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  
+</mapper>

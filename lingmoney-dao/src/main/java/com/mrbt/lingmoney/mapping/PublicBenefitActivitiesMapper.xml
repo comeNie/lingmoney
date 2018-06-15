@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.PublicBenefitActivitiesMapper">
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.PublicBenefitActivities">
+    <!--
+    @mbggenerated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="pba_desc" jdbcType="VARCHAR" property="pbaDesc" />
+    <result column="pba_picture" jdbcType="VARCHAR" property="pbaPicture" />
+    <result column="max_praise" jdbcType="INTEGER" property="maxPraise" />
+    <result column="sum_praise" jdbcType="INTEGER" property="sumPraise" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="state_time" jdbcType="TIMESTAMP" property="stateTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="pba_name" jdbcType="VARCHAR" property="pbaName" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.mrbt.lingmoney.model.PublicBenefitActivitiesWithBLOBs">
+    <!--
+    @mbggenerated
+    -->
+    <result column="pba_html_mobile" jdbcType="LONGVARCHAR" property="pbaHtmlMobile" />
+    <result column="pba_html_web" jdbcType="LONGVARCHAR" property="pbaHtmlWeb" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+    @mbggenerated
+    -->
+    id, pba_desc, pba_picture, max_praise, sum_praise, status, state_time, end_time, 
+    sort, create_time, pba_name
+  </sql>
+  <sql id="Blob_Column_List">
+    <!--
+    @mbggenerated
+    -->
+    pba_html_mobile, pba_html_web
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.mrbt.lingmoney.model.PublicBenefitActivitiesExample" resultMap="ResultMapWithBLOBs">
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from public_benefit_activities
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.mrbt.lingmoney.model.PublicBenefitActivitiesExample" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from public_benefit_activities
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0">
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    <!--
+    @mbggenerated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from public_benefit_activities
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--
+    @mbggenerated
+    -->
+    delete from public_benefit_activities
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.PublicBenefitActivitiesExample">
+    <!--
+    @mbggenerated
+    -->
+    delete from public_benefit_activities
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mrbt.lingmoney.model.PublicBenefitActivitiesWithBLOBs">
+    <!--
+    @mbggenerated
+    -->
+    insert into public_benefit_activities (id, pba_desc, pba_picture, 
+      max_praise, sum_praise, status, 
+      state_time, end_time, sort, 
+      create_time, pba_name, pba_html_mobile, 
+      pba_html_web)
+    values (#{id,jdbcType=INTEGER}, #{pbaDesc,jdbcType=VARCHAR}, #{pbaPicture,jdbcType=VARCHAR}, 
+      #{maxPraise,jdbcType=INTEGER}, #{sumPraise,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{stateTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{sort,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{pbaName,jdbcType=VARCHAR}, #{pbaHtmlMobile,jdbcType=LONGVARCHAR}, 
+      #{pbaHtmlWeb,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.PublicBenefitActivitiesWithBLOBs">
+    <!--
+    @mbggenerated
+    -->
+    insert into public_benefit_activities
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="pbaDesc != null">
+        pba_desc,
+      </if>
+      <if test="pbaPicture != null">
+        pba_picture,
+      </if>
+      <if test="maxPraise != null">
+        max_praise,
+      </if>
+      <if test="sumPraise != null">
+        sum_praise,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="stateTime != null">
+        state_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="pbaName != null">
+        pba_name,
+      </if>
+      <if test="pbaHtmlMobile != null">
+        pba_html_mobile,
+      </if>
+      <if test="pbaHtmlWeb != null">
+        pba_html_web,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="pbaDesc != null">
+        #{pbaDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="pbaPicture != null">
+        #{pbaPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="maxPraise != null">
+        #{maxPraise,jdbcType=INTEGER},
+      </if>
+      <if test="sumPraise != null">
+        #{sumPraise,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="stateTime != null">
+        #{stateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pbaName != null">
+        #{pbaName,jdbcType=VARCHAR},
+      </if>
+      <if test="pbaHtmlMobile != null">
+        #{pbaHtmlMobile,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="pbaHtmlWeb != null">
+        #{pbaHtmlWeb,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.PublicBenefitActivitiesExample" resultType="java.lang.Long">
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from public_benefit_activities
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update public_benefit_activities
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.pbaDesc != null">
+        pba_desc = #{record.pbaDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pbaPicture != null">
+        pba_picture = #{record.pbaPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maxPraise != null">
+        max_praise = #{record.maxPraise,jdbcType=INTEGER},
+      </if>
+      <if test="record.sumPraise != null">
+        sum_praise = #{record.sumPraise,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.stateTime != null">
+        state_time = #{record.stateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endTime != null">
+        end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sort != null">
+        sort = #{record.sort,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.pbaName != null">
+        pba_name = #{record.pbaName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pbaHtmlMobile != null">
+        pba_html_mobile = #{record.pbaHtmlMobile,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.pbaHtmlWeb != null">
+        pba_html_web = #{record.pbaHtmlWeb,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update public_benefit_activities
+    set id = #{record.id,jdbcType=INTEGER},
+      pba_desc = #{record.pbaDesc,jdbcType=VARCHAR},
+      pba_picture = #{record.pbaPicture,jdbcType=VARCHAR},
+      max_praise = #{record.maxPraise,jdbcType=INTEGER},
+      sum_praise = #{record.sumPraise,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      state_time = #{record.stateTime,jdbcType=TIMESTAMP},
+      end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      sort = #{record.sort,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      pba_name = #{record.pbaName,jdbcType=VARCHAR},
+      pba_html_mobile = #{record.pbaHtmlMobile,jdbcType=LONGVARCHAR},
+      pba_html_web = #{record.pbaHtmlWeb,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update public_benefit_activities
+    set id = #{record.id,jdbcType=INTEGER},
+      pba_desc = #{record.pbaDesc,jdbcType=VARCHAR},
+      pba_picture = #{record.pbaPicture,jdbcType=VARCHAR},
+      max_praise = #{record.maxPraise,jdbcType=INTEGER},
+      sum_praise = #{record.sumPraise,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      state_time = #{record.stateTime,jdbcType=TIMESTAMP},
+      end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      sort = #{record.sort,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      pba_name = #{record.pbaName,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mrbt.lingmoney.model.PublicBenefitActivitiesWithBLOBs">
+    <!--
+    @mbggenerated
+    -->
+    update public_benefit_activities
+    <set>
+      <if test="pbaDesc != null">
+        pba_desc = #{pbaDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="pbaPicture != null">
+        pba_picture = #{pbaPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="maxPraise != null">
+        max_praise = #{maxPraise,jdbcType=INTEGER},
+      </if>
+      <if test="sumPraise != null">
+        sum_praise = #{sumPraise,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="stateTime != null">
+        state_time = #{stateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pbaName != null">
+        pba_name = #{pbaName,jdbcType=VARCHAR},
+      </if>
+      <if test="pbaHtmlMobile != null">
+        pba_html_mobile = #{pbaHtmlMobile,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="pbaHtmlWeb != null">
+        pba_html_web = #{pbaHtmlWeb,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mrbt.lingmoney.model.PublicBenefitActivitiesWithBLOBs">
+    <!--
+    @mbggenerated
+    -->
+    update public_benefit_activities
+    set pba_desc = #{pbaDesc,jdbcType=VARCHAR},
+      pba_picture = #{pbaPicture,jdbcType=VARCHAR},
+      max_praise = #{maxPraise,jdbcType=INTEGER},
+      sum_praise = #{sumPraise,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      state_time = #{stateTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      sort = #{sort,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      pba_name = #{pbaName,jdbcType=VARCHAR},
+      pba_html_mobile = #{pbaHtmlMobile,jdbcType=LONGVARCHAR},
+      pba_html_web = #{pbaHtmlWeb,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mrbt.lingmoney.model.PublicBenefitActivities">
+    <!--
+    @mbggenerated
+    -->
+    update public_benefit_activities
+    set pba_desc = #{pbaDesc,jdbcType=VARCHAR},
+      pba_picture = #{pbaPicture,jdbcType=VARCHAR},
+      max_praise = #{maxPraise,jdbcType=INTEGER},
+      sum_praise = #{sumPraise,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      state_time = #{stateTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      sort = #{sort,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      pba_name = #{pbaName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

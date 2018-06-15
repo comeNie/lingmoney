@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mrbt.lingmoney.mapper.HxBidBorrowUnionMapper" >
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.HxBidBorrowUnionInfo" >
+    <!--
+    @mbggenerated
+    -->
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="p_id" property="pId" jdbcType="INTEGER" />
+    <result column="app_id" property="appId" jdbcType="VARCHAR" />
+    <result column="loan_no" property="loanNo" jdbcType="VARCHAR" />
+    <result column="invest_id" property="investId" jdbcType="VARCHAR" />
+    <result column="invest_obj_name" property="investObjName" jdbcType="VARCHAR" /><!-- 取自产品表 name -->
+    <result column="invest_obj_info" property="investObjInfo" jdbcType="VARCHAR" />
+    <result column="min_invest_amt" property="minInvestAmt" jdbcType="DECIMAL" /><!-- 取自产品表 min_money -->
+    <result column="max_invest_amt" property="maxInvestAmt" jdbcType="DECIMAL" /><!-- 取自产品表 buy_limit -->
+    <result column="invest_obj_amt" property="investObjAmt" jdbcType="DECIMAL" /><!-- prior_money -->
+    <result column="invest_begin_date" property="investBeginDate" jdbcType="VARCHAR" /><!-- st_dt -->
+    <result column="invest_end_date" property="investEndDate" jdbcType="VARCHAR" /><!-- ed_dt -->
+    <result column="repay_date" property="repayDate" jdbcType="VARCHAR" />
+    <result column="year_rate" property="yearRate" jdbcType="DECIMAL" /><!--f_yieid  -->
+    <result column="invest_range" property="investRange" jdbcType="INTEGER" /><!-- f_time -->
+    <result column="rate_stype" property="rateStype" jdbcType="VARCHAR" />
+    <result column="repay_stype" property="repayStype" jdbcType="VARCHAR" /><!-- re_way -->
+    <result column="invest_obj_state" property="investObjState" jdbcType="VARCHAR" />
+    <result column="bw_total_num" property="bwTotalNum" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="zr_flag" property="zrFlag" jdbcType="VARCHAR" />
+    <result column="ref_loan_no" property="refLoanNo" jdbcType="VARCHAR" />
+    <result column="old_reqseq" property="oldReqseq" jdbcType="VARCHAR" />
+    
+    <result column="bwId" property="bwId" jdbcType="VARCHAR" />
+    <result column="bw_amt" property="bwAmt" jdbcType="DECIMAL" />
+    <result column="mortgage_id" property="mortgageId" jdbcType="VARCHAR" />
+    <result column="mortgage_info" property="mortgageInfo" jdbcType="VARCHAR" />
+    <result column="check_date" property="checkDate" jdbcType="VARCHAR" />
+    <result column="bwRemark" property="bwRemark" jdbcType="VARCHAR" />
+    
+    <result column="bw_acname" property="bwAcname" jdbcType="VARCHAR" />
+    <result column="bw_idtype" property="bwIdtype" jdbcType="VARCHAR" />
+   <!--  <result column="bw_idno" property="bwIdno" jdbcType="VARCHAR" /> -->
+    <result column="bw_acno" property="bwAcno" jdbcType="VARCHAR" />
+    <result column="bw_acbankid" property="bwAcbankid" jdbcType="VARCHAR" />
+    <result column="bw_acbankname" property="bwAcbankname" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  
+  
+  <resultMap id="TradeResultMap" type="com.mrbt.lingmoney.model.HxTradingAccUnion" >
+    <!--
+    	交易，账户
+    -->
+   		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="u_id" jdbcType="VARCHAR" property="uId" />
+		<result column="p_id" jdbcType="INTEGER" property="pId" />
+		<result column="p_code" jdbcType="VARCHAR" property="pCode" />
+		<result column="pc_type" jdbcType="INTEGER" property="pcType" />
+		<result column="pc_id" jdbcType="INTEGER" property="pcId" />
+		<result column="buy_money" jdbcType="DECIMAL" property="buyMoney" />
+		<result column="buy_dt" jdbcType="TIMESTAMP" property="buyDt" />
+		<result column="value_dt" jdbcType="DATE" property="valueDt" />
+		<result column="w_value_dt" jdbcType="DATE" property="wValueDt" />
+		<result column="min_sell_dt" jdbcType="DATE" property="minSellDt" />
+		<result column="status" jdbcType="INTEGER" property="status" />
+		<result column="biz_code" jdbcType="VARCHAR" property="bizCode" />
+		<result column="sell_dt" jdbcType="TIMESTAMP" property="sellDt" />
+		<result column="sell_money" jdbcType="DECIMAL" property="sellMoney" />
+		<result column="out_biz_code" jdbcType="VARCHAR" property="outBizCode" />
+		<result column="fix_invest" jdbcType="INTEGER" property="fixInvest" />
+		<result column="auto_pay" jdbcType="INTEGER" property="autoPay" />
+		<result column="all_interest" jdbcType="DECIMAL" property="allInterest" />
+		<result column="platform_type" jdbcType="INTEGER" property="platformType" />
+		<result column="last_value_dt" jdbcType="DATE" property="lastValueDt" />
+		<result column="card_pan" jdbcType="VARCHAR" property="cardPan" />
+		
+		<result column="ac_no" jdbcType="VARCHAR" property="acNo" />
+	    <result column="ac_name" jdbcType="VARCHAR" property="acName" />
+	    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+	    <result column="email" jdbcType="VARCHAR" property="email" />
+	    <result column="custmngr_no" jdbcType="VARCHAR" property="custmngrNo" />
+	    <result column="open_date" jdbcType="TIMESTAMP" property="openDate" />
+	    
+   		<result column="financial_money" jdbcType="DECIMAL" property="financialMoney" />
+	    <result column="interest" jdbcType="DECIMAL" property="interest" />
+	    <result column="expiry_dt" jdbcType="DATE" property="expiryDt"/>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <!--
+    @mbggenerated
+    -->
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <!--
+    @mbggenerated
+    -->
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <!--
+    @mbggenerated
+    -->
+   	bid.id,
+	p_id,
+	bid.app_id,
+	loan_no,
+	invest_id,
+	
+	product.name investObjName, 
+	product.min_money minInvestAmt, 
+	product.buy_limit  maxInvestAmt,
+	product.prior_money investObjAmt, 
+	date_format(product.st_dt, '%Y%m%d') investBeginDate, 
+	date_format(product.ed_dt, '%Y%m%d') investEndDate, 
+	product.f_yield yearRate,
+    product.f_time investRange, 
+    product.re_way repayStype,
+	
+	invest_obj_info,
+	repay_date,
+	rate_stype,
+	invest_obj_state,
+	bw_total_num,
+	bid.remark,
+	zr_flag,
+	ref_loan_no,
+	old_reqseq,
+	
+	bwInfo.id as bwId,
+	bw_amt,
+	mortgage_id,
+	mortgage_info,
+	check_date,
+	bwInfo.remark as bwRemark,
+	acc.ac_name as bw_acname,
+	bw_idtype,
+	<!-- bw_idno, -->
+	acc.ac_no as bw_acno,
+	bw_acbankid,
+	bw_acbankname
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mrbt.lingmoney.model.HxBidBorrowUnionExample" >
+    SELECT
+    <if test="distinct" >
+      distinct
+    </if>
+    bid.id, p_id, bid.app_id, loan_no, invest_id, product.name investObjName, product.min_money minInvestAmt,
+    product.buy_limit maxInvestAmt, product.prior_money investObjAmt, 
+    DATE_FORMAT(product.st_dt, '%Y%m%d') investBeginDate, DATE_FORMAT(product.ed_dt, '%Y%m%d') investEndDate, 
+    product.f_yield yearRate, product.f_time investRange, product.re_way repayStype, invest_obj_info, 
+    repay_date, rate_stype, invest_obj_state, bw_total_num, bid.remark, zr_flag, ref_loan_no, old_reqseq, 
+    bwInfo.id AS bwId, bw_amt, mortgage_id, mortgage_info, check_date, bwInfo.remark AS bwRemark, 
+    case when bwr.bw_idtype = '1010' then acc.ac_name else ea.enterprise_name end bw_acname, 
+    case when bwr.bw_idtype = '1010' then acc.ac_no else ea.bank_no end bw_acno, 
+    bw_acbankid, bw_acbankname ,bw_idtype
+    FROM
+		hx_bidding bid
+	LEFT JOIN hx_borrower_info bwInfo ON bid.id = bwInfo.bidding_id
+	LEFT JOIN hx_borrower bwr ON bwr.id = bwInfo.bw_id
+	LEFT JOIN product product ON bid.p_id=product.id
+	LEFT JOIN hx_account acc ON acc.id=bwr.acc_id
+	LEFT JOIN enterprise_account ea on ea.id = bwr.acc_id
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    <!--
+    @mbggenerated
+    -->
+    SELECT 
+    <include refid="Base_Column_List" />
+     FROM
+		hx_bidding bid
+	LEFT JOIN hx_borrower_info bwInfo ON bid.id = bwInfo.bidding_id
+	LEFT JOIN hx_borrower bwr ON bwr.id = bwInfo.bw_id
+	LEFT JOIN product product ON bid.p_id=product.id
+	LEFT JOIN hx_account acc ON acc.id=bwr.acc_id
+    where bid.id = #{bid.id,jdbcType=VARCHAR}
+  </select>
+  
+<!-- TradeResultMap -->  
+  <sql id="Trade_Column_List">
+		t.id,
+		t.u_id,
+		t.p_id,
+		t.p_code,
+		t.pc_type,
+		t.pc_id,
+		t.buy_money,
+		t.buy_dt,
+		t.value_dt,
+		t.w_value_dt,
+		t.min_sell_dt,
+		t.STATUS,
+		t.biz_code,
+		t.sell_dt,
+		t.sell_money,
+		t.out_biz_code,
+		t.fix_invest,
+		t.auto_pay,
+		t.all_interest,
+		t.platform_type,
+		t.last_value_dt,
+		t.card_pan,
+		acc.ac_no,
+		acc.ac_name,
+		acc.app_id,
+		acc.mobile,
+		acc.email,
+		acc.custmngr_no,
+		acc.open_date,
+		f.interest,
+		f.financial_money,
+		f.expiry_dt
+   </sql>
+   <select id="selectTradeUnionByExample" resultMap="TradeResultMap" parameterType="com.mrbt.lingmoney.model.HxTradingAccUnionExample" >
+    SELECT
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Trade_Column_List" />
+    FROM
+		trading t
+	INNER JOIN hx_account acc ON t.u_id = acc.u_id
+	INNER JOIN trading_fix_info f ON t.id=f.t_id
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  
+  
+   <select id="countTradeUnionByExample" parameterType="com.mrbt.lingmoney.model.HxTradingAccUnionExample" resultType="java.lang.Long" >
+    select count(*) 
+    from trading t
+	LEFT JOIN hx_account acc ON t.u_id = acc.u_id
+	LEFT JOIN trading_fix_info f ON t.id = f.t_id
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+</mapper>

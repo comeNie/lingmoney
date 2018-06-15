@@ -1,0 +1,920 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.ProductCustomerMapper">
+	<select id="selectHomeProduct" parameterType="map"
+		resultType="com.mrbt.lingmoney.model.ProductCustomer">
+		select p.id, p.code, p.name, p.f_yield fYield, p.min_money minMoney, p.add_yield addYield, p.is_debt isDebt,
+		p.f_time fTime, p.unit_time unitTime, p.insurance_trust insuranceTrust,
+		ifnull(p.prior_money -
+		p.reach_money,0) remainMoney, pr.title_pic titlePic, pr.activity_pic
+		activityPic, p.city_code cityCode, pr.act_id actId, p.p_type pType,
+		p.prior_money priorMoney, p.reach_money reachMoney, DATE_ADD(p.ed_dt,INTERVAL p.f_time DAY) as expireDt 
+		from product p
+		left
+		join
+		product_recommend pr on p.id = pr.p_id
+		<where>
+		    p.status = 1 and pr.recommend = 1 and pr.index_x = 1
+			<if test=" userState != null and userState == 0 ">
+				and pr.new_show &gt; 0
+			</if>
+			<if test=" userState != null and userState == 1 ">
+				and pr.home_show &gt; 0
+			</if>
+			<if test=" cityCode != null and cityCode != '' ">
+				and (p.city_code = #{cityCode} or p.city_code = '000')
+			</if>
+		</where>
+		<if test=" userState != null and userState == 0 ">
+			order by p.sort, pr.new_show desc, p.f_time desc, p.st_dt desc
+		</if>
+		<if test=" userState != null and userState == 1 ">
+			order by p.sort, pr.home_show desc, p.f_time desc, p.st_dt desc
+		</if>
+		limit #{limitEnd}
+	</select>
+
+
+	<select id="selectProductList" parameterType="com.mrbt.lingmoney.utils.PageInfo"
+		resultType="com.mrbt.lingmoney.model.ProductCustomer">
+		select p.id, p.code, p.name, p.min_money minMoney, p.increa_money
+		increaMoney, p.l_yield lYield, p.h_yield hYield, p.status, p.add_yield addYield, p.is_debt isDebt,
+		p.background_url backgroundUrl,p.background_url_nav
+		backgroundUrlNav,p.background_url_ios backgroundUrlIos,
+		p.f_yield fYield, p.l_time lTime, p.p_type pType,
+		p.h_time hTime, p.f_time fTime, p.unit_time
+		unitTime, p.rule,p.re_way reWay,
+		p.background_frosted backgroundFrosted,
+		p.prior_money
+		priorMoney,
+		p.reach_money reachMoney, p.st_dt stDt,
+		p.ed_dt edDt,
+		p.value_dt
+		valueDt,
+		DATE_ADD(p.ed_dt,INTERVAL p.f_time DAY) as expireDt,
+		count(t.p_id) buyCount,
+		IFNULL(tra.successMoney,0) successMoney,
+		IFNULL(tr.occupyMoney,0)
+		occupyMoney,
+		if(p.status=2 &amp;&amp; p.f_time
+		is not null &amp;&amp; p.f_time !=
+		0,DATEDIFF(CURDATE(),p.value_dt),0 )
+		as runningDays,
+		pc.name as proType, p.city_code cityCode, p.pc_id pcId, p.buy_limit buyLimit, p.insurance_trust insuranceTrust
+		from product p
+		left join (select p_id
+		from trading where
+		financial_money &lt; 0 and
+		status in (1,2,3)) t on
+		p.id = t.p_id
+		left
+		join (select p_id,
+		sum(financial_money) occupyMoney
+		from trading where
+		status = 0 GROUP BY
+		p_id) tr on p.id = tr.p_id
+		left
+		join (select p_id,
+		sum(financial_money)
+		successMoney from trading where
+		status in (1,2,3)
+		GROUP BY p_id) tra on
+		p.id = tra.p_id
+		left join
+		product_recommend as pr
+		on p.id = pr.p_id
+		left
+		join product_category pc
+		on p.pc_id = pc.id
+		left join hx_bidding hb on
+		hb.p_id = p.id
+		<where>
+			and p.approval = 2 and p.activity = 0
+			and p.status in (1,2,4) and
+			p.p_model != 2 and p.p_type in (0,2)
+			and
+			pc.status = 1
+			<if test=" condition.status != null ">
+				and p.status = #{condition.status}
+			</if>
+			<if test=" condition.proId != null ">
+				and p.id = #{condition.proId}
+			</if>
+			<if test=" condition.cityCode != null and condition.cityCode != '' ">
+				and (p.city_code = #{condition.cityCode} or p.city_code =
+				'000')
+			</if>
+			<if test="condition.proId == null and condition.newPCid != null and condition.cityCode != 'newPCid'">
+                and pc_id != #{condition.newPCid} 
+            </if>
+		</where>
+		group by p.id
+		order by p.sort, p.status, p.st_dt desc
+		<if test="from !=0 or size!=0">
+			limit #{from},#{size}
+		</if>
+	</select>
+	<select id="selectProductCount" parameterType="com.mrbt.lingmoney.utils.PageInfo"
+		resultType="java.lang.Integer">
+		select count(1) from (
+		select count(1) from product p
+		left join (select
+		p_id from trading where financial_money &lt; 0 and
+		status in (1,2,3)) t
+		on p.id = t.p_id
+		left join (select p_id, sum(financial_money)
+		occupyMoney from trading
+		where status = 0 GROUP BY p_id) tr on p.id =
+		tr.p_id
+		left join (select p_id, sum(financial_money) successMoney from
+		trading
+		where status in (1,2,3) GROUP BY p_id) tra on p.id = tra.p_id
+		left join product_recommend as pr on p.id = pr.p_id
+		left join
+		product_category pc on p.pc_id = pc.id
+		left join hx_bidding hb on
+		hb.p_id = p.id
+		<where>
+			and p.approval = 2 and p.activity = 0
+			and p.status in (1,2,4) and
+			p.p_model != 2 and p.p_type in (0,2)
+			and
+			pc.status = 1
+			<if test=" condition.status != null ">
+				and p.status = #{condition.status}
+			</if>
+			<if test=" condition.proId != null ">
+				and p.id = #{condition.proId}
+			</if>
+			<if test=" condition.cityCode != null and condition.cityCode != '' ">
+				and (p.city_code = #{condition.cityCode} or p.city_code =
+				'000')
+			</if>
+			<if test="condition.proId == null and condition.newPCid != null and condition.cityCode != 'newPCid'">
+			    and pc_id != #{condition.newPCid} 
+			</if>
+		</where>
+		group by p.id) p
+	</select>
+
+	<select id="selectTradingRecordList" parameterType="com.mrbt.lingmoney.utils.PageInfo"
+		resultType="com.mrbt.lingmoney.model.TradingRecordCustomer">
+		select t.id, t.u_id usersId, t.p_id proId, t.financial_money
+		financialMoney, t.buy_dt buyDt,
+		up.name usersName, up.nick_name
+		usersNickName, u.telephone usersTel, p.name
+		proName
+		from trading t,
+		users_properties up, users u, product p
+		where
+		t.u_id = up.u_id and
+		t.u_id = u.id and t.p_id = p.id
+		and t.p_id = #{condition.proId} and
+		t.financial_money > 0 and t.status in
+		(1,2,3,4)
+		order by t.buy_dt desc
+		<if test="from !=0 or size!=0">
+			limit #{from},#{size}
+		</if>
+	</select>
+
+	<select id="selectTradingRecordCount" parameterType="com.mrbt.lingmoney.utils.PageInfo"
+		resultType="java.lang.Integer">
+		select count(1)
+		from trading t, users_properties up, users
+		u, product p
+		where t.u_id = up.u_id and t.u_id = u.id and t.p_id = p.id
+		and t.p_id = #{condition.proId} and t.financial_money > 0 and t.status
+		in (1,2,3,4)
+	</select>
+
+	<select id="selectLastTrading"
+		resultMap="com.mrbt.lingmoney.mapper.TradingMapper.BaseResultMap"
+		parameterType="java.util.Map">
+		select * from trading t where #{priorMoney} = (select
+		sum(financial_money) from trading t1 where t1.p_id=t.p_id and
+		t1.status=t.status) and t.p_id = #{pId} and t.status=#{status} order
+		by buy_dt desc
+		limit 0,1
+	</select>
+
+	<update id="updateProductByRun" parameterType="java.util.Map">
+		update
+		trading_fix_info tfi,product p,trading t set
+		p.status=#{param1},
+		p.value_dt=#{param2},
+		p.establish_dt=#{param3},
+		t.status=#{param4},
+		tfi.status=#{param5},
+		t.value_dt=#{param6},
+		t.min_sell_dt=#{param7},
+		tfi.expiry_dt=#{param8},
+		tfi.w_time=DATEDIFF(#{param9},IFNULL(t.w_value_dt,now())),
+		tfi.interest=(t.financial_money*p.f_yield/365*#{param10})+(t.financial_money*IFNULL(p.wait_rate,0)/365*(DATEDIFF(#{param11},IFNULL(t.w_value_dt,now()))))
+		where
+		p.id=#{param12}
+		and tfi.t_id=t.id
+		and t.p_id=p.id
+		and
+		p.status=#{param13}
+		and t.status=#{param14} and p.p_type = 0
+	</update>
+
+
+	<!-- custom setting web -->
+
+	<select id="selectByCode" parameterType="java.lang.String"
+		resultMap="com.mrbt.lingmoney.mapper.ProductMapper.BaseResultMap">
+		select
+		<include refid="com.mrbt.lingmoney.mapper.ProductMapper.Base_Column_List" />
+		from product
+		where code = #{0,jdbcType=VARCHAR}
+	</select>
+
+	<select id="selectProductByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="com.mrbt.lingmoney.mapper.ProductMapper.ResultMapWithBLOBs">
+		select
+		<include refid="com.mrbt.lingmoney.mapper.ProductMapper.Base_Column_List" />
+		from product
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+
+	<update id="updateProductAfterTrading" parameterType="com.mrbt.lingmoney.model.Trading">
+		update
+		product
+		set
+		reach_money = IFNULL(reach_money, 0) + #{financialMoney}
+		where
+		id = #{pId} and IFNULL(reach_money, 0) + #{financialMoney} &lt;=
+		prior_money and status = 1
+	</update>
+
+	<resultMap id="productViewMap" type="com.mrbt.lingmoney.model.webView.ProductView">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="code" property="code" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="re_way" property="reWay" jdbcType="VARCHAR" />
+		<result column="rule" property="rule" jdbcType="INTEGER" />
+		<result column="st_dt" property="stDt" jdbcType="TIMESTAMP" />
+		<result column="ed_dt" property="edDt" jdbcType="TIMESTAMP" />
+		<result column="prior_money" property="priorMoney" jdbcType="DECIMAL" />
+		<result column="reach_money" property="reachMoney" jdbcType="DECIMAL" />
+		<result column="approval" property="approval" jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="pc_id" property="pcId" jdbcType="INTEGER" />
+		<result column="pc_name" property="pcName" jdbcType="VARCHAR" />
+		<result column="tags" property="tags" jdbcType="VARCHAR" />
+		<result column="l_time" property="lTime" jdbcType="INTEGER" />
+		<result column="h_time" property="hTime" jdbcType="INTEGER" />
+		<result column="f_time" property="fTime" jdbcType="INTEGER" />
+		<result column="unit_time" property="unitTime" jdbcType="INTEGER" />
+		<result column="value_dt" property="valueDt" jdbcType="DATE" />
+		<result column="establish_dt" property="establishDt" jdbcType="TIMESTAMP" />
+		<result column="wait_rate" property="waitRate" jdbcType="DECIMAL" />
+		<result column="min_money" property="minMoney" jdbcType="INTEGER" />
+		<result column="increa_money" property="increaMoney" jdbcType="INTEGER" />
+		<result column="l_yield" property="lYield" jdbcType="DECIMAL" />
+		<result column="h_yield" property="hYield" jdbcType="DECIMAL" />
+		<result column="f_yield" property="fYield" jdbcType="DECIMAL" />
+		<result column="fees" property="fees" jdbcType="INTEGER" />
+		<result column="fees_rate" property="feesRate" jdbcType="DECIMAL" />
+		<result column="exception_rate" property="exceptionRate"
+			jdbcType="DECIMAL" />
+		<result column="fix_invest" property="fixInvest" jdbcType="INTEGER" />
+		<result column="allocation" property="allocation" jdbcType="INTEGER" />
+		<result column="activity" property="activity" jdbcType="INTEGER" />
+		<result column="platform_user_no" property="platformUserNo"
+			jdbcType="INTEGER" />
+		<result column="cost_value" property="costValue" jdbcType="DECIMAL" />
+		<result column="p_model" property="pModel" jdbcType="INTEGER" />
+		<result column="pictrue_url" property="pictrueUrl" jdbcType="VARCHAR" />
+		<result column="p_type" jdbcType="INTEGER" property="pType" />
+		<result column="city_code" jdbcType="VARCHAR" property="cityCode" />
+		<result column="buy_limit" jdbcType="DECIMAL" property="buyLimit" />
+		<result column="insurance_trust" jdbcType="INTEGER" property="insuranceTrust" />
+		<result column="add_yield" property="addYield" jdbcType="DECIMAL" />
+		<result column="is_debt" jdbcType="INTEGER" property="isDebt" />
+		<collection property="productRecommend"
+			ofType="com.mrbt.lingmoney.model.ProductRecommend" column="pid">
+			<id column="id" property="id" jdbcType="INTEGER" />
+			<result column="p_id" property="pId" jdbcType="INTEGER" />
+			<result column="index_x" property="indexX" jdbcType="INTEGER" />
+			<result column="index_y" property="indexY" jdbcType="INTEGER" />
+			<result column="recommend" property="recommend" jdbcType="INTEGER" />
+		</collection>
+	</resultMap>
+
+	<resultMap id="productViewMapWithBLOBs" type="com.mrbt.lingmoney.model.webView.ProductView"
+		extends="productViewMap">
+		<result column="description" property="description" jdbcType="LONGVARCHAR" />
+		<result column="introduction" property="introduction" jdbcType="LONGVARCHAR" />
+	</resultMap>
+
+	<select id="selectProductListWeb" parameterType="com.mrbt.lingmoney.model.ProductQuery"
+		resultMap="productViewMap">
+		SELECT * FROM product as pr LEFT OUTER JOIN product_recommend AS pc
+		ON
+		pr.id = pc.p_id
+		left join product_category proc on pr.pc_id = proc.id
+		left join hx_bidding hb on hb.p_id = pr.id
+		where proc.status = 1 and
+		pr.approval=2 and pr.activity = 0 and
+		pr.p_model !=2 and pr.p_type in
+		(0,2) and pr.status in (1,2,3,4)
+		<trim suffix="" suffixOverrides="AND | OR">
+			<if test="cityCode != null and cityCode!=''">
+				and (pr.city_code = #{cityCode} or pr.city_code = '000')
+			</if>
+			<if test="keyword != null and keyword!=''">
+				and pr.name like
+				#{keyword}
+			</if>
+			<if test="pcId != null  and pcId !=''">
+				and pr.pc_id = #{pcId}
+			</if>
+			<if test="pcStatus != null">
+				and pr.status = #{pcStatus}
+			</if>
+			<if test="pcStatus == null ">
+				and pr.status in (1, 2, 4)
+			</if>
+			<if test="minMenoy != null and minMenoy!='' ">
+				AND pr.min_money <![CDATA[  >=  ]]>
+				#{minMenoy}
+			</if>
+			<if test="maxMenoy != null and maxMenoy !=''">
+				AND pr.min_money <![CDATA[  <  ]]>
+				#{maxMenoy}
+			</if>
+			<if test="isRecommend != null and isRecommend!=''">
+				AND pc.recommend = #{isRecommend}
+			</if>
+			<!--利率 -->
+			<if test="lRate != null and lRate!=''  and hRate != null  and  hRate!=''">
+				AND (
+				((#{lRate} BETWEEN pr.l_yield AND pr.h_yield ) OR
+				(#{hRate} BETWEEN pr.L_yield AND pr.h_yield) OR (pr.f_yield BETWEEN
+				#{lRate} AND #{hRate} ))
+				or
+				((pr.l_yield BETWEEN #{lRate}and #{hRate}
+				)or (pr.h_yield BETWEEN #{lRate} and
+				#{hRate} ))
+				)
+			</if>
+			<!-- 时间 -->
+			<if
+				test="lCycle != null and lCycle !=''  and hCycle != null and   hCycle != ''">
+				and (
+				( IF (unit_time = 0,#{lCycle} BETWEEN pr.l_time AND
+				pr.h_time , '1=1'
+				)
+				AND
+				IF (unit_time = 1,#{lCycle} BETWEEN pr.l_time*7
+				AND pr.l_time*7
+				, '1=1')
+				AND
+				IF(unit_time = 2,#{lCycle} BETWEEN
+				pr.l_time*30 AND
+				pr.l_time*30 , '1=1' )
+				)
+				OR ( IF (unit_time = 0,
+				#{hCycle} BETWEEN
+				pr.l_time AND pr.h_time , '1=1' )
+				AND IF
+				(unit_time =
+				1, #{hCycle}
+				BETWEEN pr.l_time*7 AND pr.l_time*7 , '1=1')
+				AND
+				IF(unit_time = 2,
+				#{hCycle} BETWEEN pr.l_time*30 AND pr.l_time*30 ,
+				'1=1' )
+				)
+				OR (
+				IF(f_time = 0, '1=1' , '1=1' )
+				and IF(f_time
+				!=0,IF(unit_time =
+				0,pr.f_time BETWEEN #{lCycle} AND #{hCycle} ,
+				'1=1' )
+				AND
+				IF(unit_time = 1,pr.f_time*7 BETWEEN #{lCycle} AND
+				#{hCycle} , '1=1'
+				)
+				AND IF(unit_time = 2,pr.f_time*30 BETWEEN
+				#{lCycle} AND #{hCycle} ,
+				'1=1') , '1=1' )
+				) )
+			</if>
+			<if test="excludPcId != null and excludPcId != '' ">
+                AND pr.pc_id != #{excludPcId}
+            </if>
+		</trim>
+		order by pr.sort asc, pr.status asc, pc.recommend desc, pr.id desc
+		<if test="start!=null and number!=null">
+			limit #{start},#{number}
+		</if>
+	</select>
+
+
+	<select id="selectProductListWebCount" parameterType="com.mrbt.lingmoney.model.ProductQuery"
+		resultType="java.lang.Integer">
+		SELECT count(*) FROM product as pr LEFT OUTER JOIN product_recommend
+		AS pc
+		ON pr.id = pc.p_id
+		left join product_category proc on pr.pc_id =
+		proc.id
+		left join hx_bidding hb on hb.p_id = pr.id
+		where proc.status = 1
+		and pr.approval=2 and pr.activity =0 and
+		pr.p_model !=2 and pr.p_type
+		in (0,2)
+		<trim suffix="" suffixOverrides="AND | OR">
+			<if test="cityCode != null and cityCode!=''">
+				and (pr.city_code = #{cityCode} or pr.city_code = '000')
+			</if>
+			<if test="keyword != null and keyword!=''">
+				and pr.name like #{keyword}
+			</if>
+			<if test="pcId != null  and pcId !=''">
+				and pr.pc_id = #{pcId}
+			</if>
+			<if test="pcStatus != null">
+				and pr.status = #{pcStatus}
+			</if>
+			<if test="pcStatus == null ">
+				and pr.status in (1, 2, 4)
+			</if>
+			<if test="minMenoy != null and minMenoy!='' ">
+				AND pr.min_money <![CDATA[  >=  ]]>
+				#{minMenoy}
+			</if>
+			<if test="maxMenoy != null and maxMenoy !=''">
+				AND pr.min_money <![CDATA[  <  ]]>
+				#{maxMenoy}
+			</if>
+			<if test="isRecommend != null and isRecommend!=''">
+				AND pc.recommend = #{isRecommend}
+			</if>
+			<!--利率 -->
+			<if test="lRate != null and lRate!=''  and hRate != null  and  hRate!=''">
+				AND (
+				((#{lRate} BETWEEN pr.l_yield AND pr.h_yield ) OR
+				(#{hRate} BETWEEN pr.L_yield
+				AND pr.h_yield) OR (pr.f_yield BETWEEN
+				#{lRate} AND #{hRate} ))
+				or
+				((pr.l_yield BETWEEN #{lRate}and #{hRate}
+				)or (pr.h_yield BETWEEN
+				#{lRate} and #{hRate} ))
+				)
+			</if>
+			<!-- 时间 -->
+			<if
+				test="lCycle != null and lCycle !=''  and hCycle != null and   hCycle != ''">
+				and ( ( IF (unit_time = 0,#{lCycle} BETWEEN pr.l_time AND
+				pr.h_time , '1=1' )
+				AND IF (unit_time = 1,#{lCycle} BETWEEN
+				pr.l_time*7 AND pr.l_time*7 , '1=1')
+				AND IF(unit_time = 2,#{lCycle}
+				BETWEEN pr.l_time*30 AND pr.l_time*30 , '1=1' ) )
+				OR ( IF (unit_time
+				= 0,#{hCycle} BETWEEN pr.l_time AND pr.h_time , '1=1' )
+				AND IF
+				(unit_time = 1,#{hCycle} BETWEEN pr.l_time*7 AND pr.l_time*7 ,
+				'1=1')
+				AND IF(unit_time = 2,#{hCycle} BETWEEN pr.l_time*30 AND
+				pr.l_time*30 , '1=1' ) )
+				OR ( IF(f_time = 0, '1=1' , '1=1' ) and
+				IF(f_time !=0,IF(unit_time = 0,pr.f_time BETWEEN #{lCycle} AND
+				#{hCycle} ,
+				'1=1' ) AND IF(unit_time = 1,pr.f_time*7 BETWEEN
+				#{lCycle} AND #{hCycle} , '1=1' )
+				AND IF(unit_time = 2,pr.f_time*30
+				BETWEEN #{lCycle} AND #{hCycle} , '1=1') , '1=1' )
+				) )
+			</if>
+			<if test="excludPcId != null and excludPcId != '' ">
+                AND pr.pc_id != #{excludPcId}
+            </if>
+		</trim>
+	</select>
+
+	<select id="selectProductViewByCode" parameterType="java.lang.String"
+		resultMap="productViewMapWithBLOBs">
+		select *
+		from product as pr LEFT OUTER JOIN
+		product_recommend
+		AS pc
+		ON pr.id = pc.p_id where code = #{code}
+	</select>
+
+	<select id="selectByCodeWithBlob" parameterType="java.lang.String"
+		resultMap="com.mrbt.lingmoney.mapper.ProductMapper.ResultMapWithBLOBs">
+		select
+		<include refid="com.mrbt.lingmoney.mapper.ProductMapper.Base_Column_List" />
+		,
+		<include refid="com.mrbt.lingmoney.mapper.ProductMapper.Blob_Column_List" />
+		from product
+		where code = #{0,jdbcType=VARCHAR}
+	</select>
+
+	<select id="selectByFixType" parameterType="com.mrbt.lingmoney.model.ProductExample"
+		resultMap="com.mrbt.lingmoney.mapper.ProductMapper.BaseResultMap">
+
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="com.mrbt.lingmoney.mapper.ProductMapper.Base_Column_List" />
+		from ( select p.* from product p, product_category pc where p.pc_id =
+		pc.id and pc.type=0 and pc.fix_type=2) pd
+		<if test="_parameter != null">
+			<include
+				refid="com.mrbt.lingmoney.mapper.ProductMapper.Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByFloatType" parameterType="com.mrbt.lingmoney.model.ProductExample"
+		resultMap="com.mrbt.lingmoney.mapper.ProductMapper.BaseResultMap">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="com.mrbt.lingmoney.mapper.ProductMapper.Base_Column_List" />
+		from ( select p.* from product p, product_category pc where p.pc_id =
+		pc.id and pc.type=1) pd
+		<if test="_parameter != null">
+			<include
+				refid="com.mrbt.lingmoney.mapper.ProductMapper.Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+
+	<select id="selectByCondition"
+		resultMap="com.mrbt.lingmoney.mapper.ProductMapper.BaseResultMap">
+		select id,name,city_code from product where approval=2 and
+		activity = 0 and
+		status = 1 and p_type in (0,2)
+	</select>
+
+	<select id="getNnSetUpProduct"
+		resultMap="com.mrbt.lingmoney.mapper.ProductMapper.BaseResultMap">
+		select
+		<include refid="com.mrbt.lingmoney.mapper.ProductMapper.Base_Column_List" />
+		from product as pr
+		where pr.rule!=3 and pr.ed_dt <![CDATA[  <=  ]]>
+		SYSDATE() and pr.status = 1 limit 100
+	</select>
+
+	<update id="updateProductReachMoney" parameterType="java.util.Map">
+		update
+		product p set p.reach_money = p.reach_money -#{buyMoney} where
+		p.id
+		=#{pId} and (p.rule=0 OR p.rule =2);
+	</update>
+
+	<update id="updateProductEndStatus" parameterType="java.lang.Integer">
+		update product
+		as pr set pr.status = 4
+		where pr.id = #{pId} and pr.status in (3, 15)
+		and (select count(*) from trading as
+		tr where tr.p_id = #{pId} and
+		tr.status =3 ) > 0
+	</update>
+
+	<!-- custom setting -->
+
+	<!-- 查询x轴产品列表 -->
+	<select id="selectProductByIndexX"
+		resultMap="com.mrbt.lingmoney.mapper.ProductMapper.BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		p.*
+		from product p, product_recommend pr
+		where
+		pr.index_x = 1 and p.id = pr.p_id and p.status!=5 and (pr.city_code =
+		#{0} or pr.city_code = '000') order by p.sort
+	</select>
+
+	<!-- 查询y轴产品列表 -->
+	<select id="selectProductByIndexY"
+		resultMap="com.mrbt.lingmoney.mapper.ProductMapper.BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		p.*
+		from product p, product_recommend pr
+		where
+		pr.index_y = 1 and p.id = pr.p_id and p.status!=5 and (pr.city_code =
+		#{0} or pr.city_code = '000') order by p.sort
+	</select>
+
+	<!-- 查询x轴产品列表 -->
+	<select id="selectProductByIndexXadmin"
+		resultMap="com.mrbt.lingmoney.mapper.ProductMapper.BaseResultMap">
+		select
+		p.*
+		from
+		product p, product_recommend pr
+		where
+		pr.index_x
+		= 1 and p.id = pr.p_id
+		and p.status!=5 and p.approval=2 and
+		p.activity=0 order by p.sort
+	</select>
+
+	<!-- 查询y轴产品列表 -->
+	<select id="selectProductByIndexYadmin"
+		resultMap="com.mrbt.lingmoney.mapper.ProductMapper.BaseResultMap">
+		select
+		p.*
+		from
+		product p, product_recommend pr
+		where
+		pr.index_y
+		= 1 and p.id = pr.p_id
+		and p.status!=5 and p.approval=2 and
+		p.activity=0 order by p.sort
+	</select>
+
+	<!-- 查询关连产品 -->
+	<resultMap id="ProductRecommendResultMap"
+		type="com.mrbt.lingmoney.model.ProductRecommendCustomer" extends="com.mrbt.lingmoney.mapper.ProductRecommendMapper.BaseResultMap">
+		<result column="pName" property="pName" jdbcType="VARCHAR" />
+		<result column="pStatus" property="pStatus" jdbcType="INTEGER" />
+		<result column="bStatus" property="bStatus" jdbcType="VARCHAR" />
+		<result column="actName" jdbcType="VARCHAR" property="actName" />
+	</resultMap>
+
+	<select id="selectProductRecommendList" resultMap="ProductRecommendResultMap"
+		parameterType="map">
+		select
+		p.name as pName, p.status as pStatus, hb.invest_obj_state
+		bStatus,
+		ap.act_name actName, pr.*
+		from product p
+		inner join
+		product_recommend pr
+		on p.id = pr.p_id
+		left join hx_bidding hb on p.id =
+		hb.p_id
+		left join
+		activity_product ap on ap.id = pr.act_id
+		<where>
+			and p.approval = 2 and p.activity = 0
+			and p.p_model = 0 and p.p_type
+			in (0,2)
+			<if test="pId != null">
+				and p.id = #{pId,jdbcType=INTEGER}
+			</if>
+			<if test="cityCode != null and cityCode != ''">
+				and pr.city_code = #{cityCode,jdbcType=VARCHAR}
+			</if>
+		</where>
+		<if test="limitStart >= 0">
+			limit ${limitStart} , ${limitEnd}
+		</if>
+	</select>
+	<select id="selectProductRecommendListCount" resultType="java.lang.Long"
+		parameterType="map">
+		select count(*)
+		from product p
+		inner join product_recommend pr on p.id =
+		pr.p_id
+		left join
+		hx_bidding hb on p.id = hb.p_id
+		<where>
+			and p.approval = 2 and p.activity = 0
+			and p.p_model = 0 and p.p_type
+			in (0,2)
+			<if test="pId != null">
+				and p.id = #{pId,jdbcType=INTEGER}
+			</if>
+			<if test="cityCode != null and cityCode != ''">
+				and pr.city_code = #{cityCode,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+
+	<select id="queryNeedToApprovalBatch" resultType="java.lang.String">
+		select p.batch
+		from product p
+		left join product_submit ps on ps.p_id = p.id
+		where
+		p.approval = 2 and p.batch is not null and p.batch != '' and ps.status = 2 
+		AND ( (p.status = 1 and p.p_type = 2) or (p.status = 0 and p.p_type = 0))
+		group by p.batch
+	</select>
+	<select id="queryAlreadyApprovalProCount" resultType="java.lang.Integer"
+		parameterType="java.lang.String">
+		select count(p.id) from product p
+		left join
+		product_submit ps on ps.p_id = p.id
+		where p.approval = 2 and p.status =
+		1 and p.batch = #{batch}
+		and ps.status = 2
+	</select>
+	<select id="queryNeedToApprovalFirstPid" resultType="java.lang.Integer"
+		parameterType="java.lang.String">
+		select p.id from product p
+		left join
+		product_submit ps on
+		ps.p_id = p.id
+		where 
+		  p.approval = 1 and p.batch = #{batch} and ps.status = 0 
+		  and ((p.status = 1 and p.p_type = 2) or (p.status = 0 and p.p_type = 0))
+		order by p.id limit 1
+	</select>
+
+	<select id="queryTakeheartTransactionFlow" parameterType="com.mrbt.lingmoney.utils.PageInfo"
+		resultMap="com.mrbt.lingmoney.mapper.TakeheartTransactionFlowMapper.BaseResultMap">
+		select * from
+		takeheart_transaction_flow
+		<where>
+			and (TIMESTAMPDIFF(MINUTE,operate_time, now()) &lt; 30 or type!=0 or
+			state!=2)
+			<if test=" condition.uId != null and condition.uId != '' ">
+				and u_id = #{condition.uId}
+			</if>
+			<if test=" condition.tId != null ">
+				and t_id = #{condition.tId}
+			</if>
+		</where>
+		order by operate_time desc
+		<if test="from !=0 or size!=0">
+			limit #{from},#{size}
+		</if>
+	</select>
+
+	<select id="queryTakeheartTransactionFlowCount" parameterType="com.mrbt.lingmoney.utils.PageInfo"
+		resultType="java.lang.Integer">
+		select count(id) from
+		takeheart_transaction_flow
+		<where>
+			and (TIMESTAMPDIFF(MINUTE,operate_time, now()) &lt; 30 or type!=0 or
+			state!=2)
+			<if test=" condition.uId != null and condition.uId != '' ">
+				and u_id = #{condition.uId}
+			</if>
+			<if test=" condition.tId != null ">
+				and t_id = #{condition.tId}
+			</if>
+		</where>
+	</select>
+
+	<select id="queryVoByYearmonth" parameterType="java.util.Map"
+		resultType="com.mrbt.lingmoney.model.TakeheartTransactionFlowVo">
+		SELECT
+		date_format(operate_time, '%Y-%m') as yearmonth,
+		sum(interest) AS
+		interest
+		FROM
+		takeheart_transaction_flow
+		WHERE
+		u_id =
+		#{uId}
+		and
+		t_id =
+		#{tId,jdbcType=INTEGER}
+		and (TIMESTAMPDIFF(MINUTE,operate_time,
+		now()) <![CDATA[<]]>
+		30 or type!=0 or
+		state!=2)
+		<if test="yearmonth != null and yearmonth != ''">
+			and date_format(operate_time, '%Y-%m') =
+			#{yearmonth}
+		</if>
+		GROUP BY
+		yearmonth
+		ORDER BY
+		operate_time DESC;
+	</select>
+
+	<select id="queryByYearmonth" parameterType="java.util.Map"
+		resultMap="TakeHeartResultMap">
+		SELECT
+		REPLACE(date_format(operate_time, '%Y-%m'),'-','') as yearmonth,
+		ttf.*
+		FROM
+		takeheart_transaction_flow ttf
+		WHERE
+		u_id =
+		#{uId}
+		and
+		t_id =
+		#{tId,jdbcType=INTEGER}
+		and (TIMESTAMPDIFF(MINUTE,operate_time,
+		now()) <![CDATA[<]]>
+		30 or type!=0 or
+		state!=2)
+		<if test="yearmonth != null and yearmonth != ''">
+			and date_format(operate_time, '%Y-%m') =
+			#{yearmonth}
+		</if>
+		ORDER BY
+		operate_time desc;
+	</select>
+	<resultMap id="TakeHeartResultMap"
+		type="com.mrbt.lingmoney.model.TakeheartTransactionFlowVo"
+		extends="com.mrbt.lingmoney.mapper.TakeheartTransactionFlowMapper.BaseResultMap">
+		<result column="yearmonth" property="yearmonth" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="queryMoneyByYearmonth" parameterType="java.util.Map"
+		resultType="java.math.BigDecimal">
+		SELECT
+		ifnull(sum(money),0) AS
+		money
+		FROM
+		takeheart_transaction_flow
+		WHERE
+		u_id =
+		#{uId}
+		and
+		t_id =
+		#{tId,jdbcType=INTEGER}
+		and type=0 and state = 1
+		<if test="yearmonth != null and yearmonth != ''">
+			and date_format(operate_time, '%Y-%m') =
+			#{yearmonth}
+		</if>
+	</select>
+
+	<select id="getFirstPidAndPcodeByBatch" parameterType="java.lang.String"
+		resultType="java.util.Map">
+		select id, code from product where batch = #{_parameter}
+		and status = 1 and approval = 2 order by id desc limit 1
+	</select>
+
+	<select id="queryProductByBatch" parameterType="java.util.Map"
+		resultType="java.util.Map">
+		select id, code, name, prior_money, reach_money,
+		(prior_money - reach_money) as available, f_time, f_yield, p.insurance_trust insuranceTrust
+		from product
+		where batch = #{batch, jdbcType=VARCHAR} and status = 1 and approval = 2 
+		order by id desc limit #{size,jdbcType=INTEGER}
+	</select>
+	
+	<select id="listRecommendProduct" parameterType = "java.util.Map" resultType="java.util.Map">
+	    SELECT p.id id, p.name name, p.min_money minMoney, p.p_type pType, p.insurance_trust insuranceTrust, p.f_yield fYield, p.add_yield addYield, p.is_debt isDebt, p.unit_time unitTime, p.f_time fTime, p.prior_money priorMoney, p.reach_money reachMoney, p.re_way reWay, g.fTime, p.status status, DATE_ADD(p.ed_dt,INTERVAL p.f_time DAY) as expireDt  
+		FROM product p
+		LEFT JOIN product_recommend pr ON p.id = pr.p_id
+		LEFT JOIN (
+		SELECT id, CASE unit_time WHEN 0 THEN f_time WHEN 1 THEN f_time * 7 WHEN 2 THEN f_time * 30 WHEN 3 THEN f_time * 365 ELSE f_time END fTime
+		FROM product) g ON p.id = g.id
+		WHERE 1 = 1 
+		<if test="startTime != null and startTime != '' and endTime != null and endTime != ''">
+		  and g.fTime BETWEEN #{startTime, jdbcType = INTEGER} AND #{endTime, jdbcType = INTEGER} 
+		</if>
+		<if test="newPCid != null and newPCid != ''">
+		  and p.pc_id != #{newPCid, jdbcType = INTEGER}
+		</if>
+		<if test="approval != null and approval != ''">
+          and p.approval = #{approval, jdbcType = INTEGER}
+        </if>
+		<choose>
+		  <when test="status != null and status != ''">
+		      and p.status = #{status, jdbcType = INTEGER} 
+		  </when>
+		  <otherwise>
+		      and p.status in (1, 2) 
+		  </otherwise>
+		</choose>
+		ORDER BY 
+		<choose>
+		  <when test="status == 1">
+		       p.status, p.sort, p.st_dt 
+		  </when>
+		  <otherwise>
+		       p.id desc 
+		  </otherwise>
+		</choose>
+		LIMIT #{start, jdbcType = INTEGER} , #{number, jdbcType = INTEGER}
+	</select>
+	
+	<select id="countListRecommendProduct" parameterType = "java.util.Map" resultType="java.lang.Integer">
+        SELECT count(1) 
+        FROM product p
+        LEFT JOIN product_recommend pr ON p.id = pr.p_id 
+        LEFT JOIN (
+        SELECT id, CASE unit_time WHEN 0 THEN f_time WHEN 1 THEN f_time * 7 WHEN 2 THEN f_time * 30 WHEN 3 THEN f_time * 365 ELSE f_time END fTime
+        FROM product) g ON p.id = g.id
+        WHERE 1 = 1
+        <if test="startTime != null and startTime != '' and endTime != null and endTime != ''">
+          AND g.fTime BETWEEN #{startTime, jdbcType = INTEGER} AND #{endTime, jdbcType = INTEGER} 
+        </if>
+        <if test="newPCid != null and newPCid != ''">
+          and p.pc_id != #{newPCid, jdbcType = INTEGER}
+        </if>
+        <choose>
+          <when test="status != null and status != ''">
+              AND p.status = #{status, jdbcType = INTEGER} 
+          </when>
+          <otherwise>
+              AND p.status in (1, 2) 
+          </otherwise>
+        </choose>
+    </select>
+</mapper>

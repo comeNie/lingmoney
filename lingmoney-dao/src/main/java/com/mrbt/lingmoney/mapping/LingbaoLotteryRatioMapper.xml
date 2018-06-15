@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.LingbaoLotteryRatioMapper">
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.LingbaoLotteryRatio">
+    <!--
+    @mbggenerated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="type_id" jdbcType="INTEGER" property="typeId" />
+    <result column="gift_id" jdbcType="INTEGER" property="giftId" />
+    <result column="integral" jdbcType="INTEGER" property="integral" />
+    <result column="preferential_integral" jdbcType="INTEGER" property="preferentialIntegral" />
+    <result column="word" jdbcType="VARCHAR" property="word" />
+    <result column="ratio" jdbcType="DOUBLE" property="ratio" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="unit" jdbcType="INTEGER" property="unit" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="prize_level" jdbcType="INTEGER" property="prizeLevel" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+    @mbggenerated
+    -->
+    id, type_id, gift_id, integral, preferential_integral, word, ratio, type, status, 
+    unit, level, prize_level
+  </sql>
+  <select id="selectByExample" parameterType="com.mrbt.lingmoney.model.LingbaoLotteryRatioExample" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from lingbao_lottery_ratio
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0">
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from lingbao_lottery_ratio
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--
+    @mbggenerated
+    -->
+    delete from lingbao_lottery_ratio
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.LingbaoLotteryRatioExample">
+    <!--
+    @mbggenerated
+    -->
+    delete from lingbao_lottery_ratio
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mrbt.lingmoney.model.LingbaoLotteryRatio">
+    <!--
+    @mbggenerated
+    -->
+    insert into lingbao_lottery_ratio (id, type_id, gift_id, 
+      integral, preferential_integral, word, 
+      ratio, type, status, 
+      unit, level, prize_level
+      )
+    values (#{id,jdbcType=INTEGER}, #{typeId,jdbcType=INTEGER}, #{giftId,jdbcType=INTEGER}, 
+      #{integral,jdbcType=INTEGER}, #{preferentialIntegral,jdbcType=INTEGER}, #{word,jdbcType=VARCHAR}, 
+      #{ratio,jdbcType=DOUBLE}, #{type,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{unit,jdbcType=INTEGER}, #{level,jdbcType=INTEGER}, #{prizeLevel,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.LingbaoLotteryRatio">
+    <!--
+    @mbggenerated
+    -->
+    insert into lingbao_lottery_ratio
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="typeId != null">
+        type_id,
+      </if>
+      <if test="giftId != null">
+        gift_id,
+      </if>
+      <if test="integral != null">
+        integral,
+      </if>
+      <if test="preferentialIntegral != null">
+        preferential_integral,
+      </if>
+      <if test="word != null">
+        word,
+      </if>
+      <if test="ratio != null">
+        ratio,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="unit != null">
+        unit,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="prizeLevel != null">
+        prize_level,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="typeId != null">
+        #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="giftId != null">
+        #{giftId,jdbcType=INTEGER},
+      </if>
+      <if test="integral != null">
+        #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="preferentialIntegral != null">
+        #{preferentialIntegral,jdbcType=INTEGER},
+      </if>
+      <if test="word != null">
+        #{word,jdbcType=VARCHAR},
+      </if>
+      <if test="ratio != null">
+        #{ratio,jdbcType=DOUBLE},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="unit != null">
+        #{unit,jdbcType=INTEGER},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="prizeLevel != null">
+        #{prizeLevel,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.LingbaoLotteryRatioExample" resultType="java.lang.Long">
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from lingbao_lottery_ratio
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update lingbao_lottery_ratio
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.typeId != null">
+        type_id = #{record.typeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.giftId != null">
+        gift_id = #{record.giftId,jdbcType=INTEGER},
+      </if>
+      <if test="record.integral != null">
+        integral = #{record.integral,jdbcType=INTEGER},
+      </if>
+      <if test="record.preferentialIntegral != null">
+        preferential_integral = #{record.preferentialIntegral,jdbcType=INTEGER},
+      </if>
+      <if test="record.word != null">
+        word = #{record.word,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ratio != null">
+        ratio = #{record.ratio,jdbcType=DOUBLE},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.unit != null">
+        unit = #{record.unit,jdbcType=INTEGER},
+      </if>
+      <if test="record.level != null">
+        level = #{record.level,jdbcType=INTEGER},
+      </if>
+      <if test="record.prizeLevel != null">
+        prize_level = #{record.prizeLevel,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update lingbao_lottery_ratio
+    set id = #{record.id,jdbcType=INTEGER},
+      type_id = #{record.typeId,jdbcType=INTEGER},
+      gift_id = #{record.giftId,jdbcType=INTEGER},
+      integral = #{record.integral,jdbcType=INTEGER},
+      preferential_integral = #{record.preferentialIntegral,jdbcType=INTEGER},
+      word = #{record.word,jdbcType=VARCHAR},
+      ratio = #{record.ratio,jdbcType=DOUBLE},
+      type = #{record.type,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      unit = #{record.unit,jdbcType=INTEGER},
+      level = #{record.level,jdbcType=INTEGER},
+      prize_level = #{record.prizeLevel,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mrbt.lingmoney.model.LingbaoLotteryRatio">
+    <!--
+    @mbggenerated
+    -->
+    update lingbao_lottery_ratio
+    <set>
+      <if test="typeId != null">
+        type_id = #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="giftId != null">
+        gift_id = #{giftId,jdbcType=INTEGER},
+      </if>
+      <if test="integral != null">
+        integral = #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="preferentialIntegral != null">
+        preferential_integral = #{preferentialIntegral,jdbcType=INTEGER},
+      </if>
+      <if test="word != null">
+        word = #{word,jdbcType=VARCHAR},
+      </if>
+      <if test="ratio != null">
+        ratio = #{ratio,jdbcType=DOUBLE},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="unit != null">
+        unit = #{unit,jdbcType=INTEGER},
+      </if>
+      <if test="level != null">
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="prizeLevel != null">
+        prize_level = #{prizeLevel,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mrbt.lingmoney.model.LingbaoLotteryRatio">
+    <!--
+    @mbggenerated
+    -->
+    update lingbao_lottery_ratio
+    set type_id = #{typeId,jdbcType=INTEGER},
+      gift_id = #{giftId,jdbcType=INTEGER},
+      integral = #{integral,jdbcType=INTEGER},
+      preferential_integral = #{preferentialIntegral,jdbcType=INTEGER},
+      word = #{word,jdbcType=VARCHAR},
+      ratio = #{ratio,jdbcType=DOUBLE},
+      type = #{type,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      unit = #{unit,jdbcType=INTEGER},
+      level = #{level,jdbcType=INTEGER},
+      prize_level = #{prizeLevel,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- custom setting -->
+   <!-- 此两条SQL语句条件必须保持一致，一条用于页面展示，一条用于后台计算 S-->
+  <select id="queryByTypeId" parameterType="java.lang.Integer" resultType="java.util.Map">
+  	select  
+		 lr.id id, lr.gift_id giftId, lg.picture_mobile pic, 
+		 IFNULL(lg.name, 'Sorry') name   
+	from 
+		lingbao_lottery_ratio lr
+	left join 
+		lingbao_gift lg 
+	on lr.gift_id = lg.id 
+	where 
+		lr.type_id = #{0,jdbcType=INTEGER} and lr.status = 1 and lr.type = 0 
+	order by 
+	 	lr.level 
+  </select>
+  
+  <select id="queryByTypeIdForCount" parameterType="java.lang.Integer" resultType="java.util.Map">
+  	select  
+		 lr.id id, lr.type_id typeId, lr.gift_id giftId, lr.integral integral, lr.ratio ratio, 
+		 lr.preferential_integral preferentialIntegral, lr.word word, lg.picture_small pic, 
+		 lr.type type, lr.status status, lr.unit unit, IFNULL(lg.name, 'sorry') name ,
+		 lr.prize_level prizeLevel ,lg.store store , lg.market_price price, lg.`type` typename   
+	from 
+		lingbao_lottery_ratio lr
+	left join 
+		lingbao_gift lg 
+	on lr.gift_id = lg.id 
+	where 
+		lr.type_id = #{0,jdbcType=INTEGER} and lr.status = 1 and lr.type = 0 
+	order by 
+		lr.level 
+  </select>
+  <!-- 此两条SQL语句必须保持一致，一条用于页面展示，一条用于后台计算 E-->
+  
+  <select id="queryYearFinancing" parameterType="java.lang.String" resultType="java.math.BigDecimal">
+  	select fmoney from user_year_financialmoney where u_id = #{0,jdbcType=VARCHAR}
+  </select>
+  
+  <resultMap extends="BaseResultMap" id="ResultMapWithVo" type="com.mrbt.lingmoney.model.LingbaoLotteryRatioVo">
+		<result column="type_name" jdbcType="VARCHAR" property="typeName" />
+		<result column="gift_name" jdbcType="VARCHAR" property="giftName" />
+	</resultMap>
+	
+	<select id="findByCondition" parameterType="com.mrbt.lingmoney.utils.PageInfo" resultMap="ResultMapWithVo">
+		select
+		llr.id, llr.type_id, llr.gift_id, llr.integral, llr.preferential_integral, 
+		llr.word, llr.ratio, llr.type, llr.status, llr.unit, 
+		llt.name as type_name, lg.name as gift_name, llr.level, llr.prize_level
+		from lingbao_lottery_ratio llr
+		left join lingbao_lottery_type llt on llr.type_id = llt.id
+		left join lingbao_gift lg on llr.gift_id = lg.id
+		<where>
+			<if test=" condition.typeId != null ">
+				and llr.type_id = #{condition.typeId}
+			</if>
+			<if test=" condition.giftId != null ">
+				and llr.gift_id = #{condition.giftId}
+			</if>
+			<if test=" condition.status != null ">
+				and llr.status = #{condition.status}
+			</if>
+		</where>
+		order by llr.level
+		<if test="from !=0 or size!=0">
+			limit #{from},#{size}
+		</if>
+	</select>
+	<select id="findCountByCondition" parameterType="com.mrbt.lingmoney.utils.PageInfo" resultType="java.lang.Integer">
+		select count(llr.id)
+		from lingbao_lottery_ratio llr
+		left join lingbao_lottery_type llt on llr.type_id = llt.id
+		left join lingbao_gift lg on llr.gift_id = lg.id
+		<where>
+			<if test=" condition.typeId != null ">
+				and llr.type_id = #{condition.typeId}
+			</if>
+			<if test=" condition.giftId != null ">
+				and llr.gift_id = #{condition.giftId}
+			</if>
+			<if test=" condition.status != null ">
+				and llr.status = #{condition.status}
+			</if>
+		</where>
+	</select>
+</mapper>

@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.EnterpriseBindcardMapper">
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.EnterpriseBindcard">
+    <!--
+    @mbggenerated
+    -->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="e_acc_bankno" jdbcType="VARCHAR" property="eAccBankno" />
+    <result column="card_no" jdbcType="VARCHAR" property="cardNo" />
+    <result column="card_type" jdbcType="VARCHAR" property="cardType" />
+    <result column="bind_date" jdbcType="VARCHAR" property="bindDate" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="other_bank_flag" jdbcType="INTEGER" property="otherBankFlag" />
+    <result column="bank_number" jdbcType="VARCHAR" property="bankNumber" />
+    <result column="bank_name" jdbcType="VARCHAR" property="bankName" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+    @mbggenerated
+    -->
+    id, e_acc_bankno, card_no, card_type, bind_date, state, other_bank_flag, bank_number, 
+    bank_name
+  </sql>
+  <select id="selectByExample" parameterType="com.mrbt.lingmoney.model.EnterpriseBindcardExample" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from enterprise_bindcard
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0">
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from enterprise_bindcard
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--
+    @mbggenerated
+    -->
+    delete from enterprise_bindcard
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.EnterpriseBindcardExample">
+    <!--
+    @mbggenerated
+    -->
+    delete from enterprise_bindcard
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mrbt.lingmoney.model.EnterpriseBindcard">
+    <!--
+    @mbggenerated
+    -->
+    insert into enterprise_bindcard (id, e_acc_bankno, card_no, 
+      card_type, bind_date, state, 
+      other_bank_flag, bank_number, bank_name
+      )
+    values (#{id,jdbcType=VARCHAR}, #{eAccBankno,jdbcType=VARCHAR}, #{cardNo,jdbcType=VARCHAR}, 
+      #{cardType,jdbcType=VARCHAR}, #{bindDate,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, 
+      #{otherBankFlag,jdbcType=INTEGER}, #{bankNumber,jdbcType=VARCHAR}, #{bankName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.EnterpriseBindcard">
+    <!--
+    @mbggenerated
+    -->
+    insert into enterprise_bindcard
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="eAccBankno != null">
+        e_acc_bankno,
+      </if>
+      <if test="cardNo != null">
+        card_no,
+      </if>
+      <if test="cardType != null">
+        card_type,
+      </if>
+      <if test="bindDate != null">
+        bind_date,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="otherBankFlag != null">
+        other_bank_flag,
+      </if>
+      <if test="bankNumber != null">
+        bank_number,
+      </if>
+      <if test="bankName != null">
+        bank_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="eAccBankno != null">
+        #{eAccBankno,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNo != null">
+        #{cardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="cardType != null">
+        #{cardType,jdbcType=VARCHAR},
+      </if>
+      <if test="bindDate != null">
+        #{bindDate,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="otherBankFlag != null">
+        #{otherBankFlag,jdbcType=INTEGER},
+      </if>
+      <if test="bankNumber != null">
+        #{bankNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.EnterpriseBindcardExample" resultType="java.lang.Integer">
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from enterprise_bindcard
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update enterprise_bindcard
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eAccBankno != null">
+        e_acc_bankno = #{record.eAccBankno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cardNo != null">
+        card_no = #{record.cardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cardType != null">
+        card_type = #{record.cardType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bindDate != null">
+        bind_date = #{record.bindDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null">
+        state = #{record.state,jdbcType=INTEGER},
+      </if>
+      <if test="record.otherBankFlag != null">
+        other_bank_flag = #{record.otherBankFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.bankNumber != null">
+        bank_number = #{record.bankNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankName != null">
+        bank_name = #{record.bankName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update enterprise_bindcard
+    set id = #{record.id,jdbcType=VARCHAR},
+      e_acc_bankno = #{record.eAccBankno,jdbcType=VARCHAR},
+      card_no = #{record.cardNo,jdbcType=VARCHAR},
+      card_type = #{record.cardType,jdbcType=VARCHAR},
+      bind_date = #{record.bindDate,jdbcType=VARCHAR},
+      state = #{record.state,jdbcType=INTEGER},
+      other_bank_flag = #{record.otherBankFlag,jdbcType=INTEGER},
+      bank_number = #{record.bankNumber,jdbcType=VARCHAR},
+      bank_name = #{record.bankName,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mrbt.lingmoney.model.EnterpriseBindcard">
+    <!--
+    @mbggenerated
+    -->
+    update enterprise_bindcard
+    <set>
+      <if test="eAccBankno != null">
+        e_acc_bankno = #{eAccBankno,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNo != null">
+        card_no = #{cardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="cardType != null">
+        card_type = #{cardType,jdbcType=VARCHAR},
+      </if>
+      <if test="bindDate != null">
+        bind_date = #{bindDate,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="otherBankFlag != null">
+        other_bank_flag = #{otherBankFlag,jdbcType=INTEGER},
+      </if>
+      <if test="bankNumber != null">
+        bank_number = #{bankNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        bank_name = #{bankName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mrbt.lingmoney.model.EnterpriseBindcard">
+    <!--
+    @mbggenerated
+    -->
+    update enterprise_bindcard
+    set e_acc_bankno = #{eAccBankno,jdbcType=VARCHAR},
+      card_no = #{cardNo,jdbcType=VARCHAR},
+      card_type = #{cardType,jdbcType=VARCHAR},
+      bind_date = #{bindDate,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      other_bank_flag = #{otherBankFlag,jdbcType=INTEGER},
+      bank_number = #{bankNumber,jdbcType=VARCHAR},
+      bank_name = #{bankName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

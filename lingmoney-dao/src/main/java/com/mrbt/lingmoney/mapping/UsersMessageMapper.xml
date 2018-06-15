@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.UsersMessageMapper">
+	<resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.UsersMessage">
+		<!-- @mbggenerated -->
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="u_id" jdbcType="VARCHAR" property="uId" />
+		<result column="topic" jdbcType="VARCHAR" property="topic" />
+		<result column="sender" jdbcType="VARCHAR" property="sender" />
+		<result column="time" jdbcType="TIMESTAMP" property="time" />
+		<result column="status" jdbcType="INTEGER" property="status" />
+		<result column="admin_message_id" jdbcType="INTEGER" property="adminMessageId" />
+	</resultMap>
+	<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs"
+		type="com.mrbt.lingmoney.model.UsersMessage">
+		<!-- @mbggenerated -->
+		<result column="content" jdbcType="LONGVARCHAR" property="content" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<!-- @mbggenerated -->
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" prefixOverrides="and" suffix=")">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach close=")" collection="criterion.value" item="listItem"
+										open="(" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<!-- @mbggenerated -->
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" prefixOverrides="and" suffix=")">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach close=")" collection="criterion.value" item="listItem"
+										open="(" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		<!-- @mbggenerated -->
+		id, u_id, topic, sender, time, status, admin_message_id
+	</sql>
+	<sql id="Blob_Column_List">
+		<!-- @mbggenerated -->
+		content
+	</sql>
+	<select id="selectByExampleWithBLOBs" parameterType="com.mrbt.lingmoney.model.UsersMessageExample"
+		resultMap="ResultMapWithBLOBs">
+		<!-- @mbggenerated -->
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from users_message
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByExample" parameterType="com.mrbt.lingmoney.model.UsersMessageExample"
+		resultMap="BaseResultMap">
+		<!-- @mbggenerated -->
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from users_message
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+		<if test="limitStart >= 0">
+			limit ${limitStart} , ${limitEnd}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="ResultMapWithBLOBs">
+		<!-- @mbggenerated -->
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from users_message
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		<!-- @mbggenerated -->
+		delete from users_message
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.UsersMessageExample">
+		<!-- @mbggenerated -->
+		delete from users_message
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.mrbt.lingmoney.model.UsersMessage">
+		<!-- @mbggenerated -->
+		insert into users_message (id, u_id, topic,
+		sender, time, status,
+		admin_message_id, content)
+		values (#{id,jdbcType=INTEGER}, #{uId,jdbcType=VARCHAR},
+		#{topic,jdbcType=VARCHAR},
+		#{sender,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER},
+		#{adminMessageId,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.UsersMessage">
+		<!-- @mbggenerated -->
+		insert into users_message
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="uId != null">
+				u_id,
+			</if>
+			<if test="topic != null">
+				topic,
+			</if>
+			<if test="sender != null">
+				sender,
+			</if>
+			<if test="time != null">
+				time,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="adminMessageId != null">
+				admin_message_id,
+			</if>
+			<if test="content != null">
+				content,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="uId != null">
+				#{uId,jdbcType=VARCHAR},
+			</if>
+			<if test="topic != null">
+				#{topic,jdbcType=VARCHAR},
+			</if>
+			<if test="sender != null">
+				#{sender,jdbcType=VARCHAR},
+			</if>
+			<if test="time != null">
+				#{time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="adminMessageId != null">
+				#{adminMessageId,jdbcType=INTEGER},
+			</if>
+			<if test="content != null">
+				#{content,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.mrbt.lingmoney.model.UsersMessageExample"
+		resultType="java.lang.Long">
+		<!-- @mbggenerated -->
+		select count(*) from users_message
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		<!-- @mbggenerated -->
+		update users_message
+		<set>
+			<if test="record.id != null">
+				id = #{record.id,jdbcType=INTEGER},
+			</if>
+			<if test="record.uId != null">
+				u_id = #{record.uId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.topic != null">
+				topic = #{record.topic,jdbcType=VARCHAR},
+			</if>
+			<if test="record.sender != null">
+				sender = #{record.sender,jdbcType=VARCHAR},
+			</if>
+			<if test="record.time != null">
+				time = #{record.time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.status != null">
+				status = #{record.status,jdbcType=INTEGER},
+			</if>
+			<if test="record.adminMessageId != null">
+				admin_message_id = #{record.adminMessageId,jdbcType=INTEGER},
+			</if>
+			<if test="record.content != null">
+				content = #{record.content,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExampleWithBLOBs" parameterType="map">
+		<!-- @mbggenerated -->
+		update users_message
+		set id = #{record.id,jdbcType=INTEGER},
+		u_id = #{record.uId,jdbcType=VARCHAR},
+		topic = #{record.topic,jdbcType=VARCHAR},
+		sender = #{record.sender,jdbcType=VARCHAR},
+		time = #{record.time,jdbcType=TIMESTAMP},
+		status = #{record.status,jdbcType=INTEGER},
+		admin_message_id = #{record.adminMessageId,jdbcType=INTEGER},
+		content = #{record.content,jdbcType=LONGVARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		<!-- @mbggenerated -->
+		update users_message
+		set id = #{record.id,jdbcType=INTEGER},
+		u_id = #{record.uId,jdbcType=VARCHAR},
+		topic = #{record.topic,jdbcType=VARCHAR},
+		sender = #{record.sender,jdbcType=VARCHAR},
+		time = #{record.time,jdbcType=TIMESTAMP},
+		status = #{record.status,jdbcType=INTEGER},
+		admin_message_id = #{record.adminMessageId,jdbcType=INTEGER}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.mrbt.lingmoney.model.UsersMessage">
+		<!-- @mbggenerated -->
+		update users_message
+		<set>
+			<if test="uId != null">
+				u_id = #{uId,jdbcType=VARCHAR},
+			</if>
+			<if test="topic != null">
+				topic = #{topic,jdbcType=VARCHAR},
+			</if>
+			<if test="sender != null">
+				sender = #{sender,jdbcType=VARCHAR},
+			</if>
+			<if test="time != null">
+				time = #{time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="adminMessageId != null">
+				admin_message_id = #{adminMessageId,jdbcType=INTEGER},
+			</if>
+			<if test="content != null">
+				content = #{content,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mrbt.lingmoney.model.UsersMessage">
+		<!-- @mbggenerated -->
+		update users_message
+		set u_id = #{uId,jdbcType=VARCHAR},
+		topic = #{topic,jdbcType=VARCHAR},
+		sender = #{sender,jdbcType=VARCHAR},
+		time = #{time,jdbcType=TIMESTAMP},
+		status = #{status,jdbcType=INTEGER},
+		admin_message_id = #{adminMessageId,jdbcType=INTEGER},
+		content = #{content,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.mrbt.lingmoney.model.UsersMessage">
+		<!-- @mbggenerated -->
+		update users_message
+		set u_id = #{uId,jdbcType=VARCHAR},
+		topic = #{topic,jdbcType=VARCHAR},
+		sender = #{sender,jdbcType=VARCHAR},
+		time = #{time,jdbcType=TIMESTAMP},
+		status = #{status,jdbcType=INTEGER},
+		admin_message_id = #{adminMessageId,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<!-- users setting -->
+	<select id="selectByUid" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from users_message
+		where u_id = #{uid,jdbcType=VARCHAR}
+	</select>
+
+	<insert id="insertContentList" useGeneratedKeys="true"
+		keyProperty="id" parameterType="java.util.List">
+		<selectKey resultType="long" keyProperty="id" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into users_message
+		(u_id,topic,sender,time,status,admin_message_id,content)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.uId},#{item.topic},#{item.sender},#{item.time},#{item.status},#{item.adminMessageId},#{item.content})
+		</foreach>
+	</insert>
+</mapper>

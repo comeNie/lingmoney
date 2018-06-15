@@ -1,0 +1,96 @@
+	html{
+    font-size: 100%;
+}
+/* 整体稳定结构--------------------- */
+html,body,.screen{
+            position: relative;
+            width: 100%;
+            height: 100%;
+             /*  overflow: hidden;   */
+            margin: 0 auto;
+        }
+body, h1, h2, h3, h4, h5, h6, hr, p, /* structural elements 结构元素 */
+dl, dt, dd, ul, ol, li, /* list elements 列表元素 */
+fieldset, button, input, textarea, /* form elements 表单元素 */
+th, td,img,section,div,span, a,header,section{ /* table elements 表格元素 */
+    margin: 0rem;
+    padding: 0rem;
+    color: #333;
+    list-style: none;display:block;  
+
+    -webkit-tap-highlight-color:transparent; 
+    font-family: '微软雅黑';
+}
+
+h1, h2, h3, h4, h5, h6{ font-weight: 400; color: #292929;}
+h1 { font-size: 0.32rem; /* 18px / 12px = 1.5 */ }
+h2 { font-size: 0.26rem; }
+h3 { font-size: 0.18rem; }
+h4, h5, h6 { font-size: 100%;}
+img{vertical-align:middle;}
+input{text-indent:0.13rem;font-size:0.32rem;}
+/* 重置文本格式元素 */
+a { text-decoration: none; -webkit-tap-highlight-color:transparent; -webkit-user-select: none;-moz-user-focus: none;-moz-user-select: none; color: #000;}
+a:hover { text-decoration: none; }		
+			
+.main{
+	position: absolute;
+	width: 100%;
+	max-width: 7.5rem;
+	left: 50%;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+	z-index: 9;
+	transform: translate(-50%,0);
+	-webkit-transform: translate(-50%,0);
+	-moz-transform: translate(-50%,0);
+	-o-transform: translate(-50%,0);	
+	transform: translate(-50%,0);
+}
+
+
+.error_tip {position:fixed; top: 50%; height: 0.68rem;width: 3.45rem;font-size: .24rem;line-height: .68rem;border-radius: 3px;background: rgba(0,0,0,0.5);text-align: center;color: #fff;
+left: 50%; 
+  /*  transform: translate(-50%,-50%); */z-index: 100;opacity: 0;display: none; margin-left:-1.72rem;}
+.Message-box{padding-left:0.3rem; padding-right:0.3rem; padding-top:1.4rem; padding-bottom:0.52rem;background: url(/resource/images/Message1.png) no-repeat;background-size: 100%;}
+.Message-btl{font-size:0.32rem;color:#fff; margin-bottom:0.09rem;}
+.Message-input-c{width:6.9rem;height:0.88rem; background:#f1d7d8;color:#a49293;border-radius:0.1rem; border:0rem; vertical-align:top;margin-bottom:0.52rem;}
+.Message-moban-tip{padding-bottom:0.24rem;}
+.Message-moban-tip li{overflow:hidden;}
+.Message-moban-tip li div{width:3.9rem;float:left;color:#fff; font-size: 0.32rem;    line-height: 0.7rem;}
+
+
+.Message-moban-tip li p {width:2.34rem;float:right;height:0.7rem;background:#F8C385;border-radius:0.1rem;font-size:0.32rem;color:#734C12;text-align:center;line-height:0.7rem;margin-top:0.09rem;}
+
+.Message-input-dd{width:6.7rem;  padding-right:0.2rem; height:0.88rem; background:#f1d7d8;color:#a49293;border-radius:0.1rem; border:0rem; vertical-align:top;}
+.Message-input-g{width:6.5rem;height:2.23rem; background:#f1d7d8;color:#a49293;border-radius:0.1rem; border:0rem; vertical-align:top; padding:0.2rem; line-height:0.36rem; font-size:0.28rem;margin-bottom:0.59rem;}  
+.Message-button{width:100%;height:0.88rem;background:#F8C385;color:#734C12;border:0rem;font-size:0.36rem;-webkit-appearance: none; border-radius:0.1rem;vertical-align:top;}
+.Messageimg img{width:100%}
+.Messageimg-tip{font-size:0.28rem;background:#F8C385;color:#734C12;text-align: center;line-height: 0.8rem;}
+
+.xz123{position:fixed;display:none; top: 50%;width:0.6rem;height:0.6rem;margin-left:-0.3rem;z-index: 10001;left:50%;}
+.register-mask{width: 100%;height: 100%;display:none;position: fixed;opacity: .3;filter: alpha(opacity=30);background: #fff;left: 0;top: 0;    z-index: 1000;background: #000!important;opacity: .85!important;}
+.Message-cyg{font-size:0.26rem;color:#fff;display:none;text-align: right;
+    line-height: 0.45rem;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

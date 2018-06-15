@@ -1,0 +1,710 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mrbt.lingmoney.mapper.GiftExchangeInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.GiftExchangeInfo" >
+    <!--
+    @mbggenerated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="referral_id" property="referralId" jdbcType="VARCHAR" />
+    <result column="u_id" property="uId" jdbcType="VARCHAR" />
+    <result column="activity_id" property="activityId" jdbcType="INTEGER" />
+    <result column="buy_money" property="buyMoney" jdbcType="DECIMAL" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="buy_dt" property="buyDt" jdbcType="DATE" />
+    <result column="gift_name" property="giftName" jdbcType="VARCHAR" />
+    <result column="num" property="num" jdbcType="INTEGER" />
+    <result column="express_number" property="expressNumber" jdbcType="VARCHAR" />
+    <result column="express_company" property="expressCompany" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="exchange_time" property="exchangeTime" jdbcType="TIMESTAMP" />
+    <result column="send_time" property="sendTime" jdbcType="TIMESTAMP" />
+    <result column="receive_time" property="receiveTime" jdbcType="TIMESTAMP" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="recharge_account" property="rechargeAccount" jdbcType="VARCHAR" />
+    <result column="recharge_code" property="rechargeCode" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="category" property="category" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <!--
+    @mbggenerated
+    -->
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <!--
+    @mbggenerated
+    -->
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <!--
+    @mbggenerated
+    -->
+    id, referral_id, u_id, activity_id, buy_money, product_name, buy_dt, gift_name, num, 
+    express_number, express_company, status, exchange_time, send_time, receive_time, 
+    type, recharge_account, recharge_code, mobile, category
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mrbt.lingmoney.model.GiftExchangeInfoExample" >
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from gift_exchange_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    <!--
+    @mbggenerated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from gift_exchange_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <!--
+    @mbggenerated
+    -->
+    delete from gift_exchange_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.GiftExchangeInfoExample" >
+    <!--
+    @mbggenerated
+    -->
+    delete from gift_exchange_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mrbt.lingmoney.model.GiftExchangeInfo" >
+    <!--
+    @mbggenerated
+    -->
+    insert into gift_exchange_info (id, referral_id, u_id, 
+      activity_id, buy_money, product_name, 
+      buy_dt, gift_name, num, 
+      express_number, express_company, status, 
+      exchange_time, send_time, receive_time, 
+      type, recharge_account, recharge_code, 
+      mobile, category)
+    values (#{id,jdbcType=INTEGER}, #{referralId,jdbcType=VARCHAR}, #{uId,jdbcType=VARCHAR}, 
+      #{activityId,jdbcType=INTEGER}, #{buyMoney,jdbcType=DECIMAL}, #{productName,jdbcType=VARCHAR}, 
+      #{buyDt,jdbcType=DATE}, #{giftName,jdbcType=VARCHAR}, #{num,jdbcType=INTEGER}, 
+      #{expressNumber,jdbcType=VARCHAR}, #{expressCompany,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{exchangeTime,jdbcType=TIMESTAMP}, #{sendTime,jdbcType=TIMESTAMP}, #{receiveTime,jdbcType=TIMESTAMP}, 
+      #{type,jdbcType=INTEGER}, #{rechargeAccount,jdbcType=VARCHAR}, #{rechargeCode,jdbcType=VARCHAR}, 
+      #{mobile,jdbcType=VARCHAR}, #{category,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.GiftExchangeInfo" >
+    <!--
+    @mbggenerated
+    -->
+    insert into gift_exchange_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="referralId != null" >
+        referral_id,
+      </if>
+      <if test="uId != null" >
+        u_id,
+      </if>
+      <if test="activityId != null" >
+        activity_id,
+      </if>
+      <if test="buyMoney != null" >
+        buy_money,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="buyDt != null" >
+        buy_dt,
+      </if>
+      <if test="giftName != null" >
+        gift_name,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="expressNumber != null" >
+        express_number,
+      </if>
+      <if test="expressCompany != null" >
+        express_company,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="exchangeTime != null" >
+        exchange_time,
+      </if>
+      <if test="sendTime != null" >
+        send_time,
+      </if>
+      <if test="receiveTime != null" >
+        receive_time,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="rechargeAccount != null" >
+        recharge_account,
+      </if>
+      <if test="rechargeCode != null" >
+        recharge_code,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="category != null" >
+        category,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="referralId != null" >
+        #{referralId,jdbcType=VARCHAR},
+      </if>
+      <if test="uId != null" >
+        #{uId,jdbcType=VARCHAR},
+      </if>
+      <if test="activityId != null" >
+        #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="buyMoney != null" >
+        #{buyMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="buyDt != null" >
+        #{buyDt,jdbcType=DATE},
+      </if>
+      <if test="giftName != null" >
+        #{giftName,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="expressNumber != null" >
+        #{expressNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="expressCompany != null" >
+        #{expressCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="exchangeTime != null" >
+        #{exchangeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendTime != null" >
+        #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receiveTime != null" >
+        #{receiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="rechargeAccount != null" >
+        #{rechargeAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="rechargeCode != null" >
+        #{rechargeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        #{category,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.GiftExchangeInfoExample" resultType="java.lang.Long" >
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from gift_exchange_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    <!--
+    @mbggenerated
+    -->
+    update gift_exchange_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.referralId != null" >
+        referral_id = #{record.referralId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uId != null" >
+        u_id = #{record.uId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activityId != null" >
+        activity_id = #{record.activityId,jdbcType=INTEGER},
+      </if>
+      <if test="record.buyMoney != null" >
+        buy_money = #{record.buyMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.productName != null" >
+        product_name = #{record.productName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyDt != null" >
+        buy_dt = #{record.buyDt,jdbcType=DATE},
+      </if>
+      <if test="record.giftName != null" >
+        gift_name = #{record.giftName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.num != null" >
+        num = #{record.num,jdbcType=INTEGER},
+      </if>
+      <if test="record.expressNumber != null" >
+        express_number = #{record.expressNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expressCompany != null" >
+        express_company = #{record.expressCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.exchangeTime != null" >
+        exchange_time = #{record.exchangeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sendTime != null" >
+        send_time = #{record.sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.receiveTime != null" >
+        receive_time = #{record.receiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.rechargeAccount != null" >
+        recharge_account = #{record.rechargeAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rechargeCode != null" >
+        recharge_code = #{record.rechargeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null" >
+        mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.category != null" >
+        category = #{record.category,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    <!--
+    @mbggenerated
+    -->
+    update gift_exchange_info
+    set id = #{record.id,jdbcType=INTEGER},
+      referral_id = #{record.referralId,jdbcType=VARCHAR},
+      u_id = #{record.uId,jdbcType=VARCHAR},
+      activity_id = #{record.activityId,jdbcType=INTEGER},
+      buy_money = #{record.buyMoney,jdbcType=DECIMAL},
+      product_name = #{record.productName,jdbcType=VARCHAR},
+      buy_dt = #{record.buyDt,jdbcType=DATE},
+      gift_name = #{record.giftName,jdbcType=VARCHAR},
+      num = #{record.num,jdbcType=INTEGER},
+      express_number = #{record.expressNumber,jdbcType=VARCHAR},
+      express_company = #{record.expressCompany,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=INTEGER},
+      exchange_time = #{record.exchangeTime,jdbcType=TIMESTAMP},
+      send_time = #{record.sendTime,jdbcType=TIMESTAMP},
+      receive_time = #{record.receiveTime,jdbcType=TIMESTAMP},
+      type = #{record.type,jdbcType=INTEGER},
+      recharge_account = #{record.rechargeAccount,jdbcType=VARCHAR},
+      recharge_code = #{record.rechargeCode,jdbcType=VARCHAR},
+      mobile = #{record.mobile,jdbcType=VARCHAR},
+      category = #{record.category,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mrbt.lingmoney.model.GiftExchangeInfo" >
+    <!--
+    @mbggenerated
+    -->
+    update gift_exchange_info
+    <set >
+      <if test="referralId != null" >
+        referral_id = #{referralId,jdbcType=VARCHAR},
+      </if>
+      <if test="uId != null" >
+        u_id = #{uId,jdbcType=VARCHAR},
+      </if>
+      <if test="activityId != null" >
+        activity_id = #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="buyMoney != null" >
+        buy_money = #{buyMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="productName != null" >
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="buyDt != null" >
+        buy_dt = #{buyDt,jdbcType=DATE},
+      </if>
+      <if test="giftName != null" >
+        gift_name = #{giftName,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="expressNumber != null" >
+        express_number = #{expressNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="expressCompany != null" >
+        express_company = #{expressCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="exchangeTime != null" >
+        exchange_time = #{exchangeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendTime != null" >
+        send_time = #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receiveTime != null" >
+        receive_time = #{receiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="rechargeAccount != null" >
+        recharge_account = #{rechargeAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="rechargeCode != null" >
+        recharge_code = #{rechargeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        category = #{category,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mrbt.lingmoney.model.GiftExchangeInfo" >
+    <!--
+    @mbggenerated
+    -->
+    update gift_exchange_info
+    set referral_id = #{referralId,jdbcType=VARCHAR},
+      u_id = #{uId,jdbcType=VARCHAR},
+      activity_id = #{activityId,jdbcType=INTEGER},
+      buy_money = #{buyMoney,jdbcType=DECIMAL},
+      product_name = #{productName,jdbcType=VARCHAR},
+      buy_dt = #{buyDt,jdbcType=DATE},
+      gift_name = #{giftName,jdbcType=VARCHAR},
+      num = #{num,jdbcType=INTEGER},
+      express_number = #{expressNumber,jdbcType=VARCHAR},
+      express_company = #{expressCompany,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      exchange_time = #{exchangeTime,jdbcType=TIMESTAMP},
+      send_time = #{sendTime,jdbcType=TIMESTAMP},
+      receive_time = #{receiveTime,jdbcType=TIMESTAMP},
+      type = #{type,jdbcType=INTEGER},
+      recharge_account = #{rechargeAccount,jdbcType=VARCHAR},
+      recharge_code = #{rechargeCode,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      category = #{category,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="queryGiftCall" parameterType="java.util.Map" resultType="com.mrbt.lingmoney.model.GiftExchangeInfoVo">
+		SELECT referralId, uId, SUM(buyMoney) buyMoney,productName, buyDt
+		FROM (
+		SELECT up.referral_id
+		referralId, IFNULL(t.buy_money,0) buyMoney, t.u_id uId, p.name productName, t.buy_dt buyDt
+		FROM trading t
+		LEFT JOIN product p ON t.p_id = p.id
+		LEFT JOIN users_properties up ON
+		t.u_id = up.u_id
+		LEFT JOIN users u ON t.u_id = u.id
+		WHERE t.u_id IN (
+		SELECT u_id
+		FROM
+		users_properties up
+		WHERE u_id NOT IN(
+		SELECT DISTINCT
+		u_id
+		FROM trading
+		WHERE STATUS IN
+		(1,2,3) AND buy_dt &lt;
+		#{startDate,jdbcType=TIMESTAMP}))
+		AND t.p_id != #{pid,jdbcType=INTEGER} AND
+		t.status IN (1,2,3) AND
+		t.buy_dt &lt;= #{endDate,jdbcType=TIMESTAMP}
+		<if test=" category != null and category == 0">
+			AND p.f_time &gt;=60
+		</if>
+		ORDER
+		BY
+		t.buy_dt ASC) g
+		where g.referralId is not null 
+		GROUP BY g.uId having buyMoney &gt;= 5000
+	</select>
+
+	<insert id="batchInsertGiftExchangeInfo" parameterType="java.util.List">
+		insert into gift_exchange_info (referral_id, u_id,
+		activity_id, buy_money, product_name, buy_dt,
+		num,
+		status, exchange_time, type, category)
+		values
+		<foreach collection="list" index="index" item="item" separator=",">
+			(
+			#{item.referralId},
+			#{item.uId},
+			#{item.activityId},
+			#{item.buyMoney},
+			#{item.productName},
+			#{item.buyDt,jdbcType=TIMESTAMP},
+			#{item.num},
+			#{item.status},
+			#{item.exchangeTime},
+			#{item.type},
+			#{item.category}
+			)
+		</foreach>
+		ON DUPLICATE KEY UPDATE buy_money = values(buy_money)
+	</insert>
+	
+	<insert id="batchInsertGiftExchangeInfoNew" parameterType="java.util.List">
+        insert into gift_exchange_info_new (referral_id, u_id,
+        activity_id, buy_money, product_name, buy_dt,
+        num,
+        status, exchange_time, type, category)
+        values
+        <foreach collection="list" index="index" item="item" separator=",">
+            (
+            #{item.referralId},
+            #{item.uId},
+            #{item.activityId},
+            #{item.buyMoney},
+            #{item.productName},
+            #{item.buyDt,jdbcType=TIMESTAMP},
+            #{item.num},
+            #{item.status},
+            #{item.exchangeTime},
+            #{item.type},
+            #{item.category}
+            )
+        </foreach>
+        ON DUPLICATE KEY UPDATE buy_money = values(buy_money),referral_id = values(referral_id)
+    </insert>
+	
+	<select id="findGiftExchangeInfoCondition" parameterType="com.mrbt.lingmoney.utils.PageInfo" resultType="com.mrbt.lingmoney.model.GiftExchangeInfoVo">
+		select gei.id, gei.referral_id referralId, gei.u_id uId, gei.activity_id activityId, 
+			gei.buy_money buyMoney, gei.product_name productName,gei.buy_dt buyDt, gei.gift_name giftName, gei.num, gei.express_number expressNumber, 
+			gei.express_company expressCompany,gei.status, gei.exchange_time exchangeTime, 
+			gei.send_time sendTime,gei.receive_time receiveTime, gei.type,
+			gei.recharge_account rechargeAccount, gei.recharge_code rechargeCode, gei.mobile,
+			up.name,u.telephone,up.referral_code referralCode,up.province,up.city,up.town,up.address,
+			up2.name newName,u2.telephone newTelephone,up2.reg_date newRegDate,up2.id_card newIdCard,
+			year(curdate())-if(length(up2.id_card)=18,substring(up2.id_card,7,4),if(length(up2.id_card)=15,concat('19',substring(up2.id_card,7,2)),null)) as newAge,
+			ap.act_name activityName
+		from 
+        <if test=" condition.category != null and condition.category == 0">
+            gift_exchange_info gei
+        </if>
+        <if test=" condition.category != null and condition.category == 1">
+            gift_exchange_info gei
+        </if>
+        <if test=" condition.category != null and condition.category == 2">
+            gift_exchange_info_new gei
+        </if>
+			left join users_properties up on gei.referral_id = up.u_id
+			left join users u on gei.referral_id = u.id
+			left join users_properties up2 on gei.u_id = up2.u_id
+			left join users u2 on gei.u_id = u2.id
+			left join activity_product ap on gei.activity_id = ap.id
+		<where>
+			<if test=" condition.regUser == 0 ">
+				and u.telephone is not null and substring(u.telephone,1,2)!= '86' and u.telephone != ''
+			</if>
+			<if test=" condition.category != null ">
+				and gei.category = #{condition.category}
+			</if>
+			<if test=" condition.referralId != null ">
+				and gei.referral_id = #{condition.referralId}
+			</if>
+			<if test=" condition.uId != null ">
+				and gei.u_id = #{condition.uId}
+			</if>
+			<if test=" condition.telephone != null and condition.telephone != '' ">
+				and u.telephone like concat('%',#{condition.telephone},'%')
+			</if>
+			<if test=" condition.name != null and condition.name != '' ">
+				and up.name like concat('%',#{condition.name},'%')
+			</if>
+			<if test=" condition.referralCode != null and condition.referralCode != '' ">
+				and up.referral_code like concat('%',#{condition.referralCode},'%')
+			</if>
+			<if test=" condition.status != null">
+				and gei.status = #{condition.status}
+			</if>
+			<if test=" condition.type != null">
+				and gei.type = #{condition.type}
+			</if>
+			<if test=" condition.activityName != null and condition.activityName != '' ">
+				and ap.act_name like concat('%',#{condition.activityName},'%')
+			</if>
+			<if test=" condition.expressNumber != null and condition.expressNumber != ''">
+				and gei.express_number like concat('%',#{condition.expressNumber},'%')
+			</if>
+			<if test=" condition.expressCompany != null and condition.expressCompany != ''">
+				and gei.express_company like concat('%',#{condition.expressCompany},'%')
+			</if>
+		</where>
+		order by gei.exchange_time desc 
+		<if test="from !=0 or size!=0">
+			limit #{from},#{size}
+		</if>
+	</select>
+	
+	<select id="findGiftExchangeInfoCount" parameterType="com.mrbt.lingmoney.utils.PageInfo" resultType="java.lang.Integer">
+		select count(1) 
+		from 
+		<if test=" condition.category != null and condition.category == 0">
+            gift_exchange_info gei
+        </if>
+        <if test=" condition.category != null and condition.category == 1">
+            gift_exchange_info gei
+        </if>
+        <if test=" condition.category != null and condition.category == 2">
+            gift_exchange_info_new gei
+        </if>
+			left join users_properties up on gei.referral_id = up.u_id
+			left join users u on gei.referral_id = u.id
+			left join users_properties up2 on gei.u_id = up2.u_id
+			left join users u2 on gei.u_id = u2.id
+			left join activity_product ap on gei.activity_id = ap.id
+		<where>
+			<if test=" condition.regUser != null and condition.regUser == 0 ">
+				and u.telephone is not null and substring(u.telephone,1,2)!= '86' and u.telephone != ''
+			</if>
+			<if test=" condition.category != null ">
+				and gei.category = #{condition.category}
+			</if>
+			<if test=" condition.referralId != null ">
+				and gei.referral_id = #{condition.referralId}
+			</if>
+			<if test=" condition.uId != null ">
+				and gei.u_id = #{condition.uId}
+			</if>
+			<if test=" condition.telephone != null and condition.telephone != '' ">
+				and u.telephone like concat('%',#{condition.telephone},'%')
+			</if>
+			<if test=" condition.name != null and condition.name != '' ">
+				and up.name like concat('%',#{condition.name},'%')
+			</if>
+			<if test=" condition.referralCode != null and condition.referralCode != '' ">
+				and up.referral_code like concat('%',#{condition.referralCode},'%')
+			</if>
+			<if test=" condition.status != null">
+				and gei.status = #{condition.status}
+			</if>
+			<if test=" condition.type != null">
+				and gei.type = #{condition.type}
+			</if>
+			<if test=" condition.activityName != null and condition.activityName != '' ">
+				and ap.act_name like concat('%',#{condition.activityName},'%')
+			</if>
+			<if test=" condition.expressNumber != null and condition.expressNumber != ''">
+				and gei.express_number like concat('%',#{condition.expressNumber},'%')
+			</if>
+			<if test=" condition.expressCompany != null and condition.expressCompany != ''">
+				and gei.express_company like concat('%',#{condition.expressCompany},'%')
+			</if>
+		</where>
+	</select>
+	
+	<select id="queryThreeMonthBuy" resultType="double" parameterType="java.lang.String">
+		select IFNULL(sum(t.buy_money),0) threeBuyMoney from trading t
+		left join product p on t.p_id = p.id
+		where t.status in (1,2,3) and p.f_time >= 90 and t.u_id = #{uId}
+	</select>
+</mapper>

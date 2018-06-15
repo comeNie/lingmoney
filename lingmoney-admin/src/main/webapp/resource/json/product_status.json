@@ -1,0 +1,7 @@
+[
+	{"statusId":"1","statusName":"项目筹集期"},
+	{"statusId":"2","statusName":"项目运行中"},
+	{"statusId":"3","statusName":"项目汇款中"},
+	{"statusId":"4","statusName":"项目结束"},
+	{"statusId":"5","statusName":"项目作废"}
+]

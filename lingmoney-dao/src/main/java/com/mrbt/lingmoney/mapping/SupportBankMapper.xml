@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.SupportBankMapper">
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.SupportBank">
+    <!--
+    @mbggenerated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="bank_name" jdbcType="VARCHAR" property="bankName" />
+    <result column="bank_code" jdbcType="VARCHAR" property="bankCode" />
+    <result column="bank_short" jdbcType="VARCHAR" property="bankShort" />
+    <result column="bank_logo" jdbcType="VARCHAR" property="bankLogo" />
+    <result column="bank_type" jdbcType="INTEGER" property="bankType" />
+    <result column="bank_order" jdbcType="INTEGER" property="bankOrder" />
+    <result column="upper_limit" jdbcType="VARCHAR" property="upperLimit" />
+    <result column="bank_no" jdbcType="INTEGER" property="bankNo" />
+    <result column="color_value" jdbcType="VARCHAR" property="colorValue" />
+    <result column="background" jdbcType="VARCHAR" property="background" />
+    <result column="ebank_upperlimit" jdbcType="VARCHAR" property="ebankUpperlimit" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+    @mbggenerated
+    -->
+    id, bank_name, bank_code, bank_short, bank_logo, bank_type, bank_order, upper_limit, 
+    bank_no, color_value, background, ebank_upperlimit, status
+  </sql>
+  <select id="selectByExample" parameterType="com.mrbt.lingmoney.model.SupportBankExample" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from support_bank
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart &gt;= 0">
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from support_bank
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--
+    @mbggenerated
+    -->
+    delete from support_bank
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.SupportBankExample">
+    <!--
+    @mbggenerated
+    -->
+    delete from support_bank
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mrbt.lingmoney.model.SupportBank">
+    <!--
+    @mbggenerated
+    -->
+    insert into support_bank (id, bank_name, bank_code, 
+      bank_short, bank_logo, bank_type, 
+      bank_order, upper_limit, bank_no, 
+      color_value, background, ebank_upperlimit, 
+      status)
+    values (#{id,jdbcType=INTEGER}, #{bankName,jdbcType=VARCHAR}, #{bankCode,jdbcType=VARCHAR}, 
+      #{bankShort,jdbcType=VARCHAR}, #{bankLogo,jdbcType=VARCHAR}, #{bankType,jdbcType=INTEGER}, 
+      #{bankOrder,jdbcType=INTEGER}, #{upperLimit,jdbcType=VARCHAR}, #{bankNo,jdbcType=INTEGER}, 
+      #{colorValue,jdbcType=VARCHAR}, #{background,jdbcType=VARCHAR}, #{ebankUpperlimit,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.SupportBank">
+    <!--
+    @mbggenerated
+    -->
+    insert into support_bank
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="bankName != null">
+        bank_name,
+      </if>
+      <if test="bankCode != null">
+        bank_code,
+      </if>
+      <if test="bankShort != null">
+        bank_short,
+      </if>
+      <if test="bankLogo != null">
+        bank_logo,
+      </if>
+      <if test="bankType != null">
+        bank_type,
+      </if>
+      <if test="bankOrder != null">
+        bank_order,
+      </if>
+      <if test="upperLimit != null">
+        upper_limit,
+      </if>
+      <if test="bankNo != null">
+        bank_no,
+      </if>
+      <if test="colorValue != null">
+        color_value,
+      </if>
+      <if test="background != null">
+        background,
+      </if>
+      <if test="ebankUpperlimit != null">
+        ebank_upperlimit,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="bankName != null">
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null">
+        #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bankShort != null">
+        #{bankShort,jdbcType=VARCHAR},
+      </if>
+      <if test="bankLogo != null">
+        #{bankLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankType != null">
+        #{bankType,jdbcType=INTEGER},
+      </if>
+      <if test="bankOrder != null">
+        #{bankOrder,jdbcType=INTEGER},
+      </if>
+      <if test="upperLimit != null">
+        #{upperLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="bankNo != null">
+        #{bankNo,jdbcType=INTEGER},
+      </if>
+      <if test="colorValue != null">
+        #{colorValue,jdbcType=VARCHAR},
+      </if>
+      <if test="background != null">
+        #{background,jdbcType=VARCHAR},
+      </if>
+      <if test="ebankUpperlimit != null">
+        #{ebankUpperlimit,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.SupportBankExample" resultType="java.lang.Long">
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from support_bank
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update support_bank
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.bankName != null">
+        bank_name = #{record.bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankCode != null">
+        bank_code = #{record.bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankShort != null">
+        bank_short = #{record.bankShort,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankLogo != null">
+        bank_logo = #{record.bankLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankType != null">
+        bank_type = #{record.bankType,jdbcType=INTEGER},
+      </if>
+      <if test="record.bankOrder != null">
+        bank_order = #{record.bankOrder,jdbcType=INTEGER},
+      </if>
+      <if test="record.upperLimit != null">
+        upper_limit = #{record.upperLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankNo != null">
+        bank_no = #{record.bankNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.colorValue != null">
+        color_value = #{record.colorValue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.background != null">
+        background = #{record.background,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ebankUpperlimit != null">
+        ebank_upperlimit = #{record.ebankUpperlimit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update support_bank
+    set id = #{record.id,jdbcType=INTEGER},
+      bank_name = #{record.bankName,jdbcType=VARCHAR},
+      bank_code = #{record.bankCode,jdbcType=VARCHAR},
+      bank_short = #{record.bankShort,jdbcType=VARCHAR},
+      bank_logo = #{record.bankLogo,jdbcType=VARCHAR},
+      bank_type = #{record.bankType,jdbcType=INTEGER},
+      bank_order = #{record.bankOrder,jdbcType=INTEGER},
+      upper_limit = #{record.upperLimit,jdbcType=VARCHAR},
+      bank_no = #{record.bankNo,jdbcType=INTEGER},
+      color_value = #{record.colorValue,jdbcType=VARCHAR},
+      background = #{record.background,jdbcType=VARCHAR},
+      ebank_upperlimit = #{record.ebankUpperlimit,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mrbt.lingmoney.model.SupportBank">
+    <!--
+    @mbggenerated
+    -->
+    update support_bank
+    <set>
+      <if test="bankName != null">
+        bank_name = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null">
+        bank_code = #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bankShort != null">
+        bank_short = #{bankShort,jdbcType=VARCHAR},
+      </if>
+      <if test="bankLogo != null">
+        bank_logo = #{bankLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankType != null">
+        bank_type = #{bankType,jdbcType=INTEGER},
+      </if>
+      <if test="bankOrder != null">
+        bank_order = #{bankOrder,jdbcType=INTEGER},
+      </if>
+      <if test="upperLimit != null">
+        upper_limit = #{upperLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="bankNo != null">
+        bank_no = #{bankNo,jdbcType=INTEGER},
+      </if>
+      <if test="colorValue != null">
+        color_value = #{colorValue,jdbcType=VARCHAR},
+      </if>
+      <if test="background != null">
+        background = #{background,jdbcType=VARCHAR},
+      </if>
+      <if test="ebankUpperlimit != null">
+        ebank_upperlimit = #{ebankUpperlimit,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mrbt.lingmoney.model.SupportBank">
+    <!--
+    @mbggenerated
+    -->
+    update support_bank
+    set bank_name = #{bankName,jdbcType=VARCHAR},
+      bank_code = #{bankCode,jdbcType=VARCHAR},
+      bank_short = #{bankShort,jdbcType=VARCHAR},
+      bank_logo = #{bankLogo,jdbcType=VARCHAR},
+      bank_type = #{bankType,jdbcType=INTEGER},
+      bank_order = #{bankOrder,jdbcType=INTEGER},
+      upper_limit = #{upperLimit,jdbcType=VARCHAR},
+      bank_no = #{bankNo,jdbcType=INTEGER},
+      color_value = #{colorValue,jdbcType=VARCHAR},
+      background = #{background,jdbcType=VARCHAR},
+      ebank_upperlimit = #{ebankUpperlimit,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- custom setting -->
+  <select id="selectBankInfoByCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List" />
+  	from  support_bank 
+  	where bank_code = #{0, jdbcType=VARCHAR}
+  </select>
+  
+   <select id="findOnlineBank" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List" /> 
+  	from support_bank where bank_type = '1' or bank_type = "2" order by bank_order
+  </select>
+</mapper>

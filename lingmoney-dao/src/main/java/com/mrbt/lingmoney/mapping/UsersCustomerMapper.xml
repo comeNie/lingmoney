@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.UsersCustomerMapper">
+	<select id="selectUsersVoByCondition" parameterType="com.mrbt.lingmoney.utils.PageInfo"
+		resultType="com.mrbt.lingmoney.model.UsersVo">
+		<!-- select * from users_money_all -->
+		<if test=" condition.showMgr == true ">
+			select * from users_money_all
+		</if>
+		<if test=" condition.showMgr == false ">
+			select * from users_money_nomgr
+		</if>
+		<where>
+			<if test=" condition.id != null and condition.id != '' ">
+				and id = #{condition.id}
+			</if>
+			<if test=" condition.name != null and condition.name != '' ">
+				and name like concat('%',#{condition.name},'%')
+			</if>
+			<if test=" condition.telephone != null and condition.telephone != '' ">
+				and telephone like concat('%',#{condition.telephone},'%')
+			</if>
+			<if
+				test=" condition.referralCode != null and condition.referralCode != '' ">
+				and referralCode like concat('%',#{condition.referralCode},'%')
+			</if>
+			<if test=" condition.platformType != null ">
+				and platformType = #{condition.platformType}
+			</if>
+			<if test=" condition.registChannel != null and condition.registChannel != '' ">
+				and registChannel = #{condition.registChannel}
+			</if>
+			<if test=" condition.isBindCard != null ">
+				and isBindCard = #{condition.isBindCard}
+			</if>
+			<if test=" condition.isFinancialProduct != null ">
+				and isFinancialProduct = #{condition.isFinancialProduct}
+			</if>
+			<if test=" condition.isHoldProduct != null ">
+				and isHoldProduct = #{condition.isHoldProduct}
+			</if>
+			<if test=" condition.financialMin != null and condition.financialMax != null ">
+				and financialMoney between #{condition.financialMin} and
+				#{condition.financialMax}
+			</if>
+			<if test=" condition.holdMin != null and condition.holdMax != null ">
+				and holdMoney between #{condition.holdMin} and
+				#{condition.holdMax}
+			</if>
+			<if test=" condition.regDateStr != null and condition.regDateStr != ''">
+			    <choose>
+	             <when test="condition.regDateStrEnd != null and condition.regDateStrEnd != ''">
+	               and date_format(regDate, '%Y-%m-%d') between #{condition.regDateStr} and #{condition.regDateStrEnd} 
+	             </when>
+	             <otherwise>
+	               and date_format(regDate, '%Y-%m-%d') = #{condition.regDateStr}
+	             </otherwise>
+	            </choose>
+            </if>   
+			<if test=" condition.showMgr == true ">
+				<if test=" condition.isHaveManager != null ">
+					and isHaveManager = #{condition.isHaveManager}
+				</if>
+				<if test=" condition.managerId != null and condition.managerId != '' ">
+					and managerId like concat('%',#{condition.managerId},'%')
+				</if>
+				<if test=" condition.managerName != null and condition.managerName != '' ">
+					and managerName like concat('%',#{condition.managerName},'%')
+				</if>
+				<if test=" condition.managerCom != null and condition.managerCom != '' ">
+					and managerCom = #{condition.managerCom}
+				</if>
+				<if test=" condition.managerDept != null and condition.managerDept != '' ">
+					and managerDept = #{condition.managerDept}
+				</if>
+			</if>
+		</where>
+		order by ${sort} ${order}
+		<if test="from !=0 or size!=0">
+			limit #{from},#{size}
+		</if>
+	</select>
+	<select id="selectUsersVoCountByCondition" parameterType="com.mrbt.lingmoney.utils.PageInfo"
+		resultType="java.lang.Integer">
+		<!-- select count(1) from users_money_all -->
+		<if test=" condition.showMgr == true ">
+			select count(1) from users_money_all
+		</if>
+		<if test=" condition.showMgr == false ">
+			select count(1) from users_money_nomgr
+		</if>
+		<where>
+			<if test=" condition.id != null and condition.id != '' ">
+				and id = #{condition.id}
+			</if>
+			<if test=" condition.name != null and condition.name != '' ">
+				and name like concat('%',#{condition.name},'%')
+			</if>
+			<if test=" condition.telephone != null and condition.telephone != '' ">
+				and telephone like concat('%',#{condition.telephone},'%')
+			</if>
+			<if
+				test=" condition.referralCode != null and condition.referralCode != '' ">
+				and referralCode like concat('%',#{condition.referralCode},'%')
+			</if>
+			<if test=" condition.platformType != null ">
+				and platformType = #{condition.platformType}
+			</if>
+			<if test=" condition.registChannel != null and condition.registChannel != '' ">
+				and registChannel = #{condition.registChannel}
+			</if>
+			<if test=" condition.isBindCard != null ">
+				and isBindCard = #{condition.isBindCard}
+			</if>
+			<if test=" condition.isFinancialProduct != null ">
+				and isFinancialProduct = #{condition.isFinancialProduct}
+			</if>
+			<if test=" condition.isHoldProduct != null ">
+				and isHoldProduct = #{condition.isHoldProduct}
+			</if>
+			<if test=" condition.financialMin != null and condition.financialMax != null ">
+				and financialMoney between #{condition.financialMin} and
+				#{condition.financialMax}
+			</if>
+			<if test=" condition.holdMin != null and condition.holdMax != null ">
+				and holdMoney between #{condition.holdMin} and
+				#{condition.holdMax}
+			</if>
+            <if test=" condition.regDateStr != null and condition.regDateStr != ''">
+                <choose>
+                 <when test="condition.regDateStrEnd != null and condition.regDateStrEnd != ''">
+                   and date_format(regDate, '%Y-%m-%d') between #{condition.regDateStr} and #{condition.regDateStrEnd} 
+                 </when>
+                 <otherwise>
+                   and date_format(regDate, '%Y-%m-%d') = #{condition.regDateStr}
+                 </otherwise>
+                </choose>
+            </if>   		
+			<if test=" condition.showMgr == true ">
+				<if test=" condition.isHaveManager != null ">
+					and isHaveManager = #{condition.isHaveManager}
+				</if>
+				<if test=" condition.managerId != null and condition.managerId != '' ">
+					and managerId like concat('%',#{condition.managerId},'%')
+				</if>
+				<if test=" condition.managerName != null and condition.managerName != '' ">
+					and managerName like concat('%',#{condition.managerName},'%')
+				</if>
+				<if test=" condition.managerCom != null and condition.managerCom != '' ">
+					and managerCom = #{condition.managerCom}
+				</if>
+				<if test=" condition.managerDept != null and condition.managerDept != '' ">
+					and managerDept = #{condition.managerDept}
+				</if>
+			</if>
+		</where>
+	</select>
+
+	<select id="selectTradingListByUsersId" parameterType="com.mrbt.lingmoney.utils.PageInfo"
+		resultType="com.mrbt.lingmoney.model.BuyRecordsVo">
+		select t.id tId, p.id pId, p.f_time fTime, p.f_yield fYield, p.status
+		pStatus, p.name pName, p.code pCode, p.ed_dt eDdt,
+		u.id uId, up.name uName, u.telephone telephone,
+		up.id_card idCard, t.financial_money financialMoney, t.value_dt valueDt,
+		t.buy_dt buyDt, t.status tStatus, tfi.interest interest, t.min_sell_dt minSellDt from trading t
+		inner join product p on t.p_id = p.id
+		inner join users u on t.u_id = u.id
+		inner join users_properties up on t.u_id = up.u_id
+		left join trading_fix_info tfi on tfi.t_id = t.id
+		<where>
+			<if test=" condition.uId != null ">
+				and t.u_id = #{condition.uId}
+			</if>
+			<if test=" condition.tStatus != null ">
+				and t.status = #{condition.tStatus}
+			</if>
+		</where>
+		order by ${sort} ${order}
+		<if test="from !=0 or size!=0">
+			limit #{from},#{size}
+		</if>
+	</select>
+	
+	<select id="queryManagerCom" parameterType="java.lang.String"
+		resultType="java.util.Map">
+		select DISTINCT comp_name as str, 1 as id
+		from employee_relations_mapping
+		<where>
+			<if test=" _parameter != null ">
+				and comp_name like concat('%',#{_parameter},'%')
+			</if>
+		</where>
+	</select>
+	<select id="queryManagerDept" parameterType="java.lang.String"
+		resultType="java.util.Map">
+		select DISTINCT department as str, 1 as id
+		from employee_relations_mapping
+		<where>
+			<if test=" _parameter != null ">
+				and department like concat('%',#{_parameter},'%')
+			</if>
+		</where>
+	</select>
+	<select id="queryRegistChannel" parameterType="java.lang.String"
+		resultType="java.util.Map">
+		select * from (select '旧版注册' as str, 1 as id
+		union
+		select DISTINCT name as str, 1 as id
+		from users_channel) a 
+		<where>
+			<if test=" _parameter != null ">
+				and a.str like concat('%',#{_parameter},'%')
+			</if>
+		</where>
+	</select>
+</mapper>

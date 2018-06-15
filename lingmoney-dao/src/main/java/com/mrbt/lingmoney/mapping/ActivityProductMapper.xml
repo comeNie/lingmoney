@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mrbt.lingmoney.mapper.ActivityProductMapper" >
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.ActivityProduct" >
+    <!--
+    @mbggenerated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="p_id" property="pId" jdbcType="VARCHAR" />
+    <result column="act_name" property="actName" jdbcType="VARCHAR" />
+    <result column="act_title" property="actTitle" jdbcType="VARCHAR" />
+    <result column="act_url" property="actUrl" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="start_date" property="startDate" jdbcType="TIMESTAMP" />
+    <result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="priority" property="priority" jdbcType="INTEGER" />
+    <result column="act_center" property="actCenter" jdbcType="INTEGER" />
+    <result column="act_type" property="actType" jdbcType="INTEGER" />
+    <result column="link_url_pc" property="linkUrlPc" jdbcType="VARCHAR" />
+    <result column="link_url_app" property="linkUrlApp" jdbcType="VARCHAR" />
+    <result column="preheat" property="preheat" jdbcType="INTEGER" />
+    <result column="activity_pic" property="activityPic" jdbcType="VARCHAR" />
+    <result column="activity_gift" property="activityGift" jdbcType="VARCHAR" />
+    <result column="activity_word" property="activityWord" jdbcType="VARCHAR" />
+    <result column="ap_id" property="apId" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.mrbt.lingmoney.model.ActivityProductWithBLOBs" extends="BaseResultMap" >
+    <!--
+    @mbggenerated
+    -->
+    <result column="act_desc" property="actDesc" jdbcType="LONGVARCHAR" />
+    <result column="act_desc_mobile" property="actDescMobile" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <!--
+    @mbggenerated
+    -->
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <!--
+    @mbggenerated
+    -->
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <!--
+    @mbggenerated
+    -->
+    id, p_id, act_name, act_title, act_url, status, start_date, end_date, create_time, 
+    priority, act_center, act_type, link_url_pc, link_url_app, preheat, activity_pic, 
+    activity_gift, activity_word, ap_id
+  </sql>
+  <sql id="Blob_Column_List" >
+    <!--
+    @mbggenerated
+    -->
+    act_desc, act_desc_mobile
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.mrbt.lingmoney.model.ActivityProductExample" >
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from activity_product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mrbt.lingmoney.model.ActivityProductExample" >
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from activity_product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    <!--
+    @mbggenerated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from activity_product
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <!--
+    @mbggenerated
+    -->
+    delete from activity_product
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.ActivityProductExample" >
+    <!--
+    @mbggenerated
+    -->
+    delete from activity_product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mrbt.lingmoney.model.ActivityProductWithBLOBs" >
+    <!--
+    @mbggenerated
+    -->
+    insert into activity_product (id, p_id, act_name, 
+      act_title, act_url, status, 
+      start_date, end_date, create_time, 
+      priority, act_center, act_type, 
+      link_url_pc, link_url_app, preheat, 
+      activity_pic, activity_gift, activity_word, 
+      ap_id, act_desc, act_desc_mobile
+      )
+    values (#{id,jdbcType=INTEGER}, #{pId,jdbcType=VARCHAR}, #{actName,jdbcType=VARCHAR}, 
+      #{actTitle,jdbcType=VARCHAR}, #{actUrl,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{startDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{priority,jdbcType=INTEGER}, #{actCenter,jdbcType=INTEGER}, #{actType,jdbcType=INTEGER}, 
+      #{linkUrlPc,jdbcType=VARCHAR}, #{linkUrlApp,jdbcType=VARCHAR}, #{preheat,jdbcType=INTEGER}, 
+      #{activityPic,jdbcType=VARCHAR}, #{activityGift,jdbcType=VARCHAR}, #{activityWord,jdbcType=VARCHAR}, 
+      #{apId,jdbcType=VARCHAR}, #{actDesc,jdbcType=LONGVARCHAR}, #{actDescMobile,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.ActivityProductWithBLOBs" >
+    <!--
+    @mbggenerated
+    -->
+    insert into activity_product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="pId != null" >
+        p_id,
+      </if>
+      <if test="actName != null" >
+        act_name,
+      </if>
+      <if test="actTitle != null" >
+        act_title,
+      </if>
+      <if test="actUrl != null" >
+        act_url,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="priority != null" >
+        priority,
+      </if>
+      <if test="actCenter != null" >
+        act_center,
+      </if>
+      <if test="actType != null" >
+        act_type,
+      </if>
+      <if test="linkUrlPc != null" >
+        link_url_pc,
+      </if>
+      <if test="linkUrlApp != null" >
+        link_url_app,
+      </if>
+      <if test="preheat != null" >
+        preheat,
+      </if>
+      <if test="activityPic != null" >
+        activity_pic,
+      </if>
+      <if test="activityGift != null" >
+        activity_gift,
+      </if>
+      <if test="activityWord != null" >
+        activity_word,
+      </if>
+      <if test="apId != null" >
+        ap_id,
+      </if>
+      <if test="actDesc != null" >
+        act_desc,
+      </if>
+      <if test="actDescMobile != null" >
+        act_desc_mobile,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="pId != null" >
+        #{pId,jdbcType=VARCHAR},
+      </if>
+      <if test="actName != null" >
+        #{actName,jdbcType=VARCHAR},
+      </if>
+      <if test="actTitle != null" >
+        #{actTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="actUrl != null" >
+        #{actUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="priority != null" >
+        #{priority,jdbcType=INTEGER},
+      </if>
+      <if test="actCenter != null" >
+        #{actCenter,jdbcType=INTEGER},
+      </if>
+      <if test="actType != null" >
+        #{actType,jdbcType=INTEGER},
+      </if>
+      <if test="linkUrlPc != null" >
+        #{linkUrlPc,jdbcType=VARCHAR},
+      </if>
+      <if test="linkUrlApp != null" >
+        #{linkUrlApp,jdbcType=VARCHAR},
+      </if>
+      <if test="preheat != null" >
+        #{preheat,jdbcType=INTEGER},
+      </if>
+      <if test="activityPic != null" >
+        #{activityPic,jdbcType=VARCHAR},
+      </if>
+      <if test="activityGift != null" >
+        #{activityGift,jdbcType=VARCHAR},
+      </if>
+      <if test="activityWord != null" >
+        #{activityWord,jdbcType=VARCHAR},
+      </if>
+      <if test="apId != null" >
+        #{apId,jdbcType=VARCHAR},
+      </if>
+      <if test="actDesc != null" >
+        #{actDesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="actDescMobile != null" >
+        #{actDescMobile,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.ActivityProductExample" resultType="java.lang.Long" >
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from activity_product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    <!--
+    @mbggenerated
+    -->
+    update activity_product
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.pId != null" >
+        p_id = #{record.pId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.actName != null" >
+        act_name = #{record.actName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.actTitle != null" >
+        act_title = #{record.actTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.actUrl != null" >
+        act_url = #{record.actUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.startDate != null" >
+        start_date = #{record.startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endDate != null" >
+        end_date = #{record.endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.priority != null" >
+        priority = #{record.priority,jdbcType=INTEGER},
+      </if>
+      <if test="record.actCenter != null" >
+        act_center = #{record.actCenter,jdbcType=INTEGER},
+      </if>
+      <if test="record.actType != null" >
+        act_type = #{record.actType,jdbcType=INTEGER},
+      </if>
+      <if test="record.linkUrlPc != null" >
+        link_url_pc = #{record.linkUrlPc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.linkUrlApp != null" >
+        link_url_app = #{record.linkUrlApp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.preheat != null" >
+        preheat = #{record.preheat,jdbcType=INTEGER},
+      </if>
+      <if test="record.activityPic != null" >
+        activity_pic = #{record.activityPic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activityGift != null" >
+        activity_gift = #{record.activityGift,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activityWord != null" >
+        activity_word = #{record.activityWord,jdbcType=VARCHAR},
+      </if>
+      <if test="record.apId != null" >
+        ap_id = #{record.apId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.actDesc != null" >
+        act_desc = #{record.actDesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.actDescMobile != null" >
+        act_desc_mobile = #{record.actDescMobile,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    <!--
+    @mbggenerated
+    -->
+    update activity_product
+    set id = #{record.id,jdbcType=INTEGER},
+      p_id = #{record.pId,jdbcType=VARCHAR},
+      act_name = #{record.actName,jdbcType=VARCHAR},
+      act_title = #{record.actTitle,jdbcType=VARCHAR},
+      act_url = #{record.actUrl,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=INTEGER},
+      start_date = #{record.startDate,jdbcType=TIMESTAMP},
+      end_date = #{record.endDate,jdbcType=TIMESTAMP},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      priority = #{record.priority,jdbcType=INTEGER},
+      act_center = #{record.actCenter,jdbcType=INTEGER},
+      act_type = #{record.actType,jdbcType=INTEGER},
+      link_url_pc = #{record.linkUrlPc,jdbcType=VARCHAR},
+      link_url_app = #{record.linkUrlApp,jdbcType=VARCHAR},
+      preheat = #{record.preheat,jdbcType=INTEGER},
+      activity_pic = #{record.activityPic,jdbcType=VARCHAR},
+      activity_gift = #{record.activityGift,jdbcType=VARCHAR},
+      activity_word = #{record.activityWord,jdbcType=VARCHAR},
+      ap_id = #{record.apId,jdbcType=VARCHAR},
+      act_desc = #{record.actDesc,jdbcType=LONGVARCHAR},
+      act_desc_mobile = #{record.actDescMobile,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    <!--
+    @mbggenerated
+    -->
+    update activity_product
+    set id = #{record.id,jdbcType=INTEGER},
+      p_id = #{record.pId,jdbcType=VARCHAR},
+      act_name = #{record.actName,jdbcType=VARCHAR},
+      act_title = #{record.actTitle,jdbcType=VARCHAR},
+      act_url = #{record.actUrl,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=INTEGER},
+      start_date = #{record.startDate,jdbcType=TIMESTAMP},
+      end_date = #{record.endDate,jdbcType=TIMESTAMP},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      priority = #{record.priority,jdbcType=INTEGER},
+      act_center = #{record.actCenter,jdbcType=INTEGER},
+      act_type = #{record.actType,jdbcType=INTEGER},
+      link_url_pc = #{record.linkUrlPc,jdbcType=VARCHAR},
+      link_url_app = #{record.linkUrlApp,jdbcType=VARCHAR},
+      preheat = #{record.preheat,jdbcType=INTEGER},
+      activity_pic = #{record.activityPic,jdbcType=VARCHAR},
+      activity_gift = #{record.activityGift,jdbcType=VARCHAR},
+      activity_word = #{record.activityWord,jdbcType=VARCHAR},
+      ap_id = #{record.apId,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mrbt.lingmoney.model.ActivityProductWithBLOBs" >
+    <!--
+    @mbggenerated
+    -->
+    update activity_product
+    <set >
+      <if test="pId != null" >
+        p_id = #{pId,jdbcType=VARCHAR},
+      </if>
+      <if test="actName != null" >
+        act_name = #{actName,jdbcType=VARCHAR},
+      </if>
+      <if test="actTitle != null" >
+        act_title = #{actTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="actUrl != null" >
+        act_url = #{actUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="startDate != null" >
+        start_date = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="priority != null" >
+        priority = #{priority,jdbcType=INTEGER},
+      </if>
+      <if test="actCenter != null" >
+        act_center = #{actCenter,jdbcType=INTEGER},
+      </if>
+      <if test="actType != null" >
+        act_type = #{actType,jdbcType=INTEGER},
+      </if>
+      <if test="linkUrlPc != null" >
+        link_url_pc = #{linkUrlPc,jdbcType=VARCHAR},
+      </if>
+      <if test="linkUrlApp != null" >
+        link_url_app = #{linkUrlApp,jdbcType=VARCHAR},
+      </if>
+      <if test="preheat != null" >
+        preheat = #{preheat,jdbcType=INTEGER},
+      </if>
+      <if test="activityPic != null" >
+        activity_pic = #{activityPic,jdbcType=VARCHAR},
+      </if>
+      <if test="activityGift != null" >
+        activity_gift = #{activityGift,jdbcType=VARCHAR},
+      </if>
+      <if test="activityWord != null" >
+        activity_word = #{activityWord,jdbcType=VARCHAR},
+      </if>
+      <if test="apId != null" >
+        ap_id = #{apId,jdbcType=VARCHAR},
+      </if>
+      <if test="actDesc != null" >
+        act_desc = #{actDesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="actDescMobile != null" >
+        act_desc_mobile = #{actDescMobile,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mrbt.lingmoney.model.ActivityProductWithBLOBs" >
+    <!--
+    @mbggenerated
+    -->
+    update activity_product
+    set p_id = #{pId,jdbcType=VARCHAR},
+      act_name = #{actName,jdbcType=VARCHAR},
+      act_title = #{actTitle,jdbcType=VARCHAR},
+      act_url = #{actUrl,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      start_date = #{startDate,jdbcType=TIMESTAMP},
+      end_date = #{endDate,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      priority = #{priority,jdbcType=INTEGER},
+      act_center = #{actCenter,jdbcType=INTEGER},
+      act_type = #{actType,jdbcType=INTEGER},
+      link_url_pc = #{linkUrlPc,jdbcType=VARCHAR},
+      link_url_app = #{linkUrlApp,jdbcType=VARCHAR},
+      preheat = #{preheat,jdbcType=INTEGER},
+      activity_pic = #{activityPic,jdbcType=VARCHAR},
+      activity_gift = #{activityGift,jdbcType=VARCHAR},
+      activity_word = #{activityWord,jdbcType=VARCHAR},
+      ap_id = #{apId,jdbcType=VARCHAR},
+      act_desc = #{actDesc,jdbcType=LONGVARCHAR},
+      act_desc_mobile = #{actDescMobile,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mrbt.lingmoney.model.ActivityProduct" >
+    <!--
+    @mbggenerated
+    -->
+    update activity_product
+    set p_id = #{pId,jdbcType=VARCHAR},
+      act_name = #{actName,jdbcType=VARCHAR},
+      act_title = #{actTitle,jdbcType=VARCHAR},
+      act_url = #{actUrl,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      start_date = #{startDate,jdbcType=TIMESTAMP},
+      end_date = #{endDate,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      priority = #{priority,jdbcType=INTEGER},
+      act_center = #{actCenter,jdbcType=INTEGER},
+      act_type = #{actType,jdbcType=INTEGER},
+      link_url_pc = #{linkUrlPc,jdbcType=VARCHAR},
+      link_url_app = #{linkUrlApp,jdbcType=VARCHAR},
+      preheat = #{preheat,jdbcType=INTEGER},
+      activity_pic = #{activityPic,jdbcType=VARCHAR},
+      activity_gift = #{activityGift,jdbcType=VARCHAR},
+      activity_word = #{activityWord,jdbcType=VARCHAR},
+      ap_id = #{apId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="findFestivalBuyDetailList" resultType="java.util.Map">
+  	SELECT p.name p_name,p.f_time,t.financial_money,date_format(t.buy_dt,'%Y-%m-%d %T') buy_dt,u.id,u.telephone,up.name u_name,e.department,
+		(SELECT NAME FROM users_properties WHERE u_id = up.referral_id) AS o_name
+	FROM product p
+	LEFT JOIN trading t ON t.p_id = p.id
+	LEFT JOIN users u ON u.id = t.u_id
+	LEFT JOIN users_properties up ON up.u_id = u.id
+	LEFT JOIN employee_relations_mapping e ON e.newID = up.referral_code
+	WHERE p.id IN (SELECT id FROM product WHERE NAME LIKE CONCAT('%',#{pactName},'%'))
+	  <if test="startDate != '' and endDate != ''" >
+        AND t.buy_dt BETWEEN #{startDate} AND #{endDate}
+      </if>
+      AND t.status IN (1,2,3,4)
+      ORDER BY up.name,t.buy_dt		
+  </select>
+  
+  <select id="findFinanceMoneyByPcode" resultType="java.math.BigDecimal">
+  	SELECT SUM(t.`financial_money`)
+	FROM product p
+	LEFT JOIN trading t ON t.p_id = p.id
+	WHERE p.id IN (SELECT id FROM product WHERE NAME LIKE CONCAT('%',#{pactName},'%'))
+		AND p.`batch` = #{pcode}
+		<if test="activityStartDate != '' and activityEndDate != ''" >
+         	AND t.buy_dt BETWEEN #{activityStartDate} AND #{activityEndDate}
+        </if>
+		AND t.u_id = #{uid}
+		AND t.status IN (1,2,3,4)
+  </select>
+</mapper>

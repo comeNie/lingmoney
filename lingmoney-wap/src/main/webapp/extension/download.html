@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0, minimum-scale=1.0">
+    <title>APP下载</title>
+    <link rel="stylesheet" href="../resource/css/register.css">
+</head>
+<body style="background:#ff5c5c">
+<div class="agreement-top"><a href="javascript:history.back(-1);">返回</a>APP下载</div>
+    <div class="main" style="top:0.88rem;">
+        <div class="download-logo"><img src="../resource/images/inverse.png"/></div>
+        <p class="download-tip"><span>领钱儿</span><br>都市白领的专属理财平台</p>
+        <div class="download-img1"><img src="../resource/images/register14.png"/></div>
+        <div class="download-download">
+            <a href="http://static.lingmoney.cn/download/LingQian_L.apk">
+            
+            <span class="register-but" style="background:#ff5c5c;border-radius: 0.1rem;width:6.5rem;display:block;height:0.6rem;line-height:0.6rem;margin-top:1.8rem;    text-align: center;margin-left:auto;margin-right:auto;">Android客户端<!-- <img src="../resource/images/register15.png" style="top:1.74rem;left:1rem;"/> --></span>
+                
+        </a>
+            <a href="https://itunes.apple.com/cn/app/领钱儿/id1094553300?mt=8">
+            <span class="register-but" style="background:#ff5c5c;border-radius: 0.1rem;width:6.5rem;display:block;height:0.6rem;line-height:0.6rem;margin-top:0.4rem;    text-align: center;margin-left:auto;margin-right:auto;">Iphone客户端</span>
+            
+            
+            </a>
+        </div>
+        
+
+    </div>
+<script>
+(function (doc, win) {
+    var docEl = doc.documentElement,
+        resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+        recalc = function () {
+            var clientWidth = docEl.clientWidth;
+            if (!clientWidth) return;
+            if(clientWidth>=750){
+                docEl.style.fontSize = '100px';
+            }else{
+                docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+            }
+        };
+    if (!doc.addEventListener) return;
+    win.addEventListener(resizeEvt, recalc, false);
+    doc.addEventListener('DOMContentLoaded', recalc, false);
+})(document, window);   
+</script>
+</body>
+</html>

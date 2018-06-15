@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+            http://www.springframework.org/schema/beans/spring-beans-4.1.xsd  
+            http://www.springframework.org/schema/mvc  
+            http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd">
+	<bean id="sendSMSUtils" class="com.mrbt.lingmoney.utils.SendSMSUtils">
+		<property name="url" value="http://106.ihuyi.cn/webservice/sms.php?method=Submit"></property>
+		<property name="account" value="cf_rbyt"></property>
+		<property name="password" value="DjwXrS"></property>
+		<!-- <property name="phone" value="13141376080"></property> -->
+	</bean>
+</beans>

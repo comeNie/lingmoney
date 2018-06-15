@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.PayEnterpriseMapper">
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.PayEnterprise">
+    <!--
+    @mbggenerated
+    -->
+    <id column="platformUserNo" jdbcType="INTEGER" property="platformuserno" />
+    <result column="platformNo" jdbcType="VARCHAR" property="platformno" />
+    <result column="requestNo" jdbcType="VARCHAR" property="requestno" />
+    <result column="enterpriseName" jdbcType="VARCHAR" property="enterprisename" />
+    <result column="bankLicense" jdbcType="VARCHAR" property="banklicense" />
+    <result column="orgNo" jdbcType="VARCHAR" property="orgno" />
+    <result column="businessLicense" jdbcType="VARCHAR" property="businesslicense" />
+    <result column="taxNo" jdbcType="VARCHAR" property="taxno" />
+    <result column="legal" jdbcType="VARCHAR" property="legal" />
+    <result column="legalIdNo" jdbcType="VARCHAR" property="legalidno" />
+    <result column="contact" jdbcType="VARCHAR" property="contact" />
+    <result column="contactPhone" jdbcType="VARCHAR" property="contactphone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="memberClassType" jdbcType="VARCHAR" property="memberclasstype" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="bank_no" jdbcType="VARCHAR" property="bankNo" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+    @mbggenerated
+    -->
+    platformUserNo, platformNo, requestNo, enterpriseName, bankLicense, orgNo, businessLicense, 
+    taxNo, legal, legalIdNo, contact, contactPhone, email, memberClassType, status, bank_no
+  </sql>
+  <select id="selectByExample" parameterType="com.mrbt.lingmoney.model.PayEnterpriseExample" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from pay_enterprise
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0">
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from pay_enterprise
+    where platformUserNo = #{platformuserno,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--
+    @mbggenerated
+    -->
+    delete from pay_enterprise
+    where platformUserNo = #{platformuserno,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.PayEnterpriseExample">
+    <!--
+    @mbggenerated
+    -->
+    delete from pay_enterprise
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mrbt.lingmoney.model.PayEnterprise">
+    <!--
+    @mbggenerated
+    -->
+    insert into pay_enterprise (platformUserNo, platformNo, requestNo, 
+      enterpriseName, bankLicense, orgNo, 
+      businessLicense, taxNo, legal, 
+      legalIdNo, contact, contactPhone, 
+      email, memberClassType, status, 
+      bank_no)
+    values (#{platformuserno,jdbcType=INTEGER}, #{platformno,jdbcType=VARCHAR}, #{requestno,jdbcType=VARCHAR}, 
+      #{enterprisename,jdbcType=VARCHAR}, #{banklicense,jdbcType=VARCHAR}, #{orgno,jdbcType=VARCHAR}, 
+      #{businesslicense,jdbcType=VARCHAR}, #{taxno,jdbcType=VARCHAR}, #{legal,jdbcType=VARCHAR}, 
+      #{legalidno,jdbcType=VARCHAR}, #{contact,jdbcType=VARCHAR}, #{contactphone,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{memberclasstype,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{bankNo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.PayEnterprise">
+    <!--
+    @mbggenerated
+    -->
+    insert into pay_enterprise
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="platformuserno != null">
+        platformUserNo,
+      </if>
+      <if test="platformno != null">
+        platformNo,
+      </if>
+      <if test="requestno != null">
+        requestNo,
+      </if>
+      <if test="enterprisename != null">
+        enterpriseName,
+      </if>
+      <if test="banklicense != null">
+        bankLicense,
+      </if>
+      <if test="orgno != null">
+        orgNo,
+      </if>
+      <if test="businesslicense != null">
+        businessLicense,
+      </if>
+      <if test="taxno != null">
+        taxNo,
+      </if>
+      <if test="legal != null">
+        legal,
+      </if>
+      <if test="legalidno != null">
+        legalIdNo,
+      </if>
+      <if test="contact != null">
+        contact,
+      </if>
+      <if test="contactphone != null">
+        contactPhone,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="memberclasstype != null">
+        memberClassType,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="bankNo != null">
+        bank_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="platformuserno != null">
+        #{platformuserno,jdbcType=INTEGER},
+      </if>
+      <if test="platformno != null">
+        #{platformno,jdbcType=VARCHAR},
+      </if>
+      <if test="requestno != null">
+        #{requestno,jdbcType=VARCHAR},
+      </if>
+      <if test="enterprisename != null">
+        #{enterprisename,jdbcType=VARCHAR},
+      </if>
+      <if test="banklicense != null">
+        #{banklicense,jdbcType=VARCHAR},
+      </if>
+      <if test="orgno != null">
+        #{orgno,jdbcType=VARCHAR},
+      </if>
+      <if test="businesslicense != null">
+        #{businesslicense,jdbcType=VARCHAR},
+      </if>
+      <if test="taxno != null">
+        #{taxno,jdbcType=VARCHAR},
+      </if>
+      <if test="legal != null">
+        #{legal,jdbcType=VARCHAR},
+      </if>
+      <if test="legalidno != null">
+        #{legalidno,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null">
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="contactphone != null">
+        #{contactphone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="memberclasstype != null">
+        #{memberclasstype,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="bankNo != null">
+        #{bankNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.PayEnterpriseExample" resultType="java.lang.Long">
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from pay_enterprise
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update pay_enterprise
+    <set>
+      <if test="record.platformuserno != null">
+        platformUserNo = #{record.platformuserno,jdbcType=INTEGER},
+      </if>
+      <if test="record.platformno != null">
+        platformNo = #{record.platformno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.requestno != null">
+        requestNo = #{record.requestno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.enterprisename != null">
+        enterpriseName = #{record.enterprisename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.banklicense != null">
+        bankLicense = #{record.banklicense,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgno != null">
+        orgNo = #{record.orgno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businesslicense != null">
+        businessLicense = #{record.businesslicense,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taxno != null">
+        taxNo = #{record.taxno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legal != null">
+        legal = #{record.legal,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalidno != null">
+        legalIdNo = #{record.legalidno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contact != null">
+        contact = #{record.contact,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactphone != null">
+        contactPhone = #{record.contactphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null">
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberclasstype != null">
+        memberClassType = #{record.memberclasstype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.bankNo != null">
+        bank_no = #{record.bankNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update pay_enterprise
+    set platformUserNo = #{record.platformuserno,jdbcType=INTEGER},
+      platformNo = #{record.platformno,jdbcType=VARCHAR},
+      requestNo = #{record.requestno,jdbcType=VARCHAR},
+      enterpriseName = #{record.enterprisename,jdbcType=VARCHAR},
+      bankLicense = #{record.banklicense,jdbcType=VARCHAR},
+      orgNo = #{record.orgno,jdbcType=VARCHAR},
+      businessLicense = #{record.businesslicense,jdbcType=VARCHAR},
+      taxNo = #{record.taxno,jdbcType=VARCHAR},
+      legal = #{record.legal,jdbcType=VARCHAR},
+      legalIdNo = #{record.legalidno,jdbcType=VARCHAR},
+      contact = #{record.contact,jdbcType=VARCHAR},
+      contactPhone = #{record.contactphone,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      memberClassType = #{record.memberclasstype,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=INTEGER},
+      bank_no = #{record.bankNo,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mrbt.lingmoney.model.PayEnterprise">
+    <!--
+    @mbggenerated
+    -->
+    update pay_enterprise
+    <set>
+      <if test="platformno != null">
+        platformNo = #{platformno,jdbcType=VARCHAR},
+      </if>
+      <if test="requestno != null">
+        requestNo = #{requestno,jdbcType=VARCHAR},
+      </if>
+      <if test="enterprisename != null">
+        enterpriseName = #{enterprisename,jdbcType=VARCHAR},
+      </if>
+      <if test="banklicense != null">
+        bankLicense = #{banklicense,jdbcType=VARCHAR},
+      </if>
+      <if test="orgno != null">
+        orgNo = #{orgno,jdbcType=VARCHAR},
+      </if>
+      <if test="businesslicense != null">
+        businessLicense = #{businesslicense,jdbcType=VARCHAR},
+      </if>
+      <if test="taxno != null">
+        taxNo = #{taxno,jdbcType=VARCHAR},
+      </if>
+      <if test="legal != null">
+        legal = #{legal,jdbcType=VARCHAR},
+      </if>
+      <if test="legalidno != null">
+        legalIdNo = #{legalidno,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null">
+        contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="contactphone != null">
+        contactPhone = #{contactphone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="memberclasstype != null">
+        memberClassType = #{memberclasstype,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="bankNo != null">
+        bank_no = #{bankNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where platformUserNo = #{platformuserno,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mrbt.lingmoney.model.PayEnterprise">
+    <!--
+    @mbggenerated
+    -->
+    update pay_enterprise
+    set platformNo = #{platformno,jdbcType=VARCHAR},
+      requestNo = #{requestno,jdbcType=VARCHAR},
+      enterpriseName = #{enterprisename,jdbcType=VARCHAR},
+      bankLicense = #{banklicense,jdbcType=VARCHAR},
+      orgNo = #{orgno,jdbcType=VARCHAR},
+      businessLicense = #{businesslicense,jdbcType=VARCHAR},
+      taxNo = #{taxno,jdbcType=VARCHAR},
+      legal = #{legal,jdbcType=VARCHAR},
+      legalIdNo = #{legalidno,jdbcType=VARCHAR},
+      contact = #{contact,jdbcType=VARCHAR},
+      contactPhone = #{contactphone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      memberClassType = #{memberclasstype,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      bank_no = #{bankNo,jdbcType=VARCHAR}
+    where platformUserNo = #{platformuserno,jdbcType=INTEGER}
+  </update>
+</mapper>

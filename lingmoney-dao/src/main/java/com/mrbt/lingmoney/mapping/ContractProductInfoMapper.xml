@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.ContractProductInfoMapper">
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.ContractProductInfo">
+    <!--
+    @mbggenerated
+    -->
+    <result column="p_id" jdbcType="INTEGER" property="pId" />
+    <result column="tid" jdbcType="INTEGER" property="tid" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="p_code" jdbcType="VARCHAR" property="pCode" />
+    <result column="p_name" jdbcType="VARCHAR" property="pName" />
+    <result column="biz_code" jdbcType="VARCHAR" property="bizCode" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="id_card" jdbcType="VARCHAR" property="idCard" />
+    <result column="buy_money" jdbcType="DECIMAL" property="buyMoney" />
+    <result column="f_time" jdbcType="INTEGER" property="fTime" />
+    <result column="f_yield" jdbcType="DECIMAL" property="fYield" />
+    <result column="value_dt" jdbcType="DATE" property="valueDt" />
+    <result column="min_sell_dt" jdbcType="DATE" property="minSellDt" />
+    <result column="interest" jdbcType="DECIMAL" property="interest" />
+    <result column="prior_money" jdbcType="DECIMAL" property="priorMoney" />
+    <result column="reach_money" jdbcType="DECIMAL" property="reachMoney" />
+    <result column="pc_name" jdbcType="VARCHAR" property="pcName" />
+    <result column="p_type" jdbcType="INTEGER" property="pType" />
+    <result column="platform_user_no" jdbcType="INTEGER" property="platformUserNo" />
+    <result column="establish_dt" jdbcType="TIMESTAMP" property="establishDt" />
+    <result column="u_id" jdbcType="VARCHAR" property="uId" />
+    <result column="buy_dt" jdbcType="TIMESTAMP" property="buyDt" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+    @mbggenerated
+    -->
+    p_id, tid, telephone, p_code, p_name, biz_code, name, id_card, buy_money, f_time, 
+    f_yield, value_dt, min_sell_dt, interest, prior_money, reach_money, pc_name, p_type, 
+    platform_user_no, establish_dt, u_id, buy_dt
+  </sql>
+  <select id="selectByExample" parameterType="com.mrbt.lingmoney.model.ContractProductInfoExample" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from contract_product_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0">
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.ContractProductInfoExample">
+    <!--
+    @mbggenerated
+    -->
+    delete from contract_product_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mrbt.lingmoney.model.ContractProductInfo">
+    <!--
+    @mbggenerated
+    -->
+    insert into contract_product_info (p_id, tid, telephone, 
+      p_code, p_name, biz_code, 
+      name, id_card, buy_money, 
+      f_time, f_yield, value_dt, 
+      min_sell_dt, interest, prior_money, 
+      reach_money, pc_name, p_type, 
+      platform_user_no, establish_dt, u_id, 
+      buy_dt)
+    values (#{pId,jdbcType=INTEGER}, #{tid,jdbcType=INTEGER}, #{telephone,jdbcType=VARCHAR}, 
+      #{pCode,jdbcType=VARCHAR}, #{pName,jdbcType=VARCHAR}, #{bizCode,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR}, #{buyMoney,jdbcType=DECIMAL}, 
+      #{fTime,jdbcType=INTEGER}, #{fYield,jdbcType=DECIMAL}, #{valueDt,jdbcType=DATE}, 
+      #{minSellDt,jdbcType=DATE}, #{interest,jdbcType=DECIMAL}, #{priorMoney,jdbcType=DECIMAL}, 
+      #{reachMoney,jdbcType=DECIMAL}, #{pcName,jdbcType=VARCHAR}, #{pType,jdbcType=INTEGER}, 
+      #{platformUserNo,jdbcType=INTEGER}, #{establishDt,jdbcType=TIMESTAMP}, #{uId,jdbcType=VARCHAR}, 
+      #{buyDt,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.ContractProductInfo">
+    <!--
+    @mbggenerated
+    -->
+    insert into contract_product_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pId != null">
+        p_id,
+      </if>
+      <if test="tid != null">
+        tid,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+      <if test="pCode != null">
+        p_code,
+      </if>
+      <if test="pName != null">
+        p_name,
+      </if>
+      <if test="bizCode != null">
+        biz_code,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="idCard != null">
+        id_card,
+      </if>
+      <if test="buyMoney != null">
+        buy_money,
+      </if>
+      <if test="fTime != null">
+        f_time,
+      </if>
+      <if test="fYield != null">
+        f_yield,
+      </if>
+      <if test="valueDt != null">
+        value_dt,
+      </if>
+      <if test="minSellDt != null">
+        min_sell_dt,
+      </if>
+      <if test="interest != null">
+        interest,
+      </if>
+      <if test="priorMoney != null">
+        prior_money,
+      </if>
+      <if test="reachMoney != null">
+        reach_money,
+      </if>
+      <if test="pcName != null">
+        pc_name,
+      </if>
+      <if test="pType != null">
+        p_type,
+      </if>
+      <if test="platformUserNo != null">
+        platform_user_no,
+      </if>
+      <if test="establishDt != null">
+        establish_dt,
+      </if>
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="buyDt != null">
+        buy_dt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pId != null">
+        #{pId,jdbcType=INTEGER},
+      </if>
+      <if test="tid != null">
+        #{tid,jdbcType=INTEGER},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="pCode != null">
+        #{pCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pName != null">
+        #{pName,jdbcType=VARCHAR},
+      </if>
+      <if test="bizCode != null">
+        #{bizCode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null">
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="buyMoney != null">
+        #{buyMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="fTime != null">
+        #{fTime,jdbcType=INTEGER},
+      </if>
+      <if test="fYield != null">
+        #{fYield,jdbcType=DECIMAL},
+      </if>
+      <if test="valueDt != null">
+        #{valueDt,jdbcType=DATE},
+      </if>
+      <if test="minSellDt != null">
+        #{minSellDt,jdbcType=DATE},
+      </if>
+      <if test="interest != null">
+        #{interest,jdbcType=DECIMAL},
+      </if>
+      <if test="priorMoney != null">
+        #{priorMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="reachMoney != null">
+        #{reachMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="pcName != null">
+        #{pcName,jdbcType=VARCHAR},
+      </if>
+      <if test="pType != null">
+        #{pType,jdbcType=INTEGER},
+      </if>
+      <if test="platformUserNo != null">
+        #{platformUserNo,jdbcType=INTEGER},
+      </if>
+      <if test="establishDt != null">
+        #{establishDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uId != null">
+        #{uId,jdbcType=VARCHAR},
+      </if>
+      <if test="buyDt != null">
+        #{buyDt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.ContractProductInfoExample" resultType="java.lang.Long">
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from contract_product_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update contract_product_info
+    <set>
+      <if test="record.pId != null">
+        p_id = #{record.pId,jdbcType=INTEGER},
+      </if>
+      <if test="record.tid != null">
+        tid = #{record.tid,jdbcType=INTEGER},
+      </if>
+      <if test="record.telephone != null">
+        telephone = #{record.telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pCode != null">
+        p_code = #{record.pCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pName != null">
+        p_name = #{record.pName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bizCode != null">
+        biz_code = #{record.bizCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idCard != null">
+        id_card = #{record.idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyMoney != null">
+        buy_money = #{record.buyMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fTime != null">
+        f_time = #{record.fTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.fYield != null">
+        f_yield = #{record.fYield,jdbcType=DECIMAL},
+      </if>
+      <if test="record.valueDt != null">
+        value_dt = #{record.valueDt,jdbcType=DATE},
+      </if>
+      <if test="record.minSellDt != null">
+        min_sell_dt = #{record.minSellDt,jdbcType=DATE},
+      </if>
+      <if test="record.interest != null">
+        interest = #{record.interest,jdbcType=DECIMAL},
+      </if>
+      <if test="record.priorMoney != null">
+        prior_money = #{record.priorMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.reachMoney != null">
+        reach_money = #{record.reachMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pcName != null">
+        pc_name = #{record.pcName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pType != null">
+        p_type = #{record.pType,jdbcType=INTEGER},
+      </if>
+      <if test="record.platformUserNo != null">
+        platform_user_no = #{record.platformUserNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.establishDt != null">
+        establish_dt = #{record.establishDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.uId != null">
+        u_id = #{record.uId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyDt != null">
+        buy_dt = #{record.buyDt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update contract_product_info
+    set p_id = #{record.pId,jdbcType=INTEGER},
+      tid = #{record.tid,jdbcType=INTEGER},
+      telephone = #{record.telephone,jdbcType=VARCHAR},
+      p_code = #{record.pCode,jdbcType=VARCHAR},
+      p_name = #{record.pName,jdbcType=VARCHAR},
+      biz_code = #{record.bizCode,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      id_card = #{record.idCard,jdbcType=VARCHAR},
+      buy_money = #{record.buyMoney,jdbcType=DECIMAL},
+      f_time = #{record.fTime,jdbcType=INTEGER},
+      f_yield = #{record.fYield,jdbcType=DECIMAL},
+      value_dt = #{record.valueDt,jdbcType=DATE},
+      min_sell_dt = #{record.minSellDt,jdbcType=DATE},
+      interest = #{record.interest,jdbcType=DECIMAL},
+      prior_money = #{record.priorMoney,jdbcType=DECIMAL},
+      reach_money = #{record.reachMoney,jdbcType=DECIMAL},
+      pc_name = #{record.pcName,jdbcType=VARCHAR},
+      p_type = #{record.pType,jdbcType=INTEGER},
+      platform_user_no = #{record.platformUserNo,jdbcType=INTEGER},
+      establish_dt = #{record.establishDt,jdbcType=TIMESTAMP},
+      u_id = #{record.uId,jdbcType=VARCHAR},
+      buy_dt = #{record.buyDt,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

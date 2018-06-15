@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/mvc 
+    http://www.springframework.org/schema/mvc/spring-mvc.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<!-- 拦截器 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<!-- 拦截路径 -->
+			<mvc:mapping path="/**/*" />
+			<!-- 过滤的接口路径 -->
+			<mvc:exclude-mapping path="/*" />
+			<!-- 过滤银行请求，测试用 -->
+<!-- 			<mvc:exclude-mapping path="/bank/*" /> -->
+			<!-- 过滤银行请求，测试用 -->
+			<mvc:exclude-mapping path="/bank/*/*" />
+			
+			<mvc:exclude-mapping path="/bank/*CallBack/*" />
+			<mvc:exclude-mapping path="/bank/*CallBack/*/*" /> 
+			<!-- 站内公告 -->
+			<mvc:exclude-mapping path="/infoNotice/*" />
+			<!-- 媒体资讯 -->
+			<mvc:exclude-mapping path="/infoMedia/*" />
+			<!-- 你问我答 -->
+			<mvc:exclude-mapping path="/usersAsk/*" />
+			<!-- 公司动态 -->
+			<mvc:exclude-mapping path="/infoNews/*" />
+			
+			<!-- 用户 -->
+			<!-- 登录 -->
+			<mvc:exclude-mapping path="/users/login" />
+			<!-- 未登录 -->
+			<mvc:exclude-mapping path="/users/unLogin" />
+			<!-- 注册 -->
+			<mvc:exclude-mapping path="/users/regist" />
+			<!-- 注册 -->
+			<mvc:exclude-mapping path="/users/register" />
+			<!-- 忘记密码 -->
+			<mvc:exclude-mapping path="/users/forgetpassword" />
+			<!-- 忘记密码提交 -->
+			<mvc:exclude-mapping path="/users/retrievePassword" />
+			<!-- 验证接口 -->
+			<mvc:exclude-mapping path="/users/verify*" />
+			
+			<!-- 首页产品 -->
+			<mvc:exclude-mapping path="/product/homeProduct" />
+			<!-- 产品列表/单个产品信息 -->
+			<mvc:exclude-mapping path="/product/list/*" />
+			<!-- 产品详情 -->
+			<mvc:exclude-mapping path="/product/showProduct*" />
+			<!-- 产品抵押物信息 -->
+			<mvc:exclude-mapping path="/product/getIntroduction*" />
+			<!-- 产品投资记录 -->
+			<mvc:exclude-mapping path="/product/tradingRecordList" />
+			<!-- 查询最新产品（杭州站首页） -->
+			<mvc:exclude-mapping path="/product/queryNewproduct" />
+			<!-- 产品购买>计算收入 -->
+			<mvc:exclude-mapping path="/product/income" />
+			<!-- 活动 -->
+			<mvc:exclude-mapping path="/activity/*"/>
+			
+			<!-- 通过批次号查询最新一条产品的id和code -->
+			<mvc:exclude-mapping path="/product/getFirstPidAndPcodeByBatch" />
+			
+			<!-- 通过批次号查询指定条数的产品基本信息 -->
+			<mvc:exclude-mapping path="/product/queryProductByBatch" />
+			
+			<!-- 活动详情页开发代码测试接口 -->
+			<mvc:exclude-mapping path="/product/activitytest" />
+			
+			<!-- 赠送螃蟹个数 -->
+			<mvc:exclude-mapping path="/product/showCrabCount" />
+
+			<!-- 我的领地首页信息 -->
+			<mvc:exclude-mapping path="/lbmarket/index" />
+			<!-- 我的领地详情页 -->
+			<mvc:exclude-mapping path="/lingbaoExchange/exchange" />
+			<!-- 查看更多 -->
+			<mvc:exclude-mapping path="/lbmarket/queryMore" />
+			<!-- 筛选查询 -->
+			<mvc:exclude-mapping path="/lbmarket/queryGiftWithCondition" />
+			<!-- 进入抽奖页 -->
+			<mvc:exclude-mapping path="/lbmarket/gotoLuckDraw*" />
+			<!-- 查询奖项 -->
+			<mvc:exclude-mapping path="/lbmarket/queryChoujiangItem" />
+			<!-- 领宝兑换验证 -->
+			<mvc:exclude-mapping path="/lingbaoExchange/validateExchange" />
+    		
+			<!-- 发送注册短信 -->
+    		<mvc:exclude-mapping path="/sms/sendreg"/>
+    		<!-- 发送忘记密码短信 -->
+    		<mvc:exclude-mapping path="/sms/sendModiPw"/>
+    		<!-- 查询短信验证码(测试用) -->
+    		<mvc:exclude-mapping path="/sms/querySmsVerify"/>
+    		<!-- 验证短信验证码(测试用) -->
+    		<mvc:exclude-mapping path="/sms/verify"/>
+    		<!-- 获取图片验证码 -->
+    		<mvc:exclude-mapping path="/commonset/pictureCode"/>
+    		<!-- 验证图片验证码(测试用) -->
+    		<mvc:exclude-mapping path="/commonset/verPicCode"/>
+    		
+    		<!-- 微信分享相关 -->
+    		<mvc:exclude-mapping path="/MP_verify_aHjl1KS6QgSBRwtQ.txt"/>
+    		<mvc:exclude-mapping path="/wechat/*"/>
+    		
+    		<!-- 理财课堂 -->
+    		<mvc:exclude-mapping path="/financialStory/*"/>
+    		
+    		<!-- 京东回调接口 -->
+    		<mvc:exclude-mapping path="/purchase/quickNotice/*"/>
+    		<mvc:exclude-mapping path="/purchase/onlineCallBank/*"/>
+    		<mvc:exclude-mapping path="/purchase/onlineNotity/*"/>
+    		
+    		<mvc:exclude-mapping path="/insurance/queryProBorType"/>
+    		
+    		<!-- 世界杯相关 -->
+            <mvc:exclude-mapping path="/worldCup/*"/>
+    		
+			<bean class="com.mrbt.lingmoney.web.filter.VerifyTokenInterceptor"></bean>
+		</mvc:interceptor>
+		
+		<!-- <mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="com.mrbt.lingmoney.web.filter.IpInterceptor"></bean>
+		</mvc:interceptor> -->
+		
+<!-- 		<mvc:interceptor> -->
+<!-- 			<mvc:mapping path="/bank/*" /> -->
+<!-- 			<bean class="com.mrbt.lingmoney.web.filter.BankInterceptor"></bean> -->
+<!-- 		</mvc:interceptor> -->
+	</mvc:interceptors>
+</beans>

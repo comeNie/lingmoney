@@ -1,0 +1,1214 @@
+package com.mrbt.lingmoney.model;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
+
+public class Product implements Serializable {
+    /**
+     * 主键
+     * 表字段 : product.id
+     */
+    private Integer id;
+
+    /**
+     * 根据code码配置web项目中的处理类
+            生成规则：product_category中的code码+4位前补0的id
+     * 表字段 : product.code
+     */
+    private String code;
+
+    /**
+     * 产品名称
+     * 表字段 : product.name
+     */
+    private String name;
+
+    /**
+     * 还款方式，文字描述
+     * 表字段 : product.re_way
+     */
+    private String reWay;
+
+    /**
+     * 投资规则，0:金额限制，1:时间限制，2:金额时间限制，3:无限制
+     * 表字段 : product.rule
+     */
+    private Integer rule;
+
+    /**
+     * 发行时间
+     * 表字段 : product.st_dt
+     */
+    private Date stDt;
+
+    /**
+     * 结束时间
+     * 表字段 : product.ed_dt
+     */
+    private Date edDt;
+
+    /**
+     * 准备筹备的金额
+     * 表字段 : product.prior_money
+     */
+    private BigDecimal priorMoney;
+
+    /**
+     * 已经筹到的金额
+     * 表字段 : product.reach_money
+     */
+    private BigDecimal reachMoney;
+
+    /**
+     * 状态，0为初始状态，1:提交状态，2:审核通过状态
+     * 表字段 : product.approval
+     */
+    private Integer approval;
+
+    /**
+     * 0 产品初始化，1:项目筹集期，2项目运行中/已放款, 3 项目汇款中/项目到期， 4项目已结束， 5项目已作废， 6 筹集金额未达标，7筹集金额已达标/等待申请放款, 8 流标申请中 ， 9已流标 ， 10 放款申请中 ， 11 已确认自动还款
+     * 表字段 : product.status
+     */
+    private Integer status;
+
+    /**
+     * 产品分类id
+     * 表字段 : product.pc_id
+     */
+    private Integer pcId;
+
+    /**
+     * 产品分类名称
+     * 表字段 : product.pc_name
+     */
+    private String pcName;
+
+    /**
+     * 以,分割，显示标签
+     * 表字段 : product.tags
+     */
+    private String tags;
+
+    /**
+     * 最低期限
+     * 表字段 : product.l_time
+     */
+    private Integer lTime;
+
+    /**
+     * 最高期限
+     * 表字段 : product.h_time
+     */
+    private Integer hTime;
+
+    /**
+     * 固定期限
+     * 表字段 : product.f_time
+     */
+    private Integer fTime;
+
+    /**
+     * 单位时间，0天，1周，2月，3年，4无
+     * 表字段 : product.unit_time
+     */
+    private Integer unitTime;
+
+    /**
+     * 产品计息日
+     * 表字段 : product.value_dt
+     */
+    private Date valueDt;
+
+    /**
+     * 产品成立日
+     * 表字段 : product.establish_dt
+     */
+    private Date establishDt;
+
+    /**
+     * 在产品筹备期等待的汇率
+     * 表字段 : product.wait_rate
+     */
+    private BigDecimal waitRate;
+
+    /**
+     * 最低金额
+     * 表字段 : product.min_money
+     */
+    private Integer minMoney;
+
+    /**
+     * 递增金额
+     * 表字段 : product.increa_money
+     */
+    private Integer increaMoney;
+
+    /**
+     * 最低收益率,百分比支持到小数点2位
+     * 表字段 : product.l_yield
+     */
+    private BigDecimal lYield;
+
+    /**
+     * 最高收益率,百分比支持到小数点2位
+     * 表字段 : product.h_yield
+     */
+    private BigDecimal hYield;
+
+    /**
+     * 固定收益率
+     * 表字段 : product.f_yield
+     */
+    private BigDecimal fYield;
+
+    /**
+     * 是否收取手续费0:不收取，1前端收取,2后端收取
+     * 表字段 : product.fees
+     */
+    private Integer fees;
+
+    /**
+     * 小数点模式，收取的费率
+     * 表字段 : product.fees_rate
+     */
+    private BigDecimal feesRate;
+
+    /**
+     * 异常汇率，用户提前或者没有定期投放的汇率
+     * 表字段 : product.exception_rate
+     */
+    private BigDecimal exceptionRate;
+
+    /**
+     * 定期投资的标志，0：非定投，1周周投，2半月投，3月月投
+     * 表字段 : product.fix_invest
+     */
+    private Integer fixInvest;
+
+    /**
+     * 是否分息，0不分，1分，只针对固定汇率中的区间汇率
+     * 表字段 : product.allocation
+     */
+    private Integer allocation;
+
+    /**
+     * 是否为活动。0，否；1，是。
+     * 表字段 : product.activity
+     */
+    private Integer activity;
+
+    /**
+     * 
+     * 表字段 : product.platform_user_no
+     */
+    private Integer platformUserNo;
+
+    /**
+     * 平台佣金
+     * 表字段 : product.cost_value
+     */
+    private BigDecimal costValue;
+
+    /**
+     * 0，产品模式；1，钱包模式
+     * 表字段 : product.p_model
+     */
+    private Integer pModel;
+
+    /**
+     * 图片路径
+     * 表字段 : product.pictrue_url
+     */
+    private String pictrueUrl;
+
+    /**
+     * 产品所属 0，领钱儿    1，中粮
+     * 表字段 : product.p_type
+     */
+    private Integer pType;
+
+    /**
+     * 百度城市代码。000全国，131北京，236青岛
+     * 表字段 : product.city_code
+     */
+    private String cityCode;
+
+    /**
+     * 每个用户购买限额。默认0无限额
+     * 表字段 : product.buy_limit
+     */
+    private BigDecimal buyLimit;
+
+    /**
+     * 产品批次
+     * 表字段 : product.batch
+     */
+    private String batch;
+
+    /**
+     * 
+     * 表字段 : product.sort
+     */
+    private Byte sort;
+
+    /**
+     * 手机端产品背景图
+     * 表字段 : product.background_url
+     */
+    private String backgroundUrl;
+
+    /**
+     * 手机端产品背景图是否有磨砂效果 0是 1否
+     * 表字段 : product.background_frosted
+     */
+    private Integer backgroundFrosted;
+
+    /**
+     * 手机端产品背景图 导航
+     * 表字段 : product.background_url_nav
+     */
+    private String backgroundUrlNav;
+
+    /**
+     * 手机端产品背景图 ios
+     * 表字段 : product.background_url_ios
+     */
+    private String backgroundUrlIos;
+
+	/**
+	 * 产品增值0：无 1：有
+	 */
+	private Integer insuranceTrust;
+
+	/**
+	 * 是否可用优惠券 0：不可用 1：可用
+	 */
+	private Integer isRedPacket;
+
+	/**
+	 * 加息率 表字段 : product.add_yield
+	 */
+	private BigDecimal addYield;
+
+	/**
+	 * 是否可债权转让 0：不可转让 1：可转让
+	 */
+	private Integer isDebt;
+
+    /**
+     * This field was generated by MyBatis Generator.
+     * This field corresponds to the database table product
+     *
+     * @mbggenerated
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * 获取 主键 字段:product.id
+     *
+     * @return product.id, 主键
+     */
+    public Integer getId() {
+        return id;
+    }
+
+    /**
+     * 设置 主键 字段:product.id
+     *
+     * @param id the value for product.id, 主键
+     */
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    /**
+     * 获取 根据code码配置web项目中的处理类
+            生成规则：product_category中的code码+4位前补0的id 字段:product.code
+     *
+     * @return product.code, 根据code码配置web项目中的处理类
+            生成规则：product_category中的code码+4位前补0的id
+     */
+    public String getCode() {
+        return code;
+    }
+
+    /**
+     * 设置 根据code码配置web项目中的处理类
+            生成规则：product_category中的code码+4位前补0的id 字段:product.code
+     *
+     * @param code the value for product.code, 根据code码配置web项目中的处理类
+            生成规则：product_category中的code码+4位前补0的id
+     */
+    public void setCode(String code) {
+        this.code = code == null ? null : code.trim();
+    }
+
+    /**
+     * 获取 产品名称 字段:product.name
+     *
+     * @return product.name, 产品名称
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * 设置 产品名称 字段:product.name
+     *
+     * @param name the value for product.name, 产品名称
+     */
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
+    }
+
+    /**
+     * 获取 还款方式，文字描述 字段:product.re_way
+     *
+     * @return product.re_way, 还款方式，文字描述
+     */
+    public String getReWay() {
+        return reWay;
+    }
+
+    /**
+     * 设置 还款方式，文字描述 字段:product.re_way
+     *
+     * @param reWay the value for product.re_way, 还款方式，文字描述
+     */
+    public void setReWay(String reWay) {
+        this.reWay = reWay == null ? null : reWay.trim();
+    }
+
+    /**
+     * 获取 投资规则，0:金额限制，1:时间限制，2:金额时间限制，3:无限制 字段:product.rule
+     *
+     * @return product.rule, 投资规则，0:金额限制，1:时间限制，2:金额时间限制，3:无限制
+     */
+    public Integer getRule() {
+        return rule;
+    }
+
+    /**
+     * 设置 投资规则，0:金额限制，1:时间限制，2:金额时间限制，3:无限制 字段:product.rule
+     *
+     * @param rule the value for product.rule, 投资规则，0:金额限制，1:时间限制，2:金额时间限制，3:无限制
+     */
+    public void setRule(Integer rule) {
+        this.rule = rule;
+    }
+
+    /**
+     * 获取 发行时间 字段:product.st_dt
+     *
+     * @return product.st_dt, 发行时间
+     */
+    public Date getStDt() {
+        return stDt;
+    }
+
+    /**
+     * 设置 发行时间 字段:product.st_dt
+     *
+     * @param stDt the value for product.st_dt, 发行时间
+     */
+    public void setStDt(Date stDt) {
+        this.stDt = stDt;
+    }
+
+    /**
+     * 获取 结束时间 字段:product.ed_dt
+     *
+     * @return product.ed_dt, 结束时间
+     */
+    public Date getEdDt() {
+        return edDt;
+    }
+
+    /**
+     * 设置 结束时间 字段:product.ed_dt
+     *
+     * @param edDt the value for product.ed_dt, 结束时间
+     */
+    public void setEdDt(Date edDt) {
+        this.edDt = edDt;
+    }
+
+    /**
+     * 获取 准备筹备的金额 字段:product.prior_money
+     *
+     * @return product.prior_money, 准备筹备的金额
+     */
+    public BigDecimal getPriorMoney() {
+        return priorMoney;
+    }
+
+    /**
+     * 设置 准备筹备的金额 字段:product.prior_money
+     *
+     * @param priorMoney the value for product.prior_money, 准备筹备的金额
+     */
+    public void setPriorMoney(BigDecimal priorMoney) {
+        this.priorMoney = priorMoney;
+    }
+
+    /**
+     * 获取 已经筹到的金额 字段:product.reach_money
+     *
+     * @return product.reach_money, 已经筹到的金额
+     */
+    public BigDecimal getReachMoney() {
+        return reachMoney;
+    }
+
+    /**
+     * 设置 已经筹到的金额 字段:product.reach_money
+     *
+     * @param reachMoney the value for product.reach_money, 已经筹到的金额
+     */
+    public void setReachMoney(BigDecimal reachMoney) {
+        this.reachMoney = reachMoney;
+    }
+
+    /**
+     * 获取 状态，0为初始状态，1:提交状态，2:审核通过状态 字段:product.approval
+     *
+     * @return product.approval, 状态，0为初始状态，1:提交状态，2:审核通过状态
+     */
+    public Integer getApproval() {
+        return approval;
+    }
+
+    /**
+     * 设置 状态，0为初始状态，1:提交状态，2:审核通过状态 字段:product.approval
+     *
+     * @param approval the value for product.approval, 状态，0为初始状态，1:提交状态，2:审核通过状态
+     */
+    public void setApproval(Integer approval) {
+        this.approval = approval;
+    }
+
+    /**
+     * 获取 0 产品初始化，1:项目筹集期，2项目运行中/已放款, 3 项目汇款中/项目到期， 4项目已结束， 5项目已作废， 6 筹集金额未达标，7筹集金额已达标/等待申请放款, 8 流标申请中 ， 9已流标 ， 10 放款申请中 ， 11 已确认自动还款 字段:product.status
+     *
+     * @return product.status, 0 产品初始化，1:项目筹集期，2项目运行中/已放款, 3 项目汇款中/项目到期， 4项目已结束， 5项目已作废， 6 筹集金额未达标，7筹集金额已达标/等待申请放款, 8 流标申请中 ， 9已流标 ， 10 放款申请中 ， 11 已确认自动还款
+     */
+    public Integer getStatus() {
+        return status;
+    }
+
+    /**
+     * 设置 0 产品初始化，1:项目筹集期，2项目运行中/已放款, 3 项目汇款中/项目到期， 4项目已结束， 5项目已作废， 6 筹集金额未达标，7筹集金额已达标/等待申请放款, 8 流标申请中 ， 9已流标 ， 10 放款申请中 ， 11 已确认自动还款 字段:product.status
+     *
+     * @param status the value for product.status, 0 产品初始化，1:项目筹集期，2项目运行中/已放款, 3 项目汇款中/项目到期， 4项目已结束， 5项目已作废， 6 筹集金额未达标，7筹集金额已达标/等待申请放款, 8 流标申请中 ， 9已流标 ， 10 放款申请中 ， 11 已确认自动还款
+     */
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    /**
+     * 获取 产品分类id 字段:product.pc_id
+     *
+     * @return product.pc_id, 产品分类id
+     */
+    public Integer getPcId() {
+        return pcId;
+    }
+
+    /**
+     * 设置 产品分类id 字段:product.pc_id
+     *
+     * @param pcId the value for product.pc_id, 产品分类id
+     */
+    public void setPcId(Integer pcId) {
+        this.pcId = pcId;
+    }
+
+    /**
+     * 获取 产品分类名称 字段:product.pc_name
+     *
+     * @return product.pc_name, 产品分类名称
+     */
+    public String getPcName() {
+        return pcName;
+    }
+
+    /**
+     * 设置 产品分类名称 字段:product.pc_name
+     *
+     * @param pcName the value for product.pc_name, 产品分类名称
+     */
+    public void setPcName(String pcName) {
+        this.pcName = pcName == null ? null : pcName.trim();
+    }
+
+    /**
+     * 获取 以,分割，显示标签 字段:product.tags
+     *
+     * @return product.tags, 以,分割，显示标签
+     */
+    public String getTags() {
+        return tags;
+    }
+
+    /**
+     * 设置 以,分割，显示标签 字段:product.tags
+     *
+     * @param tags the value for product.tags, 以,分割，显示标签
+     */
+    public void setTags(String tags) {
+        this.tags = tags == null ? null : tags.trim();
+    }
+
+    /**
+     * 获取 最低期限 字段:product.l_time
+     *
+     * @return product.l_time, 最低期限
+     */
+    public Integer getlTime() {
+        return lTime;
+    }
+
+    /**
+     * 设置 最低期限 字段:product.l_time
+     *
+     * @param lTime the value for product.l_time, 最低期限
+     */
+    public void setlTime(Integer lTime) {
+        this.lTime = lTime;
+    }
+
+    /**
+     * 获取 最高期限 字段:product.h_time
+     *
+     * @return product.h_time, 最高期限
+     */
+    public Integer gethTime() {
+        return hTime;
+    }
+
+    /**
+     * 设置 最高期限 字段:product.h_time
+     *
+     * @param hTime the value for product.h_time, 最高期限
+     */
+    public void sethTime(Integer hTime) {
+        this.hTime = hTime;
+    }
+
+    /**
+     * 获取 固定期限 字段:product.f_time
+     *
+     * @return product.f_time, 固定期限
+     */
+    public Integer getfTime() {
+        return fTime;
+    }
+
+    /**
+     * 设置 固定期限 字段:product.f_time
+     *
+     * @param fTime the value for product.f_time, 固定期限
+     */
+    public void setfTime(Integer fTime) {
+        this.fTime = fTime;
+    }
+
+    /**
+     * 获取 单位时间，0天，1周，2月，3年，4无 字段:product.unit_time
+     *
+     * @return product.unit_time, 单位时间，0天，1周，2月，3年，4无
+     */
+    public Integer getUnitTime() {
+        return unitTime;
+    }
+
+    /**
+     * 设置 单位时间，0天，1周，2月，3年，4无 字段:product.unit_time
+     *
+     * @param unitTime the value for product.unit_time, 单位时间，0天，1周，2月，3年，4无
+     */
+    public void setUnitTime(Integer unitTime) {
+        this.unitTime = unitTime;
+    }
+
+    /**
+     * 获取 产品计息日 字段:product.value_dt
+     *
+     * @return product.value_dt, 产品计息日
+     */
+    public Date getValueDt() {
+        return valueDt;
+    }
+
+    /**
+     * 设置 产品计息日 字段:product.value_dt
+     *
+     * @param valueDt the value for product.value_dt, 产品计息日
+     */
+    public void setValueDt(Date valueDt) {
+        this.valueDt = valueDt;
+    }
+
+    /**
+     * 获取 产品成立日 字段:product.establish_dt
+     *
+     * @return product.establish_dt, 产品成立日
+     */
+    public Date getEstablishDt() {
+        return establishDt;
+    }
+
+    /**
+     * 设置 产品成立日 字段:product.establish_dt
+     *
+     * @param establishDt the value for product.establish_dt, 产品成立日
+     */
+    public void setEstablishDt(Date establishDt) {
+        this.establishDt = establishDt;
+    }
+
+    /**
+     * 获取 在产品筹备期等待的汇率 字段:product.wait_rate
+     *
+     * @return product.wait_rate, 在产品筹备期等待的汇率
+     */
+    public BigDecimal getWaitRate() {
+        return waitRate;
+    }
+
+    /**
+     * 设置 在产品筹备期等待的汇率 字段:product.wait_rate
+     *
+     * @param waitRate the value for product.wait_rate, 在产品筹备期等待的汇率
+     */
+    public void setWaitRate(BigDecimal waitRate) {
+        this.waitRate = waitRate;
+    }
+
+    /**
+     * 获取 最低金额 字段:product.min_money
+     *
+     * @return product.min_money, 最低金额
+     */
+    public Integer getMinMoney() {
+        return minMoney;
+    }
+
+    /**
+     * 设置 最低金额 字段:product.min_money
+     *
+     * @param minMoney the value for product.min_money, 最低金额
+     */
+    public void setMinMoney(Integer minMoney) {
+        this.minMoney = minMoney;
+    }
+
+    /**
+     * 获取 递增金额 字段:product.increa_money
+     *
+     * @return product.increa_money, 递增金额
+     */
+    public Integer getIncreaMoney() {
+        return increaMoney;
+    }
+
+    /**
+     * 设置 递增金额 字段:product.increa_money
+     *
+     * @param increaMoney the value for product.increa_money, 递增金额
+     */
+    public void setIncreaMoney(Integer increaMoney) {
+        this.increaMoney = increaMoney;
+    }
+
+    /**
+     * 获取 最低收益率,百分比支持到小数点2位 字段:product.l_yield
+     *
+     * @return product.l_yield, 最低收益率,百分比支持到小数点2位
+     */
+    public BigDecimal getlYield() {
+        return lYield;
+    }
+
+    /**
+     * 设置 最低收益率,百分比支持到小数点2位 字段:product.l_yield
+     *
+     * @param lYield the value for product.l_yield, 最低收益率,百分比支持到小数点2位
+     */
+    public void setlYield(BigDecimal lYield) {
+        this.lYield = lYield;
+    }
+
+    /**
+     * 获取 最高收益率,百分比支持到小数点2位 字段:product.h_yield
+     *
+     * @return product.h_yield, 最高收益率,百分比支持到小数点2位
+     */
+    public BigDecimal gethYield() {
+        return hYield;
+    }
+
+    /**
+     * 设置 最高收益率,百分比支持到小数点2位 字段:product.h_yield
+     *
+     * @param hYield the value for product.h_yield, 最高收益率,百分比支持到小数点2位
+     */
+    public void sethYield(BigDecimal hYield) {
+        this.hYield = hYield;
+    }
+
+    /**
+     * 获取 固定收益率 字段:product.f_yield
+     *
+     * @return product.f_yield, 固定收益率
+     */
+    public BigDecimal getfYield() {
+        return fYield;
+    }
+
+    /**
+     * 设置 固定收益率 字段:product.f_yield
+     *
+     * @param fYield the value for product.f_yield, 固定收益率
+     */
+    public void setfYield(BigDecimal fYield) {
+        this.fYield = fYield;
+    }
+
+    /**
+     * 获取 是否收取手续费0:不收取，1前端收取,2后端收取 字段:product.fees
+     *
+     * @return product.fees, 是否收取手续费0:不收取，1前端收取,2后端收取
+     */
+    public Integer getFees() {
+        return fees;
+    }
+
+    /**
+     * 设置 是否收取手续费0:不收取，1前端收取,2后端收取 字段:product.fees
+     *
+     * @param fees the value for product.fees, 是否收取手续费0:不收取，1前端收取,2后端收取
+     */
+    public void setFees(Integer fees) {
+        this.fees = fees;
+    }
+
+    /**
+     * 获取 小数点模式，收取的费率 字段:product.fees_rate
+     *
+     * @return product.fees_rate, 小数点模式，收取的费率
+     */
+    public BigDecimal getFeesRate() {
+        return feesRate;
+    }
+
+    /**
+     * 设置 小数点模式，收取的费率 字段:product.fees_rate
+     *
+     * @param feesRate the value for product.fees_rate, 小数点模式，收取的费率
+     */
+    public void setFeesRate(BigDecimal feesRate) {
+        this.feesRate = feesRate;
+    }
+
+    /**
+     * 获取 异常汇率，用户提前或者没有定期投放的汇率 字段:product.exception_rate
+     *
+     * @return product.exception_rate, 异常汇率，用户提前或者没有定期投放的汇率
+     */
+    public BigDecimal getExceptionRate() {
+        return exceptionRate;
+    }
+
+    /**
+     * 设置 异常汇率，用户提前或者没有定期投放的汇率 字段:product.exception_rate
+     *
+     * @param exceptionRate the value for product.exception_rate, 异常汇率，用户提前或者没有定期投放的汇率
+     */
+    public void setExceptionRate(BigDecimal exceptionRate) {
+        this.exceptionRate = exceptionRate;
+    }
+
+    /**
+     * 获取 定期投资的标志，0：非定投，1周周投，2半月投，3月月投 字段:product.fix_invest
+     *
+     * @return product.fix_invest, 定期投资的标志，0：非定投，1周周投，2半月投，3月月投
+     */
+    public Integer getFixInvest() {
+        return fixInvest;
+    }
+
+    /**
+     * 设置 定期投资的标志，0：非定投，1周周投，2半月投，3月月投 字段:product.fix_invest
+     *
+     * @param fixInvest the value for product.fix_invest, 定期投资的标志，0：非定投，1周周投，2半月投，3月月投
+     */
+    public void setFixInvest(Integer fixInvest) {
+        this.fixInvest = fixInvest;
+    }
+
+    /**
+     * 获取 是否分息，0不分，1分，只针对固定汇率中的区间汇率 字段:product.allocation
+     *
+     * @return product.allocation, 是否分息，0不分，1分，只针对固定汇率中的区间汇率
+     */
+    public Integer getAllocation() {
+        return allocation;
+    }
+
+    /**
+     * 设置 是否分息，0不分，1分，只针对固定汇率中的区间汇率 字段:product.allocation
+     *
+     * @param allocation the value for product.allocation, 是否分息，0不分，1分，只针对固定汇率中的区间汇率
+     */
+    public void setAllocation(Integer allocation) {
+        this.allocation = allocation;
+    }
+
+    /**
+     * 获取 是否为活动。0，否；1，是。 字段:product.activity
+     *
+     * @return product.activity, 是否为活动。0，否；1，是。
+     */
+    public Integer getActivity() {
+        return activity;
+    }
+
+    /**
+     * 设置 是否为活动。0，否；1，是。 字段:product.activity
+     *
+     * @param activity the value for product.activity, 是否为活动。0，否；1，是。
+     */
+    public void setActivity(Integer activity) {
+        this.activity = activity;
+    }
+
+    /**
+     * 获取  字段:product.platform_user_no
+     *
+     * @return product.platform_user_no, 
+     */
+    public Integer getPlatformUserNo() {
+        return platformUserNo;
+    }
+
+    /**
+     * 设置  字段:product.platform_user_no
+     *
+     * @param platformUserNo the value for product.platform_user_no, 
+     */
+    public void setPlatformUserNo(Integer platformUserNo) {
+        this.platformUserNo = platformUserNo;
+    }
+
+    /**
+     * 获取 平台佣金 字段:product.cost_value
+     *
+     * @return product.cost_value, 平台佣金
+     */
+    public BigDecimal getCostValue() {
+        return costValue;
+    }
+
+    /**
+     * 设置 平台佣金 字段:product.cost_value
+     *
+     * @param costValue the value for product.cost_value, 平台佣金
+     */
+    public void setCostValue(BigDecimal costValue) {
+        this.costValue = costValue;
+    }
+
+    /**
+     * 获取 0，产品模式；1，钱包模式 字段:product.p_model
+     *
+     * @return product.p_model, 0，产品模式；1，钱包模式
+     */
+    public Integer getpModel() {
+        return pModel;
+    }
+
+    /**
+     * 设置 0，产品模式；1，钱包模式 字段:product.p_model
+     *
+     * @param pModel the value for product.p_model, 0，产品模式；1，钱包模式
+     */
+    public void setpModel(Integer pModel) {
+        this.pModel = pModel;
+    }
+
+    /**
+     * 获取 图片路径 字段:product.pictrue_url
+     *
+     * @return product.pictrue_url, 图片路径
+     */
+    public String getPictrueUrl() {
+        return pictrueUrl;
+    }
+
+    /**
+     * 设置 图片路径 字段:product.pictrue_url
+     *
+     * @param pictrueUrl the value for product.pictrue_url, 图片路径
+     */
+    public void setPictrueUrl(String pictrueUrl) {
+        this.pictrueUrl = pictrueUrl == null ? null : pictrueUrl.trim();
+    }
+
+    /**
+     * 获取 产品所属 0，领钱儿    1，中粮 字段:product.p_type
+     *
+     * @return product.p_type, 产品所属 0，领钱儿    1，中粮
+     */
+    public Integer getpType() {
+        return pType;
+    }
+
+    /**
+     * 设置 产品所属 0，领钱儿    1，中粮 字段:product.p_type
+     *
+     * @param pType the value for product.p_type, 产品所属 0，领钱儿    1，中粮
+     */
+    public void setpType(Integer pType) {
+        this.pType = pType;
+    }
+
+    /**
+     * 获取 百度城市代码。000全国，131北京，236青岛 字段:product.city_code
+     *
+     * @return product.city_code, 百度城市代码。000全国，131北京，236青岛
+     */
+    public String getCityCode() {
+        return cityCode;
+    }
+
+    /**
+     * 设置 百度城市代码。000全国，131北京，236青岛 字段:product.city_code
+     *
+     * @param cityCode the value for product.city_code, 百度城市代码。000全国，131北京，236青岛
+     */
+    public void setCityCode(String cityCode) {
+        this.cityCode = cityCode == null ? null : cityCode.trim();
+    }
+
+    /**
+     * 获取 每个用户购买限额。默认0无限额 字段:product.buy_limit
+     *
+     * @return product.buy_limit, 每个用户购买限额。默认0无限额
+     */
+    public BigDecimal getBuyLimit() {
+        return buyLimit;
+    }
+
+    /**
+     * 设置 每个用户购买限额。默认0无限额 字段:product.buy_limit
+     *
+     * @param buyLimit the value for product.buy_limit, 每个用户购买限额。默认0无限额
+     */
+    public void setBuyLimit(BigDecimal buyLimit) {
+        this.buyLimit = buyLimit;
+    }
+
+    /**
+     * 获取 产品批次 字段:product.batch
+     *
+     * @return product.batch, 产品批次
+     */
+    public String getBatch() {
+        return batch;
+    }
+
+    /**
+     * 设置 产品批次 字段:product.batch
+     *
+     * @param batch the value for product.batch, 产品批次
+     */
+    public void setBatch(String batch) {
+        this.batch = batch == null ? null : batch.trim();
+    }
+
+    /**
+     * 获取  字段:product.sort
+     *
+     * @return product.sort, 
+     */
+    public Byte getSort() {
+        return sort;
+    }
+
+    /**
+     * 设置  字段:product.sort
+     *
+     * @param sort the value for product.sort, 
+     */
+    public void setSort(Byte sort) {
+        this.sort = sort;
+    }
+
+    /**
+     * 获取 手机端产品背景图 字段:product.background_url
+     *
+     * @return product.background_url, 手机端产品背景图
+     */
+    public String getBackgroundUrl() {
+        return backgroundUrl;
+    }
+
+    /**
+     * 设置 手机端产品背景图 字段:product.background_url
+     *
+     * @param backgroundUrl the value for product.background_url, 手机端产品背景图
+     */
+    public void setBackgroundUrl(String backgroundUrl) {
+        this.backgroundUrl = backgroundUrl == null ? null : backgroundUrl.trim();
+    }
+
+    /**
+     * 获取 手机端产品背景图是否有磨砂效果 0是 1否 字段:product.background_frosted
+     *
+     * @return product.background_frosted, 手机端产品背景图是否有磨砂效果 0是 1否
+     */
+    public Integer getBackgroundFrosted() {
+        return backgroundFrosted;
+    }
+
+    /**
+     * 设置 手机端产品背景图是否有磨砂效果 0是 1否 字段:product.background_frosted
+     *
+     * @param backgroundFrosted the value for product.background_frosted, 手机端产品背景图是否有磨砂效果 0是 1否
+     */
+    public void setBackgroundFrosted(Integer backgroundFrosted) {
+        this.backgroundFrosted = backgroundFrosted;
+    }
+
+    /**
+     * 获取 手机端产品背景图 导航 字段:product.background_url_nav
+     *
+     * @return product.background_url_nav, 手机端产品背景图 导航
+     */
+    public String getBackgroundUrlNav() {
+        return backgroundUrlNav;
+    }
+
+    /**
+     * 设置 手机端产品背景图 导航 字段:product.background_url_nav
+     *
+     * @param backgroundUrlNav the value for product.background_url_nav, 手机端产品背景图 导航
+     */
+    public void setBackgroundUrlNav(String backgroundUrlNav) {
+        this.backgroundUrlNav = backgroundUrlNav == null ? null : backgroundUrlNav.trim();
+    }
+
+    /**
+     * 获取 手机端产品背景图 ios 字段:product.background_url_ios
+     *
+     * @return product.background_url_ios, 手机端产品背景图 ios
+     */
+    public String getBackgroundUrlIos() {
+        return backgroundUrlIos;
+    }
+
+    /**
+     * 设置 手机端产品背景图 ios 字段:product.background_url_ios
+     *
+     * @param backgroundUrlIos the value for product.background_url_ios, 手机端产品背景图 ios
+     */
+    public void setBackgroundUrlIos(String backgroundUrlIos) {
+        this.backgroundUrlIos = backgroundUrlIos == null ? null : backgroundUrlIos.trim();
+    }
+
+	public Integer getInsuranceTrust() {
+		return insuranceTrust;
+	}
+
+	public void setInsuranceTrust(Integer insuranceTrust) {
+		this.insuranceTrust = insuranceTrust;
+	}
+
+	public Integer getIsRedPacket() {
+		return isRedPacket;
+	}
+
+	public void setIsRedPacket(Integer isRedPacket) {
+		this.isRedPacket = isRedPacket;
+	}
+
+	public BigDecimal getAddYield() {
+		return addYield;
+	}
+
+	public void setAddYield(BigDecimal addYield) {
+		this.addYield = addYield;
+	}
+
+	public Integer getIsDebt() {
+		return isDebt;
+	}
+
+	public void setIsDebt(Integer isDebt) {
+		this.isDebt = isDebt;
+	}
+
+	/**
+	 * ,product
+	 */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", code=").append(code);
+        sb.append(", name=").append(name);
+        sb.append(", reWay=").append(reWay);
+        sb.append(", rule=").append(rule);
+        sb.append(", stDt=").append(stDt);
+        sb.append(", edDt=").append(edDt);
+        sb.append(", priorMoney=").append(priorMoney);
+        sb.append(", reachMoney=").append(reachMoney);
+        sb.append(", approval=").append(approval);
+        sb.append(", status=").append(status);
+        sb.append(", pcId=").append(pcId);
+        sb.append(", pcName=").append(pcName);
+        sb.append(", tags=").append(tags);
+        sb.append(", lTime=").append(lTime);
+        sb.append(", hTime=").append(hTime);
+        sb.append(", fTime=").append(fTime);
+        sb.append(", unitTime=").append(unitTime);
+        sb.append(", valueDt=").append(valueDt);
+        sb.append(", establishDt=").append(establishDt);
+        sb.append(", waitRate=").append(waitRate);
+        sb.append(", minMoney=").append(minMoney);
+        sb.append(", increaMoney=").append(increaMoney);
+        sb.append(", lYield=").append(lYield);
+        sb.append(", hYield=").append(hYield);
+        sb.append(", fYield=").append(fYield);
+        sb.append(", fees=").append(fees);
+        sb.append(", feesRate=").append(feesRate);
+        sb.append(", exceptionRate=").append(exceptionRate);
+        sb.append(", fixInvest=").append(fixInvest);
+        sb.append(", allocation=").append(allocation);
+        sb.append(", activity=").append(activity);
+        sb.append(", platformUserNo=").append(platformUserNo);
+        sb.append(", costValue=").append(costValue);
+        sb.append(", pModel=").append(pModel);
+        sb.append(", pictrueUrl=").append(pictrueUrl);
+        sb.append(", pType=").append(pType);
+        sb.append(", cityCode=").append(cityCode);
+        sb.append(", buyLimit=").append(buyLimit);
+        sb.append(", batch=").append(batch);
+        sb.append(", sort=").append(sort);
+        sb.append(", backgroundUrl=").append(backgroundUrl);
+        sb.append(", backgroundFrosted=").append(backgroundFrosted);
+        sb.append(", backgroundUrlNav=").append(backgroundUrlNav);
+        sb.append(", backgroundUrlIos=").append(backgroundUrlIos);
+		sb.append(", insuranceTrust=").append(insuranceTrust);
+		sb.append(", isRedPacket=").append(isRedPacket);
+		sb.append(", addYield=").append(addYield);
+		sb.append(", isDebt=").append(isDebt);
+        sb.append("]");
+        return sb.toString();
+    }
+}

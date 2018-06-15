@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mrbt.lingmoney.mapper.HxBorrowerMapper" >
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.HxBorrower" >
+    <!--
+    @mbggenerated
+    -->
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="acc_id" property="accId" jdbcType="VARCHAR" />
+    <result column="bw_idtype" property="bwIdtype" jdbcType="VARCHAR" />
+    <result column="bw_acbankid" property="bwAcbankid" jdbcType="VARCHAR" />
+    <result column="bw_acbankname" property="bwAcbankname" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="bw_age" property="bwAge" jdbcType="INTEGER" />
+    <result column="bw_marriage" property="bwMarriage" jdbcType="VARCHAR" />
+    <result column="bw_sex" property="bwSex" jdbcType="VARCHAR" />
+    <result column="bw_credit_record" property="bwCreditRecord" jdbcType="VARCHAR" />
+    <result column="bw_orgin_place" property="bwOrginPlace" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <!--
+    @mbggenerated
+    -->
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <!--
+    @mbggenerated
+    -->
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <!--
+    @mbggenerated
+    -->
+    id, acc_id, bw_idtype, bw_acbankid, bw_acbankname, status, bw_age, bw_marriage, bw_sex, 
+    bw_credit_record, bw_orgin_place
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mrbt.lingmoney.model.HxBorrowerExample" >
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hx_borrower
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    <!--
+    @mbggenerated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from hx_borrower
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    <!--
+    @mbggenerated
+    -->
+    delete from hx_borrower
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.HxBorrowerExample" >
+    <!--
+    @mbggenerated
+    -->
+    delete from hx_borrower
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mrbt.lingmoney.model.HxBorrower" >
+    <!--
+    @mbggenerated
+    -->
+    insert into hx_borrower (id, acc_id, bw_idtype, 
+      bw_acbankid, bw_acbankname, status, 
+      bw_age, bw_marriage, bw_sex, 
+      bw_credit_record, bw_orgin_place)
+    values (#{id,jdbcType=VARCHAR}, #{accId,jdbcType=VARCHAR}, #{bwIdtype,jdbcType=VARCHAR}, 
+      #{bwAcbankid,jdbcType=VARCHAR}, #{bwAcbankname,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{bwAge,jdbcType=INTEGER}, #{bwMarriage,jdbcType=VARCHAR}, #{bwSex,jdbcType=VARCHAR}, 
+      #{bwCreditRecord,jdbcType=VARCHAR}, #{bwOrginPlace,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.HxBorrower" >
+    <!--
+    @mbggenerated
+    -->
+    insert into hx_borrower
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="accId != null" >
+        acc_id,
+      </if>
+      <if test="bwIdtype != null" >
+        bw_idtype,
+      </if>
+      <if test="bwAcbankid != null" >
+        bw_acbankid,
+      </if>
+      <if test="bwAcbankname != null" >
+        bw_acbankname,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="bwAge != null" >
+        bw_age,
+      </if>
+      <if test="bwMarriage != null" >
+        bw_marriage,
+      </if>
+      <if test="bwSex != null" >
+        bw_sex,
+      </if>
+      <if test="bwCreditRecord != null" >
+        bw_credit_record,
+      </if>
+      <if test="bwOrginPlace != null" >
+        bw_orgin_place,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="accId != null" >
+        #{accId,jdbcType=VARCHAR},
+      </if>
+      <if test="bwIdtype != null" >
+        #{bwIdtype,jdbcType=VARCHAR},
+      </if>
+      <if test="bwAcbankid != null" >
+        #{bwAcbankid,jdbcType=VARCHAR},
+      </if>
+      <if test="bwAcbankname != null" >
+        #{bwAcbankname,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="bwAge != null" >
+        #{bwAge,jdbcType=INTEGER},
+      </if>
+      <if test="bwMarriage != null" >
+        #{bwMarriage,jdbcType=VARCHAR},
+      </if>
+      <if test="bwSex != null" >
+        #{bwSex,jdbcType=VARCHAR},
+      </if>
+      <if test="bwCreditRecord != null" >
+        #{bwCreditRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="bwOrginPlace != null" >
+        #{bwOrginPlace,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.HxBorrowerExample" resultType="java.lang.Long" >
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from hx_borrower
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    <!--
+    @mbggenerated
+    -->
+    update hx_borrower
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accId != null" >
+        acc_id = #{record.accId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bwIdtype != null" >
+        bw_idtype = #{record.bwIdtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bwAcbankid != null" >
+        bw_acbankid = #{record.bwAcbankid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bwAcbankname != null" >
+        bw_acbankname = #{record.bwAcbankname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.bwAge != null" >
+        bw_age = #{record.bwAge,jdbcType=INTEGER},
+      </if>
+      <if test="record.bwMarriage != null" >
+        bw_marriage = #{record.bwMarriage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bwSex != null" >
+        bw_sex = #{record.bwSex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bwCreditRecord != null" >
+        bw_credit_record = #{record.bwCreditRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bwOrginPlace != null" >
+        bw_orgin_place = #{record.bwOrginPlace,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    <!--
+    @mbggenerated
+    -->
+    update hx_borrower
+    set id = #{record.id,jdbcType=VARCHAR},
+      acc_id = #{record.accId,jdbcType=VARCHAR},
+      bw_idtype = #{record.bwIdtype,jdbcType=VARCHAR},
+      bw_acbankid = #{record.bwAcbankid,jdbcType=VARCHAR},
+      bw_acbankname = #{record.bwAcbankname,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=INTEGER},
+      bw_age = #{record.bwAge,jdbcType=INTEGER},
+      bw_marriage = #{record.bwMarriage,jdbcType=VARCHAR},
+      bw_sex = #{record.bwSex,jdbcType=VARCHAR},
+      bw_credit_record = #{record.bwCreditRecord,jdbcType=VARCHAR},
+      bw_orgin_place = #{record.bwOrginPlace,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mrbt.lingmoney.model.HxBorrower" >
+    <!--
+    @mbggenerated
+    -->
+    update hx_borrower
+    <set >
+      <if test="accId != null" >
+        acc_id = #{accId,jdbcType=VARCHAR},
+      </if>
+      <if test="bwIdtype != null" >
+        bw_idtype = #{bwIdtype,jdbcType=VARCHAR},
+      </if>
+      <if test="bwAcbankid != null" >
+        bw_acbankid = #{bwAcbankid,jdbcType=VARCHAR},
+      </if>
+      <if test="bwAcbankname != null" >
+        bw_acbankname = #{bwAcbankname,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="bwAge != null" >
+        bw_age = #{bwAge,jdbcType=INTEGER},
+      </if>
+      <if test="bwMarriage != null" >
+        bw_marriage = #{bwMarriage,jdbcType=VARCHAR},
+      </if>
+      <if test="bwSex != null" >
+        bw_sex = #{bwSex,jdbcType=VARCHAR},
+      </if>
+      <if test="bwCreditRecord != null" >
+        bw_credit_record = #{bwCreditRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="bwOrginPlace != null" >
+        bw_orgin_place = #{bwOrginPlace,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mrbt.lingmoney.model.HxBorrower" >
+    <!--
+    @mbggenerated
+    -->
+    update hx_borrower
+    set acc_id = #{accId,jdbcType=VARCHAR},
+      bw_idtype = #{bwIdtype,jdbcType=VARCHAR},
+      bw_acbankid = #{bwAcbankid,jdbcType=VARCHAR},
+      bw_acbankname = #{bwAcbankname,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      bw_age = #{bwAge,jdbcType=INTEGER},
+      bw_marriage = #{bwMarriage,jdbcType=VARCHAR},
+      bw_sex = #{bwSex,jdbcType=VARCHAR},
+      bw_credit_record = #{bwCreditRecord,jdbcType=VARCHAR},
+      bw_orgin_place = #{bwOrginPlace,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

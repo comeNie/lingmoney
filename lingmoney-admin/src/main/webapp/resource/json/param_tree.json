@@ -1,0 +1,10 @@
+[{
+	"text":"参数类别",
+	"children":[{
+			"id":1,
+			"text":"product_group"
+		},{
+			"id":5,
+			"text":"holiday"
+		}]
+}]

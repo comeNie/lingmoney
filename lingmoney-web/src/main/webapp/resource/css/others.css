@@ -1,0 +1,29 @@
+/*hotimg*/
+.hotimgBox{
+	position:relative;
+	z-index:1;
+}
+.hotimgBox .hdd{
+    position:absolute;
+	z-index:2; 
+	right:10px;
+	bottom:12px;
+	height:10px;  
+	width:50px;
+}
+.hotimgBox .hdd ul{ height:15px;}
+.hotimgBox .hdd ul li{ 
+	float: left;
+    margin-right: 5px;
+    width: 10px;
+    height:10px;
+    cursor: pointer;
+    -webkit-border-radius:50%;
+    border-radius: 50%;
+    background:url("../images/tg_flash_p.png") -16px 0; 
+    overflow:hidden; 	
+	font-size:0;
+}
+.hotimgBox .hdd ul li.on{  
+	background-position:0 0; 
+ }

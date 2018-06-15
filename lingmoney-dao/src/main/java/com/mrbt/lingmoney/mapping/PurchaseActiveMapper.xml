@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mrbt.lingmoney.mapper.PurchaseActiveMapper">
+
+	<update id="updateTradingStatus">
+        update trading set status = #{1} where id = #{0} 
+    </update>
+    
+    <update id="updateTradingFixInfoStatus">
+        update trading_fix_info set status = #{1} where t_id = #{0} 
+    </update>
+    
+    <resultMap type="com.mrbt.lingmoney.model.PurchaseActivePostInfo" id="purchassActiveInfo">
+    	<result column="t_id" property="tId" jdbcType="VARCHAR" />
+    	<result column="financial_money" property="financialMoney" jdbcType="VARCHAR" />
+    	<result column="biz_code" property="bizCode" jdbcType="VARCHAR" />
+    	<result column="info_id" property="infoId" jdbcType="VARCHAR" />
+    	<result column="status" property="status" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <select id="queryPostInfo" resultMap="purchassActiveInfo">
+    	select t.id as t_id, t.financial_money, t.biz_code, tfi.id as Info_id, t.status from trading t, trading_fix_info tfi where t.biz_code = #{0} and t.id = tfi.t_id
+    </select>
+    
+    <select id="queryPostInfo2" resultMap="purchassActiveInfo">
+    	SELECT t_id, money as financial_money, number as biz_code, id as info_id, state as status FROM takeheart_transaction_flow where number = #{0};
+    </select>
+    
+    <!-- 使用resultMap映射实体类和字段之间的一一对应关系 -->
+	<resultMap type="com.mrbt.lingmoney.model.Trading" id="ClassResultMap">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="u_id" property="uId" jdbcType="INTEGER" />
+		<!-- <result column="p_id" property="pId" jdbcType="INTEGER" /> -->
+		<result column="p_code" property="pCode" jdbcType="VARCHAR" />
+		<result column="pc_type" property="pcType" jdbcType="INTEGER" />
+		<!-- <result column="pc_id" property="pcId" jdbcType="INTEGER" /> -->
+		<result column="buy_money" property="buyMoney" jdbcType="DECIMAL" />
+		<result column="financial_money" property="financialMoney"
+			jdbcType="DECIMAL" />
+		<result column="buy_dt" property="buyDt" jdbcType="TIMESTAMP" />
+		<result column="value_dt" property="valueDt" jdbcType="DATE" />
+		<result column="min_sell_dt" property="minSellDt" jdbcType="DATE" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="biz_code" property="bizCode" jdbcType="VARCHAR" />
+		<result column="sell_dt" property="sellDt" jdbcType="TIMESTAMP" />
+		<result column="sell_money" property="sellMoney" jdbcType="DECIMAL" />
+		<result column="out_biz_code" property="outBizCode" jdbcType="VARCHAR" />
+		<result column="auto_pay" property="autoPay" jdbcType="INTEGER" />
+		<result column="fix_invest" property="fixInvest" jdbcType="INTEGER" />
+		<result column="interest" property="interest" jdbcType="DECIMAL" />
+    	<result column="all_interest" property="allInterest" jdbcType="DECIMAL" />
+    	<result column="last_value_dt" property="lastValueDt" jdbcType="DATE" />
+		<association property="product" javaType="com.mrbt.lingmoney.model.Product">
+			<id property="id" column="p_id" />
+			<result column="code" property="code" jdbcType="VARCHAR" />
+			<result column="name" property="name" jdbcType="VARCHAR" />
+			<result column="re_way" property="reWay" jdbcType="VARCHAR" />
+			<result column="rule" property="rule" jdbcType="INTEGER" />
+			<result column="st_dt" property="stDt" jdbcType="TIMESTAMP" />
+			<result column="ed_dt" property="edDt" jdbcType="TIMESTAMP" />
+			<result column="prior_money" property="priorMoney" jdbcType="DECIMAL" />
+			<result column="reach_money" property="reachMoney" jdbcType="DECIMAL" />
+			<result column="approval" property="approval" jdbcType="INTEGER" />
+			<result column="pStatus" property="status" jdbcType="INTEGER" />
+			<result column="pc_id" property="pcId" jdbcType="INTEGER" />
+			<result column="pc_name" property="pcName" jdbcType="VARCHAR" />
+			<result column="tags" property="tags" jdbcType="VARCHAR" />
+			<result column="l_time" property="lTime" jdbcType="INTEGER" />
+			<result column="h_time" property="hTime" jdbcType="INTEGER" />
+			<result column="f_time" property="fTime" jdbcType="INTEGER" />
+			<result column="unit_time" property="unitTime" jdbcType="INTEGER" />
+			<result column="value_dt" property="valueDt" jdbcType="DATE" />
+			<result column="establish_dt" property="establishDt" jdbcType="TIMESTAMP" />
+			<result column="wait_rate" property="waitRate" jdbcType="DECIMAL" />
+			<result column="min_money" property="minMoney" jdbcType="INTEGER" />
+			<result column="increa_money" property="increaMoney" jdbcType="INTEGER" />
+			<result column="l_yield" property="lYield" jdbcType="DECIMAL" />
+			<result column="h_yield" property="hYield" jdbcType="DECIMAL" />
+			<result column="f_yield" property="fYield" jdbcType="DECIMAL" />
+			<result column="fees" property="fees" jdbcType="INTEGER" />
+			<result column="fees_rate" property="feesRate" jdbcType="DECIMAL" />
+		 	<result column="exception_rate" property="exceptionRate" jdbcType="DECIMAL" />
+		    <result column="fix_invest" property="fixInvest" jdbcType="INTEGER" />
+		    <result column="allocation" property="allocation" jdbcType="INTEGER" />
+		    <result column="activity" property="activity" jdbcType="INTEGER" />
+		    <result column="platform_user_no" property="platformUserNo" jdbcType="INTEGER" />
+		    <result column="cost_value" property="costValue" jdbcType="DECIMAL" />
+		    <result column="p_model" property="pModel" jdbcType="INTEGER" />
+		    <result column="pictrue_url" property="pictrueUrl" jdbcType="VARCHAR" />
+		    <result column="p_type" jdbcType="INTEGER" property="pType" />
+		</association>
+	</resultMap>
+    
+    <select id="selectTradingWithProduect" resultMap="ClassResultMap" parameterType="String">
+    select  tra.id,tra.u_id,tra.p_id,tra.p_code,tra.pc_type,tra.pc_id,tra.buy_money,tra.financial_money,tra.buy_dt,tra.value_dt
+,tra.w_value_dt,tra.min_sell_dt,tra.status,tra.biz_code,tra.sell_dt,tra.sell_money,tra.out_biz_code,tra.fix_invest,
+tra.auto_pay,tra.interest,tra.all_interest,pro.code,pro.name,pro.re_way,pro.rule,pro.st_dt,pro.ed_dt,pro.prior_money,pro.reach_money,pro.approval,pro.status as pStatus,
+pro.pc_id,pro.pc_name,pro.tags,pro.l_time,pro.h_time,pro.f_time,pro.unit_time,pro.value_dt,
+pro.establish_dt,pro.wait_rate,pro.min_money,pro.increa_money,pro.l_yield,pro.h_yield,pro.f_yield,pro.fees,
+pro.fees_rate,pro.exception_rate,pro.fix_invest,pro.allocation,pro.description,pro.activity,pro.platform_user_no,
+pro.cost_value,pro.p_model,pro.pictrue_url,pro.p_type,pro.introduction
+  from trading as tra , product as pro where  tra.biz_code = #{biz_code} and  tra.p_id = pro.id and pro.p_type=0
+ </select>
+
+</mapper>

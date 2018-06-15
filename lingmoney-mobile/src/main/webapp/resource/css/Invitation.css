@@ -1,0 +1,144 @@
+	html{
+    font-size: 100%;
+}
+/* 整体稳定结构--------------------- */
+html,body,.screen{
+            position: relative;
+            width: 100%;
+            height: 100%;
+             /*  overflow: hidden;   */
+            margin: 0 auto;
+			
+        }
+body, h1, h2, h3, h4, h5, h6, hr, p, /* structural elements 结构元素 */
+dl, dt, dd, ul, ol, li, /* list elements 列表元素 */
+fieldset, button, input, textarea, /* form elements 表单元素 */
+th, td,img,section,div,span, a,header,section{ /* table elements 表格元素 */
+    margin: 0rem;
+    padding: 0rem;
+    color: #333;
+    list-style: none;display:block;  
+
+    -webkit-tap-highlight-color:transparent; 
+   
+}
+
+h1, h2, h3, h4, h5, h6{ font-weight: 400; color: #292929;}
+h1 { font-size: 0.32rem; /* 18px / 12px = 1.5 */ }
+h2 { font-size: 0.26rem; }
+h3 { font-size: 0.18rem; }
+h4, h5, h6 { font-size: 100%;}
+img{vertical-align:middle;}
+input{text-indent:0.13rem;}
+/* 重置文本格式元素 */
+a { text-decoration: none; -webkit-tap-highlight-color:transparent; -webkit-user-select: none;-moz-user-focus: none;-moz-user-select: none; color: #000;}
+a:hover { text-decoration: none; }		
+			
+.main{
+	position: absolute;
+	width: 100%;
+	max-width: 7.5rem;
+	left: 50%;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+	z-index: 9;
+	transform: translate(-50%,0);
+	-webkit-transform: translate(-50%,0);
+	-moz-transform: translate(-50%,0);
+	-o-transform: translate(-50%,0);	
+	transform: translate(-50%,0);
+	padding-bottom:1.2rem;
+}
+
+
+.error_tip {position:fixed; top: 50%; height: 0.68rem;width: 3.45rem;font-size: .24rem;line-height: .68rem;border-radius: 3px;background: rgba(0,0,0,0.5);text-align: center;color: #fff;
+left: 50%; 
+  /*  transform: translate(-50%,-50%); */z-index: 100;opacity: 0;display: none; margin-left:-1.72rem;}
+
+
+/*常用方法*/
+.Invitation-tip{font-size:0.46rem;color:#F26246;text-align:center; padding-top:0.76rem; padding-bottom:0.12rem;font-weight:bold;}
+.Invitation-tipsimg{text-align:center; margin-bottom:0.24rem;}
+.Invitation-tipsimg img{width:5.15rem;margin:0 auto;}
+.Invitation-actime{width:5.84rem;height:0.4rem;text-align:center;margin-left:auto;margin-right:auto;line-height:0.4rem;background:#FFA893;font-size:0.24rem;color:#fff; border-radius:0.2rem;}
+.Invitation-bigimg{width:6.66rem;margin-left:auto;margin-right:auto;line-height:0rem;font-size:0rem;}
+.Invitation-bigimg img{width:6.66rem;}
+.Invitation-btn{overflow:hidden; padding-left:1.07rem; padding-right:1.07rem; margin-top:0.15rem;}
+.Invitation-btn span{display:block;width:2.27rem;height:0.47rem;text-align:center;line-height:0.47rem;color:#fff;line-height:0.47rem;background:#FEA28B;font-size:0.24rem;border-radius:0.24rem;}
+.Invitation-btn-left{float:left;}
+.Invitation-btn-right{float:right}
+.Invitation-class{overflow:hidden; margin-top:0.7rem;}
+.Invitation-class li{width:2.21rem;height:1rem; padding-top:0.2rem;border:solid #EAB5AA 2px;border-radius:0.08rem;background:#FEFEF2;font-size:0.3rem;color:#F26246;float:left; margin-left:0.15rem; margin-right:0.0rem;text-align:center;line-height:0.42rem;}
+
+.Invitation-haoli{width:6.9rem;margin-left:auto; margin-right:auto; margin-top:0.57rem;background:#FEFEF2;height:4.72rem;}
+.Invitation-haoli-tip{font-size:0.3rem;color:#4A4B5D;text-align:center;padding-top:0.4rem;}
+.Invitation-haoli-tips{font-size:0.24rem;color:#868798;text-align:center; padding-top:0.23rem;}
+.Invitation-haoli-list{overflow:hidden;margin-top:0.47rem;}
+.Invitation-haoli-list li{width:1.94rem;height:2.56rem;float:left; margin-left:0.26rem;}
+.Invitation-haoli-list li div{width:1.94rem;height:1.97rem;line-height:0.342rem;}
+.Invitation-haoli-list li div p{font-size:0.3rem;text-align:center;color:#fff;padding-top: 1.2rem;}
+.Invitation-haoli-list li div p b{font-size:0.2rem;}
+.Invitation-haoli-list li div span{display:block;font-size:0.2rem;text-align:center;color:#fff;}
+.Invitation-haoli-listbjl{background:url('../../resource/images/Invitation3.png')  no-repeat;background-size:100%;}
+.Invitation-haoli-listbjl0{background:url('../../resource/images/Invitation03.png')  no-repeat;background-size:100%;}
+.Invitation-haoli-list li p{color:#868798;font-size:0.2rem; padding-top:0.23rem;text-align:center;}
+.Invitation-demoney{width:6.9rem;margin-left:auto; margin-right:auto; margin-top:0.57rem;background:#FEFEF2;height:4.53rem;}
+.Invitation-demoney-list{overflow:hidden; margin-top:0.5rem;}
+
+.Invitation-demoney-list li{width:1.25rem;float:left; margin-left:0.58rem; margin-right:0.42rem;}
+.Invitation-demoney-list li div{width:1.25rem;height:1.25rem; line-height:1.25rem;background:url('../../resource/images/Invitation4.png')  no-repeat;background-size:100%;text-align:center;font-size:0.58rem;color:#D38C07;}
+.Invitation-demoney-list li div b{font-size:0.22rem;font-weight:normal}
+.Invitation-demoney-list li p{font-size:0.24rem;color:#868798;margin-top:0.23rem;text-align:center;}
+.Invitation-uptop{width:6.9rem;margin-left:auto; margin-right:auto; margin-top:0.57rem;background:#FEFEF2;padding-bottom:0.52rem;}
+.Invitation-tabs{width:3.44rem;height:0.61rem;background:#FF7963;color:#fff;line-height:0.61rem;font-size:0.24rem;border-radius:0.22rem;border:solid #FF7963 1px; margin-left:auto;margin-right:auto; margin-top:0.58rem;     text-align: center;}
+.Invitation-tabs li{width:1.72rem;float:left;text-align:center; line-height:0.61rem;cursor: pointer;}
+.Invitation-active{width:1.72rem;height:0.61rem;border-radius:0.2rem;background:#FF7963;color:#fff;}
+.Invitation-uptop-box{overflow:hidden;margin-top:0.4rem;}
+.Invitation-huizhang{overflow:hidden;}
+.Invitation-huizhang li{width:2.13rem;height:1.34rem;background:url('../../resource/images/Invitation5.png')  no-repeat;background-size:100%;float:left;margin-left:0.12rem;margin-bottom:0.17rem;}
+.Invitation-huizhang li div{font-size:0.22rem;text-align:center; padding-top:0.37rem;line-height:0.29rem;}
+.Invitation-huizhang li div b{color:#ed2904}
+.Invitation-mc{font-size:0.27rem;color:#fff;text-align:center;line-height:0.41rem;}
+
+.Invitation-topph{width:6.3rem;height:3.99rem;border:solid #FF7963 1px;border-radius:0.2rem;background:#fff;margin-left:auto;margin-right:auto;}
+.Invitation-topph-head{font-size:0.3rem;}
+.Invitation-topph-head li{float:left;width:40%;text-align:center;color:#FF7963; padding-top:0.38rem;padding-bottom:0.18rem;}
+.Invitation-none{display:none}
+
+.Invitation-topph-list{font-size:0.26rem;height:3rem;width:100%;overflow:hidden;}
+.Invitation-topph-list ul{display:block;height:3rem;overflow:hidden;}
+.Invitation-topph-list span{float:left;width:40%;text-align:center;color:#666666; height:0.49rem;line-height:0.49rem;display:block;}
+.Invitation-btnt{height:0.98rem;background:#FE8768;text-align:center;line-height:0.98rem;color:#fff;font-size:0.36rem; position:fixed;bottom:0rem;width:100%;z-index:1000}
+
+.index-Popup-bg{width:100%;height:100%;position:fixed;opacity:0.5;background:#000;z-index:9999;left: 0; top: 0;display:none;}
+.Invitation-tc{width:5.15rem;background:#FDF3E6;border:solid #FF7963 1px;border-radius:0.2rem;position:fixed;z-index:99999;left:50%;margin-left:-2.57rem; top:20%;position:relative;display:none;height:6.8rem; overflow-y:auto; }
+.Invitation-tc i{display:block;width:0.36rem;height:0.36rem; position:absolute;top:0.2rem; right:0.2rem;}
+.Invitation-tc i img{width:0.36rem;}
+.Invitation-tc-tip{font-size:0.36rem;color:#666666;text-align:center;padding-top:0.32rem;padding-bottom:0.32rem;}
+.Invitation-tc-bt{font-size:0.24rem;line-height:0.46rem;color:#666; padding-left:0.32rem;padding-right:0.32rem;padding-bottom:0.32rem;}
+.no-data{text-align:center;}
+.no-data p{font-size:0.26rem;color:#999;text-align:center;line-height:1rem;}
+.no-data img{width:3.54rem;margin-left:auto;margin-right:auto;}
+.wx-tip{    text-align: center;
+    font-size: 0.24rem;
+    color: #868798;
+    margin-top: 0.24rem;}
+
+.Invitation-ios{width:5.15rem;background:#fff;border:solid #FF7963 1px;border-radius:0.2rem;position:fixed;z-index:99999;left:50%;margin-left:-2.57rem; top:30%;position:relative;display:none;}
+.Invitation-ios i{display:block;width:0.36rem;height:0.36rem; position:absolute;top:0.2rem; right:0.2rem;}
+.Invitation-ios i img{width:0.36rem;}
+.Invitation-code{width:4rem;height:4rem;margin-left:auto;margin-right:auto; margin-top: 0.4rem;
+   }
+.Invitation-code img{width:4rem;}
+.Invitation-code-tip {font-size:0.22rem;text-align: center;color: #666;padding-bottom:0.2rem;height:0.3rem;}
+
+
+
+
+
+
+
+
+
+
+

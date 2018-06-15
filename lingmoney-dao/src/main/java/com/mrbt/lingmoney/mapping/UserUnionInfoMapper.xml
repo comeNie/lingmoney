@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.UserUnionInfoMapper">
+
+  <resultMap id="AccentSetResultMap" type="com.mrbt.lingmoney.model.UserUnionInfo">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="login_account" jdbcType="VARCHAR" property="loginAccount" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="last_login" jdbcType="TIMESTAMP" property="lastLogin" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+	<result column="name" jdbcType="VARCHAR" property="name" />
+	<result column="sex" jdbcType="VARCHAR" property="sex" />
+	<result column="picture" jdbcType="VARCHAR" property="picture" />
+	<result column="province" jdbcType="VARCHAR" property="province" />
+	<result column="city" jdbcType="VARCHAR" property="city" />
+	<result column="town" jdbcType="VARCHAR" property="town" />
+	<result column="education" jdbcType="VARCHAR" property="education" />
+	<result column="job" jdbcType="VARCHAR" property="job" />
+	<result column="email" jdbcType="VARCHAR" property="email" />
+	<result column="reg_date" jdbcType="DATE" property="regDate" />
+	<result column="certification" jdbcType="INTEGER" property="certification" />
+	<result column="bank" jdbcType="INTEGER" property="bank" />
+	<result column="id_card" jdbcType="VARCHAR" property="idCard" />
+	<result column="referral_code" jdbcType="VARCHAR" property="referralCode" />
+	<result column="referral_id" jdbcType="VARCHAR" property="referralId" />
+	<result column="buy_total" jdbcType="DECIMAL" property="buyTotal" />
+	<result column="level" jdbcType="INTEGER" property="level" />
+	<result column="code_path" jdbcType="VARCHAR" property="codePath" />
+	<result column="auto_pay" jdbcType="INTEGER" property="autoPay" />
+	<result column="first_buy" jdbcType="INTEGER" property="firstBuy" />
+	<result column="platform_type" jdbcType="INTEGER" property="platformType" />
+	<result column="user_level" jdbcType="INTEGER" property="userLevel" />
+	<result column="recommended_level" jdbcType="VARCHAR" property="recommendedLevel" />
+	<result column="wechat" jdbcType="VARCHAR" property="wechat" />
+	<result column="wallet_auto_pay" jdbcType="INTEGER" property="walletAutoPay" />
+	<result column="isSetAddress" jdbcType="INTEGER" property="isSetAddress" />
+	<result column="department" jdbcType="VARCHAR" property="department" />
+	
+	<result column="gesture_pwd" property="gesturePwd" jdbcType="VARCHAR" />
+    <result column="is_use_gesture" property="isUseGesture" jdbcType="INTEGER" />
+    <result column="is_use_push" property="isUsePush" jdbcType="INTEGER" />
+    
+    <result column="degreeName" jdbcType="VARCHAR" property="degreeName" />
+	<result column="degreeMinAmount" property="degreeMinAmount" jdbcType="INTEGER" />
+    <result column="degreeMaxAmount" property="degreeMaxAmount" jdbcType="INTEGER" />
+    <result column="degreePicture" property="degreePicture" jdbcType="VARCHAR" />
+    
+    <result column="ac_no" property="acNo" jdbcType="VARCHAR" />
+    <result column="ac_name" property="acName" jdbcType="VARCHAR" />
+    
+  </resultMap>
+  
+  
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+    @mbggenerated
+    -->
+    u.id,
+	u.login_account,
+	u.telephone,
+	u.last_login,
+	u.type,
+	p.nick_name,
+	p.NAME,
+	p.sex,
+	p.picture,
+	p.province,
+	p.city,
+	p.town,
+	p.education,
+	p.job,
+	p.email,
+	p.reg_date,
+	p.certification,
+	p.bank,
+	p.id_card,
+	p.referral_code,
+	p.referral_id,
+	p.buy_total,
+	p.LEVEL,
+	p.code_path,
+	p.auto_pay,
+	p.first_buy,
+	p.platform_type,
+	p.user_level,
+	p.recommended_level,
+	p.wechat,
+	p.wallet_auto_pay,
+	(SELECT COUNT(*) FROM lingbao_address a WHERE a.u_id=u.id and a.status='1') AS isSetAddress,
+	p.department,
+	ifnull(m.gesture_pwd,0) as gesture_pwd,
+	ifnull(m.is_use_gesture,0) as is_use_gesture,
+	ifnull(m.is_use_push,1) as is_use_push,
+	d.name as degreeName,
+	d.min_amount as degreeMinAmount,
+	d.max_amount as degreeMaxAmount,
+	d.picture as degreePicture,
+	a.ac_no,
+	a.ac_name
+  </sql>
+  <select id="selectByUid" parameterType="java.lang.String" resultMap="AccentSetResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    FROM
+	users u
+	LEFT JOIN users_properties p ON u.id = p.u_id
+	LEFT  JOIN usres_degree d ON p.level=d.id
+	LEFT  JOIN users_mobile_properties m ON u.id = m.u_id
+	LEFT  JOIN hx_account a ON u.id=a.u_id
+    where u.id = #{id,jdbcType=VARCHAR} order by a.status desc limit 1
+  </select>
+  
+  <select id="selectByExample" parameterType="com.mrbt.lingmoney.model.UserUnionInfoExample" resultMap="AccentSetResultMap">
+  	select 
+    	<include refid="Base_Column_List" />
+    FROM
+	users u
+	LEFT JOIN users_properties p ON u.id = p.u_id
+	LEFT  JOIN usres_degree d ON p.level=d.id
+	LEFT  JOIN users_mobile_properties m ON u.id = m.u_id
+	LEFT  JOIN hx_account a ON u.id=a.u_id
+    <if test="_parameter != null">
+		<include refid="Example_Where_Clause" />
+	</if>
+	<if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.UserUnionInfoExample" resultType="java.lang.Integer">
+  	select 
+    	count(*)
+    FROM
+	users u
+	LEFT JOIN users_properties p ON u.id = p.u_id
+	LEFT  JOIN usres_degree d ON p.level=d.id
+	LEFT  JOIN users_mobile_properties m ON u.id = m.u_id
+	LEFT  JOIN hx_account a ON u.id=a.u_id
+
+    <if test="_parameter != null">
+		<include refid="Example_Where_Clause" />
+	</if>
+  </select>
+  
+  <!-- <select id="countByExample" parameterType="com.mrbt.lingmoney.model.UsersExample" resultType="java.lang.Long">
+    
+    @mbggenerated
+   
+    select count(*) from users
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select> -->
+</mapper>

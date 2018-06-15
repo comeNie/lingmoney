@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.DreamBaseInfoMapper">
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.DreamBaseInfo">
+    <!--
+    @mbggenerated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="category_id" jdbcType="INTEGER" property="categoryId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="stereogram" jdbcType="VARCHAR" property="stereogram" />
+    <result column="hollowed_diagram" jdbcType="VARCHAR" property="hollowedDiagram" />
+    <result column="required_amount" jdbcType="DOUBLE" property="requiredAmount" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="desc_one" jdbcType="VARCHAR" property="descOne" />
+    <result column="desc_two" jdbcType="VARCHAR" property="descTwo" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+    @mbggenerated
+    -->
+    id, category_id, title, icon, stereogram, hollowed_diagram, required_amount, status, 
+    create_time, desc_one, desc_two
+  </sql>
+  <select id="selectByExample" parameterType="com.mrbt.lingmoney.model.DreamBaseInfoExample" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from dream_base_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0">
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from dream_base_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--
+    @mbggenerated
+    -->
+    delete from dream_base_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.DreamBaseInfoExample">
+    <!--
+    @mbggenerated
+    -->
+    delete from dream_base_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mrbt.lingmoney.model.DreamBaseInfo">
+    <!--
+    @mbggenerated
+    -->
+    insert into dream_base_info (id, category_id, title, 
+      icon, stereogram, hollowed_diagram, 
+      required_amount, status, create_time, 
+      desc_one, desc_two)
+    values (#{id,jdbcType=INTEGER}, #{categoryId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+      #{icon,jdbcType=VARCHAR}, #{stereogram,jdbcType=VARCHAR}, #{hollowedDiagram,jdbcType=VARCHAR}, 
+      #{requiredAmount,jdbcType=DOUBLE}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{descOne,jdbcType=VARCHAR}, #{descTwo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.DreamBaseInfo">
+    <!--
+    @mbggenerated
+    -->
+    insert into dream_base_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="categoryId != null">
+        category_id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="icon != null">
+        icon,
+      </if>
+      <if test="stereogram != null">
+        stereogram,
+      </if>
+      <if test="hollowedDiagram != null">
+        hollowed_diagram,
+      </if>
+      <if test="requiredAmount != null">
+        required_amount,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="descOne != null">
+        desc_one,
+      </if>
+      <if test="descTwo != null">
+        desc_two,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="categoryId != null">
+        #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="stereogram != null">
+        #{stereogram,jdbcType=VARCHAR},
+      </if>
+      <if test="hollowedDiagram != null">
+        #{hollowedDiagram,jdbcType=VARCHAR},
+      </if>
+      <if test="requiredAmount != null">
+        #{requiredAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="descOne != null">
+        #{descOne,jdbcType=VARCHAR},
+      </if>
+      <if test="descTwo != null">
+        #{descTwo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.DreamBaseInfoExample" resultType="java.lang.Long">
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from dream_base_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update dream_base_info
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.categoryId != null">
+        category_id = #{record.categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.icon != null">
+        icon = #{record.icon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stereogram != null">
+        stereogram = #{record.stereogram,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hollowedDiagram != null">
+        hollowed_diagram = #{record.hollowedDiagram,jdbcType=VARCHAR},
+      </if>
+      <if test="record.requiredAmount != null">
+        required_amount = #{record.requiredAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.descOne != null">
+        desc_one = #{record.descOne,jdbcType=VARCHAR},
+      </if>
+      <if test="record.descTwo != null">
+        desc_two = #{record.descTwo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update dream_base_info
+    set id = #{record.id,jdbcType=INTEGER},
+      category_id = #{record.categoryId,jdbcType=INTEGER},
+      title = #{record.title,jdbcType=VARCHAR},
+      icon = #{record.icon,jdbcType=VARCHAR},
+      stereogram = #{record.stereogram,jdbcType=VARCHAR},
+      hollowed_diagram = #{record.hollowedDiagram,jdbcType=VARCHAR},
+      required_amount = #{record.requiredAmount,jdbcType=DOUBLE},
+      status = #{record.status,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      desc_one = #{record.descOne,jdbcType=VARCHAR},
+      desc_two = #{record.descTwo,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mrbt.lingmoney.model.DreamBaseInfo">
+    <!--
+    @mbggenerated
+    -->
+    update dream_base_info
+    <set>
+      <if test="categoryId != null">
+        category_id = #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="stereogram != null">
+        stereogram = #{stereogram,jdbcType=VARCHAR},
+      </if>
+      <if test="hollowedDiagram != null">
+        hollowed_diagram = #{hollowedDiagram,jdbcType=VARCHAR},
+      </if>
+      <if test="requiredAmount != null">
+        required_amount = #{requiredAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="descOne != null">
+        desc_one = #{descOne,jdbcType=VARCHAR},
+      </if>
+      <if test="descTwo != null">
+        desc_two = #{descTwo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mrbt.lingmoney.model.DreamBaseInfo">
+    <!--
+    @mbggenerated
+    -->
+    update dream_base_info
+    set category_id = #{categoryId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR},
+      stereogram = #{stereogram,jdbcType=VARCHAR},
+      hollowed_diagram = #{hollowedDiagram,jdbcType=VARCHAR},
+      required_amount = #{requiredAmount,jdbcType=DOUBLE},
+      status = #{status,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      desc_one = #{descOne,jdbcType=VARCHAR},
+      desc_two = #{descTwo,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

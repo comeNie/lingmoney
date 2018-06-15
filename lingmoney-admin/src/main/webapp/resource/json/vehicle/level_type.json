@@ -1,0 +1,10 @@
+[
+	{"levelId":"0","levelName":"轿车"},
+	{"levelId":"1","levelName":"SUV"},
+	{"levelId":"2","levelName":"MPV"},
+	{"levelId":"3","levelName":"跑车"},
+	{"levelId":"4","levelName":"微面"},
+	{"levelId":"5","levelName":"微卡"},
+	{"levelId":"6","levelName":"轻客"},
+	{"levelId":"7","levelName":"皮卡"}
+]

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.HxBidderCustomerMapper">
+
+	<select id="findByCondition" parameterType="com.mrbt.lingmoney.utils.PageInfo"
+		resultType="com.mrbt.lingmoney.model.HxBidderCustomer">
+		SELECT t.id id, t.u_id uId, ha.ac_no acNo, ha.ac_name acName, hbb.b_id bId, t.buy_money amount, hbb.loan_no loanNo, t.biz_code bizCode, t.status status FROM trading t
+		INNER JOIN hx_bidding_borrower hbb on hbb.p_id = t.p_id
+		INNER JOIN users_properties up on up.u_id = t.u_id
+		INNER JOIN hx_account ha on ha.u_id = t.u_id
+		<where>
+			<if test=" condition.bId != null and condition.bId != '' ">
+				and hbb.b_id = #{condition.bId}
+			</if>
+			<if test=" condition.uId != null and condition.uId != '' ">
+				and t.u_id = #{condition.uId}
+			</if>
+			<if test=" condition.status != null ">
+				and t.status = #{condition.status}
+			</if>
+			and t.status in (1,2,3,4,8)
+		</where>
+		group by t.id
+		<if test="from !=0 or size!=0">
+			limit #{from},#{size}
+		</if>
+	</select>
+	<select id="findCountByCondition" parameterType="com.mrbt.lingmoney.utils.PageInfo"
+		resultType="java.lang.Integer">
+		select count(*) from (select t.id
+		from
+		trading t
+		INNER JOIN hx_bidding_borrower hbb on hbb.p_id = t.p_id
+		INNER JOIN users_properties up on up.u_id = t.u_id
+		INNER JOIN hx_account ha on ha.u_id = t.u_id
+		<where>
+			<if test=" condition.bId != null and condition.bId != '' ">
+				and hbb.b_id = #{condition.bId}
+			</if>
+			<if test=" condition.uId != null and condition.uId != '' ">
+				and t.u_id = #{condition.uId}
+			</if>
+			<if test=" condition.status != null ">
+				and t.status = #{condition.status}
+			</if>
+			and t.status in (1,2,3,4,8)
+		</where>
+		group by t.id) tmp
+	</select>
+</mapper>

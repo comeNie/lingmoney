@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>lingmoney-web</artifactId>
+	<packaging>war</packaging>
+	<name>lingmoney-web Maven Webapp</name>
+
+	<parent>
+		<groupId>com.mrbt</groupId>
+		<artifactId>lingmoney</artifactId>
+		<version>1.0</version>
+		<relativePath>../</relativePath>
+	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.mrbt</groupId>
+			<artifactId>lingmoney-services</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.mrbt</groupId>
+			<artifactId>lingmoney-bank</artifactId>
+			<version>1.0</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<finalName>lingmoney-web</finalName>
+	</build>
+</project>

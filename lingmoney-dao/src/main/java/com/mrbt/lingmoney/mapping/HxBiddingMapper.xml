@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mrbt.lingmoney.mapper.HxBiddingMapper" >
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.HxBidding" >
+    <!--
+    @mbggenerated
+    -->
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="p_id" property="pId" jdbcType="INTEGER" />
+    <result column="app_id" property="appId" jdbcType="VARCHAR" />
+    <result column="loan_no" property="loanNo" jdbcType="VARCHAR" />
+    <result column="invest_id" property="investId" jdbcType="VARCHAR" />
+    <result column="invest_obj_info" property="investObjInfo" jdbcType="VARCHAR" />
+    <result column="repay_date" property="repayDate" jdbcType="VARCHAR" />
+    <result column="rate_stype" property="rateStype" jdbcType="VARCHAR" />
+    <result column="invest_obj_state" property="investObjState" jdbcType="VARCHAR" />
+    <result column="bw_total_num" property="bwTotalNum" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="zr_flag" property="zrFlag" jdbcType="VARCHAR" />
+    <result column="ref_loan_no" property="refLoanNo" jdbcType="VARCHAR" />
+    <result column="old_reqseq" property="oldReqseq" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <!--
+    @mbggenerated
+    -->
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <!--
+    @mbggenerated
+    -->
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <!--
+    @mbggenerated
+    -->
+    id, p_id, app_id, loan_no, invest_id, invest_obj_info, repay_date, rate_stype, invest_obj_state, 
+    bw_total_num, remark, zr_flag, ref_loan_no, old_reqseq
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mrbt.lingmoney.model.HxBiddingExample" >
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hx_bidding
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    <!--
+    @mbggenerated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from hx_bidding
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    <!--
+    @mbggenerated
+    -->
+    delete from hx_bidding
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.HxBiddingExample" >
+    <!--
+    @mbggenerated
+    -->
+    delete from hx_bidding
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mrbt.lingmoney.model.HxBidding" >
+    <!--
+    @mbggenerated
+    -->
+    insert into hx_bidding (id, p_id, app_id, 
+      loan_no, invest_id, invest_obj_info, 
+      repay_date, rate_stype, invest_obj_state, 
+      bw_total_num, remark, zr_flag, 
+      ref_loan_no, old_reqseq)
+    values (#{id,jdbcType=VARCHAR}, #{pId,jdbcType=INTEGER}, #{appId,jdbcType=VARCHAR}, 
+      #{loanNo,jdbcType=VARCHAR}, #{investId,jdbcType=VARCHAR}, #{investObjInfo,jdbcType=VARCHAR}, 
+      #{repayDate,jdbcType=VARCHAR}, #{rateStype,jdbcType=VARCHAR}, #{investObjState,jdbcType=VARCHAR}, 
+      #{bwTotalNum,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{zrFlag,jdbcType=VARCHAR}, 
+      #{refLoanNo,jdbcType=VARCHAR}, #{oldReqseq,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.HxBidding" >
+    <!--
+    @mbggenerated
+    -->
+    insert into hx_bidding
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="pId != null" >
+        p_id,
+      </if>
+      <if test="appId != null" >
+        app_id,
+      </if>
+      <if test="loanNo != null" >
+        loan_no,
+      </if>
+      <if test="investId != null" >
+        invest_id,
+      </if>
+      <if test="investObjInfo != null" >
+        invest_obj_info,
+      </if>
+      <if test="repayDate != null" >
+        repay_date,
+      </if>
+      <if test="rateStype != null" >
+        rate_stype,
+      </if>
+      <if test="investObjState != null" >
+        invest_obj_state,
+      </if>
+      <if test="bwTotalNum != null" >
+        bw_total_num,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="zrFlag != null" >
+        zr_flag,
+      </if>
+      <if test="refLoanNo != null" >
+        ref_loan_no,
+      </if>
+      <if test="oldReqseq != null" >
+        old_reqseq,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="pId != null" >
+        #{pId,jdbcType=INTEGER},
+      </if>
+      <if test="appId != null" >
+        #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="loanNo != null" >
+        #{loanNo,jdbcType=VARCHAR},
+      </if>
+      <if test="investId != null" >
+        #{investId,jdbcType=VARCHAR},
+      </if>
+      <if test="investObjInfo != null" >
+        #{investObjInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="repayDate != null" >
+        #{repayDate,jdbcType=VARCHAR},
+      </if>
+      <if test="rateStype != null" >
+        #{rateStype,jdbcType=VARCHAR},
+      </if>
+      <if test="investObjState != null" >
+        #{investObjState,jdbcType=VARCHAR},
+      </if>
+      <if test="bwTotalNum != null" >
+        #{bwTotalNum,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="zrFlag != null" >
+        #{zrFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="refLoanNo != null" >
+        #{refLoanNo,jdbcType=VARCHAR},
+      </if>
+      <if test="oldReqseq != null" >
+        #{oldReqseq,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.HxBiddingExample" resultType="java.lang.Long" >
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from hx_bidding
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    <!--
+    @mbggenerated
+    -->
+    update hx_bidding
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pId != null" >
+        p_id = #{record.pId,jdbcType=INTEGER},
+      </if>
+      <if test="record.appId != null" >
+        app_id = #{record.appId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loanNo != null" >
+        loan_no = #{record.loanNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.investId != null" >
+        invest_id = #{record.investId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.investObjInfo != null" >
+        invest_obj_info = #{record.investObjInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.repayDate != null" >
+        repay_date = #{record.repayDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rateStype != null" >
+        rate_stype = #{record.rateStype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.investObjState != null" >
+        invest_obj_state = #{record.investObjState,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bwTotalNum != null" >
+        bw_total_num = #{record.bwTotalNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zrFlag != null" >
+        zr_flag = #{record.zrFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refLoanNo != null" >
+        ref_loan_no = #{record.refLoanNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oldReqseq != null" >
+        old_reqseq = #{record.oldReqseq,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    <!--
+    @mbggenerated
+    -->
+    update hx_bidding
+    set id = #{record.id,jdbcType=VARCHAR},
+      p_id = #{record.pId,jdbcType=INTEGER},
+      app_id = #{record.appId,jdbcType=VARCHAR},
+      loan_no = #{record.loanNo,jdbcType=VARCHAR},
+      invest_id = #{record.investId,jdbcType=VARCHAR},
+      invest_obj_info = #{record.investObjInfo,jdbcType=VARCHAR},
+      repay_date = #{record.repayDate,jdbcType=VARCHAR},
+      rate_stype = #{record.rateStype,jdbcType=VARCHAR},
+      invest_obj_state = #{record.investObjState,jdbcType=VARCHAR},
+      bw_total_num = #{record.bwTotalNum,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      zr_flag = #{record.zrFlag,jdbcType=VARCHAR},
+      ref_loan_no = #{record.refLoanNo,jdbcType=VARCHAR},
+      old_reqseq = #{record.oldReqseq,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mrbt.lingmoney.model.HxBidding" >
+    <!--
+    @mbggenerated
+    -->
+    update hx_bidding
+    <set >
+      <if test="pId != null" >
+        p_id = #{pId,jdbcType=INTEGER},
+      </if>
+      <if test="appId != null" >
+        app_id = #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="loanNo != null" >
+        loan_no = #{loanNo,jdbcType=VARCHAR},
+      </if>
+      <if test="investId != null" >
+        invest_id = #{investId,jdbcType=VARCHAR},
+      </if>
+      <if test="investObjInfo != null" >
+        invest_obj_info = #{investObjInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="repayDate != null" >
+        repay_date = #{repayDate,jdbcType=VARCHAR},
+      </if>
+      <if test="rateStype != null" >
+        rate_stype = #{rateStype,jdbcType=VARCHAR},
+      </if>
+      <if test="investObjState != null" >
+        invest_obj_state = #{investObjState,jdbcType=VARCHAR},
+      </if>
+      <if test="bwTotalNum != null" >
+        bw_total_num = #{bwTotalNum,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="zrFlag != null" >
+        zr_flag = #{zrFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="refLoanNo != null" >
+        ref_loan_no = #{refLoanNo,jdbcType=VARCHAR},
+      </if>
+      <if test="oldReqseq != null" >
+        old_reqseq = #{oldReqseq,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mrbt.lingmoney.model.HxBidding" >
+    <!--
+    @mbggenerated
+    -->
+    update hx_bidding
+    set p_id = #{pId,jdbcType=INTEGER},
+      app_id = #{appId,jdbcType=VARCHAR},
+      loan_no = #{loanNo,jdbcType=VARCHAR},
+      invest_id = #{investId,jdbcType=VARCHAR},
+      invest_obj_info = #{investObjInfo,jdbcType=VARCHAR},
+      repay_date = #{repayDate,jdbcType=VARCHAR},
+      rate_stype = #{rateStype,jdbcType=VARCHAR},
+      invest_obj_state = #{investObjState,jdbcType=VARCHAR},
+      bw_total_num = #{bwTotalNum,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      zr_flag = #{zrFlag,jdbcType=VARCHAR},
+      ref_loan_no = #{refLoanNo,jdbcType=VARCHAR},
+      old_reqseq = #{oldReqseq,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

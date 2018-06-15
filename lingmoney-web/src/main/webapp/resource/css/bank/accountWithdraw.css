@@ -1,0 +1,122 @@
+.rechargeBtn {
+	background: #ea5413 none repeat scroll 0 0;
+    border-radius: 3px;
+    color: #fff;
+    display: inline-block;
+    font-size: 18px;
+    height: 40px;
+    line-height: 40px;
+    margin-right: 20px;
+    padding: 0;
+    text-align: center;
+    width: 150px;
+}
+
+.rechargeTab {
+	margin-top:30px;
+	width:100%;
+	height:200px;
+	padding:0 30px;
+	text-align: left;
+}
+.rechargeTab .td_1{
+	width: 100px;
+}
+.rechargeTab .td_1,.rechargeTab .td_2{
+	font-size: 16px;
+	color: #282828;
+	font-family: "微软雅黑";
+	font-weight: normal;
+}
+.rechargeTab .td_2 span{
+	font-size: 20px;
+	color: #ea5513;
+	margin-right: 5px;
+}
+
+.rechargeTab input{
+	border: 1px solid #c2c2c2;
+	height: 34px;
+	line-height:34px;
+	padding:0 10px;
+	width: 188px;
+}
+.TopupWay{
+	margin: 15px 30px 0 30px;
+	border-top:1px dashed #cccccc;
+}
+.TopupWay .tw_tip_1{
+	width: 70px;
+	height: 10px;
+	border-right: 1px dashed #cccccc;
+	border-left: 1px dashed #cccccc;
+	margin-left: 12px;
+}
+.TopupWay .tw_tip_2{
+	width: 78px;
+	height: 24px;
+	line-height: 24px;
+	margin-left: 9px;
+	margin-bottom:40px;
+	border: 1px solid #cccccc;
+	font-size: 16px;
+	color:#282828;
+	text-align: center;
+}
+
+.TopupWay .tw_tip_3 {
+	margin:10px 10px 0 0;
+	float: right;
+}
+
+.TopupWay .tw_tip_3 a {
+	color: #ea5514;
+}
+
+p.imgText{
+	font-size: 16px;
+	line-height:23px;
+	color: #ea5514;
+	padding-left: 15px;
+}
+p.imgText a{
+	font-size: 14px;
+	color: #0483ef;
+	margin: 0 5px;
+	text-decoration: underline;
+}
+p.imgText img{
+	vertical-align: middle;
+}
+
+.steps{
+	padding-left: 40px;
+	margin: 20px 0 25px 0;
+}
+.steps .stepsBox{
+	width: 151px;
+	height: 55px;
+	line-height:55px;
+	float: left;
+	margin-left: 20px;
+	text-align:center;
+	background: url("/resource/images/TopupWay_box_bg.png") no-repeat;
+}
+.sweetTip{
+	padding-left: 15px;
+	margin-top: 20px;
+	padding-bottom: 20px;
+}
+.sweetTip p{
+	font-size: 14px;
+	color: #282828;
+	line-height: 30px;
+	font-family: "微软雅黑";
+}
+.sweetTip p a{
+	color: #ea5514;
+	text-decoration: underline;
+}
+.sweetTip p span{
+	padding-left: 15px;
+}

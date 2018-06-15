@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.UserFinanceMapper">
+
+	<select id="findUserTrading" parameterType="Map" resultType="com.mrbt.lingmoney.model.UserFinance">
+		select t.id,p.code productCode,p.name productName,p.f_time productTerm,p.st_dt stDt, p.ed_dt edDt, t.financial_money financialMoney,DATE_ADD(p.ed_dt,INTERVAL p.f_time DAY) as expireDt,
+			p.f_yield fYield,tfi.interest expectEarn,t.value_dt valueDt,pc.name proType,t.status,t.buy_dt buyDt,hrp.hrp_type hrpType, hrp.hrp_number hrpNumber, urp.actual_amount actualAmount
+		from trading t inner join trading_fix_info tfi on t.id = tfi.t_id
+			inner join product p on t.p_id = p.id
+			inner join product_category pc on t.pc_id = pc.id
+			left join users_red_packet as urp on t.id = urp.t_id
+			left join hx_red_packet as hrp on urp.rp_id = hrp.id
+		<where>
+			t.p_id != 1 and t.status in (0,1,2,3,4,12)
+			<if test="uId != null">
+				and t.u_id = #{uId}
+			</if>
+			<if test="status != null">
+				and t.status = #{status}
+			</if>
+		</where>
+		order by t.buy_dt desc
+		limit #{start},${end}
+	</select>
+	<select id="countUserTrading" parameterType="Map" resultType="long">
+		select count(1)
+		from trading t inner join trading_fix_info tfi on t.id = tfi.t_id
+			inner join product p on t.p_id = p.id
+			left join users_red_packet as urp on t.id = urp.t_id
+			left join hx_red_packet as hrp on urp.rp_id = hrp.id
+		<where>
+			t.p_id != 1 and t.status in (0,1,2,3,4,12)
+			<if test="uId != null">
+				and t.u_id = #{uId}
+			</if>
+			<if test="status != null">
+				and t.status = #{status}
+			</if>
+		</where>	
+	</select>
+</mapper>

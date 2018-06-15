@@ -1,0 +1,993 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mrbt.lingmoney.mapper.UsersPropertiesMapper" >
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.UsersProperties" >
+    <!--
+    @mbggenerated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="u_id" property="uId" jdbcType="VARCHAR" />
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="picture" property="picture" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="town" property="town" jdbcType="VARCHAR" />
+    <result column="education" property="education" jdbcType="VARCHAR" />
+    <result column="job" property="job" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="reg_date" property="regDate" jdbcType="TIMESTAMP" />
+    <result column="certification" property="certification" jdbcType="INTEGER" />
+    <result column="bank" property="bank" jdbcType="INTEGER" />
+    <result column="id_card" property="idCard" jdbcType="VARCHAR" />
+    <result column="referral_code" property="referralCode" jdbcType="VARCHAR" />
+    <result column="referral_id" property="referralId" jdbcType="VARCHAR" />
+    <result column="buy_total" property="buyTotal" jdbcType="DECIMAL" />
+    <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="code_path" property="codePath" jdbcType="VARCHAR" />
+    <result column="auto_pay" property="autoPay" jdbcType="INTEGER" />
+    <result column="first_buy" property="firstBuy" jdbcType="INTEGER" />
+    <result column="platform_type" property="platformType" jdbcType="INTEGER" />
+    <result column="user_level" property="userLevel" jdbcType="INTEGER" />
+    <result column="recommended_level" property="recommendedLevel" jdbcType="VARCHAR" />
+    <result column="wechat" property="wechat" jdbcType="VARCHAR" />
+    <result column="wallet_auto_pay" property="walletAutoPay" jdbcType="INTEGER" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="department" property="department" jdbcType="VARCHAR" />
+    <result column="youmeng_token" property="youmengToken" jdbcType="VARCHAR" />
+    <result column="device_type" property="deviceType" jdbcType="INTEGER" />
+    <result column="is_transfer" property="isTransfer" jdbcType="INTEGER" />
+    <result column="commission_rate" property="commissionRate" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <!--
+    @mbggenerated
+    -->
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <!--
+    @mbggenerated
+    -->
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <!--
+    @mbggenerated
+    -->
+    id, u_id, nick_name, name, sex, picture, province, city, town, education, job, email, 
+    reg_date, certification, bank, id_card, referral_code, referral_id, buy_total, level, 
+    code_path, auto_pay, first_buy, platform_type, user_level, recommended_level, wechat, 
+    wallet_auto_pay, address, department, youmeng_token, device_type, is_transfer, commission_rate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mrbt.lingmoney.model.UsersPropertiesExample" >
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from users_properties
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    <!--
+    @mbggenerated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from users_properties
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <!--
+    @mbggenerated
+    -->
+    delete from users_properties
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.UsersPropertiesExample" >
+    <!--
+    @mbggenerated
+    -->
+    delete from users_properties
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mrbt.lingmoney.model.UsersProperties" >
+    <!--
+    @mbggenerated
+    -->
+    insert into users_properties (id, u_id, nick_name, 
+      name, sex, picture, 
+      province, city, town, 
+      education, job, email, 
+      reg_date, certification, bank, 
+      id_card, referral_code, referral_id, 
+      buy_total, level, code_path, 
+      auto_pay, first_buy, platform_type, 
+      user_level, recommended_level, wechat, 
+      wallet_auto_pay, address, department, 
+      youmeng_token, device_type, is_transfer, 
+      commission_rate)
+    values (#{id,jdbcType=INTEGER}, #{uId,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{picture,jdbcType=VARCHAR}, 
+      #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{town,jdbcType=VARCHAR}, 
+      #{education,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{regDate,jdbcType=TIMESTAMP}, #{certification,jdbcType=INTEGER}, #{bank,jdbcType=INTEGER}, 
+      #{idCard,jdbcType=VARCHAR}, #{referralCode,jdbcType=VARCHAR}, #{referralId,jdbcType=VARCHAR}, 
+      #{buyTotal,jdbcType=DECIMAL}, #{level,jdbcType=INTEGER}, #{codePath,jdbcType=VARCHAR}, 
+      #{autoPay,jdbcType=INTEGER}, #{firstBuy,jdbcType=INTEGER}, #{platformType,jdbcType=INTEGER}, 
+      #{userLevel,jdbcType=INTEGER}, #{recommendedLevel,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, 
+      #{walletAutoPay,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, 
+      #{youmengToken,jdbcType=VARCHAR}, #{deviceType,jdbcType=INTEGER}, #{isTransfer,jdbcType=INTEGER}, 
+      #{commissionRate,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.UsersProperties" >
+    <!--
+    @mbggenerated
+    -->
+    insert into users_properties
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="uId != null" >
+        u_id,
+      </if>
+      <if test="nickName != null" >
+        nick_name,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="picture != null" >
+        picture,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="town != null" >
+        town,
+      </if>
+      <if test="education != null" >
+        education,
+      </if>
+      <if test="job != null" >
+        job,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="regDate != null" >
+        reg_date,
+      </if>
+      <if test="certification != null" >
+        certification,
+      </if>
+      <if test="bank != null" >
+        bank,
+      </if>
+      <if test="idCard != null" >
+        id_card,
+      </if>
+      <if test="referralCode != null" >
+        referral_code,
+      </if>
+      <if test="referralId != null" >
+        referral_id,
+      </if>
+      <if test="buyTotal != null" >
+        buy_total,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="codePath != null" >
+        code_path,
+      </if>
+      <if test="autoPay != null" >
+        auto_pay,
+      </if>
+      <if test="firstBuy != null" >
+        first_buy,
+      </if>
+      <if test="platformType != null" >
+        platform_type,
+      </if>
+      <if test="userLevel != null" >
+        user_level,
+      </if>
+      <if test="recommendedLevel != null" >
+        recommended_level,
+      </if>
+      <if test="wechat != null" >
+        wechat,
+      </if>
+      <if test="walletAutoPay != null" >
+        wallet_auto_pay,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="department != null" >
+        department,
+      </if>
+      <if test="youmengToken != null" >
+        youmeng_token,
+      </if>
+      <if test="deviceType != null" >
+        device_type,
+      </if>
+      <if test="isTransfer != null" >
+        is_transfer,
+      </if>
+      <if test="commissionRate != null" >
+        commission_rate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uId != null" >
+        #{uId,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="picture != null" >
+        #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="town != null" >
+        #{town,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="regDate != null" >
+        #{regDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="certification != null" >
+        #{certification,jdbcType=INTEGER},
+      </if>
+      <if test="bank != null" >
+        #{bank,jdbcType=INTEGER},
+      </if>
+      <if test="idCard != null" >
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="referralCode != null" >
+        #{referralCode,jdbcType=VARCHAR},
+      </if>
+      <if test="referralId != null" >
+        #{referralId,jdbcType=VARCHAR},
+      </if>
+      <if test="buyTotal != null" >
+        #{buyTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="codePath != null" >
+        #{codePath,jdbcType=VARCHAR},
+      </if>
+      <if test="autoPay != null" >
+        #{autoPay,jdbcType=INTEGER},
+      </if>
+      <if test="firstBuy != null" >
+        #{firstBuy,jdbcType=INTEGER},
+      </if>
+      <if test="platformType != null" >
+        #{platformType,jdbcType=INTEGER},
+      </if>
+      <if test="userLevel != null" >
+        #{userLevel,jdbcType=INTEGER},
+      </if>
+      <if test="recommendedLevel != null" >
+        #{recommendedLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null" >
+        #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="walletAutoPay != null" >
+        #{walletAutoPay,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="youmengToken != null" >
+        #{youmengToken,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceType != null" >
+        #{deviceType,jdbcType=INTEGER},
+      </if>
+      <if test="isTransfer != null" >
+        #{isTransfer,jdbcType=INTEGER},
+      </if>
+      <if test="commissionRate != null" >
+        #{commissionRate,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.UsersPropertiesExample" resultType="java.lang.Long" >
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from users_properties
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    <!--
+    @mbggenerated
+    -->
+    update users_properties
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.uId != null" >
+        u_id = #{record.uId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nickName != null" >
+        nick_name = #{record.nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null" >
+        sex = #{record.sex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.picture != null" >
+        picture = #{record.picture,jdbcType=VARCHAR},
+      </if>
+      <if test="record.province != null" >
+        province = #{record.province,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null" >
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.town != null" >
+        town = #{record.town,jdbcType=VARCHAR},
+      </if>
+      <if test="record.education != null" >
+        education = #{record.education,jdbcType=VARCHAR},
+      </if>
+      <if test="record.job != null" >
+        job = #{record.job,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regDate != null" >
+        reg_date = #{record.regDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.certification != null" >
+        certification = #{record.certification,jdbcType=INTEGER},
+      </if>
+      <if test="record.bank != null" >
+        bank = #{record.bank,jdbcType=INTEGER},
+      </if>
+      <if test="record.idCard != null" >
+        id_card = #{record.idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.referralCode != null" >
+        referral_code = #{record.referralCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.referralId != null" >
+        referral_id = #{record.referralId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyTotal != null" >
+        buy_total = #{record.buyTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="record.level != null" >
+        level = #{record.level,jdbcType=INTEGER},
+      </if>
+      <if test="record.codePath != null" >
+        code_path = #{record.codePath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.autoPay != null" >
+        auto_pay = #{record.autoPay,jdbcType=INTEGER},
+      </if>
+      <if test="record.firstBuy != null" >
+        first_buy = #{record.firstBuy,jdbcType=INTEGER},
+      </if>
+      <if test="record.platformType != null" >
+        platform_type = #{record.platformType,jdbcType=INTEGER},
+      </if>
+      <if test="record.userLevel != null" >
+        user_level = #{record.userLevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.recommendedLevel != null" >
+        recommended_level = #{record.recommendedLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wechat != null" >
+        wechat = #{record.wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="record.walletAutoPay != null" >
+        wallet_auto_pay = #{record.walletAutoPay,jdbcType=INTEGER},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.department != null" >
+        department = #{record.department,jdbcType=VARCHAR},
+      </if>
+      <if test="record.youmengToken != null" >
+        youmeng_token = #{record.youmengToken,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceType != null" >
+        device_type = #{record.deviceType,jdbcType=INTEGER},
+      </if>
+      <if test="record.isTransfer != null" >
+        is_transfer = #{record.isTransfer,jdbcType=INTEGER},
+      </if>
+      <if test="record.commissionRate != null" >
+        commission_rate = #{record.commissionRate,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    <!--
+    @mbggenerated
+    -->
+    update users_properties
+    set id = #{record.id,jdbcType=INTEGER},
+      u_id = #{record.uId,jdbcType=VARCHAR},
+      nick_name = #{record.nickName,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=VARCHAR},
+      picture = #{record.picture,jdbcType=VARCHAR},
+      province = #{record.province,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      town = #{record.town,jdbcType=VARCHAR},
+      education = #{record.education,jdbcType=VARCHAR},
+      job = #{record.job,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      reg_date = #{record.regDate,jdbcType=TIMESTAMP},
+      certification = #{record.certification,jdbcType=INTEGER},
+      bank = #{record.bank,jdbcType=INTEGER},
+      id_card = #{record.idCard,jdbcType=VARCHAR},
+      referral_code = #{record.referralCode,jdbcType=VARCHAR},
+      referral_id = #{record.referralId,jdbcType=VARCHAR},
+      buy_total = #{record.buyTotal,jdbcType=DECIMAL},
+      level = #{record.level,jdbcType=INTEGER},
+      code_path = #{record.codePath,jdbcType=VARCHAR},
+      auto_pay = #{record.autoPay,jdbcType=INTEGER},
+      first_buy = #{record.firstBuy,jdbcType=INTEGER},
+      platform_type = #{record.platformType,jdbcType=INTEGER},
+      user_level = #{record.userLevel,jdbcType=INTEGER},
+      recommended_level = #{record.recommendedLevel,jdbcType=VARCHAR},
+      wechat = #{record.wechat,jdbcType=VARCHAR},
+      wallet_auto_pay = #{record.walletAutoPay,jdbcType=INTEGER},
+      address = #{record.address,jdbcType=VARCHAR},
+      department = #{record.department,jdbcType=VARCHAR},
+      youmeng_token = #{record.youmengToken,jdbcType=VARCHAR},
+      device_type = #{record.deviceType,jdbcType=INTEGER},
+      is_transfer = #{record.isTransfer,jdbcType=INTEGER},
+      commission_rate = #{record.commissionRate,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mrbt.lingmoney.model.UsersProperties" >
+    <!--
+    @mbggenerated
+    -->
+    update users_properties
+    <set >
+      <if test="uId != null" >
+        u_id = #{uId,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="picture != null" >
+        picture = #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="town != null" >
+        town = #{town,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        education = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        job = #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="regDate != null" >
+        reg_date = #{regDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="certification != null" >
+        certification = #{certification,jdbcType=INTEGER},
+      </if>
+      <if test="bank != null" >
+        bank = #{bank,jdbcType=INTEGER},
+      </if>
+      <if test="idCard != null" >
+        id_card = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="referralCode != null" >
+        referral_code = #{referralCode,jdbcType=VARCHAR},
+      </if>
+      <if test="referralId != null" >
+        referral_id = #{referralId,jdbcType=VARCHAR},
+      </if>
+      <if test="buyTotal != null" >
+        buy_total = #{buyTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="codePath != null" >
+        code_path = #{codePath,jdbcType=VARCHAR},
+      </if>
+      <if test="autoPay != null" >
+        auto_pay = #{autoPay,jdbcType=INTEGER},
+      </if>
+      <if test="firstBuy != null" >
+        first_buy = #{firstBuy,jdbcType=INTEGER},
+      </if>
+      <if test="platformType != null" >
+        platform_type = #{platformType,jdbcType=INTEGER},
+      </if>
+      <if test="userLevel != null" >
+        user_level = #{userLevel,jdbcType=INTEGER},
+      </if>
+      <if test="recommendedLevel != null" >
+        recommended_level = #{recommendedLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null" >
+        wechat = #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="walletAutoPay != null" >
+        wallet_auto_pay = #{walletAutoPay,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="youmengToken != null" >
+        youmeng_token = #{youmengToken,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceType != null" >
+        device_type = #{deviceType,jdbcType=INTEGER},
+      </if>
+      <if test="isTransfer != null" >
+        is_transfer = #{isTransfer,jdbcType=INTEGER},
+      </if>
+      <if test="commissionRate != null" >
+        commission_rate = #{commissionRate,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mrbt.lingmoney.model.UsersProperties" >
+    <!--
+    @mbggenerated
+    -->
+    update users_properties
+    set u_id = #{uId,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      picture = #{picture,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      town = #{town,jdbcType=VARCHAR},
+      education = #{education,jdbcType=VARCHAR},
+      job = #{job,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      reg_date = #{regDate,jdbcType=TIMESTAMP},
+      certification = #{certification,jdbcType=INTEGER},
+      bank = #{bank,jdbcType=INTEGER},
+      id_card = #{idCard,jdbcType=VARCHAR},
+      referral_code = #{referralCode,jdbcType=VARCHAR},
+      referral_id = #{referralId,jdbcType=VARCHAR},
+      buy_total = #{buyTotal,jdbcType=DECIMAL},
+      level = #{level,jdbcType=INTEGER},
+      code_path = #{codePath,jdbcType=VARCHAR},
+      auto_pay = #{autoPay,jdbcType=INTEGER},
+      first_buy = #{firstBuy,jdbcType=INTEGER},
+      platform_type = #{platformType,jdbcType=INTEGER},
+      user_level = #{userLevel,jdbcType=INTEGER},
+      recommended_level = #{recommendedLevel,jdbcType=VARCHAR},
+      wechat = #{wechat,jdbcType=VARCHAR},
+      wallet_auto_pay = #{walletAutoPay,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      department = #{department,jdbcType=VARCHAR},
+      youmeng_token = #{youmengToken,jdbcType=VARCHAR},
+      device_type = #{deviceType,jdbcType=INTEGER},
+      is_transfer = #{isTransfer,jdbcType=INTEGER},
+      commission_rate = #{commissionRate,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+	<!-- custom setting -->
+	<select id="selectByuId" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from users_properties
+		where u_id = #{uId,jdbcType=INTEGER}
+	</select>
+
+	<select id="queryUserInfoMyPlace" resultType="java.util.Map"
+		parameterType="java.lang.String">
+		select nick_name nickname,picture,ua.count_lingbao
+		lingbao from users_properties up left join users_account ua on up.u_id
+		= ua.u_id where up.u_id = #{uId,jdbcType=INTEGER}
+	</select>
+
+	<select id="queryRecomUsersByUid" resultType="java.util.Map"
+		parameterType="java.lang.String">
+		select up.referral_code referralCode,
+		up.nick_name nickName,concat(left(u.login_account,3),'****') loginAccount
+		,date_format(up.reg_date,'%Y-%m-%d') regDate, ud.name lev,up.level, case up.bank when 2 then 1 when 3 then 1 else 0 end as binCard
+		from
+		users_properties up
+		left join
+		users u on up.u_id = u.id
+		left join usres_degree ud on ud.id = up.`level`
+		where
+		referral_id in (select #{0,jdbcType=VARCHAR} as u_id union
+		select up2.u_id from users_properties up1
+		LEFT JOIN users_properties
+		up2 ON up1.referral_id = up2.u_id
+		LEFT JOIN employee_relations_mapping
+		erm ON up2.referral_code = erm.employeeID
+		WHERE up1.referral_code =
+		erm.newID and up1.u_id = #{0,jdbcType=VARCHAR}) and up.u_id != #{0,jdbcType=VARCHAR}
+	</select>
+
+	<select id="queryMyrecommender" resultType="java.util.Map"
+		parameterType="java.lang.String">
+		select up.referral_code referralCode,up.nick_name
+		nickName,ud.name lev,concat(left(u.login_account,3),'****') loginAccount,up.level
+		from
+		users_properties up
+		left join usres_degree ud on up.`level` = ud.id
+		left join users u on u.id = up.u_id
+		where
+		up.u_id = (select referral_id from users_properties where u_id =
+		#{0,jdbcType=VARCHAR})
+	</select>
+
+	<select id="queryGetNewInfoByUid" parameterType="java.util.Map"
+		resultType="java.util.Map">
+		SELECT SUM(buyMoney) buyMoney, uId, nickName, referralCode
+		FROM (
+		SELECT IFNULL(t.buy_money,0) buyMoney, t.u_id uId,
+		IFNULL(up.nick_name,CONCAT(LEFT(u.login_account,3),'****')) nickName, up.referral_code
+		referralCode
+		FROM trading t
+		LEFT JOIN product p ON t.p_id = p.id
+		LEFT
+		JOIN users_properties up ON t.u_id = up.u_id
+		LEFT JOIN users u ON
+		t.u_id = u.id
+		WHERE t.u_id IN (
+		SELECT u_id
+		FROM users_properties up
+		WHERE up.referral_id = #{uid,jdbcType=INTEGER} AND u_id NOT IN(
+		SELECT
+		DISTINCT u_id
+		FROM trading
+		WHERE STATUS IN (1,2,3) AND buy_dt &lt;
+		#{startDate,jdbcType=TIMESTAMP} )) AND t.p_id !=
+		#{pid,jdbcType=INTEGER} AND t.status IN (1,2,3) AND t.buy_dt &lt;=
+		#{endDate,jdbcType=TIMESTAMP} AND p.f_time >=60
+		ORDER BY t.buy_dt ASC)
+		g
+		GROUP BY g.uId
+	</select>
+
+	<select id="selectByTelephone" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select up.* from users_properties up,users u where
+		u.telephone = #{telephone,jdbcType=VARCHAR} and u.id = up.u_id;
+	</select>
+
+	<select id="selectByMap" resultMap="BaseResultMap"
+		parameterType="map">
+		select up.* from users_properties up,users u
+		<where>
+			<if test=" telephone != null and telephone != '' ">
+				and u.telephone = #{telephone}
+			</if>
+			<if test=" referralCode != null and referralCode != '' ">
+				and up.referral_code = #{referralCode}
+			</if>
+			and u.id = up.u_id
+		</where>
+	</select>
+	<select id="selectRecommendUser" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select up.*,rup.name as referral_name from
+		users_properties
+		up,users_properties rup where (up.user_level = 1 or
+		up.user_level = 2
+		or up.user_level = 3)
+		and find_in_set
+		(#{uId},up.recommended_level) and
+		up.referral_id =
+		rup.u_id
+	</select>
+	<select id="selectRecommendCount" resultType="java.lang.Integer"
+		parameterType="java.lang.String">
+		select count(*) from users_properties up where
+		(user_level = 1 or user_level = 2 or up.user_level = 3) and
+		find_in_set (#{uId},recommended_level)
+
+	</select>
+
+	<update id="updateUsersPropertiesLevel">
+
+		update users_properties as up,( select ua.u_id, ug.id from
+		users_account as ua ,usres_degree as ug where ua.total_finance <![CDATA[>=]]>
+		ug.min_amount and ua.total_finance <![CDATA[<=]]>
+		ug.max_amount) as us
+		set up.level= us.id where up.u_id = us.u_id and
+		up.level != us.id
+
+	</update>
+	
+	<select id="selectTradingCountByuId" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(*) from trading where u_id = #{uId} and status in (1,2,3)
+	</select>
+	
+	<select id="queryIsEmployeeUsers" resultType="java.lang.Integer"
+		parameterType="java.lang.String">
+		select count(1) from employee_users_id where u_id =
+		#{uId}
+	</select>
+	
+	<select id="queryEmployeeUsersId" resultType="java.lang.String"
+		parameterType="java.lang.String">
+		select #{uId} as u_id union (select
+		up2.u_id from users_properties up1, users_properties up2,
+		employee_relations_mapping erm
+		where up1.referral_id = up2.u_id and up2.referral_code = erm.employeeID and
+		erm.newID = up1.referral_code and up1.u_id = #{uId})
+	</select>
+	
+	<select id="queryRecommendersByuId" parameterType="java.util.Map"
+		resultType="com.mrbt.lingmoney.model.GiftExchangeInfoVo">
+		SELECT referralId, SUM(buyMoney) buyMoney, uId, nickName,
+		referralCode
+		FROM (
+		SELECT up.referral_id referralId,
+		IFNULL(t.buy_money,0) buyMoney, t.u_id uId,
+		IFNULL(up.nick_name,u.login_account) nickName, up.referral_code
+		referralCode
+		FROM trading t
+		LEFT JOIN product p ON t.p_id = p.id
+		LEFT
+		JOIN users_properties up ON t.u_id = up.u_id
+		LEFT JOIN users u ON
+		t.u_id = u.id
+		WHERE t.u_id IN (
+		SELECT u_id
+		FROM users_properties up
+		WHERE referral_id in (select #{uid} as u_id union
+		select up2.u_id from users_properties up1
+		LEFT JOIN users_properties
+		up2 ON up1.referral_id = up2.u_id
+		LEFT JOIN employee_relations_mapping
+		erm ON up2.referral_code = erm.employeeID
+		WHERE up1.referral_code =
+		erm.newID and up1.u_id = #{uid})
+		AND u_id NOT IN(
+		SELECT #{uid} as u_id union
+		SELECT DISTINCT u_id
+		FROM trading
+		WHERE STATUS NOT IN (0, 12, 18) AND buy_dt &lt;
+		#{startDate,jdbcType=TIMESTAMP}))
+		AND t.p_id != #{pid} AND t.status in (1,2,3,15) AND
+		t.buy_dt &lt;= #{endDate,jdbcType=TIMESTAMP} AND p.f_time &gt;=90
+		ORDER BY t.buy_dt ASC) g
+		WHERE g.referralId is not null
+		GROUP BY g.uId having buyMoney &gt;= 5000;
+
+	</select>
+	
+	<select id="findAll" resultType="java.lang.String">
+		SELECT u_id FROM users_properties WHERE u_id IS NOT NULL; 
+	</select>
+	
+	<select id="findUserInfoByParams" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT ua.id,up.name,u.`telephone`,DATE_FORMAT(u.`last_login`,'%Y-%m-%d %h:%i:%s') AS last_login_date,DATE_FORMAT(up.`reg_date`,'%Y-%m-%d') AS register_date,up.`referral_code`,
+			up.`referral_id`,ua.`balance`,ua.`frozen_money`,ha.`ac_name`,ha.`ac_no`,ha.`app_id`,ha.`bind_card`,ha.`bank_name`
+		FROM users u
+		LEFT JOIN users_properties up ON up.`u_id` = u.`id`
+		LEFT JOIN users_account ua ON ua.`u_id` = up.`u_id`
+		LEFT JOIN hx_account ha ON ha.`u_id` = ua.`u_id`
+		WHERE up.`platform_type` = 0 AND ha.`status` = 1
+			<if test=" uid != null and uid != '' ">
+				and u.id = #{uid}
+			</if>
+			<if test=" telephone != null and telephone != '' ">
+				and u.telephone = #{telephone}
+			</if>
+			<if test=" name != null and name != '' ">
+				and up.name = #{name}
+			</if>
+	</select>
+	
+	<select id="findUsersByChannel" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT up.u_id, up.name, u.telephone, uc.name channelName
+		FROM users u
+			LEFT JOIN users_properties up ON up.u_id = u.id
+			LEFT JOIN users_channel uc ON uc.id = u.channel
+		WHERE u.channel = #{channel}  
+			ORDER BY up.reg_date DESC
+			limit #{pageNumber, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+	</select>
+	
+	<select id="findUsersByChannelAndBuyProduct" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT up.u_id, up.name, u.telephone, uc.name channelName, p.name productName, DATE_FORMAT(t.buy_dt,'%Y-%m-%d %h:%i:%s') buyDate, t.buy_money, DATE_FORMAT(t.min_sell_dt,'%Y-%m-%d %h:%i:%s') minSellDt
+		FROM users u
+			LEFT JOIN users_properties up ON up.u_id = u.id
+			LEFT JOIN users_channel uc ON uc.id = u.channel
+			LEFT JOIN trading t ON t.u_id = up.u_id
+			LEFT JOIN product p ON p.id = t.p_id
+		WHERE t.status IN (1,4) AND u.channel = #{channel} AND p.name = #{productName} AND t.buy_dt BETWEEN #{startDate} AND #{endDate} 
+			ORDER BY t.buy_dt DESC
+			limit #{pageNumber, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+	</select>
+	
+	<select id="findUsersByChannelAndSellProduct" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT up.u_id, up.name, u.telephone, uc.name channelName, p.name productName, DATE_FORMAT(t.buy_dt,'%Y-%m-%d %h:%i:%s') buyDate, t.buy_money, DATE_FORMAT(t.min_sell_dt,'%Y-%m-%d %h:%i:%s') minSellDt
+		FROM users u
+			LEFT JOIN users_properties up ON up.u_id = u.id
+			LEFT JOIN users_channel uc ON uc.id = u.channel
+			LEFT JOIN trading t ON t.u_id = up.u_id
+			LEFT JOIN product p ON p.id = t.p_id
+		WHERE t.status = 3 AND p.p_type = 2 AND u.channel = #{channel} AND p.name = #{productName} AND t.sell_dt BETWEEN #{startDate} AND #{endDate} 
+			ORDER BY t.sell_dt DESC
+			limit #{pageNumber, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+	</select>
+	
+	<select id="findUsersByChannelCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT count(up.u_id)
+		FROM users u
+			LEFT JOIN users_properties up ON up.u_id = u.id
+			LEFT JOIN users_channel uc ON uc.id = u.channel
+		WHERE u.channel = #{channel}  
+			ORDER BY up.reg_date DESC
+	</select>
+	
+	<select id="findUsersByChannelAndBuyProductCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT count(up.u_id)
+		FROM users u
+			LEFT JOIN users_properties up ON up.u_id = u.id
+			LEFT JOIN users_channel uc ON uc.id = u.channel
+			LEFT JOIN trading t ON t.u_id = up.u_id
+			LEFT JOIN product p ON p.id = t.p_id
+		WHERE t.status IN (1,4) AND u.channel = #{channel} AND p.name = #{productName} AND t.buy_dt BETWEEN #{startDate} AND #{endDate} 
+			ORDER BY t.buy_dt DESC
+	</select>
+	
+	<select id="findUsersByChannelAndSellProductCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT count(up.u_id)
+		FROM users u
+			LEFT JOIN users_properties up ON up.u_id = u.id
+			LEFT JOIN users_channel uc ON uc.id = u.channel
+			LEFT JOIN trading t ON t.u_id = up.u_id
+			LEFT JOIN product p ON p.id = t.p_id
+		WHERE t.status = 3 AND p.p_type = 2 AND u.channel = #{channel} AND p.name = #{productName} AND t.sell_dt BETWEEN #{startDate} AND #{endDate} 
+			ORDER BY t.sell_dt DESC
+	</select>
+	
+</mapper>

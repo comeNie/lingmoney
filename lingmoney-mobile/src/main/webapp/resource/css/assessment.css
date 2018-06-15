@@ -1,0 +1,106 @@
+	html{
+    font-size: 100%;
+}
+/* 整体稳定结构--------------------- */
+html,body,.screen{
+            position: relative;
+            width: 100%;
+            height: 100%;
+             /*  overflow: hidden;   */
+            margin: 0 auto;
+			
+        }
+body, h1, h2, h3, h4, h5, h6, hr, p, /* structural elements 结构元素 */
+dl, dt, dd, ul, ol, li, /* list elements 列表元素 */
+fieldset, button, input, textarea, /* form elements 表单元素 */
+th, td,section,div, a,header,section{ /* table elements 表格元素 */
+    margin: 0rem;
+    padding: 0rem;
+    color: #333;
+    list-style: none;display:block;  
+
+    -webkit-tap-highlight-color:transparent; 
+  
+}
+
+h1, h2, h3, h4, h5, h6{ font-weight: 400; color: #292929;}
+h1 { font-size: 0.32rem; /* 18px / 12px = 1.5 */ }
+h2 { font-size: 0.26rem; }
+h3 { font-size: 0.18rem; }
+h4, h5, h6 { font-size: 100%;}
+img{vertical-align:middle;}
+input{text-indent:0.13rem;}
+/* 重置文本格式元素 */
+a { text-decoration: none; -webkit-tap-highlight-color:transparent; -webkit-user-select: none;-moz-user-focus: none;-moz-user-select: none; color: #000;}
+a:hover { text-decoration: none; }		
+			
+.main{
+	position: absolute;
+	width: 100%;
+	max-width: 7.5rem;
+	left: 50%;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+	z-index: 9;
+	transform: translate(-50%,0);
+	-webkit-transform: translate(-50%,0);
+	-moz-transform: translate(-50%,0);
+	-o-transform: translate(-50%,0);	
+	transform: translate(-50%,0);
+	padding-bottom:1.2rem;
+	
+}
+
+
+.error_tip {position:fixed; top: 50%; height: 0.68rem;width: 3.45rem;font-size: .24rem;line-height: .68rem;border-radius: 3px;background: rgba(0,0,0,0.5);text-align: center;color: #fff;
+left: 50%; 
+  /*  transform: translate(-50%,-50%); */z-index: 100;opacity: 0;display: none; margin-left:-1.72rem;}
+
+
+/*常用方法*/
+.assessment-tip{height:0.81rem;line-height:0.81rem; padding-right:0.24rem;padding-left:0.24rem;font-size:0.24rem;color:#868798; position:relative;}
+.assessment-tip span{position:absolute;right:0.24rem; top:0rem;}
+.assessment-tip span b{color:#FC724C;font-weight:normal}
+.assessment-box{width:7.02rem;margin-left:auto;margin-right:auto;background:#fff;position:relative;overflow: hidden; height:5.9rem;  }
+
+.assessment-block{overflow:hidden;position:absolute;top:0rem;padding: 0;  margin: 0; width:2000rem;left:0rem;}
+.assessment-warp{overflow:hidden; padding-left:0.16rem;padding-right:0.16rem; padding-bottom:0.24rem;float:left;background:#fff; width:6.7rem;}
+
+.assessment-warp p{font-size:0.3rem;color:#4A4B5D; padding-top:0.4rem; margin-bottom:0.16rem;clear: both;
+    overflow: hidden;}
+.assessment-warp li{font-size:0.3rem;color:#868798; padding-top:0.16rem;padding-bottom:0.16rem;clear: both;
+    overflow: hidden;line-height:0.42rem;}
+.assessment-warp p b{float: left;display:block;width:0.4rem;}
+.assessment-warp p span{float: left;display:block;width:6.2rem;}
+
+.assessment-warp li img{width:0.42rem; margin-right:0.24rem;display:block;float: left;margin-bottom:0.08rem;}
+.assessment-warp li b{float: left;display:block;width:0.4rem;}
+
+.assessment-warp li span{float: left;display:block;width:5.6rem;}
+.assessment-test{cursor:pointer;width:3.28rem;height:0.8rem;text-align:center;font-size:0.36rem;color:#B9B9C0; border:solid #B9B9C0 1px;line-height:0.8rem; margin-left:0.24rem;position:fixed; margin-top:0.3rem;}
+.result-tip{text-align:center;color:#868798;font-size:0.24rem; padding-top:0.72rem; padding-bottom:0.76rem;}
+.result-img{width:3.06rem;height:3.01rem; margin-left:auto; margin-right:auto;font-size:0.58rem;text-align:center;line-height:3.01rem;}
+
+.result-img img{width:3.06rem;}
+.result-chengdu{font-size:0.3rem;color:#868798;margin-top:1.26rem;    padding-left: 0.24rem;
+    padding-right: 0.24rem;
+    line-height: 0.42rem;}
+.result-btn{cursor:pointer;width:6.8rem;height:0.8rem;text-align:center;line-height:0.8rem;margin-left:auto;margin-right:auto;background:#FE8768;font-size:0.36rem;color:#fff;border-radius:0.1rem; margin-top:2.52rem;}
+.result-button{display:none;}
+.assessment-bj2{background:url('../../resource/images/assessment2.png')  no-repeat;background-size:100%;color:#627eff;}
+.assessment-bj3{background:url('../../resource/images/assessment3.png')  no-repeat;background-size:100%;color:#814ac4;}
+.assessment-bj4{background:url('../../resource/images/assessment4.png')  no-repeat;background-size:100%;color:#87c93e;}
+.assessment-bj5{background:url('../../resource/images/assessment5.png')  no-repeat;background-size:100%;color:#fe8768;}
+.assessment-bj6{background:url('../../resource/images/assessment6.png')  no-repeat;background-size:100%;color:#cc2d3f;}
+
+
+
+
+
+
+
+
+
+
+
+

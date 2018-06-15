@@ -1,0 +1,6 @@
+[
+	{"ruleId":"0","ruleName":"金额限制"},
+	{"ruleId":"1","ruleName":"时间限制"},
+	{"ruleId":"2","ruleName":"金额时间限制"},
+	{"ruleId":"3","ruleName":"无限制"}
+]

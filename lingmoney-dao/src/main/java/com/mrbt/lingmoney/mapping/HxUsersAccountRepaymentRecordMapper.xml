@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.HxUsersAccountRepaymentRecordMapper">
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.HxUsersAccountRepaymentRecord">
+    <!--
+    @mbggenerated
+    -->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="t_id" jdbcType="INTEGER" property="tId" />
+    <result column="loan_no" jdbcType="VARCHAR" property="loanNo" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="init_time" jdbcType="TIMESTAMP" property="initTime" />
+    <result column="operate_time" jdbcType="TIMESTAMP" property="operateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+    @mbggenerated
+    -->
+    id, t_id, loan_no, amount, state, type, init_time, operate_time
+  </sql>
+  <select id="selectByExample" parameterType="com.mrbt.lingmoney.model.HxUsersAccountRepaymentRecordExample" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hx_users_account_repayment_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0">
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from hx_users_account_repayment_record
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--
+    @mbggenerated
+    -->
+    delete from hx_users_account_repayment_record
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.HxUsersAccountRepaymentRecordExample">
+    <!--
+    @mbggenerated
+    -->
+    delete from hx_users_account_repayment_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mrbt.lingmoney.model.HxUsersAccountRepaymentRecord">
+    <!--
+    @mbggenerated
+    -->
+    insert into hx_users_account_repayment_record (id, t_id, loan_no, 
+      amount, state, type, 
+      init_time, operate_time)
+    values (#{id,jdbcType=VARCHAR}, #{tId,jdbcType=INTEGER}, #{loanNo,jdbcType=VARCHAR}, 
+      #{amount,jdbcType=DECIMAL}, #{state,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
+      #{initTime,jdbcType=TIMESTAMP}, #{operateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.HxUsersAccountRepaymentRecord">
+    <!--
+    @mbggenerated
+    -->
+    insert into hx_users_account_repayment_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="tId != null">
+        t_id,
+      </if>
+      <if test="loanNo != null">
+        loan_no,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="initTime != null">
+        init_time,
+      </if>
+      <if test="operateTime != null">
+        operate_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="tId != null">
+        #{tId,jdbcType=INTEGER},
+      </if>
+      <if test="loanNo != null">
+        #{loanNo,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="initTime != null">
+        #{initTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operateTime != null">
+        #{operateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.HxUsersAccountRepaymentRecordExample" resultType="java.lang.Integer">
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from hx_users_account_repayment_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update hx_users_account_repayment_record
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tId != null">
+        t_id = #{record.tId,jdbcType=INTEGER},
+      </if>
+      <if test="record.loanNo != null">
+        loan_no = #{record.loanNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.amount != null">
+        amount = #{record.amount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.state != null">
+        state = #{record.state,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.initTime != null">
+        init_time = #{record.initTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.operateTime != null">
+        operate_time = #{record.operateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update hx_users_account_repayment_record
+    set id = #{record.id,jdbcType=VARCHAR},
+      t_id = #{record.tId,jdbcType=INTEGER},
+      loan_no = #{record.loanNo,jdbcType=VARCHAR},
+      amount = #{record.amount,jdbcType=DECIMAL},
+      state = #{record.state,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=INTEGER},
+      init_time = #{record.initTime,jdbcType=TIMESTAMP},
+      operate_time = #{record.operateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mrbt.lingmoney.model.HxUsersAccountRepaymentRecord">
+    <!--
+    @mbggenerated
+    -->
+    update hx_users_account_repayment_record
+    <set>
+      <if test="tId != null">
+        t_id = #{tId,jdbcType=INTEGER},
+      </if>
+      <if test="loanNo != null">
+        loan_no = #{loanNo,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="initTime != null">
+        init_time = #{initTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operateTime != null">
+        operate_time = #{operateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mrbt.lingmoney.model.HxUsersAccountRepaymentRecord">
+    <!--
+    @mbggenerated
+    -->
+    update hx_users_account_repayment_record
+    set t_id = #{tId,jdbcType=INTEGER},
+      loan_no = #{loanNo,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DECIMAL},
+      state = #{state,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      init_time = #{initTime,jdbcType=TIMESTAMP},
+      operate_time = #{operateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- custom setting -->
+  <select id="selectSumMoneyGroupByUser" resultType="java.util.Map">
+  	select 
+  		sum(amount) money, t.u_id uid 
+  	from 
+  		hx_users_account_repayment_record rep 
+  	left join 
+  		trading t 
+  	on 
+  		rep.t_id = t.id 
+  	where 
+  		rep.state = 0 and t.`status` in (8, 9)
+  	group by 
+  		t.u_id
+  </select>
+  
+  <update id="updateAfterRepaymentSuccess" parameterType="java.lang.String">
+  	update 
+  		hx_users_account_repayment_record rep 
+  	left join 
+  		trading t 
+  	on 
+  		rep.t_id = t.id 
+  	set 
+  		rep.state = 1 
+  	where 
+  		t.u_id = #{uid, jdbcType=VARCHAR}
+  </update>
+  
+  <!-- cuntomer setting -->
+  <select id="queryWithSelfCondition" parameterType="java.util.Map" resultType="java.util.Map">
+  	select 
+  		hr.id id, hr.t_id tid, hr.loan_no loanNo, hr.amount amount, hr.state state, 
+  		hr.`type` `type`, ha.ac_no acNo, ha.ac_name acName, ha.mobile mobile, 
+  		date_format(hr.init_time, '%Y-%m-%d %H:%i:%S') initTime 
+  	from 
+  		hx_users_account_repayment_record hr 
+  	left join 
+  		trading t on hr.t_id = t.id 
+  	left join 
+  		hx_account ha on t.u_id = ha.u_id 
+  	where 1 = 1 
+  	<if test="name != null and name != ''">
+  		and ha.ac_name like concat('%', concat(#{name, jdbcType=VARCHAR}, '%')) 
+  	</if>
+  	<if test="tel != null and tel != ''">
+  		and ha.mobile like concat('%', concat(#{tel, jdbcType=VARCHAR}, '%'))
+  	</if>
+  	<if test="initTime != null and initTime != ''">
+  		and date_format(hr.init_time, '%Y-%m-%d') = #{initTime, jdbcType=VARCHAR}
+  	</if>
+  	<if test="status != null">
+  		and hr.state = #{status, jdbcType=INTEGER}
+  	</if>
+  	order by ha.u_id, hr.state, hr.init_time desc, hr.amount desc 
+  	limit #{start, jdbcType=INTEGER}, #{number, jdbcType=INTEGER}
+  </select>
+  
+  <select id="countWithSelfCondition" parameterType="java.util.Map" resultType="java.lang.Integer">
+  	select 
+  		count(1) 
+  	from 
+  		hx_users_account_repayment_record hr 
+  	left join 
+  		trading t on hr.t_id = t.id 
+  	left join 
+  		hx_account ha on t.u_id = ha.u_id 
+  	where 1 = 1 
+  	<if test="name != null and name != ''">
+  		and ha.ac_name like concat('%', concat(#{name, jdbcType=VARCHAR}, '%')) 
+  	</if>
+  	<if test="tel != null and tel != ''">
+  		and ha.mobile like concat('%', concat(#{tel, jdbcType=VARCHAR}, '%'))
+  	</if>
+  	<if test="initTime != null and initTime != ''">
+  		and date_format(hr.init_time, '%Y-%m-%d') = #{initTime, jdbcType=VARCHAR}
+  	</if>
+  	<if test="status != null">
+  		and hr.state = #{status, jdbcType=INTEGER}
+  	</if>
+  </select>
+</mapper>

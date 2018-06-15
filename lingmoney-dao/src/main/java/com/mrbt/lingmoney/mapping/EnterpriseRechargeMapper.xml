@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.EnterpriseRechargeMapper">
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.EnterpriseRecharge">
+    <!--
+    @mbggenerated
+    -->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="req_seq_no" jdbcType="VARCHAR" property="reqSeqNo" />
+    <result column="bank_account_no" jdbcType="VARCHAR" property="bankAccountNo" />
+    <result column="trans_type" jdbcType="VARCHAR" property="transType" />
+    <result column="opp_account_no" jdbcType="VARCHAR" property="oppAccountNo" />
+    <result column="opp_account_name" jdbcType="VARCHAR" property="oppAccountName" />
+    <result column="opp_acc_open_bank_no" jdbcType="VARCHAR" property="oppAccOpenBankNo" />
+    <result column="opp_acc_open_bank_name" jdbcType="VARCHAR" property="oppAccOpenBankName" />
+    <result column="post_script" jdbcType="VARCHAR" property="postScript" />
+    <result column="comments" jdbcType="VARCHAR" property="comments" />
+    <result column="summary_info" jdbcType="VARCHAR" property="summaryInfo" />
+    <result column="summary_info_msg" jdbcType="VARCHAR" property="summaryInfoMsg" />
+    <result column="amount" jdbcType="VARCHAR" property="amount" />
+    <result column="trans_date" jdbcType="VARCHAR" property="transDate" />
+    <result column="ext_filed_1" jdbcType="VARCHAR" property="extFiled1" />
+    <result column="ext_field_2" jdbcType="VARCHAR" property="extField2" />
+    <result column="ext_field_3" jdbcType="VARCHAR" property="extField3" />
+    <result column="callback_date" jdbcType="TIMESTAMP" property="callbackDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+    @mbggenerated
+    -->
+    id, req_seq_no, bank_account_no, trans_type, opp_account_no, opp_account_name, opp_acc_open_bank_no, 
+    opp_acc_open_bank_name, post_script, comments, summary_info, summary_info_msg, amount, 
+    trans_date, ext_filed_1, ext_field_2, ext_field_3, callback_date
+  </sql>
+  <select id="selectByExample" parameterType="com.mrbt.lingmoney.model.EnterpriseRechargeExample" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from enterprise_recharge
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0">
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from enterprise_recharge
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--
+    @mbggenerated
+    -->
+    delete from enterprise_recharge
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.EnterpriseRechargeExample">
+    <!--
+    @mbggenerated
+    -->
+    delete from enterprise_recharge
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mrbt.lingmoney.model.EnterpriseRecharge">
+    <!--
+    @mbggenerated
+    -->
+    insert into enterprise_recharge (id, req_seq_no, bank_account_no, 
+      trans_type, opp_account_no, opp_account_name, 
+      opp_acc_open_bank_no, opp_acc_open_bank_name, post_script, 
+      comments, summary_info, summary_info_msg, 
+      amount, trans_date, ext_filed_1, 
+      ext_field_2, ext_field_3, callback_date
+      )
+    values (#{id,jdbcType=VARCHAR}, #{reqSeqNo,jdbcType=VARCHAR}, #{bankAccountNo,jdbcType=VARCHAR}, 
+      #{transType,jdbcType=VARCHAR}, #{oppAccountNo,jdbcType=VARCHAR}, #{oppAccountName,jdbcType=VARCHAR}, 
+      #{oppAccOpenBankNo,jdbcType=VARCHAR}, #{oppAccOpenBankName,jdbcType=VARCHAR}, #{postScript,jdbcType=VARCHAR}, 
+      #{comments,jdbcType=VARCHAR}, #{summaryInfo,jdbcType=VARCHAR}, #{summaryInfoMsg,jdbcType=VARCHAR}, 
+      #{amount,jdbcType=VARCHAR}, #{transDate,jdbcType=VARCHAR}, #{extFiled1,jdbcType=VARCHAR}, 
+      #{extField2,jdbcType=VARCHAR}, #{extField3,jdbcType=VARCHAR}, #{callbackDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.EnterpriseRecharge">
+    <!--
+    @mbggenerated
+    -->
+    insert into enterprise_recharge
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="reqSeqNo != null">
+        req_seq_no,
+      </if>
+      <if test="bankAccountNo != null">
+        bank_account_no,
+      </if>
+      <if test="transType != null">
+        trans_type,
+      </if>
+      <if test="oppAccountNo != null">
+        opp_account_no,
+      </if>
+      <if test="oppAccountName != null">
+        opp_account_name,
+      </if>
+      <if test="oppAccOpenBankNo != null">
+        opp_acc_open_bank_no,
+      </if>
+      <if test="oppAccOpenBankName != null">
+        opp_acc_open_bank_name,
+      </if>
+      <if test="postScript != null">
+        post_script,
+      </if>
+      <if test="comments != null">
+        comments,
+      </if>
+      <if test="summaryInfo != null">
+        summary_info,
+      </if>
+      <if test="summaryInfoMsg != null">
+        summary_info_msg,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="transDate != null">
+        trans_date,
+      </if>
+      <if test="extFiled1 != null">
+        ext_filed_1,
+      </if>
+      <if test="extField2 != null">
+        ext_field_2,
+      </if>
+      <if test="extField3 != null">
+        ext_field_3,
+      </if>
+      <if test="callbackDate != null">
+        callback_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="reqSeqNo != null">
+        #{reqSeqNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccountNo != null">
+        #{bankAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="transType != null">
+        #{transType,jdbcType=VARCHAR},
+      </if>
+      <if test="oppAccountNo != null">
+        #{oppAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="oppAccountName != null">
+        #{oppAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="oppAccOpenBankNo != null">
+        #{oppAccOpenBankNo,jdbcType=VARCHAR},
+      </if>
+      <if test="oppAccOpenBankName != null">
+        #{oppAccOpenBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="postScript != null">
+        #{postScript,jdbcType=VARCHAR},
+      </if>
+      <if test="comments != null">
+        #{comments,jdbcType=VARCHAR},
+      </if>
+      <if test="summaryInfo != null">
+        #{summaryInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="summaryInfoMsg != null">
+        #{summaryInfoMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=VARCHAR},
+      </if>
+      <if test="transDate != null">
+        #{transDate,jdbcType=VARCHAR},
+      </if>
+      <if test="extFiled1 != null">
+        #{extFiled1,jdbcType=VARCHAR},
+      </if>
+      <if test="extField2 != null">
+        #{extField2,jdbcType=VARCHAR},
+      </if>
+      <if test="extField3 != null">
+        #{extField3,jdbcType=VARCHAR},
+      </if>
+      <if test="callbackDate != null">
+        #{callbackDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.EnterpriseRechargeExample" resultType="java.lang.Integer">
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from enterprise_recharge
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update enterprise_recharge
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reqSeqNo != null">
+        req_seq_no = #{record.reqSeqNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankAccountNo != null">
+        bank_account_no = #{record.bankAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transType != null">
+        trans_type = #{record.transType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oppAccountNo != null">
+        opp_account_no = #{record.oppAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oppAccountName != null">
+        opp_account_name = #{record.oppAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oppAccOpenBankNo != null">
+        opp_acc_open_bank_no = #{record.oppAccOpenBankNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oppAccOpenBankName != null">
+        opp_acc_open_bank_name = #{record.oppAccOpenBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.postScript != null">
+        post_script = #{record.postScript,jdbcType=VARCHAR},
+      </if>
+      <if test="record.comments != null">
+        comments = #{record.comments,jdbcType=VARCHAR},
+      </if>
+      <if test="record.summaryInfo != null">
+        summary_info = #{record.summaryInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.summaryInfoMsg != null">
+        summary_info_msg = #{record.summaryInfoMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.amount != null">
+        amount = #{record.amount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transDate != null">
+        trans_date = #{record.transDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extFiled1 != null">
+        ext_filed_1 = #{record.extFiled1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extField2 != null">
+        ext_field_2 = #{record.extField2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extField3 != null">
+        ext_field_3 = #{record.extField3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.callbackDate != null">
+        callback_date = #{record.callbackDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update enterprise_recharge
+    set id = #{record.id,jdbcType=VARCHAR},
+      req_seq_no = #{record.reqSeqNo,jdbcType=VARCHAR},
+      bank_account_no = #{record.bankAccountNo,jdbcType=VARCHAR},
+      trans_type = #{record.transType,jdbcType=VARCHAR},
+      opp_account_no = #{record.oppAccountNo,jdbcType=VARCHAR},
+      opp_account_name = #{record.oppAccountName,jdbcType=VARCHAR},
+      opp_acc_open_bank_no = #{record.oppAccOpenBankNo,jdbcType=VARCHAR},
+      opp_acc_open_bank_name = #{record.oppAccOpenBankName,jdbcType=VARCHAR},
+      post_script = #{record.postScript,jdbcType=VARCHAR},
+      comments = #{record.comments,jdbcType=VARCHAR},
+      summary_info = #{record.summaryInfo,jdbcType=VARCHAR},
+      summary_info_msg = #{record.summaryInfoMsg,jdbcType=VARCHAR},
+      amount = #{record.amount,jdbcType=VARCHAR},
+      trans_date = #{record.transDate,jdbcType=VARCHAR},
+      ext_filed_1 = #{record.extFiled1,jdbcType=VARCHAR},
+      ext_field_2 = #{record.extField2,jdbcType=VARCHAR},
+      ext_field_3 = #{record.extField3,jdbcType=VARCHAR},
+      callback_date = #{record.callbackDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mrbt.lingmoney.model.EnterpriseRecharge">
+    <!--
+    @mbggenerated
+    -->
+    update enterprise_recharge
+    <set>
+      <if test="reqSeqNo != null">
+        req_seq_no = #{reqSeqNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccountNo != null">
+        bank_account_no = #{bankAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="transType != null">
+        trans_type = #{transType,jdbcType=VARCHAR},
+      </if>
+      <if test="oppAccountNo != null">
+        opp_account_no = #{oppAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="oppAccountName != null">
+        opp_account_name = #{oppAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="oppAccOpenBankNo != null">
+        opp_acc_open_bank_no = #{oppAccOpenBankNo,jdbcType=VARCHAR},
+      </if>
+      <if test="oppAccOpenBankName != null">
+        opp_acc_open_bank_name = #{oppAccOpenBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="postScript != null">
+        post_script = #{postScript,jdbcType=VARCHAR},
+      </if>
+      <if test="comments != null">
+        comments = #{comments,jdbcType=VARCHAR},
+      </if>
+      <if test="summaryInfo != null">
+        summary_info = #{summaryInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="summaryInfoMsg != null">
+        summary_info_msg = #{summaryInfoMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=VARCHAR},
+      </if>
+      <if test="transDate != null">
+        trans_date = #{transDate,jdbcType=VARCHAR},
+      </if>
+      <if test="extFiled1 != null">
+        ext_filed_1 = #{extFiled1,jdbcType=VARCHAR},
+      </if>
+      <if test="extField2 != null">
+        ext_field_2 = #{extField2,jdbcType=VARCHAR},
+      </if>
+      <if test="extField3 != null">
+        ext_field_3 = #{extField3,jdbcType=VARCHAR},
+      </if>
+      <if test="callbackDate != null">
+        callback_date = #{callbackDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mrbt.lingmoney.model.EnterpriseRecharge">
+    <!--
+    @mbggenerated
+    -->
+    update enterprise_recharge
+    set req_seq_no = #{reqSeqNo,jdbcType=VARCHAR},
+      bank_account_no = #{bankAccountNo,jdbcType=VARCHAR},
+      trans_type = #{transType,jdbcType=VARCHAR},
+      opp_account_no = #{oppAccountNo,jdbcType=VARCHAR},
+      opp_account_name = #{oppAccountName,jdbcType=VARCHAR},
+      opp_acc_open_bank_no = #{oppAccOpenBankNo,jdbcType=VARCHAR},
+      opp_acc_open_bank_name = #{oppAccOpenBankName,jdbcType=VARCHAR},
+      post_script = #{postScript,jdbcType=VARCHAR},
+      comments = #{comments,jdbcType=VARCHAR},
+      summary_info = #{summaryInfo,jdbcType=VARCHAR},
+      summary_info_msg = #{summaryInfoMsg,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=VARCHAR},
+      trans_date = #{transDate,jdbcType=VARCHAR},
+      ext_filed_1 = #{extFiled1,jdbcType=VARCHAR},
+      ext_field_2 = #{extField2,jdbcType=VARCHAR},
+      ext_field_3 = #{extField3,jdbcType=VARCHAR},
+      callback_date = #{callbackDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

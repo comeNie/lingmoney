@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.SellCustomerMapper">
+	<select id="listByFix" parameterType="java.util.Map"
+		resultType="java.util.LinkedHashMap">
+		select
+		info.id,info.financial_money,info.value_dt,info.expiry_dt,info.f_time,
+		info.interest_rate,info.w_time,p.wait_rate,info.interest,0 as redPacketMoney, p.cost_value,
+		if(p.rule=2 or
+		p.id=170,0,ROUND((info.financial_money)*p.cost_value*info.f_time/365,2))
+		cost_value_money,p.platform_user_no,p.name p_name,p.id p_id,p.rule,
+		p.code p_code,t.id t_id,t.u_id u_id,
+		if(info.financial_money &gt;=
+		100,ROUND(info.financial_money/365*info.f_time/50 * IFNULL((select
+		rate from product_active_rate where p.id=p_id and
+		`status`=1 and
+		info.buy_dt BETWEEN start_date and end_date),1)),0) lingbao,
+		info.financial_money buy_money
+		from trading_fix_info info,trading
+		t,product p where info.t_id=t.id and t.p_id=p.id and
+		DATE_FORMAT(now(),'%Y-%m-%d') &gt;= info.expiry_dt and info.expiry_dt
+		is not null
+		and info.status=2 and p.platform_user_no=#{platUserNo}
+		<if test=" pType != null ">
+			and p.p_type = #{pType}
+		</if>
+		and
+		info.sell_submit=0
+	</select>
+	<select id="listTakeHeart" parameterType="java.util.Map"
+		resultType="java.util.LinkedHashMap">
+		select id, sell_money,operate_time ,financ_user,redeem_type
+		from takeheart_sell_pay
+		where state = 2 and financ_user =#{platUserNo}
+		and operate_time &lt;=
+		#{date}
+	</select>
+
+	<insert id="bacthInsert" parameterType="java.util.List">
+		insert into sell_batch_info(info_id, batch, sell_money, plat_money,
+		p_id, p_rule,lingbao,u_id,t_id,p_code,financ_user,buy_money) values
+		<foreach collection="list" index="index" item="item"
+			separator=",">
+			(
+			#{item.id},
+			#{item.batchStr},
+			#{item.financial_money}+#{item.interest}+#{item.redPacketMoney},
+			#{item.cost_value_money},
+			#{item.p_id},
+			#{item.rule},
+			#{item.lingbao},
+			#{item.u_id},
+			#{item.t_id},
+			#{item.p_code},
+			#{item.platUserNo},
+			#{item.buy_money}
+			)
+		</foreach>
+	</insert>
+	<insert id="insertBatch" parameterType="map">
+		insert into sell_batch
+		(batch,sell_money,plat_money,exp_path,financ_user)
+		select
+		#{batchStr},sum(sell_money),sum(plat_money),#{exp_path},#{platUserNo}
+		from sell_batch_info
+		where batch=#{batchStr}
+	</insert>
+
+	<update id="updateTakeHeartList" parameterType="map">
+		update
+		takeheart_sell_pay set state= 4,batch=#{batch} where ${condition}
+	</update>
+
+	<update id="updateStatusByBatch" parameterType="map">
+		update
+		sell_batch_info set status = #{statusDes},msg=#{msg} where info_id in
+		(#{ids}) and batch=#{batch} and status=#{statusSrc}
+	</update>
+
+	<select id="listExcelExport" parameterType="map" resultType="int">
+		select count(1) from sell_batch_info where batch=#{batch} and
+		status=#{status}
+	</select>
+
+	<select id="listFailPid" parameterType="map" resultType="int">
+		select
+		p_id from sell_batch_info where status=#{status} and batch=#{batch}
+		and p_rule &lt; 3
+	</select>
+
+	<update id="updateStatusByFailPid" parameterType="map">
+		update
+		sell_batch_info set status=#{statusDes} ,msg=#{msg} where
+		batch=#{batch} and status=#{statusSrc} and p_id in (#{ids})
+	</update>
+
+	<update id="updateStatusBySuccessExcel" parameterType="map">
+		update
+		sell_batch_info set status=#{statusDes} where batch=#{batch} and
+		status=#{statusSrc}
+	</update>
+
+	<update id="updateSellBatch" parameterType="map">
+		update sell_batch sb,
+		(select sum(sell_money) real_sell_money,sum(plat_money)
+		real_plat_money from sell_batch_info where batch=#{sellBatch.batch}
+		and
+		status=#{statusSrc}) info
+		set sb.real_plat_money =
+		info.real_plat_money
+		,sb.real_sell_money =
+		info.real_sell_money,sb.imp_path=#{sellBatch.impPath},sb.status=#{statusDes}
+		where sb.batch=#{sellBatch.batch}
+	</update>
+
+	<update id="updateFixInfo" parameterType="map">
+		update
+		trading_fix_info info,trading t,sell_batch_info sbi set
+		info.sell_submit=#{statusDes} where sbi.status=#{statusSrc} and sbi.batch=#{batch} and sbi.info_id
+		= info.id and info.t_id = t.id
+	</update>
+</mapper>

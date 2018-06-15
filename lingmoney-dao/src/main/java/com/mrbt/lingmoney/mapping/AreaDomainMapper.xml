@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.AreaDomainMapper">
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.AreaDomain">
+    <!--
+    @mbggenerated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="city_name" jdbcType="VARCHAR" property="cityName" />
+    <result column="city_name_py" jdbcType="VARCHAR" property="cityNamePy" />
+    <result column="bd_city_code" jdbcType="VARCHAR" property="bdCityCode" />
+    <result column="icbc_city_code" jdbcType="VARCHAR" property="icbcCityCode" />
+    <result column="province_name" jdbcType="VARCHAR" property="provinceName" />
+    <result column="domain" jdbcType="VARCHAR" property="domain" />
+    <result column="index_logo" jdbcType="VARCHAR" property="indexLogo" />
+    <result column="foot_image" jdbcType="VARCHAR" property="footImage" />
+    <result column="index_url" jdbcType="VARCHAR" property="indexUrl" />
+    <result column="status" jdbcType="CHAR" property="status" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+    @mbggenerated
+    -->
+    id, city_name, city_name_py, bd_city_code, icbc_city_code, province_name, domain, 
+    index_logo, foot_image, index_url, status
+  </sql>
+  <select id="selectByExample" parameterType="com.mrbt.lingmoney.model.AreaDomainExample" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from area_domain
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0">
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from area_domain
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--
+    @mbggenerated
+    -->
+    delete from area_domain
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.AreaDomainExample">
+    <!--
+    @mbggenerated
+    -->
+    delete from area_domain
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mrbt.lingmoney.model.AreaDomain">
+    <!--
+    @mbggenerated
+    -->
+    insert into area_domain (id, city_name, city_name_py, 
+      bd_city_code, icbc_city_code, province_name, 
+      domain, index_logo, foot_image, 
+      index_url, status)
+    values (#{id,jdbcType=INTEGER}, #{cityName,jdbcType=VARCHAR}, #{cityNamePy,jdbcType=VARCHAR}, 
+      #{bdCityCode,jdbcType=VARCHAR}, #{icbcCityCode,jdbcType=VARCHAR}, #{provinceName,jdbcType=VARCHAR}, 
+      #{domain,jdbcType=VARCHAR}, #{indexLogo,jdbcType=VARCHAR}, #{footImage,jdbcType=VARCHAR}, 
+      #{indexUrl,jdbcType=VARCHAR}, #{status,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.AreaDomain">
+    <!--
+    @mbggenerated
+    -->
+    insert into area_domain
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="cityName != null">
+        city_name,
+      </if>
+      <if test="cityNamePy != null">
+        city_name_py,
+      </if>
+      <if test="bdCityCode != null">
+        bd_city_code,
+      </if>
+      <if test="icbcCityCode != null">
+        icbc_city_code,
+      </if>
+      <if test="provinceName != null">
+        province_name,
+      </if>
+      <if test="domain != null">
+        domain,
+      </if>
+      <if test="indexLogo != null">
+        index_logo,
+      </if>
+      <if test="footImage != null">
+        foot_image,
+      </if>
+      <if test="indexUrl != null">
+        index_url,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cityName != null">
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityNamePy != null">
+        #{cityNamePy,jdbcType=VARCHAR},
+      </if>
+      <if test="bdCityCode != null">
+        #{bdCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="icbcCityCode != null">
+        #{icbcCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceName != null">
+        #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="domain != null">
+        #{domain,jdbcType=VARCHAR},
+      </if>
+      <if test="indexLogo != null">
+        #{indexLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="footImage != null">
+        #{footImage,jdbcType=VARCHAR},
+      </if>
+      <if test="indexUrl != null">
+        #{indexUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.AreaDomainExample" resultType="java.lang.Long">
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from area_domain
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update area_domain
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.cityName != null">
+        city_name = #{record.cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityNamePy != null">
+        city_name_py = #{record.cityNamePy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bdCityCode != null">
+        bd_city_code = #{record.bdCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.icbcCityCode != null">
+        icbc_city_code = #{record.icbcCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.provinceName != null">
+        province_name = #{record.provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.domain != null">
+        domain = #{record.domain,jdbcType=VARCHAR},
+      </if>
+      <if test="record.indexLogo != null">
+        index_logo = #{record.indexLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.footImage != null">
+        foot_image = #{record.footImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.indexUrl != null">
+        index_url = #{record.indexUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update area_domain
+    set id = #{record.id,jdbcType=INTEGER},
+      city_name = #{record.cityName,jdbcType=VARCHAR},
+      city_name_py = #{record.cityNamePy,jdbcType=VARCHAR},
+      bd_city_code = #{record.bdCityCode,jdbcType=VARCHAR},
+      icbc_city_code = #{record.icbcCityCode,jdbcType=VARCHAR},
+      province_name = #{record.provinceName,jdbcType=VARCHAR},
+      domain = #{record.domain,jdbcType=VARCHAR},
+      index_logo = #{record.indexLogo,jdbcType=VARCHAR},
+      foot_image = #{record.footImage,jdbcType=VARCHAR},
+      index_url = #{record.indexUrl,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=CHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mrbt.lingmoney.model.AreaDomain">
+    <!--
+    @mbggenerated
+    -->
+    update area_domain
+    <set>
+      <if test="cityName != null">
+        city_name = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityNamePy != null">
+        city_name_py = #{cityNamePy,jdbcType=VARCHAR},
+      </if>
+      <if test="bdCityCode != null">
+        bd_city_code = #{bdCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="icbcCityCode != null">
+        icbc_city_code = #{icbcCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceName != null">
+        province_name = #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="domain != null">
+        domain = #{domain,jdbcType=VARCHAR},
+      </if>
+      <if test="indexLogo != null">
+        index_logo = #{indexLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="footImage != null">
+        foot_image = #{footImage,jdbcType=VARCHAR},
+      </if>
+      <if test="indexUrl != null">
+        index_url = #{indexUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mrbt.lingmoney.model.AreaDomain">
+    <!--
+    @mbggenerated
+    -->
+    update area_domain
+    set city_name = #{cityName,jdbcType=VARCHAR},
+      city_name_py = #{cityNamePy,jdbcType=VARCHAR},
+      bd_city_code = #{bdCityCode,jdbcType=VARCHAR},
+      icbc_city_code = #{icbcCityCode,jdbcType=VARCHAR},
+      province_name = #{provinceName,jdbcType=VARCHAR},
+      domain = #{domain,jdbcType=VARCHAR},
+      index_logo = #{indexLogo,jdbcType=VARCHAR},
+      foot_image = #{footImage,jdbcType=VARCHAR},
+      index_url = #{indexUrl,jdbcType=VARCHAR},
+      status = #{status,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="queryAll" parameterType="java.util.Map" resultType="java.util.Map">
+  	select id, city_name cityName, bd_city_code bdCityCode, icbc_city_code icbcCityCode, 
+    province_name provinceName, domain, index_logo indexLogo, foot_image footImage, index_url indexUrl, 
+    city_name_py cityNamePy, status  from area_domain where 1 = 1  
+  	<if test="cityName!=null and cityName!=''">
+  		and city_name like CONCAT('%',CONCAT(#{cityName},'%'))   
+  	</if>
+  	<if test="provinceName!=null and provinceName!=''">
+  		and province_name like CONCAT('%',CONCAT(#{provinceName},'%'))    
+  	</if>
+  	limit #{start},#{number}
+  </select>
+  
+  <select id="queryAllCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+  	select count(1) from area_domain where 1 = 1  
+  	<if test="cityName!=null and cityName!=''">
+  		and city_name like CONCAT('%',CONCAT(#{cityName},'%'))   
+  	</if>
+  	<if test="provinceName!=null and provinceName!=''">
+  		and province_name like CONCAT('%',CONCAT(#{provinceName},'%'))    
+  	</if>
+  </select>
+  
+  
+  <select id="queryCodeName" resultType="java.util.Map">
+  	select bd_city_code code,city_name name from area_domain;
+  </select>
+</mapper>

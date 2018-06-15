@@ -1,0 +1,5 @@
+[
+	{"intakeTypeId":"0","intakeTypeName":"自然吸气"},
+	{"intakeTypeId":"1","intakeTypeName":"涡轮增压"},
+	{"intakeTypeId":"2","intakeTypeName":"机械增压"}
+]

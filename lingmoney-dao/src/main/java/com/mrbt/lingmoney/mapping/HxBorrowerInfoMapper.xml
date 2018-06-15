@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mrbt.lingmoney.mapper.HxBorrowerInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.HxBorrowerInfo" >
+    <!--
+    @mbggenerated
+    -->
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="bidding_id" property="biddingId" jdbcType="VARCHAR" />
+    <result column="bw_id" property="bwId" jdbcType="VARCHAR" />
+    <result column="bw_amt" property="bwAmt" jdbcType="DECIMAL" />
+    <result column="mortgage_id" property="mortgageId" jdbcType="VARCHAR" />
+    <result column="mortgage_info" property="mortgageInfo" jdbcType="VARCHAR" />
+    <result column="check_date" property="checkDate" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="bw_use" property="bwUse" jdbcType="VARCHAR" />
+    <result column="bw_info" property="bwInfo" jdbcType="VARCHAR" />
+    <result column="mortgage_owner" property="mortgageOwner" jdbcType="VARCHAR" />
+    <result column="mortgage_common" property="mortgageCommon" jdbcType="VARCHAR" />
+    <result column="mortgage_own_style" property="mortgageOwnStyle" jdbcType="VARCHAR" />
+    <result column="mortgage_region" property="mortgageRegion" jdbcType="VARCHAR" />
+    <result column="mortgage_type" property="mortgageType" jdbcType="VARCHAR" />
+    <result column="mortgage_buy_price" property="mortgageBuyPrice" jdbcType="VARCHAR" />
+    <result column="mortgage_evaluate_price" property="mortgageEvaluatePrice" jdbcType="VARCHAR" />
+    <result column="mortgage_rate" property="mortgageRate" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <!--
+    @mbggenerated
+    -->
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <!--
+    @mbggenerated
+    -->
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <!--
+    @mbggenerated
+    -->
+    id, bidding_id, bw_id, bw_amt, mortgage_id, mortgage_info, check_date, remark, bw_use, 
+    bw_info, mortgage_owner, mortgage_common, mortgage_own_style, mortgage_region, mortgage_type, 
+    mortgage_buy_price, mortgage_evaluate_price, mortgage_rate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mrbt.lingmoney.model.HxBorrowerInfoExample" >
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hx_borrower_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    <!--
+    @mbggenerated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from hx_borrower_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    <!--
+    @mbggenerated
+    -->
+    delete from hx_borrower_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.HxBorrowerInfoExample" >
+    <!--
+    @mbggenerated
+    -->
+    delete from hx_borrower_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mrbt.lingmoney.model.HxBorrowerInfo" >
+    <!--
+    @mbggenerated
+    -->
+    insert into hx_borrower_info (id, bidding_id, bw_id, 
+      bw_amt, mortgage_id, mortgage_info, 
+      check_date, remark, bw_use, 
+      bw_info, mortgage_owner, mortgage_common, 
+      mortgage_own_style, mortgage_region, mortgage_type, 
+      mortgage_buy_price, mortgage_evaluate_price, 
+      mortgage_rate)
+    values (#{id,jdbcType=VARCHAR}, #{biddingId,jdbcType=VARCHAR}, #{bwId,jdbcType=VARCHAR}, 
+      #{bwAmt,jdbcType=DECIMAL}, #{mortgageId,jdbcType=VARCHAR}, #{mortgageInfo,jdbcType=VARCHAR}, 
+      #{checkDate,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{bwUse,jdbcType=VARCHAR}, 
+      #{bwInfo,jdbcType=VARCHAR}, #{mortgageOwner,jdbcType=VARCHAR}, #{mortgageCommon,jdbcType=VARCHAR}, 
+      #{mortgageOwnStyle,jdbcType=VARCHAR}, #{mortgageRegion,jdbcType=VARCHAR}, #{mortgageType,jdbcType=VARCHAR}, 
+      #{mortgageBuyPrice,jdbcType=VARCHAR}, #{mortgageEvaluatePrice,jdbcType=VARCHAR}, 
+      #{mortgageRate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.HxBorrowerInfo" >
+    <!--
+    @mbggenerated
+    -->
+    insert into hx_borrower_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="biddingId != null" >
+        bidding_id,
+      </if>
+      <if test="bwId != null" >
+        bw_id,
+      </if>
+      <if test="bwAmt != null" >
+        bw_amt,
+      </if>
+      <if test="mortgageId != null" >
+        mortgage_id,
+      </if>
+      <if test="mortgageInfo != null" >
+        mortgage_info,
+      </if>
+      <if test="checkDate != null" >
+        check_date,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="bwUse != null" >
+        bw_use,
+      </if>
+      <if test="bwInfo != null" >
+        bw_info,
+      </if>
+      <if test="mortgageOwner != null" >
+        mortgage_owner,
+      </if>
+      <if test="mortgageCommon != null" >
+        mortgage_common,
+      </if>
+      <if test="mortgageOwnStyle != null" >
+        mortgage_own_style,
+      </if>
+      <if test="mortgageRegion != null" >
+        mortgage_region,
+      </if>
+      <if test="mortgageType != null" >
+        mortgage_type,
+      </if>
+      <if test="mortgageBuyPrice != null" >
+        mortgage_buy_price,
+      </if>
+      <if test="mortgageEvaluatePrice != null" >
+        mortgage_evaluate_price,
+      </if>
+      <if test="mortgageRate != null" >
+        mortgage_rate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="biddingId != null" >
+        #{biddingId,jdbcType=VARCHAR},
+      </if>
+      <if test="bwId != null" >
+        #{bwId,jdbcType=VARCHAR},
+      </if>
+      <if test="bwAmt != null" >
+        #{bwAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="mortgageId != null" >
+        #{mortgageId,jdbcType=VARCHAR},
+      </if>
+      <if test="mortgageInfo != null" >
+        #{mortgageInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="checkDate != null" >
+        #{checkDate,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="bwUse != null" >
+        #{bwUse,jdbcType=VARCHAR},
+      </if>
+      <if test="bwInfo != null" >
+        #{bwInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="mortgageOwner != null" >
+        #{mortgageOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="mortgageCommon != null" >
+        #{mortgageCommon,jdbcType=VARCHAR},
+      </if>
+      <if test="mortgageOwnStyle != null" >
+        #{mortgageOwnStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="mortgageRegion != null" >
+        #{mortgageRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="mortgageType != null" >
+        #{mortgageType,jdbcType=VARCHAR},
+      </if>
+      <if test="mortgageBuyPrice != null" >
+        #{mortgageBuyPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="mortgageEvaluatePrice != null" >
+        #{mortgageEvaluatePrice,jdbcType=VARCHAR},
+      </if>
+      <if test="mortgageRate != null" >
+        #{mortgageRate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.HxBorrowerInfoExample" resultType="java.lang.Long" >
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from hx_borrower_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    <!--
+    @mbggenerated
+    -->
+    update hx_borrower_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.biddingId != null" >
+        bidding_id = #{record.biddingId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bwId != null" >
+        bw_id = #{record.bwId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bwAmt != null" >
+        bw_amt = #{record.bwAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="record.mortgageId != null" >
+        mortgage_id = #{record.mortgageId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mortgageInfo != null" >
+        mortgage_info = #{record.mortgageInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkDate != null" >
+        check_date = #{record.checkDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bwUse != null" >
+        bw_use = #{record.bwUse,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bwInfo != null" >
+        bw_info = #{record.bwInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mortgageOwner != null" >
+        mortgage_owner = #{record.mortgageOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mortgageCommon != null" >
+        mortgage_common = #{record.mortgageCommon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mortgageOwnStyle != null" >
+        mortgage_own_style = #{record.mortgageOwnStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mortgageRegion != null" >
+        mortgage_region = #{record.mortgageRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mortgageType != null" >
+        mortgage_type = #{record.mortgageType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mortgageBuyPrice != null" >
+        mortgage_buy_price = #{record.mortgageBuyPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mortgageEvaluatePrice != null" >
+        mortgage_evaluate_price = #{record.mortgageEvaluatePrice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mortgageRate != null" >
+        mortgage_rate = #{record.mortgageRate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    <!--
+    @mbggenerated
+    -->
+    update hx_borrower_info
+    set id = #{record.id,jdbcType=VARCHAR},
+      bidding_id = #{record.biddingId,jdbcType=VARCHAR},
+      bw_id = #{record.bwId,jdbcType=VARCHAR},
+      bw_amt = #{record.bwAmt,jdbcType=DECIMAL},
+      mortgage_id = #{record.mortgageId,jdbcType=VARCHAR},
+      mortgage_info = #{record.mortgageInfo,jdbcType=VARCHAR},
+      check_date = #{record.checkDate,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      bw_use = #{record.bwUse,jdbcType=VARCHAR},
+      bw_info = #{record.bwInfo,jdbcType=VARCHAR},
+      mortgage_owner = #{record.mortgageOwner,jdbcType=VARCHAR},
+      mortgage_common = #{record.mortgageCommon,jdbcType=VARCHAR},
+      mortgage_own_style = #{record.mortgageOwnStyle,jdbcType=VARCHAR},
+      mortgage_region = #{record.mortgageRegion,jdbcType=VARCHAR},
+      mortgage_type = #{record.mortgageType,jdbcType=VARCHAR},
+      mortgage_buy_price = #{record.mortgageBuyPrice,jdbcType=VARCHAR},
+      mortgage_evaluate_price = #{record.mortgageEvaluatePrice,jdbcType=VARCHAR},
+      mortgage_rate = #{record.mortgageRate,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mrbt.lingmoney.model.HxBorrowerInfo" >
+    <!--
+    @mbggenerated
+    -->
+    update hx_borrower_info
+    <set >
+      <if test="biddingId != null" >
+        bidding_id = #{biddingId,jdbcType=VARCHAR},
+      </if>
+      <if test="bwId != null" >
+        bw_id = #{bwId,jdbcType=VARCHAR},
+      </if>
+      <if test="bwAmt != null" >
+        bw_amt = #{bwAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="mortgageId != null" >
+        mortgage_id = #{mortgageId,jdbcType=VARCHAR},
+      </if>
+      <if test="mortgageInfo != null" >
+        mortgage_info = #{mortgageInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="checkDate != null" >
+        check_date = #{checkDate,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="bwUse != null" >
+        bw_use = #{bwUse,jdbcType=VARCHAR},
+      </if>
+      <if test="bwInfo != null" >
+        bw_info = #{bwInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="mortgageOwner != null" >
+        mortgage_owner = #{mortgageOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="mortgageCommon != null" >
+        mortgage_common = #{mortgageCommon,jdbcType=VARCHAR},
+      </if>
+      <if test="mortgageOwnStyle != null" >
+        mortgage_own_style = #{mortgageOwnStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="mortgageRegion != null" >
+        mortgage_region = #{mortgageRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="mortgageType != null" >
+        mortgage_type = #{mortgageType,jdbcType=VARCHAR},
+      </if>
+      <if test="mortgageBuyPrice != null" >
+        mortgage_buy_price = #{mortgageBuyPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="mortgageEvaluatePrice != null" >
+        mortgage_evaluate_price = #{mortgageEvaluatePrice,jdbcType=VARCHAR},
+      </if>
+      <if test="mortgageRate != null" >
+        mortgage_rate = #{mortgageRate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mrbt.lingmoney.model.HxBorrowerInfo" >
+    <!--
+    @mbggenerated
+    -->
+    update hx_borrower_info
+    set bidding_id = #{biddingId,jdbcType=VARCHAR},
+      bw_id = #{bwId,jdbcType=VARCHAR},
+      bw_amt = #{bwAmt,jdbcType=DECIMAL},
+      mortgage_id = #{mortgageId,jdbcType=VARCHAR},
+      mortgage_info = #{mortgageInfo,jdbcType=VARCHAR},
+      check_date = #{checkDate,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      bw_use = #{bwUse,jdbcType=VARCHAR},
+      bw_info = #{bwInfo,jdbcType=VARCHAR},
+      mortgage_owner = #{mortgageOwner,jdbcType=VARCHAR},
+      mortgage_common = #{mortgageCommon,jdbcType=VARCHAR},
+      mortgage_own_style = #{mortgageOwnStyle,jdbcType=VARCHAR},
+      mortgage_region = #{mortgageRegion,jdbcType=VARCHAR},
+      mortgage_type = #{mortgageType,jdbcType=VARCHAR},
+      mortgage_buy_price = #{mortgageBuyPrice,jdbcType=VARCHAR},
+      mortgage_evaluate_price = #{mortgageEvaluatePrice,jdbcType=VARCHAR},
+      mortgage_rate = #{mortgageRate,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

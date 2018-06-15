@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.InfoClientBannerMapper">
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.InfoClientBanner">
+    <!--
+    @mbggenerated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="defult_path" jdbcType="VARCHAR" property="defultPath" />
+    <result column="code_path1" jdbcType="VARCHAR" property="codePath1" />
+    <result column="code_path2" jdbcType="VARCHAR" property="codePath2" />
+    <result column="code_path3" jdbcType="VARCHAR" property="codePath3" />
+    <result column="code_path4" jdbcType="VARCHAR" property="codePath4" />
+    <result column="code_path5" jdbcType="VARCHAR" property="codePath5" />
+    <result column="code_path6" jdbcType="VARCHAR" property="codePath6" />
+    <result column="code_path7" jdbcType="VARCHAR" property="codePath7" />
+    <result column="code_path8" jdbcType="VARCHAR" property="codePath8" />
+    <result column="code_path9" jdbcType="VARCHAR" property="codePath9" />
+    <result column="code_path10" jdbcType="VARCHAR" property="codePath10" />
+    <result column="city_code" jdbcType="VARCHAR" property="cityCode" />
+    <result column="defult_path" jdbcType="VARCHAR" property="defultPath" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+    @mbggenerated
+    -->
+    id, name, url, status, level, create_time, defult_path, code_path1, code_path2, code_path3, 
+    code_path4, code_path5, code_path6, code_path7, code_path8, code_path9, code_path10, 
+    city_code
+  </sql>
+  <select id="selectByExample" parameterType="com.mrbt.lingmoney.model.InfoClientBannerExample" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from info_client_banner
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0">
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from info_client_banner
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--
+    @mbggenerated
+    -->
+    delete from info_client_banner
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.InfoClientBannerExample">
+    <!--
+    @mbggenerated
+    -->
+    delete from info_client_banner
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mrbt.lingmoney.model.InfoClientBanner">
+    <!--
+    @mbggenerated
+    -->
+    insert into info_client_banner (id, name, url, 
+      status, level, create_time, 
+      defult_path, code_path1, code_path2, 
+      code_path3, code_path4, code_path5, 
+      code_path6, code_path7, code_path8, 
+      code_path9, code_path10, city_code
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{level,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{defultPath,jdbcType=VARCHAR}, #{codePath1,jdbcType=VARCHAR}, #{codePath2,jdbcType=VARCHAR}, 
+      #{codePath3,jdbcType=VARCHAR}, #{codePath4,jdbcType=VARCHAR}, #{codePath5,jdbcType=VARCHAR}, 
+      #{codePath6,jdbcType=VARCHAR}, #{codePath7,jdbcType=VARCHAR}, #{codePath8,jdbcType=VARCHAR}, 
+      #{codePath9,jdbcType=VARCHAR}, #{codePath10,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.InfoClientBanner">
+    <!--
+    @mbggenerated
+    -->
+    insert into info_client_banner
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="defultPath != null">
+        defult_path,
+      </if>
+      <if test="codePath1 != null">
+        code_path1,
+      </if>
+      <if test="codePath2 != null">
+        code_path2,
+      </if>
+      <if test="codePath3 != null">
+        code_path3,
+      </if>
+      <if test="codePath4 != null">
+        code_path4,
+      </if>
+      <if test="codePath5 != null">
+        code_path5,
+      </if>
+      <if test="codePath6 != null">
+        code_path6,
+      </if>
+      <if test="codePath7 != null">
+        code_path7,
+      </if>
+      <if test="codePath8 != null">
+        code_path8,
+      </if>
+      <if test="codePath9 != null">
+        code_path9,
+      </if>
+      <if test="codePath10 != null">
+        code_path10,
+      </if>
+      <if test="cityCode != null">
+        city_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="defultPath != null">
+        #{defultPath,jdbcType=VARCHAR},
+      </if>
+      <if test="codePath1 != null">
+        #{codePath1,jdbcType=VARCHAR},
+      </if>
+      <if test="codePath2 != null">
+        #{codePath2,jdbcType=VARCHAR},
+      </if>
+      <if test="codePath3 != null">
+        #{codePath3,jdbcType=VARCHAR},
+      </if>
+      <if test="codePath4 != null">
+        #{codePath4,jdbcType=VARCHAR},
+      </if>
+      <if test="codePath5 != null">
+        #{codePath5,jdbcType=VARCHAR},
+      </if>
+      <if test="codePath6 != null">
+        #{codePath6,jdbcType=VARCHAR},
+      </if>
+      <if test="codePath7 != null">
+        #{codePath7,jdbcType=VARCHAR},
+      </if>
+      <if test="codePath8 != null">
+        #{codePath8,jdbcType=VARCHAR},
+      </if>
+      <if test="codePath9 != null">
+        #{codePath9,jdbcType=VARCHAR},
+      </if>
+      <if test="codePath10 != null">
+        #{codePath10,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.InfoClientBannerExample" resultType="java.lang.Long">
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from info_client_banner
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update info_client_banner
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.url != null">
+        url = #{record.url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.level != null">
+        level = #{record.level,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.defultPath != null">
+        defult_path = #{record.defultPath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.codePath1 != null">
+        code_path1 = #{record.codePath1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.codePath2 != null">
+        code_path2 = #{record.codePath2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.codePath3 != null">
+        code_path3 = #{record.codePath3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.codePath4 != null">
+        code_path4 = #{record.codePath4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.codePath5 != null">
+        code_path5 = #{record.codePath5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.codePath6 != null">
+        code_path6 = #{record.codePath6,jdbcType=VARCHAR},
+      </if>
+      <if test="record.codePath7 != null">
+        code_path7 = #{record.codePath7,jdbcType=VARCHAR},
+      </if>
+      <if test="record.codePath8 != null">
+        code_path8 = #{record.codePath8,jdbcType=VARCHAR},
+      </if>
+      <if test="record.codePath9 != null">
+        code_path9 = #{record.codePath9,jdbcType=VARCHAR},
+      </if>
+      <if test="record.codePath10 != null">
+        code_path10 = #{record.codePath10,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityCode != null">
+        city_code = #{record.cityCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update info_client_banner
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      url = #{record.url,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=INTEGER},
+      level = #{record.level,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      defult_path = #{record.defultPath,jdbcType=VARCHAR},
+      code_path1 = #{record.codePath1,jdbcType=VARCHAR},
+      code_path2 = #{record.codePath2,jdbcType=VARCHAR},
+      code_path3 = #{record.codePath3,jdbcType=VARCHAR},
+      code_path4 = #{record.codePath4,jdbcType=VARCHAR},
+      code_path5 = #{record.codePath5,jdbcType=VARCHAR},
+      code_path6 = #{record.codePath6,jdbcType=VARCHAR},
+      code_path7 = #{record.codePath7,jdbcType=VARCHAR},
+      code_path8 = #{record.codePath8,jdbcType=VARCHAR},
+      code_path9 = #{record.codePath9,jdbcType=VARCHAR},
+      code_path10 = #{record.codePath10,jdbcType=VARCHAR},
+      city_code = #{record.cityCode,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mrbt.lingmoney.model.InfoClientBanner">
+    <!--
+    @mbggenerated
+    -->
+    update info_client_banner
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="level != null">
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="defultPath != null">
+        defult_path = #{defultPath,jdbcType=VARCHAR},
+      </if>
+      <if test="codePath1 != null">
+        code_path1 = #{codePath1,jdbcType=VARCHAR},
+      </if>
+      <if test="codePath2 != null">
+        code_path2 = #{codePath2,jdbcType=VARCHAR},
+      </if>
+      <if test="codePath3 != null">
+        code_path3 = #{codePath3,jdbcType=VARCHAR},
+      </if>
+      <if test="codePath4 != null">
+        code_path4 = #{codePath4,jdbcType=VARCHAR},
+      </if>
+      <if test="codePath5 != null">
+        code_path5 = #{codePath5,jdbcType=VARCHAR},
+      </if>
+      <if test="codePath6 != null">
+        code_path6 = #{codePath6,jdbcType=VARCHAR},
+      </if>
+      <if test="codePath7 != null">
+        code_path7 = #{codePath7,jdbcType=VARCHAR},
+      </if>
+      <if test="codePath8 != null">
+        code_path8 = #{codePath8,jdbcType=VARCHAR},
+      </if>
+      <if test="codePath9 != null">
+        code_path9 = #{codePath9,jdbcType=VARCHAR},
+      </if>
+      <if test="codePath10 != null">
+        code_path10 = #{codePath10,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        city_code = #{cityCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mrbt.lingmoney.model.InfoClientBanner">
+    <!--
+    @mbggenerated
+    -->
+    update info_client_banner
+    set name = #{name,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      level = #{level,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      defult_path = #{defultPath,jdbcType=VARCHAR},
+      code_path1 = #{codePath1,jdbcType=VARCHAR},
+      code_path2 = #{codePath2,jdbcType=VARCHAR},
+      code_path3 = #{codePath3,jdbcType=VARCHAR},
+      code_path4 = #{codePath4,jdbcType=VARCHAR},
+      code_path5 = #{codePath5,jdbcType=VARCHAR},
+      code_path6 = #{codePath6,jdbcType=VARCHAR},
+      code_path7 = #{codePath7,jdbcType=VARCHAR},
+      code_path8 = #{codePath8,jdbcType=VARCHAR},
+      code_path9 = #{codePath9,jdbcType=VARCHAR},
+      code_path10 = #{codePath10,jdbcType=VARCHAR},
+      city_code = #{cityCode,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 新增方法 -->
+  <select id="selectBySizeCode" parameterType="java.util.Map" resultMap="BaseResultMap" > 
+    select id,name,url,
+	case when (${sizeCode} is null or ${sizeCode} = '') then defult_path else ${sizeCode} end as defult_path
+	from info_client_banner where status = 1 and (city_code = #{cityCode,jdbcType=VARCHAR} or city_code = '000')
+	order by level asc ,create_time desc
+  </select>
+</mapper>

@@ -1,0 +1,1308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.TradingMapper">
+	<resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.Trading">
+		<!-- @mbggenerated -->
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="u_id" jdbcType="VARCHAR" property="uId" />
+		<result column="p_id" jdbcType="INTEGER" property="pId" />
+		<result column="p_code" jdbcType="VARCHAR" property="pCode" />
+		<result column="pc_type" jdbcType="INTEGER" property="pcType" />
+		<result column="pc_id" jdbcType="INTEGER" property="pcId" />
+		<result column="buy_money" jdbcType="DECIMAL" property="buyMoney" />
+		<result column="financial_money" jdbcType="DECIMAL" property="financialMoney" />
+		<result column="buy_dt" jdbcType="TIMESTAMP" property="buyDt" />
+		<result column="value_dt" jdbcType="DATE" property="valueDt" />
+		<result column="w_value_dt" jdbcType="DATE" property="wValueDt" />
+		<result column="min_sell_dt" jdbcType="DATE" property="minSellDt" />
+		<result column="status" jdbcType="INTEGER" property="status" />
+		<result column="biz_code" jdbcType="VARCHAR" property="bizCode" />
+		<result column="sell_dt" jdbcType="TIMESTAMP" property="sellDt" />
+		<result column="sell_money" jdbcType="DECIMAL" property="sellMoney" />
+		<result column="out_biz_code" jdbcType="VARCHAR" property="outBizCode" />
+		<result column="fix_invest" jdbcType="INTEGER" property="fixInvest" />
+		<result column="auto_pay" jdbcType="INTEGER" property="autoPay" />
+		<result column="interest" jdbcType="DECIMAL" property="interest" />
+		<result column="all_interest" jdbcType="DECIMAL" property="allInterest" />
+		<result column="platform_type" jdbcType="INTEGER" property="platformType" />
+		<result column="last_value_dt" jdbcType="DATE" property="lastValueDt" />
+		<result column="card_pan" jdbcType="VARCHAR" property="cardPan" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<!-- @mbggenerated -->
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" prefixOverrides="and" suffix=")">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach close=")" collection="criterion.value" item="listItem"
+										open="(" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<!-- @mbggenerated -->
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" prefixOverrides="and" suffix=")">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach close=")" collection="criterion.value" item="listItem"
+										open="(" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		<!-- @mbggenerated -->
+		id, u_id, p_id, p_code, pc_type, pc_id, buy_money, financial_money,
+		buy_dt, value_dt,
+		w_value_dt, min_sell_dt, status, biz_code, sell_dt,
+		sell_money, out_biz_code,
+		fix_invest,
+		auto_pay, interest, all_interest,
+		platform_type, last_value_dt, card_pan
+	</sql>
+	<select id="selectByExample" parameterType="com.mrbt.lingmoney.model.TradingExample"
+		resultMap="BaseResultMap">
+		<!-- @mbggenerated -->
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from trading
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+		<if test="limitStart >= 0">
+			limit ${limitStart} , ${limitEnd}
+		</if>
+	</select>
+	<select id="selectByPid" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+       SELECT t.* from trading t 
+       where 
+       t.p_id =#{pId,jdbcType=INTEGER}
+       and  TO_DAYS(NOW()) - TO_DAYS(t.value_dt) > 224 
+       and status = 1
+	</select>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		<!-- @mbggenerated -->
+		select
+		<include refid="Base_Column_List" />
+		from trading
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		<!-- @mbggenerated -->
+		delete from trading
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.TradingExample">
+		<!-- @mbggenerated -->
+		delete from trading
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.mrbt.lingmoney.model.Trading">
+		<!-- @mbggenerated -->
+		insert into trading (id, u_id, p_id,
+		p_code, pc_type, pc_id,
+		buy_money,
+		financial_money, buy_dt,
+		value_dt, w_value_dt, min_sell_dt,
+		status,
+		biz_code, sell_dt,
+		sell_money, out_biz_code, fix_invest,
+		auto_pay,
+		interest, all_interest,
+		platform_type, last_value_dt, card_pan
+		)
+		values
+		(#{id,jdbcType=INTEGER}, #{uId,jdbcType=VARCHAR},
+		#{pId,jdbcType=INTEGER},
+		#{pCode,jdbcType=VARCHAR},
+		#{pcType,jdbcType=INTEGER}, #{pcId,jdbcType=INTEGER},
+		#{buyMoney,jdbcType=DECIMAL}, #{financialMoney,jdbcType=DECIMAL},
+		#{buyDt,jdbcType=TIMESTAMP},
+		#{valueDt,jdbcType=DATE},
+		#{wValueDt,jdbcType=DATE}, #{minSellDt,jdbcType=DATE},
+		#{status,jdbcType=INTEGER}, #{bizCode,jdbcType=VARCHAR},
+		#{sellDt,jdbcType=TIMESTAMP},
+		#{sellMoney,jdbcType=DECIMAL},
+		#{outBizCode,jdbcType=VARCHAR}, #{fixInvest,jdbcType=INTEGER},
+		#{autoPay,jdbcType=INTEGER}, #{interest,jdbcType=DECIMAL},
+		#{allInterest,jdbcType=DECIMAL},
+		#{platformType,jdbcType=INTEGER},
+		#{lastValueDt,jdbcType=DATE}, #{cardPan,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.Trading">
+		<!-- @mbggenerated -->
+		insert into trading
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="uId != null">
+				u_id,
+			</if>
+			<if test="pId != null">
+				p_id,
+			</if>
+			<if test="pCode != null">
+				p_code,
+			</if>
+			<if test="pcType != null">
+				pc_type,
+			</if>
+			<if test="pcId != null">
+				pc_id,
+			</if>
+			<if test="buyMoney != null">
+				buy_money,
+			</if>
+			<if test="financialMoney != null">
+				financial_money,
+			</if>
+			<if test="buyDt != null">
+				buy_dt,
+			</if>
+			<if test="valueDt != null">
+				value_dt,
+			</if>
+			<if test="wValueDt != null">
+				w_value_dt,
+			</if>
+			<if test="minSellDt != null">
+				min_sell_dt,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="bizCode != null">
+				biz_code,
+			</if>
+			<if test="sellDt != null">
+				sell_dt,
+			</if>
+			<if test="sellMoney != null">
+				sell_money,
+			</if>
+			<if test="outBizCode != null">
+				out_biz_code,
+			</if>
+			<if test="fixInvest != null">
+				fix_invest,
+			</if>
+			<if test="autoPay != null">
+				auto_pay,
+			</if>
+			<if test="interest != null">
+				interest,
+			</if>
+			<if test="allInterest != null">
+				all_interest,
+			</if>
+			<if test="platformType != null">
+				platform_type,
+			</if>
+			<if test="lastValueDt != null">
+				last_value_dt,
+			</if>
+			<if test="cardPan != null">
+				card_pan,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="uId != null">
+				#{uId,jdbcType=VARCHAR},
+			</if>
+			<if test="pId != null">
+				#{pId,jdbcType=INTEGER},
+			</if>
+			<if test="pCode != null">
+				#{pCode,jdbcType=VARCHAR},
+			</if>
+			<if test="pcType != null">
+				#{pcType,jdbcType=INTEGER},
+			</if>
+			<if test="pcId != null">
+				#{pcId,jdbcType=INTEGER},
+			</if>
+			<if test="buyMoney != null">
+				#{buyMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="financialMoney != null">
+				#{financialMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="buyDt != null">
+				#{buyDt,jdbcType=TIMESTAMP},
+			</if>
+			<if test="valueDt != null">
+				#{valueDt,jdbcType=DATE},
+			</if>
+			<if test="wValueDt != null">
+				#{wValueDt,jdbcType=DATE},
+			</if>
+			<if test="minSellDt != null">
+				#{minSellDt,jdbcType=DATE},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="bizCode != null">
+				#{bizCode,jdbcType=VARCHAR},
+			</if>
+			<if test="sellDt != null">
+				#{sellDt,jdbcType=TIMESTAMP},
+			</if>
+			<if test="sellMoney != null">
+				#{sellMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="outBizCode != null">
+				#{outBizCode,jdbcType=VARCHAR},
+			</if>
+			<if test="fixInvest != null">
+				#{fixInvest,jdbcType=INTEGER},
+			</if>
+			<if test="autoPay != null">
+				#{autoPay,jdbcType=INTEGER},
+			</if>
+			<if test="interest != null">
+				#{interest,jdbcType=DECIMAL},
+			</if>
+			<if test="allInterest != null">
+				#{allInterest,jdbcType=DECIMAL},
+			</if>
+			<if test="platformType != null">
+				#{platformType,jdbcType=INTEGER},
+			</if>
+			<if test="lastValueDt != null">
+				#{lastValueDt,jdbcType=DATE},
+			</if>
+			<if test="cardPan != null">
+				#{cardPan,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.mrbt.lingmoney.model.TradingExample"
+		resultType="java.lang.Long">
+		<!-- @mbggenerated -->
+		select count(*) from trading
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		<!-- @mbggenerated -->
+		update trading
+		<set>
+			<if test="record.id != null">
+				id = #{record.id,jdbcType=INTEGER},
+			</if>
+			<if test="record.uId != null">
+				u_id = #{record.uId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.pId != null">
+				p_id = #{record.pId,jdbcType=INTEGER},
+			</if>
+			<if test="record.pCode != null">
+				p_code = #{record.pCode,jdbcType=VARCHAR},
+			</if>
+			<if test="record.pcType != null">
+				pc_type = #{record.pcType,jdbcType=INTEGER},
+			</if>
+			<if test="record.pcId != null">
+				pc_id = #{record.pcId,jdbcType=INTEGER},
+			</if>
+			<if test="record.buyMoney != null">
+				buy_money = #{record.buyMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="record.financialMoney != null">
+				financial_money =
+				#{record.financialMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="record.buyDt != null">
+				buy_dt = #{record.buyDt,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.valueDt != null">
+				value_dt = #{record.valueDt,jdbcType=DATE},
+			</if>
+			<if test="record.wValueDt != null">
+				w_value_dt = #{record.wValueDt,jdbcType=DATE},
+			</if>
+			<if test="record.minSellDt != null">
+				min_sell_dt = #{record.minSellDt,jdbcType=DATE},
+			</if>
+			<if test="record.status != null">
+				status = #{record.status,jdbcType=INTEGER},
+			</if>
+			<if test="record.bizCode != null">
+				biz_code = #{record.bizCode,jdbcType=VARCHAR},
+			</if>
+			<if test="record.sellDt != null">
+				sell_dt = #{record.sellDt,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.sellMoney != null">
+				sell_money = #{record.sellMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="record.outBizCode != null">
+				out_biz_code = #{record.outBizCode,jdbcType=VARCHAR},
+			</if>
+			<if test="record.fixInvest != null">
+				fix_invest = #{record.fixInvest,jdbcType=INTEGER},
+			</if>
+			<if test="record.autoPay != null">
+				auto_pay = #{record.autoPay,jdbcType=INTEGER},
+			</if>
+			<if test="record.interest != null">
+				interest = #{record.interest,jdbcType=DECIMAL},
+			</if>
+			<if test="record.allInterest != null">
+				all_interest = #{record.allInterest,jdbcType=DECIMAL},
+			</if>
+			<if test="record.platformType != null">
+				platform_type = #{record.platformType,jdbcType=INTEGER},
+			</if>
+			<if test="record.lastValueDt != null">
+				last_value_dt = #{record.lastValueDt,jdbcType=DATE},
+			</if>
+			<if test="record.cardPan != null">
+				card_pan = #{record.cardPan,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		<!-- @mbggenerated -->
+		update trading
+		set id = #{record.id,jdbcType=INTEGER},
+		u_id =
+		#{record.uId,jdbcType=VARCHAR},
+		p_id = #{record.pId,jdbcType=INTEGER},
+		p_code = #{record.pCode,jdbcType=VARCHAR},
+		pc_type =
+		#{record.pcType,jdbcType=INTEGER},
+		pc_id =
+		#{record.pcId,jdbcType=INTEGER},
+		buy_money =
+		#{record.buyMoney,jdbcType=DECIMAL},
+		financial_money =
+		#{record.financialMoney,jdbcType=DECIMAL},
+		buy_dt =
+		#{record.buyDt,jdbcType=TIMESTAMP},
+		value_dt =
+		#{record.valueDt,jdbcType=DATE},
+		w_value_dt =
+		#{record.wValueDt,jdbcType=DATE},
+		min_sell_dt =
+		#{record.minSellDt,jdbcType=DATE},
+		status =
+		#{record.status,jdbcType=INTEGER},
+		biz_code =
+		#{record.bizCode,jdbcType=VARCHAR},
+		sell_dt =
+		#{record.sellDt,jdbcType=TIMESTAMP},
+		sell_money =
+		#{record.sellMoney,jdbcType=DECIMAL},
+		out_biz_code =
+		#{record.outBizCode,jdbcType=VARCHAR},
+		fix_invest =
+		#{record.fixInvest,jdbcType=INTEGER},
+		auto_pay =
+		#{record.autoPay,jdbcType=INTEGER},
+		interest =
+		#{record.interest,jdbcType=DECIMAL},
+		all_interest =
+		#{record.allInterest,jdbcType=DECIMAL},
+		platform_type =
+		#{record.platformType,jdbcType=INTEGER},
+		last_value_dt =
+		#{record.lastValueDt,jdbcType=DATE},
+		card_pan =
+		#{record.cardPan,jdbcType=VARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.mrbt.lingmoney.model.Trading">
+		<!-- @mbggenerated -->
+		update trading
+		<set>
+			<if test="uId != null">
+				u_id = #{uId,jdbcType=VARCHAR},
+			</if>
+			<if test="pId != null">
+				p_id = #{pId,jdbcType=INTEGER},
+			</if>
+			<if test="pCode != null">
+				p_code = #{pCode,jdbcType=VARCHAR},
+			</if>
+			<if test="pcType != null">
+				pc_type = #{pcType,jdbcType=INTEGER},
+			</if>
+			<if test="pcId != null">
+				pc_id = #{pcId,jdbcType=INTEGER},
+			</if>
+			<if test="buyMoney != null">
+				buy_money = #{buyMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="financialMoney != null">
+				financial_money = #{financialMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="buyDt != null">
+				buy_dt = #{buyDt,jdbcType=TIMESTAMP},
+			</if>
+			<if test="valueDt != null">
+				value_dt = #{valueDt,jdbcType=DATE},
+			</if>
+			<if test="wValueDt != null">
+				w_value_dt = #{wValueDt,jdbcType=DATE},
+			</if>
+			<if test="minSellDt != null">
+				min_sell_dt = #{minSellDt,jdbcType=DATE},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="bizCode != null">
+				biz_code = #{bizCode,jdbcType=VARCHAR},
+			</if>
+			<if test="sellDt != null">
+				sell_dt = #{sellDt,jdbcType=TIMESTAMP},
+			</if>
+			<if test="sellMoney != null">
+				sell_money = #{sellMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="outBizCode != null">
+				out_biz_code = #{outBizCode,jdbcType=VARCHAR},
+			</if>
+			<if test="fixInvest != null">
+				fix_invest = #{fixInvest,jdbcType=INTEGER},
+			</if>
+			<if test="autoPay != null">
+				auto_pay = #{autoPay,jdbcType=INTEGER},
+			</if>
+			<if test="interest != null">
+				interest = #{interest,jdbcType=DECIMAL},
+			</if>
+			<if test="allInterest != null">
+				all_interest = #{allInterest,jdbcType=DECIMAL},
+			</if>
+			<if test="platformType != null">
+				platform_type = #{platformType,jdbcType=INTEGER},
+			</if>
+			<if test="lastValueDt != null">
+				last_value_dt = #{lastValueDt,jdbcType=DATE},
+			</if>
+			<if test="cardPan != null">
+				card_pan = #{cardPan,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.mrbt.lingmoney.model.Trading">
+		<!-- @mbggenerated -->
+		update trading
+		set u_id = #{uId,jdbcType=VARCHAR},
+		p_id =
+		#{pId,jdbcType=INTEGER},
+		p_code = #{pCode,jdbcType=VARCHAR},
+		pc_type =
+		#{pcType,jdbcType=INTEGER},
+		pc_id = #{pcId,jdbcType=INTEGER},
+		buy_money
+		= #{buyMoney,jdbcType=DECIMAL},
+		financial_money =
+		#{financialMoney,jdbcType=DECIMAL},
+		buy_dt =
+		#{buyDt,jdbcType=TIMESTAMP},
+		value_dt = #{valueDt,jdbcType=DATE},
+		w_value_dt = #{wValueDt,jdbcType=DATE},
+		min_sell_dt =
+		#{minSellDt,jdbcType=DATE},
+		status = #{status,jdbcType=INTEGER},
+		biz_code = #{bizCode,jdbcType=VARCHAR},
+		sell_dt =
+		#{sellDt,jdbcType=TIMESTAMP},
+		sell_money =
+		#{sellMoney,jdbcType=DECIMAL},
+		out_biz_code =
+		#{outBizCode,jdbcType=VARCHAR},
+		fix_invest =
+		#{fixInvest,jdbcType=INTEGER},
+		auto_pay = #{autoPay,jdbcType=INTEGER},
+		interest = #{interest,jdbcType=DECIMAL},
+		all_interest =
+		#{allInterest,jdbcType=DECIMAL},
+		platform_type =
+		#{platformType,jdbcType=INTEGER},
+		last_value_dt =
+		#{lastValueDt,jdbcType=DATE},
+		card_pan = #{cardPan,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<insert id="insertSelectiveReturnId" parameterType="com.mrbt.lingmoney.model.Trading"
+		useGeneratedKeys="true" keyProperty="id">
+		<!-- @mbggenerated -->
+		insert into trading
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="uId != null">
+				u_id,
+			</if>
+			<if test="pId != null">
+				p_id,
+			</if>
+			<if test="pCode != null">
+				p_code,
+			</if>
+			<if test="pcType != null">
+				pc_type,
+			</if>
+			<if test="pcId != null">
+				pc_id,
+			</if>
+			<if test="buyMoney != null">
+				buy_money,
+			</if>
+			<if test="financialMoney != null">
+				financial_money,
+			</if>
+			<if test="buyDt != null">
+				buy_dt,
+			</if>
+			<if test="valueDt != null">
+				value_dt,
+			</if>
+			<if test="wValueDt != null">
+				w_value_dt,
+			</if>
+			<if test="minSellDt != null">
+				min_sell_dt,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="bizCode != null">
+				biz_code,
+			</if>
+			<if test="sellDt != null">
+				sell_dt,
+			</if>
+			<if test="sellMoney != null">
+				sell_money,
+			</if>
+			<if test="outBizCode != null">
+				out_biz_code,
+			</if>
+			<if test="fixInvest != null">
+				fix_invest,
+			</if>
+			<if test="autoPay != null">
+				auto_pay,
+			</if>
+			<if test="interest != null">
+				interest,
+			</if>
+			<if test="allInterest != null">
+				all_interest,
+			</if>
+			<if test="platformType != null">
+				platform_type,
+			</if>
+			<if test="lastValueDt != null">
+				last_value_dt,
+			</if>
+			<if test="cardPan != null">
+				card_pan,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="uId != null">
+				#{uId,jdbcType=VARCHAR},
+			</if>
+			<if test="pId != null">
+				#{pId,jdbcType=INTEGER},
+			</if>
+			<if test="pCode != null">
+				#{pCode,jdbcType=VARCHAR},
+			</if>
+			<if test="pcType != null">
+				#{pcType,jdbcType=INTEGER},
+			</if>
+			<if test="pcId != null">
+				#{pcId,jdbcType=INTEGER},
+			</if>
+			<if test="buyMoney != null">
+				#{buyMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="financialMoney != null">
+				#{financialMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="buyDt != null">
+				#{buyDt,jdbcType=TIMESTAMP},
+			</if>
+			<if test="valueDt != null">
+				#{valueDt,jdbcType=DATE},
+			</if>
+			<if test="wValueDt != null">
+				#{wValueDt,jdbcType=DATE},
+			</if>
+			<if test="minSellDt != null">
+				#{minSellDt,jdbcType=DATE},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="bizCode != null">
+				#{bizCode,jdbcType=VARCHAR},
+			</if>
+			<if test="sellDt != null">
+				#{sellDt,jdbcType=TIMESTAMP},
+			</if>
+			<if test="sellMoney != null">
+				#{sellMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="outBizCode != null">
+				#{outBizCode,jdbcType=VARCHAR},
+			</if>
+			<if test="fixInvest != null">
+				#{fixInvest,jdbcType=INTEGER},
+			</if>
+			<if test="autoPay != null">
+				#{autoPay,jdbcType=INTEGER},
+			</if>
+			<if test="interest != null">
+				#{interest,jdbcType=DECIMAL},
+			</if>
+			<if test="allInterest != null">
+				#{allInterest,jdbcType=DECIMAL},
+			</if>
+			<if test="platformType != null">
+				#{platformType,jdbcType=INTEGER},
+			</if>
+			<if test="lastValueDt != null">
+				#{lastValueDt,jdbcType=DATE},
+			</if>
+			<if test="cardPan != null">
+				#{cardPan,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+
+	<!-- custom setting -->
+	<select id="selectALLFinancialMoney" resultType="Double"
+		parameterType="java.lang.String">
+		select
+		sum(financial_money)
+		from
+		trading
+		where
+		u_id = #{uid}
+		and ( status =1 or status =2 or status = 4 ) and p_id != 1
+	</select>
+
+	<select id="queryUserBoughtMoney" resultType="java.math.BigDecimal"
+		parameterType="java.util.Map">
+		select 
+			ifnull(sum(t.financial_money),0) 
+		from 
+			trading t, product p
+		where 
+			t.u_id = #{uId} and t.status in (1, 4, 12) and t.p_id = p.id and p.code = #{prCode}
+	</select>
+
+	<select id="selectTrUserCount" parameterType="java.lang.Integer"
+		resultType="java.lang.Integer">
+		select
+		count(*)
+		from
+		trading t left join users_properties up
+		on
+		t.u_id = up.u_id
+		where
+		t.financial_money > 0 and t.p_id = #{pid,jdbcType=INTEGER} and
+		(t.status = 4 or t.status = 1) 
+	</select>
+
+	<select id="selectTRUserList" parameterType="java.util.Map"
+		resultType="java.util.Map">
+		select
+		t.financial_money financialMoney, t.buy_dt buyDt, up.name name, up.nick_name nickName
+		from
+		trading t left join users_properties up
+		on
+		t.u_id = up.u_id
+		where
+		t.financial_money > 0 and t.p_id = #{pid,jdbcType=INTEGER} and
+		(t.status = 4 or t.status = 1) 
+		order by t.buy_dt desc
+		limit
+		#{start,jdbcType=INTEGER},#{number,jdbcType=INTEGER}
+	</select>
+
+	<select id="queryFinancialRecord" parameterType="java.util.Map"
+		resultMap="TradingViewResultMap">
+		select
+			tra.id,tra.p_id,tra.p_code,tra.financial_money,tra.buy_dt,tra.value_dt,tra.fix_invest,
+			tra.min_sell_dt,tra.status,tra.sell_dt,tfi.interest,tra.last_value_dt,tra.card_pan,
+			tra.sell_money,tra.all_interest,pro.p_type,pro.code,
+			pro.name,pro.rule,pro.ed_dt,pro.status as pStatus,pro.f_time,pro.unit_time,
+			pro.establish_dt,pro.f_yield,pro.platform_user_no,pro.p_model,pro.pc_name,pro.re_way, pro.pc_id,
+			hrp.hrp_type, hrp.hrp_number, urp.actual_amount, pro.insurance_trust, pro.add_yield, pro.is_debt
+		from
+			trading as tra 
+	    left join trading_fix_info tfi on tra.id = tfi.t_id 
+		left join product as pro on tra.p_id = pro.id
+		left join users_red_packet as urp on tra.id = urp.t_id
+		left join hx_red_packet as hrp on urp.rp_id = hrp.id
+		where 
+		tra.`status` in (0, 1, 2, 3, 4, 12) and p_id != 1 and pro.p_type != 1 
+		<if test="uid!=null">
+			and tra.u_id = #{uid,jdbcType=VARCHAR} 
+		</if>
+		<choose>
+		  <when test="status!=null">
+		       and tra.`status` = #{status,jdbcType=INTEGER} 
+		  </when>
+		  <otherwise>
+		      <if test="multyStatus != null and multyStatus != ''">
+		          <foreach collection="multyStatus" separator="," item="stat" open=" and tra.`status` in(" close=")" >
+		              #{stat}
+		          </foreach>
+		      </if>
+		  </otherwise>
+		</choose>
+		order by 
+		tra.status asc,pro.rule desc , tra.buy_Dt desc 
+		limit 
+		#{start,jdbcType=INTEGER},#{number,jdbcType=INTEGER}
+	</select>
+	<select id="countFinancialRecord" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		select
+		count(1)
+		from
+			trading as tra 
+		left join product as pro on tra.p_id = pro.id
+		left join users_red_packet as urp on tra.id = urp.t_id
+		left join hx_red_packet as hrp on urp.rp_id = hrp.id
+		where 
+		tra.`status` in (0, 1, 2, 3, 4, 12) and p_id != 1 and pro.p_type != 1 
+		<if test="uid!=null">
+			and tra.u_id = #{uid,jdbcType=VARCHAR} 
+		</if>
+		<choose>
+          <when test="status!=null">
+               and tra.`status` = #{status,jdbcType=INTEGER} 
+          </when>
+          <otherwise>
+              <if test="multyStatus != null and multyStatus != ''">
+                  <foreach collection="multyStatus" separator="," item="stat" open=" and tra.`status` in(" close=")" >
+                      #{stat}
+                  </foreach>
+              </if>
+          </otherwise>
+        </choose>
+	</select>
+
+	<!-- 使用resultMap映射实体类和字段之间的一一对应关系 查询我的理财记录用 -->
+	<resultMap type="com.mrbt.lingmoney.model.webView.TradingView"
+		id="TradingViewResultMap">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="u_id" property="uId" jdbcType="VARCHAR" />
+		<result column="p_id" property="pId" jdbcType="INTEGER" />
+		<result column="p_code" property="pCode" jdbcType="VARCHAR" />
+		<result column="pc_type" property="pcType" jdbcType="INTEGER" />
+		<result column="buy_money" property="buyMoney" jdbcType="DECIMAL" />
+		<result column="financial_money" property="financialMoney"
+			jdbcType="DECIMAL" />
+		<result column="buy_dt" property="buyDt" jdbcType="TIMESTAMP" />
+		<result column="value_dt" property="valueDt" jdbcType="DATE" />
+		<result column="min_sell_dt" property="minSellDt" jdbcType="DATE" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="biz_code" property="bizCode" jdbcType="VARCHAR" />
+		<result column="sell_dt" property="sellDt" jdbcType="TIMESTAMP" />
+		<result column="sell_money" property="sellMoney" jdbcType="DECIMAL" />
+		<result column="out_biz_code" property="outBizCode" jdbcType="VARCHAR" />
+		<result column="auto_pay" property="autoPay" jdbcType="INTEGER" />
+		<result column="fix_invest" property="fixInvest" jdbcType="INTEGER" />
+		<result column="interest" property="interest" jdbcType="DECIMAL" />
+		<result column="all_interest" property="allInterest" jdbcType="DECIMAL" />
+		<result column="last_value_dt" property="lastValueDt" jdbcType="DATE" />
+		<result column="card_pan" property="cardPan" jdbcType="VARCHAR" />
+		<association property="product" javaType="com.mrbt.lingmoney.model.Product">
+			<id property="id" column="p_id" />
+			<result column="code" property="code" jdbcType="VARCHAR" />
+			<result column="name" property="name" jdbcType="VARCHAR" />
+			<result column="re_way" property="reWay" jdbcType="VARCHAR" />
+			<result column="rule" property="rule" jdbcType="INTEGER" />
+			<result column="st_dt" property="stDt" jdbcType="TIMESTAMP" />
+			<result column="ed_dt" property="edDt" jdbcType="TIMESTAMP" />
+			<result column="prior_money" property="priorMoney" jdbcType="DECIMAL" />
+			<result column="reach_money" property="reachMoney" jdbcType="DECIMAL" />
+			<result column="approval" property="approval" jdbcType="INTEGER" />
+			<result column="pStatus" property="status" jdbcType="INTEGER" />
+			<result column="pc_id" property="pcId" jdbcType="INTEGER" />
+			<result column="pc_name" property="pcName" jdbcType="VARCHAR" />
+			<result column="tags" property="tags" jdbcType="VARCHAR" />
+			<result column="l_time" property="lTime" jdbcType="INTEGER" />
+			<result column="h_time" property="hTime" jdbcType="INTEGER" />
+			<result column="f_time" property="fTime" jdbcType="INTEGER" />
+			<result column="unit_time" property="unitTime" jdbcType="INTEGER" />
+			<result column="value_dt" property="valueDt" jdbcType="DATE" />
+			<result column="establish_dt" property="establishDt" jdbcType="TIMESTAMP" />
+			<result column="wait_rate" property="waitRate" jdbcType="DECIMAL" />
+			<result column="min_money" property="minMoney" jdbcType="INTEGER" />
+			<result column="increa_money" property="increaMoney" jdbcType="INTEGER" />
+			<result column="l_yield" property="lYield" jdbcType="DECIMAL" />
+			<result column="h_yield" property="hYield" jdbcType="DECIMAL" />
+			<result column="f_yield" property="fYield" jdbcType="DECIMAL" />
+			<result column="fees" property="fees" jdbcType="INTEGER" />
+			<result column="fees_rate" property="feesRate" jdbcType="DECIMAL" />
+			<result column="exception_rate" property="exceptionRate"
+				jdbcType="DECIMAL" />
+			<result column="fix_invest" property="fixInvest" jdbcType="INTEGER" />
+			<result column="allocation" property="allocation" jdbcType="INTEGER" />
+			<result column="activity" property="activity" jdbcType="INTEGER" />
+			<result column="platform_user_no" property="platformUserNo"
+				jdbcType="INTEGER" />
+			<result column="cost_value" property="costValue" jdbcType="DECIMAL" />
+			<result column="p_model" property="pModel" jdbcType="INTEGER" />
+			<result column="pictrue_url" property="pictrueUrl" jdbcType="VARCHAR" />
+			<result column="p_type" jdbcType="INTEGER" property="pType" />
+			<result column="insurance_trust" jdbcType="INTEGER" property="insuranceTrust" />
+			<result column="add_yield" property="addYield" jdbcType="DECIMAL" />
+			<result column="is_debt" jdbcType="INTEGER" property="isDebt" />
+		</association>
+		 <association property="hxRedPacket" resultMap="hxRedPacketResult"/>  
+         <association property="usersRedPacket" resultMap="usersRedPacketResult"/>  
+	</resultMap>
+	<resultMap type="com.mrbt.lingmoney.model.HxRedPacket" id="hxRedPacketResult">  
+        <result column="hrp_type" property="hrpType"/>  
+        <result column="hrp_number" property="hrpNumber"/>  
+    </resultMap>
+	<resultMap type="com.mrbt.lingmoney.model.UsersRedPacket" id="usersRedPacketResult">  
+        <result column="actual_amount" property="actualAmount"/>  
+    </resultMap>
+	<select id="selectWenYingBao" resultType="java.util.Map" parameterType="java.util.Map">
+		select
+		t.id tId, t.u_id uId, t.p_id pId, t.p_code pCode, t.buy_money
+		buyMoney, t.financial_money financialMoney, date_format(t.buy_dt,'%Y-%m-%d %T')
+		buyDt, t.value_dt valueDt, t.min_sell_dt minSellDt, t.status state,
+		t.biz_code bizCode, t.interest interest, t.all_interest allInterest, 
+		tfi.interest tfiInterest, p.name pname, p.wait_rate waitRate,
+		date_format(p.st_dt,'%Y-%m-%d %T') stDt, date_format(p.ed_dt,'%Y-%m-%d %T') edDt,
+		p.f_time fTime, p.unit_time unitTime, p.value_dt valueDt, p.f_yield fYield,
+		concat(format(ifnull(p.f_yield, 0) * 100, 2), '%') fYieldView,
+		p.platform_user_no platUserNo, up.name uname, up.nick_name nickName,
+		up.id_card idCard, up.email email, u.login_account loginAccount, u.telephone tel
+		from
+		trading t ,trading_fix_info tfi,users_properties up, product p, users u
+		where
+		t.u_id = up.u_id and t.p_id = p.id and t.u_id = u.id and t.id = tfi.t_id
+		and (t.p_code like concat(#{pWCode},'%') 
+		or t.p_code like concat(#{pCCode},'%') or t.p_code like '6400200301%' or t.p_code like '6500210301%') and t.status = 1 and t.min_sell_dt is not null
+		and t.min_sell_dt > date(sysdate()) and p.p_type = 0 
+		<if test="username!=null and username!=''">
+			and up.name = #{username}
+		</if>
+		<if test="tel!=null and tel!=''">
+			and u.telephone = #{tel}
+		</if>
+		<if test="productName!=null and productName!=''">
+			and p.name like CONCAT('%', concat(#{productName}, '%'))
+		</if>
+		<if test="buyDt!=null and buyDt!=''">
+			and date(t.buy_dt) = #{buyDt}
+		</if>
+		limit #{start},#{number}
+	</select>
+
+	<select id="countWenYingBao" resultType="java.lang.Long"
+		parameterType="java.util.Map">
+		select
+		count(1)
+		from
+		trading t ,trading_fix_info tfi, users_properties
+		up, product p,users u
+		WHERE
+		t.u_id = up.u_id and t.p_id = p.id and
+		t.u_id = u.id and t.id = tfi.t_id
+		and (t.p_code like concat(#{pWCode},'%') or t.p_code like concat(#{pCCode},'%') 
+		or t.p_code like '6400200301%' or t.p_code like '6500210301%') and
+		t.status = 1 and t.min_sell_dt is not NULL
+		and t.min_sell_dt > date(sysdate()) and p.p_type = 0 
+		<if test="username!=null and username!=''">
+			and up.name = #{username}
+		</if>
+		<if test="tel!=null and tel!=''">
+			and u.telephone = #{tel}
+		</if>
+		<if test="productName!=null and productName!=''">
+			and p.name like concat('%', concat(#{productName}, '%'))
+		</if>
+		<if test="buyDt!=null and buyDt!=''">
+			and date(t.buy_dt) = #{buyDt}
+		</if>
+	</select>
+
+	<update id="cashAhead" parameterType="java.util.Map">
+		update
+		trading t,
+		trading_fix_info tfi
+		set
+		t.min_sell_dt = date(NOW()),
+		tfi.interest =
+		(tfi.interest - round(tfi.financial_money*tfi.interest_rate*(DATEDIFF(#{minSellDt},now())-1)/365,2)),
+		tfi.expiry_dt = date(now()), tfi.f_time = (tfi.f_time - datediff(#{minSellDt},now()) + 1)
+		where
+		t.id = tfi.t_id
+		and t.id = #{tId}
+		and t.status = #{buy_ok}
+		and tfi.status = #{buy_ok}
+	</update>
+
+	<select id="selectPayFailList" resultMap="BaseResultMap">
+		select 
+			id, u_id, buy_money, p_id 
+		from 
+			trading t 
+		where 
+			timestampdiff(minute, buy_dt, sysdate()) >= 5 and t.status = 0
+	</select>
+
+	<select id="selectMonthlyFirstBuyer" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		id ,u_id ,buy_dt
+		from
+		trading
+		where
+		(status =1 or status
+		=2 or status = 3 ) and
+		date_format(buy_dt,'%Y-%m')=#{dateStr,jdbcType=VARCHAR}
+		order by
+		buy_dt
+		asc LIMIT 1
+	</select>
+
+	<select id="selectMonthlyLastBuyer" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		id ,u_id ,buy_dt
+		from
+		trading
+		where
+		(status =1 or status
+		=2 or status = 3 ) and
+		date_format(buy_dt,'%Y-%m')=#{dateStr,jdbcType=VARCHAR}
+		order by
+		buy_dt
+		desc LIMIT 1
+	</select>
+
+	<select id="selectMonthlyBuyTopThree" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		u_id,sum(financial_money) money, id
+		from
+		trading
+		where
+		(status =1 or status =2 or status = 3 ) and
+		date_format(buy_dt,'%Y-%m') = #{dateStr}
+		group by
+		u_id
+		order by
+		money desc
+		limit 3
+	</select>
+
+	<select id="selectByBizCode" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from trading where biz_code = #{0,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="confirmRecallInfo" parameterType="java.util.Map" resultType="java.util.Map">
+		select 
+			t.id tid, t.u_id uid, t.p_id pid, t.biz_code bizCode, t.status state 
+		from 
+			trading t 
+		left join hx_bidding bid on t.p_id = bid.p_id 
+		left join hx_account ac on ac.u_id = t.u_id
+		where 
+			bid.loan_no = #{loanNo, jdbcType=VARCHAR} and ac.ac_name = #{acName, jdbcType=VARCHAR} 
+			and ac.ac_no = #{acNo, jdbcType=VARCHAR} and t.biz_code = #{bizCode, jdbcType=VARCHAR}
+	</select>
+	
+	<select id="queryUserPresentFinancialMoneyAndIncome" parameterType="java.lang.String" resultType="java.util.Map">
+		select 
+			sum(ifnull(t.financial_money, 0)) financialMoney, (sum(ifnull(tfi.interest, 0)) + sum(ifnull(urp.actual_amount, 0))) interest 
+		from 
+			trading t 
+		left join 
+			trading_fix_info tfi 
+		on 
+			t.id = tfi.t_id 
+	    left join 
+	    	users_red_packet urp
+	    on 
+	       t.id = urp.t_id  
+		where 
+			t.status = 1 and t.u_id = #{0,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="findBuyerByProId" parameterType="java.lang.Integer" resultType="com.mrbt.lingmoney.model.BuyerVo"> 
+		select t.id, t.u_id uId, t.financial_money financialMoney,up.name userName,p.name productName,t.buy_dt buyTime 
+		 from trading t 
+		 inner join product p on t.p_id = p.id
+		 inner join users_properties up on t.u_id = up.u_id
+		where t.status in (1, 2, 3, 4) and t.p_id = #{pid, jdbcType=INTEGER} and t.u_id not in (select u_id from users_red_packet)
+		ORDER BY t.financial_money desc
+	</select>
+	
+	<select id="queryFirstTradingAmount" parameterType="java.lang.String" resultType="java.math.BigDecimal">
+		select buy_money from trading where status in (1 , 2, 3, 4) and u_id = #{uid, jdbcType=VARCHAR} order by buy_dt limit 1
+	</select>
+	
+	<select id="sumTodayBuyMoney" parameterType="java.lang.String" resultType="java.math.BigDecimal">
+		select 
+			sum(buy_money) sumMoney 
+		from 
+			trading 
+		where 
+			u_id = #{uid, jdbcType=VARCHAR} and date_format(buy_dt, '%Y%m%d') = (select date_format(buy_dt, '%Y%m%d') from trading where u_id = #{uid, jdbcType=VARCHAR} and status in (1 , 2, 3, 4) order by buy_dt limit 1)
+	</select>
+	
+	<select id="sumSameProductBuyMoney" parameterType="java.lang.String" resultType="java.math.BigDecimal">
+		select 
+			sum(buy_money) sumMoney 
+		from 
+			trading 
+		where 
+			u_id = #{uid, jdbcType=VARCHAR} and p_id = (select p_id from trading where u_id = #{uid, jdbcType=VARCHAR} and status in (1 , 2, 3, 4) order by buy_dt limit 1)
+	</select>
+	
+	<select id="getLastTradingIdByUserId" resultType="java.lang.Integer">
+		select id from trading where u_id = #{uid} order by buy_dt desc limit 1
+	</select>
+	
+	<select id="findFinancialRecord" parameterType="java.util.Map"
+		resultMap="TradingViewResultMap">
+		select
+			tra.id,tra.p_id,tra.p_code,tra.financial_money,tra.buy_dt,tra.value_dt,tra.fix_invest,
+			tra.min_sell_dt,tra.status,tra.sell_dt,tfi.interest,tra.last_value_dt,tra.card_pan,
+			tra.sell_money,tra.all_interest,pro.p_type,
+			pro.name,pro.rule,pro.ed_dt,pro.status as
+			pStatus,pro.f_time,pro.unit_time,
+			pro.establish_dt,pro.f_yield,pro.platform_user_no,pro.p_model,pro.pc_name,pro.re_way, 
+			hrp.hrp_type, hrp.hrp_number, urp.actual_amount, pro.insurance_trust, pro.add_yield, pro.is_debt
+		from
+			trading as tra 
+	    left join trading_fix_info tfi on tra.id = tfi.t_id    
+		left join product as pro on tra.p_id = pro.id
+		left join users_red_packet as urp on tra.id = urp.t_id
+		left join hx_red_packet as hrp on urp.rp_id = hrp.id
+		where 
+		tra.`status` in (0, 1, 2, 3, 4, 12) and p_id != 1 and pro.p_type != 1 
+		<if test="uid!=null">
+			and tra.u_id = #{uid,jdbcType=VARCHAR} 
+		</if>
+		<choose>
+          <when test="status!=null">
+               and tra.`status` = #{status,jdbcType=INTEGER} 
+          </when>
+          <otherwise>
+              <if test="multyStatus != null and multyStatus != ''">
+                  <foreach collection="multyStatus" separator="," item="stat" open=" and tra.`status` in(" close=")" >
+                      #{stat}
+                  </foreach>
+              </if>
+          </otherwise>
+        </choose>
+	</select>
+	
+	<!-- 使用resultMap映射实体类和字段之间的一一对应关系 -->
+    <resultMap type="com.mrbt.lingmoney.model.Trading" id="ClassResultMap">
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="u_id" property="uId" jdbcType="INTEGER" />
+        <!-- <result column="p_id" property="pId" jdbcType="INTEGER" /> -->
+        <result column="p_code" property="pCode" jdbcType="VARCHAR" />
+        <result column="pc_type" property="pcType" jdbcType="INTEGER" />
+        <!-- <result column="pc_id" property="pcId" jdbcType="INTEGER" /> -->
+        <result column="buy_money" property="buyMoney" jdbcType="DECIMAL" />
+        <result column="financial_money" property="financialMoney"
+            jdbcType="DECIMAL" />
+        <result column="buy_dt" property="buyDt" jdbcType="TIMESTAMP" />
+        <result column="value_dt" property="valueDt" jdbcType="DATE" />
+        <result column="min_sell_dt" property="minSellDt" jdbcType="DATE" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="biz_code" property="bizCode" jdbcType="VARCHAR" />
+        <result column="sell_dt" property="sellDt" jdbcType="TIMESTAMP" />
+        <result column="sell_money" property="sellMoney" jdbcType="DECIMAL" />
+        <result column="out_biz_code" property="outBizCode" jdbcType="VARCHAR" />
+        <result column="auto_pay" property="autoPay" jdbcType="INTEGER" />
+        <result column="fix_invest" property="fixInvest" jdbcType="INTEGER" />
+        <result column="interest" property="interest" jdbcType="DECIMAL" />
+        <result column="all_interest" property="allInterest" jdbcType="DECIMAL" />
+        <result column="last_value_dt" property="lastValueDt" jdbcType="DATE" />
+        <association property="product" javaType="com.mrbt.lingmoney.model.Product">
+            <id property="id" column="p_id" />
+            <result column="code" property="code" jdbcType="VARCHAR" />
+            <result column="name" property="name" jdbcType="VARCHAR" />
+            <result column="re_way" property="reWay" jdbcType="VARCHAR" />
+            <result column="rule" property="rule" jdbcType="INTEGER" />
+            <result column="st_dt" property="stDt" jdbcType="TIMESTAMP" />
+            <result column="ed_dt" property="edDt" jdbcType="TIMESTAMP" />
+            <result column="prior_money" property="priorMoney" jdbcType="DECIMAL" />
+            <result column="reach_money" property="reachMoney" jdbcType="DECIMAL" />
+            <result column="approval" property="approval" jdbcType="INTEGER" />
+            <result column="pStatus" property="status" jdbcType="INTEGER" />
+            <result column="pc_id" property="pcId" jdbcType="INTEGER" />
+            <result column="pc_name" property="pcName" jdbcType="VARCHAR" />
+            <result column="tags" property="tags" jdbcType="VARCHAR" />
+            <result column="l_time" property="lTime" jdbcType="INTEGER" />
+            <result column="h_time" property="hTime" jdbcType="INTEGER" />
+            <result column="f_time" property="fTime" jdbcType="INTEGER" />
+            <result column="unit_time" property="unitTime" jdbcType="INTEGER" />
+            <result column="value_dt" property="valueDt" jdbcType="DATE" />
+            <result column="establish_dt" property="establishDt" jdbcType="TIMESTAMP" />
+            <result column="wait_rate" property="waitRate" jdbcType="DECIMAL" />
+            <result column="min_money" property="minMoney" jdbcType="INTEGER" />
+            <result column="increa_money" property="increaMoney" jdbcType="INTEGER" />
+            <result column="l_yield" property="lYield" jdbcType="DECIMAL" />
+            <result column="h_yield" property="hYield" jdbcType="DECIMAL" />
+            <result column="f_yield" property="fYield" jdbcType="DECIMAL" />
+            <result column="fees" property="fees" jdbcType="INTEGER" />
+            <result column="fees_rate" property="feesRate" jdbcType="DECIMAL" />
+            <result column="exception_rate" property="exceptionRate" jdbcType="DECIMAL" />
+            <result column="fix_invest" property="fixInvest" jdbcType="INTEGER" />
+            <result column="allocation" property="allocation" jdbcType="INTEGER" />
+            <result column="activity" property="activity" jdbcType="INTEGER" />
+            <result column="platform_user_no" property="platformUserNo" jdbcType="INTEGER" />
+            <result column="cost_value" property="costValue" jdbcType="DECIMAL" />
+            <result column="p_model" property="pModel" jdbcType="INTEGER" />
+            <result column="pictrue_url" property="pictrueUrl" jdbcType="VARCHAR" />
+            <result column="p_type" jdbcType="INTEGER" property="pType" />
+        </association>
+    </resultMap>
+	
+	<select id="selectTradingWithProduect"  resultMap="ClassResultMap" parameterType="Int">
+    select  tra.id,tra.u_id,pro.id p_id,tra.p_code,tra.pc_type,tra.pc_id,tra.buy_money,tra.financial_money,tra.buy_dt,tra.value_dt
+,tra.w_value_dt,tra.min_sell_dt,tra.status,tra.biz_code,tra.sell_dt,tra.sell_money,tra.out_biz_code,tra.fix_invest,
+tra.auto_pay,tra.interest,tra.all_interest,pro.code,pro.name,pro.re_way,pro.rule,pro.st_dt,pro.ed_dt,pro.prior_money,pro.reach_money,pro.approval,pro.status as pStatus,
+pro.pc_id,pro.pc_name,pro.tags,pro.l_time,pro.h_time,pro.f_time,pro.unit_time,pro.value_dt,
+pro.establish_dt,pro.wait_rate,pro.min_money,pro.increa_money,pro.l_yield,pro.h_yield,pro.f_yield,pro.fees,
+pro.fees_rate,pro.exception_rate,pro.fix_invest,pro.allocation,pro.description,pro.activity,pro.platform_user_no,
+pro.cost_value,pro.p_model,pro.pictrue_url,pro.p_type,pro.introduction
+  from trading as tra , product as pro where  tra.id = #{id} and  tra.p_id = pro.id and pro.p_type = 0
+ </select>
+ 
+ <select id="queryAlreadyBuy" parameterType="com.mrbt.lingmoney.model.Trading" resultType="java.math.BigDecimal">
+		select ifnull(sum(financial_money),0) buyMoney from trading where u_id = #{uId} and p_code = #{pCode} and status = 1
+	</select>
+	
+	<select id="selectTradingByPCode" resultMap="BaseResultMap" parameterType="map">
+    
+    select * from trading where u_id=#{uId} and p_code=#{pCode} and (status=0 or status =1 or status=2 or status=3 or status=4 )
+   </select>
+   
+   <select id="selectPtypeByNumber" resultType="java.lang.Integer">
+   	SELECT DISTINCT p.p_type 
+   	FROM product p, trading t, account_flow af 
+   	WHERE (af.number = t.biz_code OR af.number = t.out_biz_code) AND p.id = t.p_id and af.number = #{number}
+   </select>
+   
+   <select id="selectPtypeByTid" resultType="java.lang.Integer">
+   	SELECT DISTINCT p.p_type 
+   	FROM product p, trading t, account_flow af 
+   	WHERE af.t_id = t.id AND p.id = t.p_id and af.t_id = #{tId}
+   </select>
+	
+	<select id="findTakeheartValueDtTrading" resultMap="BaseResultMap">
+        SELECT 
+        <include refid="Base_Column_List" />
+        from 
+            trading t 
+        where 
+            t.p_id = 391 and TO_DAYS(NOW()) - TO_DAYS(t.value_dt) > 224 and status = 1
+    </select>
+    
+    <select id="listRepaymentData" parameterType="java.lang.String" resultType="java.util.Map">
+        SELECT financial_money money, STATUS state, DATE_FORMAT(min_sell_dt, '%d') day 
+		FROM trading
+		WHERE u_id = #{0} AND DATE_FORMAT(min_sell_dt, '%Y-%m') = #{1} AND STATUS IN (1, 2, 3) AND p_id != 391
+    </select>
+    
+    <select id="findUserFirstTradingInfo" resultMap="BaseResultMap">
+    	SELECT t.*
+			FROM trading t
+		LEFT JOIN product p ON p.id = t.p_id
+		LEFT JOIN product_category pc ON pc.id = p.pc_id
+		WHERE t.u_id = #{uId} AND t.STATUS IN (1, 2, 3, 4) AND pc.code IN (4100160301,1200170402,2400190301,6400200301,6500210301) 
+		ORDER BY t.buy_dt LIMIT 1
+    </select>
+</mapper>

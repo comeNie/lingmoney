@@ -1,0 +1,134 @@
+	html{
+    font-size: 100%;
+}
+/* 鏁翠綋绋冲畾缁撴瀯--------------------- */
+html,body,.screen{
+            position: relative;
+            width: 100%;
+            height: 100%;
+             /*  overflow: hidden;   */
+            margin: 0 auto;
+			
+        }
+body, h1, h2, h3, h4, h5, h6, hr, p, /* structural elements 缁撴瀯鍏冪礌 */
+dl, dt, dd, ul, ol, li, /* list elements 鍒楄〃鍏冪礌 */
+fieldset, button, input, textarea, /* form elements 琛ㄥ崟鍏冪礌 */
+th, td,img,section,div,span, a,header,section{ /* table elements 琛ㄦ牸鍏冪礌 */
+    margin: 0rem;
+    padding: 0rem;
+    color: #333;
+    list-style: none;display:block;  
+
+    -webkit-tap-highlight-color:transparent; 
+  
+}
+
+h1, h2, h3, h4, h5, h6{ font-weight: 400; color: #292929;}
+h1 { font-size: 0.32rem; /* 18px / 12px = 1.5 */ }
+h2 { font-size: 0.26rem; }
+h3 { font-size: 0.18rem; }
+h4, h5, h6 { font-size: 100%;}
+img{vertical-align:middle;}
+input{text-indent:0.13rem;}
+/* 閲嶇疆鏂囨湰鏍煎紡鍏冪礌 */
+a { text-decoration: none; -webkit-tap-highlight-color:transparent; -webkit-user-select: none;-moz-user-focus: none;-moz-user-select: none; color: #000;}
+a:hover { text-decoration: none; }		
+			
+.main{
+	position: absolute;
+	width: 100%;
+	max-width: 7.5rem;
+	left: 50%;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+	z-index: 9;
+	transform: translate(-50%,0);
+	-webkit-transform: translate(-50%,0);
+	-moz-transform: translate(-50%,0);
+	-o-transform: translate(-50%,0);	
+	transform: translate(-50%,0);
+	
+}
+
+
+.error_tip {position:fixed; top: 50%; height: 0.68rem;width: 3.45rem;font-size: .24rem;line-height: .68rem;border-radius: 3px;background: rgba(0,0,0,0.5);text-align: center;color: #fff;
+left: 50%; 
+  /*  transform: translate(-50%,-50%); */z-index: 100;opacity: 0;display: none; margin-left:-1.72rem;}
+
+
+/*甯哥敤鏂规硶*/
+.myInvitation-money{width:7.02rem;height:1.06rem;background:#fff;margin-left:auto;margin-right:auto; margin-top:0.24rem;}
+.myInvitation-money p{font-size:0.24rem;color:#4A4B5D;text-align:center; padding-top:0.16rem; padding-bottom:0.08rem;}
+
+.myInvitation-money span{font-size:0.24rem;color:#FC724C;display:block;text-align:center;}
+
+section{margin:0 auto;width:100%;max-width:960px;_width:expression((document.documentElement.clientWidth||document.body.clientWidth)>960?"960px":"");}
+
+
+
+/* 婊戝姩闂ㄩ�氱敤鏍峰紡*/
+
+/* tabbed_content */
+
+.tabbed_content{background-color:none;max-width:960px;_width:expression((document.documentElement.clientWidth||document.body.clientWidth)>960?"960px":"");}
+
+.tabs{width:100%;height:0.8rem;line-height:0.8rem;position:relative;overflow:hidden;font-size:0.3rem;background:#fff; margin-top:0.24rem;margin-bottom:0.24rem;}
+
+.tabs h2{padding-left:10px;float:left;}
+
+.tabs .moving_bg{width:28%;_width:15%;color:#4A4B5D;height:0.75rem;margin-left:0.8rem;border-bottom:solid 2px #FC724C;background-color:#FFF;position:absolute;z-index:190;left:0;background-position:bottom left;background-repeat:no-repeat;overflow:hidden;}
+
+/* .tabs2 .moving_bg{width:20%} */
+
+/* .tabs3 .moving_bg{width:16.6666666%;} */
+
+.tabs .tab_item{display:block;float:left;width:50%;text-align:center;z-index:200;position:relative;cursor:pointer;color:#868798;overflow:hidden;}
+
+/* .tabs2 .tab_item{width:20%;} */
+
+
+
+/* .tabs3 .tab_item{width:16.6666666%;} */
+
+/* .tabs .tab_item:hover{color:#4A4B5D;} */
+
+.tabbed_content .slide_content{overflow:hidden;background-color:none;position:relative;width:100%;}
+
+.tabslider{width:400%}
+
+.tabslider2{width:500%}
+
+.tabslider3{width:600%}
+
+.tabslider ul{float:left;margin:0rem;width:25%;text-align:left;-ms-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;/* padding鍜宐order琚寘鍚湪瀹氫箟鐨剋idth鍜宧eight涔嬪唴 */background:none;min-height:480px;}
+
+.myInvitation-box{width:7.02rem;background:#fff;margin-left:auto;margin-right:auto;}
+.myInvitation-box-tabs{overflow:hidden;padding-top:0.32rem;padding-bottom:0.32rem;}
+
+.myInvitation-box-tabs span{display:block;width:25%;float:left;font-size:0.26rem;color:#868798;text-align:center;}
+.myInvitation-box-list{overflow:hidden; padding-bottom:0.12rem;}
+
+.myInvitation-box-list p{overflow:hidden;padding-top:0.12rem;padding-bottom:0.12rem;}
+.myInvitation-box-list p span{display:block;width:25%;float:left;font-size:0.24rem;color:#4A4B5D;text-align:center;}
+.myInvitation-tops{width:7.02rem;height:1.06rem;background:#fff;margin-left:auto;margin-right:auto; margin-top:0.24rem;}
+.myInvitation-tops p{float:left;}
+.myInvitation-tops1{line-height:1.06rem;font-size:0.36rem;color:#FE8768;width:15.4%;text-align:center;}
+.myInvitation-tops2{font-size:0.36rem;color:#FE8768;width:26%;text-align:center; padding-top:0.18rem;}
+.myInvitation-tops2 span{font-size:0.24rem;color:#4A4B5D;text-align:left;display:black;}
+.myInvitation-tops3{line-height:1.06rem;font-size:0.26rem;color:#000000 ;width:49%; padding-left:0.24rem;}
+.myInvitation-tops2 span b{color:#FE8768 }
+
+.no-data{text-align:center;}
+.no-data p{font-size:0.26rem;color:#999;text-align:center;line-height:1rem;}
+.no-data img{width:3.54rem;margin-left:auto;margin-right:auto;}
+
+
+
+
+
+
+
+
+
+
+

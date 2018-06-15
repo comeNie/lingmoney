@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width,initial-scale=1.0,maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<title>领钱儿</title>
+<link rel="stylesheet" href="../css/common/reset.css">
+<link rel="stylesheet" href="../css/common/common.css">
+<link rel="stylesheet" href="../css/product.css">
+<link rel="stylesheet" href="../css/cardTicket.css">
+</head>
+<body>
+	<div class="screen">
+		<header>
+			<h1>稳赢宝－安心贷计划</h1>
+			<a class="u_back" href="javascript:history.back(-1);">返回</a>
+		</header>
+		<div class="main" id="product_details"></div>
+		<div class="product-details-yue">
+			<img src="../images/product-7.png" alt="">可用余额(元)： <span
+				id="balance">0</span>
+			<div class="u_button-kong" id="insufficient">
+				<a href="javascript:vold(0)">立即充值</a>
+			</div>
+		</div>
+		<div class="u_button-sub product-bottom">
+			<input type="submit" value="立即购买" id="product-goumai">
+		</div>
+		<!-- 提示 -->
+		<div class="error_tip"></div>
+
+		<!--  选择红包弹窗  -->
+
+		<!--我的卡券   卡券首页-->
+		<div id="ct_box" style="line-height: 0rem; min-height: 0%;"
+			class="ct-box">
+			<div id="ct_tab" class="clearfix">
+				<a href="javascript:void(0);" id="envelopes">红包</a> <a
+					href="javascript:void(0);" class="active" id="add-xi">加息券</a>
+			</div>
+			<div id="ct_rule" class="clearfix">
+				<a href="/cardTicket/rule.html" id="ct_rule-url">规则说明</a>
+			</div>
+			<div id="ct_cardbox"></div>
+		</div>
+	</div>
+
+	<div id="jsondata"></div>
+	<script src="../js/lib/rem.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="../js/lib/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="../js/common.js"></script>
+	<script type="text/javascript" src="../js/product_details.js"></script>
+	<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script type="text/javascript" src="../js/share.js"></script>
+	<script>
+    
+    function isWeiXin() {
+		var ua = window.navigator.userAgent.toLowerCase();
+		//console.log(ua);//mozilla/5.0 (iphone; cpu iphone os 9_1 like mac os x) applewebkit/601.1.46 (khtml, like gecko)version/9.0 mobile/13b143 safari/601.1
+		if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+		return true;
+		} else {
+		return false;
+		}
+		}
+		if(isWeiXin()){
+		$('header').css('display','none')
+		$('.main').css('top','0rem')
+		$('.main').css('bottom','0.88rem')
+		<!-- alert(" 是来自微信内置浏览器") -->
+		}else{
+		<!-- alert("不是来自微信内置浏览器") -->
+		$('header').css('display','block')
+		$('.main').css('top','0.74rem')
+		$('.main').css('bottom','0.88rem')
+		}
+		<!-- 进度条 -->
+		setTimeout(function(){
+		var zhanyong=$('.zhanyong').val();<!-- 已占用 -->
+		var yimuji=$('.xiangmu').val()-$('.shengyu').val();<!-- 募集 -->
+		var yimijibai=yimuji/$('.xiangmu').val()*100;<!-- 已募集百分比 -->  
+		$('.product-details-zhi').css('width',yimijibai+'%');<!-- 已投百分比 -->
+		$('.product-details-baifenbi').html(yimijibai)
+		$('.product-details-shuxing').css('left',yimijibai+'%');
+		$('.product-details-zhi-right').css('width',(zhanyong/$('.shengyu').val()*100)+yimijibai +'%');
+	},800)
+		
+		
+</script>
+</body>
+</html>

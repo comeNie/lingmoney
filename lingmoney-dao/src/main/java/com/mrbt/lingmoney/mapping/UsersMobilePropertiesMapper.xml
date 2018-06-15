@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mrbt.lingmoney.mapper.UsersMobilePropertiesMapper" >
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.UsersMobileProperties" >
+    <!--
+    @mbggenerated
+    -->
+    <id column="u_id" property="uId" jdbcType="VARCHAR" />
+    <result column="gesture_pwd" property="gesturePwd" jdbcType="VARCHAR" />
+    <result column="is_use_gesture" property="isUseGesture" jdbcType="INTEGER" />
+    <result column="is_use_push" property="isUsePush" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <!--
+    @mbggenerated
+    -->
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <!--
+    @mbggenerated
+    -->
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <!--
+    @mbggenerated
+    -->
+    u_id, gesture_pwd, is_use_gesture, is_use_push
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mrbt.lingmoney.model.UsersMobilePropertiesExample" >
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from users_mobile_properties
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    <!--
+    @mbggenerated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from users_mobile_properties
+    where u_id = #{uId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    <!--
+    @mbggenerated
+    -->
+    delete from users_mobile_properties
+    where u_id = #{uId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.UsersMobilePropertiesExample" >
+    <!--
+    @mbggenerated
+    -->
+    delete from users_mobile_properties
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mrbt.lingmoney.model.UsersMobileProperties" >
+    <!--
+    @mbggenerated
+    -->
+    insert into users_mobile_properties (u_id, gesture_pwd, is_use_gesture, 
+      is_use_push)
+    values (#{uId,jdbcType=VARCHAR}, #{gesturePwd,jdbcType=VARCHAR}, #{isUseGesture,jdbcType=INTEGER}, 
+      #{isUsePush,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.UsersMobileProperties" >
+    <!--
+    @mbggenerated
+    -->
+    insert into users_mobile_properties
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uId != null" >
+        u_id,
+      </if>
+      <if test="gesturePwd != null" >
+        gesture_pwd,
+      </if>
+      <if test="isUseGesture != null" >
+        is_use_gesture,
+      </if>
+      <if test="isUsePush != null" >
+        is_use_push,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uId != null" >
+        #{uId,jdbcType=VARCHAR},
+      </if>
+      <if test="gesturePwd != null" >
+        #{gesturePwd,jdbcType=VARCHAR},
+      </if>
+      <if test="isUseGesture != null" >
+        #{isUseGesture,jdbcType=INTEGER},
+      </if>
+      <if test="isUsePush != null" >
+        #{isUsePush,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.UsersMobilePropertiesExample" resultType="java.lang.Integer" >
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from users_mobile_properties
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    <!--
+    @mbggenerated
+    -->
+    update users_mobile_properties
+    <set >
+      <if test="record.uId != null" >
+        u_id = #{record.uId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gesturePwd != null" >
+        gesture_pwd = #{record.gesturePwd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isUseGesture != null" >
+        is_use_gesture = #{record.isUseGesture,jdbcType=INTEGER},
+      </if>
+      <if test="record.isUsePush != null" >
+        is_use_push = #{record.isUsePush,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    <!--
+    @mbggenerated
+    -->
+    update users_mobile_properties
+    set u_id = #{record.uId,jdbcType=VARCHAR},
+      gesture_pwd = #{record.gesturePwd,jdbcType=VARCHAR},
+      is_use_gesture = #{record.isUseGesture,jdbcType=INTEGER},
+      is_use_push = #{record.isUsePush,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mrbt.lingmoney.model.UsersMobileProperties" >
+    <!--
+    @mbggenerated
+    -->
+    update users_mobile_properties
+    <set >
+      <if test="gesturePwd != null" >
+        gesture_pwd = #{gesturePwd,jdbcType=VARCHAR},
+      </if>
+      <if test="isUseGesture != null" >
+        is_use_gesture = #{isUseGesture,jdbcType=INTEGER},
+      </if>
+      <if test="isUsePush != null" >
+        is_use_push = #{isUsePush,jdbcType=INTEGER},
+      </if>
+    </set>
+    where u_id = #{uId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mrbt.lingmoney.model.UsersMobileProperties" >
+    <!--
+    @mbggenerated
+    -->
+    update users_mobile_properties
+    set gesture_pwd = #{gesturePwd,jdbcType=VARCHAR},
+      is_use_gesture = #{isUseGesture,jdbcType=INTEGER},
+      is_use_push = #{isUsePush,jdbcType=INTEGER}
+    where u_id = #{uId,jdbcType=VARCHAR}
+  </update>
+</mapper>

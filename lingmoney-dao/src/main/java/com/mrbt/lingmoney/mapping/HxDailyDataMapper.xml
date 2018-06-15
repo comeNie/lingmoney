@@ -1,0 +1,561 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mrbt.lingmoney.mapper.HxDailyDataMapper" >
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.HxDailyData" >
+    <!--
+    @mbggenerated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="merchant_id" property="merchantId" jdbcType="VARCHAR" />
+    <result column="check_date" property="checkDate" jdbcType="DATE" />
+    <result column="deal_num" property="dealNum" jdbcType="INTEGER" />
+    <result column="trade_type" property="tradeType" jdbcType="INTEGER" />
+    <result column="channel_flow_father" property="channelFlowFather" jdbcType="VARCHAR" />
+    <result column="channel_flow_son" property="channelFlowSon" jdbcType="VARCHAR" />
+    <result column="loan_no" property="loanNo" jdbcType="VARCHAR" />
+    <result column="payment_ac_no" property="paymentAcNo" jdbcType="VARCHAR" />
+    <result column="payment_ac_name" property="paymentAcName" jdbcType="VARCHAR" />
+    <result column="payment_bank_no" property="paymentBankNo" jdbcType="VARCHAR" />
+    <result column="payment_bank_name" property="paymentBankName" jdbcType="VARCHAR" />
+    <result column="receipt_ac_no" property="receiptAcNo" jdbcType="VARCHAR" />
+    <result column="receipt_ac_name" property="receiptAcName" jdbcType="VARCHAR" />
+    <result column="receipt_bank_no" property="receiptBankNo" jdbcType="VARCHAR" />
+    <result column="receipt_bank_name" property="receiptBankName" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="fee_amt" property="feeAmt" jdbcType="DECIMAL" />
+    <result column="ac_custody_amt" property="acCustodyAmt" jdbcType="DECIMAL" />
+    <result column="risk_assurance_amt" property="riskAssuranceAmt" jdbcType="DECIMAL" />
+    <result column="bank_stop_date" property="bankStopDate" jdbcType="DATE" />
+    <result column="bank_stop_flow" property="bankStopFlow" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <!--
+    @mbggenerated
+    -->
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <!--
+    @mbggenerated
+    -->
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <!--
+    @mbggenerated
+    -->
+    id, merchant_id, check_date, deal_num, trade_type, channel_flow_father, channel_flow_son, 
+    loan_no, payment_ac_no, payment_ac_name, payment_bank_no, payment_bank_name, receipt_ac_no, 
+    receipt_ac_name, receipt_bank_no, receipt_bank_name, amount, fee_amt, ac_custody_amt, 
+    risk_assurance_amt, bank_stop_date, bank_stop_flow, status, create_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mrbt.lingmoney.model.HxDailyDataExample" >
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hx_daily_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    <!--
+    @mbggenerated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from hx_daily_data
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <!--
+    @mbggenerated
+    -->
+    delete from hx_daily_data
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.HxDailyDataExample" >
+    <!--
+    @mbggenerated
+    -->
+    delete from hx_daily_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mrbt.lingmoney.model.HxDailyData" >
+    <!--
+    @mbggenerated
+    -->
+    insert into hx_daily_data (id, merchant_id, check_date, 
+      deal_num, trade_type, channel_flow_father, 
+      channel_flow_son, loan_no, payment_ac_no, 
+      payment_ac_name, payment_bank_no, payment_bank_name, 
+      receipt_ac_no, receipt_ac_name, receipt_bank_no, 
+      receipt_bank_name, amount, fee_amt, 
+      ac_custody_amt, risk_assurance_amt, bank_stop_date, 
+      bank_stop_flow, status, create_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{merchantId,jdbcType=VARCHAR}, #{checkDate,jdbcType=DATE}, 
+      #{dealNum,jdbcType=INTEGER}, #{tradeType,jdbcType=INTEGER}, #{channelFlowFather,jdbcType=VARCHAR}, 
+      #{channelFlowSon,jdbcType=VARCHAR}, #{loanNo,jdbcType=VARCHAR}, #{paymentAcNo,jdbcType=VARCHAR}, 
+      #{paymentAcName,jdbcType=VARCHAR}, #{paymentBankNo,jdbcType=VARCHAR}, #{paymentBankName,jdbcType=VARCHAR}, 
+      #{receiptAcNo,jdbcType=VARCHAR}, #{receiptAcName,jdbcType=VARCHAR}, #{receiptBankNo,jdbcType=VARCHAR}, 
+      #{receiptBankName,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, #{feeAmt,jdbcType=DECIMAL}, 
+      #{acCustodyAmt,jdbcType=DECIMAL}, #{riskAssuranceAmt,jdbcType=DECIMAL}, #{bankStopDate,jdbcType=DATE}, 
+      #{bankStopFlow,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.HxDailyData" >
+    <!--
+    @mbggenerated
+    -->
+    insert into hx_daily_data
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="merchantId != null" >
+        merchant_id,
+      </if>
+      <if test="checkDate != null" >
+        check_date,
+      </if>
+      <if test="dealNum != null" >
+        deal_num,
+      </if>
+      <if test="tradeType != null" >
+        trade_type,
+      </if>
+      <if test="channelFlowFather != null" >
+        channel_flow_father,
+      </if>
+      <if test="channelFlowSon != null" >
+        channel_flow_son,
+      </if>
+      <if test="loanNo != null" >
+        loan_no,
+      </if>
+      <if test="paymentAcNo != null" >
+        payment_ac_no,
+      </if>
+      <if test="paymentAcName != null" >
+        payment_ac_name,
+      </if>
+      <if test="paymentBankNo != null" >
+        payment_bank_no,
+      </if>
+      <if test="paymentBankName != null" >
+        payment_bank_name,
+      </if>
+      <if test="receiptAcNo != null" >
+        receipt_ac_no,
+      </if>
+      <if test="receiptAcName != null" >
+        receipt_ac_name,
+      </if>
+      <if test="receiptBankNo != null" >
+        receipt_bank_no,
+      </if>
+      <if test="receiptBankName != null" >
+        receipt_bank_name,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="feeAmt != null" >
+        fee_amt,
+      </if>
+      <if test="acCustodyAmt != null" >
+        ac_custody_amt,
+      </if>
+      <if test="riskAssuranceAmt != null" >
+        risk_assurance_amt,
+      </if>
+      <if test="bankStopDate != null" >
+        bank_stop_date,
+      </if>
+      <if test="bankStopFlow != null" >
+        bank_stop_flow,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="merchantId != null" >
+        #{merchantId,jdbcType=VARCHAR},
+      </if>
+      <if test="checkDate != null" >
+        #{checkDate,jdbcType=DATE},
+      </if>
+      <if test="dealNum != null" >
+        #{dealNum,jdbcType=INTEGER},
+      </if>
+      <if test="tradeType != null" >
+        #{tradeType,jdbcType=INTEGER},
+      </if>
+      <if test="channelFlowFather != null" >
+        #{channelFlowFather,jdbcType=VARCHAR},
+      </if>
+      <if test="channelFlowSon != null" >
+        #{channelFlowSon,jdbcType=VARCHAR},
+      </if>
+      <if test="loanNo != null" >
+        #{loanNo,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentAcNo != null" >
+        #{paymentAcNo,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentAcName != null" >
+        #{paymentAcName,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentBankNo != null" >
+        #{paymentBankNo,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentBankName != null" >
+        #{paymentBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptAcNo != null" >
+        #{receiptAcNo,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptAcName != null" >
+        #{receiptAcName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptBankNo != null" >
+        #{receiptBankNo,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptBankName != null" >
+        #{receiptBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="feeAmt != null" >
+        #{feeAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="acCustodyAmt != null" >
+        #{acCustodyAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="riskAssuranceAmt != null" >
+        #{riskAssuranceAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="bankStopDate != null" >
+        #{bankStopDate,jdbcType=DATE},
+      </if>
+      <if test="bankStopFlow != null" >
+        #{bankStopFlow,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.HxDailyDataExample" resultType="java.lang.Integer" >
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from hx_daily_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    <!--
+    @mbggenerated
+    -->
+    update hx_daily_data
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.merchantId != null" >
+        merchant_id = #{record.merchantId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkDate != null" >
+        check_date = #{record.checkDate,jdbcType=DATE},
+      </if>
+      <if test="record.dealNum != null" >
+        deal_num = #{record.dealNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.tradeType != null" >
+        trade_type = #{record.tradeType,jdbcType=INTEGER},
+      </if>
+      <if test="record.channelFlowFather != null" >
+        channel_flow_father = #{record.channelFlowFather,jdbcType=VARCHAR},
+      </if>
+      <if test="record.channelFlowSon != null" >
+        channel_flow_son = #{record.channelFlowSon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loanNo != null" >
+        loan_no = #{record.loanNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paymentAcNo != null" >
+        payment_ac_no = #{record.paymentAcNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paymentAcName != null" >
+        payment_ac_name = #{record.paymentAcName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paymentBankNo != null" >
+        payment_bank_no = #{record.paymentBankNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paymentBankName != null" >
+        payment_bank_name = #{record.paymentBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiptAcNo != null" >
+        receipt_ac_no = #{record.receiptAcNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiptAcName != null" >
+        receipt_ac_name = #{record.receiptAcName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiptBankNo != null" >
+        receipt_bank_no = #{record.receiptBankNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiptBankName != null" >
+        receipt_bank_name = #{record.receiptBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.amount != null" >
+        amount = #{record.amount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.feeAmt != null" >
+        fee_amt = #{record.feeAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="record.acCustodyAmt != null" >
+        ac_custody_amt = #{record.acCustodyAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="record.riskAssuranceAmt != null" >
+        risk_assurance_amt = #{record.riskAssuranceAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="record.bankStopDate != null" >
+        bank_stop_date = #{record.bankStopDate,jdbcType=DATE},
+      </if>
+      <if test="record.bankStopFlow != null" >
+        bank_stop_flow = #{record.bankStopFlow,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    <!--
+    @mbggenerated
+    -->
+    update hx_daily_data
+    set id = #{record.id,jdbcType=INTEGER},
+      merchant_id = #{record.merchantId,jdbcType=VARCHAR},
+      check_date = #{record.checkDate,jdbcType=DATE},
+      deal_num = #{record.dealNum,jdbcType=INTEGER},
+      trade_type = #{record.tradeType,jdbcType=INTEGER},
+      channel_flow_father = #{record.channelFlowFather,jdbcType=VARCHAR},
+      channel_flow_son = #{record.channelFlowSon,jdbcType=VARCHAR},
+      loan_no = #{record.loanNo,jdbcType=VARCHAR},
+      payment_ac_no = #{record.paymentAcNo,jdbcType=VARCHAR},
+      payment_ac_name = #{record.paymentAcName,jdbcType=VARCHAR},
+      payment_bank_no = #{record.paymentBankNo,jdbcType=VARCHAR},
+      payment_bank_name = #{record.paymentBankName,jdbcType=VARCHAR},
+      receipt_ac_no = #{record.receiptAcNo,jdbcType=VARCHAR},
+      receipt_ac_name = #{record.receiptAcName,jdbcType=VARCHAR},
+      receipt_bank_no = #{record.receiptBankNo,jdbcType=VARCHAR},
+      receipt_bank_name = #{record.receiptBankName,jdbcType=VARCHAR},
+      amount = #{record.amount,jdbcType=DECIMAL},
+      fee_amt = #{record.feeAmt,jdbcType=DECIMAL},
+      ac_custody_amt = #{record.acCustodyAmt,jdbcType=DECIMAL},
+      risk_assurance_amt = #{record.riskAssuranceAmt,jdbcType=DECIMAL},
+      bank_stop_date = #{record.bankStopDate,jdbcType=DATE},
+      bank_stop_flow = #{record.bankStopFlow,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mrbt.lingmoney.model.HxDailyData" >
+    <!--
+    @mbggenerated
+    -->
+    update hx_daily_data
+    <set >
+      <if test="merchantId != null" >
+        merchant_id = #{merchantId,jdbcType=VARCHAR},
+      </if>
+      <if test="checkDate != null" >
+        check_date = #{checkDate,jdbcType=DATE},
+      </if>
+      <if test="dealNum != null" >
+        deal_num = #{dealNum,jdbcType=INTEGER},
+      </if>
+      <if test="tradeType != null" >
+        trade_type = #{tradeType,jdbcType=INTEGER},
+      </if>
+      <if test="channelFlowFather != null" >
+        channel_flow_father = #{channelFlowFather,jdbcType=VARCHAR},
+      </if>
+      <if test="channelFlowSon != null" >
+        channel_flow_son = #{channelFlowSon,jdbcType=VARCHAR},
+      </if>
+      <if test="loanNo != null" >
+        loan_no = #{loanNo,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentAcNo != null" >
+        payment_ac_no = #{paymentAcNo,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentAcName != null" >
+        payment_ac_name = #{paymentAcName,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentBankNo != null" >
+        payment_bank_no = #{paymentBankNo,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentBankName != null" >
+        payment_bank_name = #{paymentBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptAcNo != null" >
+        receipt_ac_no = #{receiptAcNo,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptAcName != null" >
+        receipt_ac_name = #{receiptAcName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptBankNo != null" >
+        receipt_bank_no = #{receiptBankNo,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptBankName != null" >
+        receipt_bank_name = #{receiptBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="feeAmt != null" >
+        fee_amt = #{feeAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="acCustodyAmt != null" >
+        ac_custody_amt = #{acCustodyAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="riskAssuranceAmt != null" >
+        risk_assurance_amt = #{riskAssuranceAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="bankStopDate != null" >
+        bank_stop_date = #{bankStopDate,jdbcType=DATE},
+      </if>
+      <if test="bankStopFlow != null" >
+        bank_stop_flow = #{bankStopFlow,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mrbt.lingmoney.model.HxDailyData" >
+    <!--
+    @mbggenerated
+    -->
+    update hx_daily_data
+    set merchant_id = #{merchantId,jdbcType=VARCHAR},
+      check_date = #{checkDate,jdbcType=DATE},
+      deal_num = #{dealNum,jdbcType=INTEGER},
+      trade_type = #{tradeType,jdbcType=INTEGER},
+      channel_flow_father = #{channelFlowFather,jdbcType=VARCHAR},
+      channel_flow_son = #{channelFlowSon,jdbcType=VARCHAR},
+      loan_no = #{loanNo,jdbcType=VARCHAR},
+      payment_ac_no = #{paymentAcNo,jdbcType=VARCHAR},
+      payment_ac_name = #{paymentAcName,jdbcType=VARCHAR},
+      payment_bank_no = #{paymentBankNo,jdbcType=VARCHAR},
+      payment_bank_name = #{paymentBankName,jdbcType=VARCHAR},
+      receipt_ac_no = #{receiptAcNo,jdbcType=VARCHAR},
+      receipt_ac_name = #{receiptAcName,jdbcType=VARCHAR},
+      receipt_bank_no = #{receiptBankNo,jdbcType=VARCHAR},
+      receipt_bank_name = #{receiptBankName,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DECIMAL},
+      fee_amt = #{feeAmt,jdbcType=DECIMAL},
+      ac_custody_amt = #{acCustodyAmt,jdbcType=DECIMAL},
+      risk_assurance_amt = #{riskAssuranceAmt,jdbcType=DECIMAL},
+      bank_stop_date = #{bankStopDate,jdbcType=DATE},
+      bank_stop_flow = #{bankStopFlow,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

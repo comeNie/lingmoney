@@ -1,0 +1,397 @@
+.main-newYear{
+	width:100%;
+	height:680px;
+	background: url("../images/bg_newYear1.jpg") no-repeat center top #f3ede6;
+}
+.main-newYear2{background: url("../images/bg_newYear2.jpg") no-repeat center top #fcfcf1;}
+.main-newYear .box{
+	width:1000px;
+}
+.foreword{
+	padding-top: 240px;
+	text-align: right;
+	line-height: 1.5em;
+}
+.action_intro{
+	margin-top:25px;
+}
+.action_intro ul{
+	float: left;
+	width:600px;
+}
+.action_intro ul li{
+	float: left;
+	padding:0 30px;
+	text-align: center;
+	font-size: 30px;
+	color: #323434;
+	border-right:1px solid #bfbebc;
+}
+.action_intro ul li span{
+    font-family: "myImpact";
+    font-size: 56px;
+    color:#ec3b3a;	
+}
+.action_intro ul li p{
+	font-size:15px;
+	color:#959595;
+	text-align: left;
+}
+.action_intro_btn{
+	position: relative;
+	z-index: 1;
+	float:right;
+	display:block;
+	width:385px;
+	height:99px;
+	background: url("../images/bg_nBtn1.png") no-repeat left top;
+
+}
+.btn_look{
+	position: absolute;
+	z-index: 3;
+	left:10px;
+	top:9px;
+    display: block;
+    width:186px;
+    height:74px;
+    line-height: 79px;
+    color:#fff;
+    font-size:20px;
+    background: url("../images/bg_nBtn.png") no-repeat left top;
+    text-align: center;
+}
+.btn_look:hover{
+	background: url("../images/bg_nBtn.png") no-repeat left -112px;
+}
+.btn_buy{
+	position: absolute;
+	z-index: 2;
+	right:7px;
+	top:5px;
+    display: block;
+    width:327px;
+    height:89px;
+    line-height: 85px;
+    color:#fff;
+    font-size:20px;
+    background: url("../images/bg_nBtn.png") no-repeat -191px top;
+    text-align: right;
+}
+.btn_buy:hover{
+	background: url("../images/bg_nBtn.png") no-repeat -191px -110px;
+}
+.action_infor{
+	margin-top:31px;
+	height: 41px;
+}
+.action_texts{
+	height:31px;
+	line-height: 31px;
+	text-align: center;
+}
+.title_newYear{
+	position: relative;
+	z-index: 1;
+	padding-top:40px;
+	border-bottom:1px solid #ec3b3a;
+	padding-bottom:8px;
+}
+.title_newYear i{
+	position: absolute;
+	z-index: 2;
+	left:89px;
+	top:30px;
+	display: block;
+	width:87px;
+	height: 100px;
+    background: url("../images/bg_nianhuo.png") no-repeat left 0;
+}
+.title_newYear strong{
+	float:left;
+	font-size: 28px;
+	color:#ec3b3a;
+}
+.title_newYear span{
+	margin-right: 5px;
+	margin-top:18px;
+	float: right;
+	padding-left:25px;
+	background: url(../images/bg_nBtn.png) no-repeat left -90px;
+}
+
+.main-newYear2{height:714px;}
+.main-newYear2 .foreword{
+	padding-top:335px;
+	width:620px;
+}
+.main-newYear2 .action_intro{margin-top:45px;}
+
+
+
+.main-newYear3{
+	padding-top: 340px;
+	height: 914px;
+	background: url("../images/bg_newYear3.jpg") no-repeat center top #e22d2b;
+}
+.action_intro3 ul{
+	position: relative;
+	z-index: 1;
+	float:none;
+	margin:0 auto;
+	width:934px;
+	padding-top:81px;
+    height: 148px;
+	background: url("../images/bg_action_into3.png") no-repeat center top ;
+}
+.action_intro3 ul .pop{
+	position: absolute;
+	z-index: 2;
+	right:0;
+	bottom:10px;
+	padding-left: 25px;
+    background: url(../images/bg_nBtn.png) no-repeat -23px -90px;
+    color:#e9c38d;
+    cursor:pointer;
+    
+}
+
+.action_intro3 ul li span{font-size: 50px}
+.action_intro3 ul .pop span,.title_newYear span{font-size: 12px;}
+.gifts{
+	position: relative;
+	z-index: 1;
+    margin:0 auto;
+    width:912px;
+}
+.gifts li{
+	float:left;
+	margin-right: 15px;
+	padding-top: 24px;
+	width:294px;
+	height:287px;
+	text-align: center;
+	background-image: url("../images/icons.png");
+	background-repeat:  no-repeat;
+	background-position:  left top;
+}
+.gifts li:hover{
+   background-position:  -294px top;
+}
+.gifts i{
+   position: absolute;
+   z-index: 2;
+   top:114px;
+   left:272px;
+   display: block;
+   width:58px;
+   height: 58px;
+   background:url("../images/icons.png") no-repeat -593px -1px;
+}
+.gifts i.huo_2{
+	left:581px;
+}
+
+.action_intro3 .action_intro_btn2{
+	clear: both;
+	float:none;
+	margin:0 auto;
+	margin-top:55px;
+	width:442px;
+	height:92px;
+	background:url("../images/bg_nBtn2.jpg") no-repeat left top;
+}
+.action_intro_btn2 .btn_look{
+	top:5px;
+}
+.action_intro_btn2 .btn_buy{
+	right:12px;
+	top:10px;
+	width:377px;
+	line-height: 72px;
+	background-image:url("../images/icons.png");
+	background-repeat:  no-repeat ;
+	background-position:left -542px;
+}
+.action_intro_btn2 .btn_buy:hover{
+	background-position:-399px -542px;
+}
+
+
+
+
+.banner_phones{
+	width:100%;
+	height: 558px;
+	background: url("../images/banner_phones.jpg") no-repeat center top #2a46b1;
+}
+.banner_phones .box{
+    position: relative;
+	z-index: 1;
+}
+.banner_phones  .ma{
+	position: absolute;
+	z-index: 2;
+	top:280px;
+	right:303px;
+	padding:8px 0 0 9px;
+	width:211px;
+	height: 178px;
+    background: url("../images/icons.png") no-repeat left -666px;
+}
+.banner_phones .btn_phone{
+	position: absolute;
+	z-index: 2;
+	top:348px;
+	right:44px;
+	width:242px;
+}
+.banner_phones .btn_phone a{
+	display: block;
+	margin-bottom:14px;
+	width:242px;
+	height: 54px;
+	background-image:url("../images/icons.png"); 
+	background-repeat: no-repeat;
+	background-position: -251px -666px;
+}
+.banner_phones .btn_phone .btn_phone_android{
+	background-position: -251px -733px;
+}
+.bottom_phone{
+	padding-top: 53px;
+	height: 146px;
+	background:url("../images/bg_bottonPhone.jpg") no-repeat center top #c5c9d7;
+}
+.bottom_phone li{
+	float: left;
+	width:254px;
+
+}
+.bottom_phone li strong{
+	display: block;
+	padding-left:58px;
+	height: 48px;
+	line-height: 48px;
+	font-size: 23px;
+	background-image:url("../images/icons.png"); 
+	background-repeat: no-repeat;
+	background-position: -6px -868px; 
+	color:#1193a5;
+}
+.bottom_phone li .bottom_phone_strong02{
+	background-position: -259px -868px; 
+	color:#924295;
+}
+.bottom_phone li .bottom_phone_strong03{
+	background-position: -514px -868px; 
+	color:#009944;
+}
+.bottom_phone li .bottom_phone_strong04{
+	background-position: -782px -868px; 
+	color:#4273ab;
+}
+.bottom_phone li p{
+	padding-top:23px;
+	padding-left:5px;
+	font-size: 15px;
+	color:#000;
+}
+
+
+.main-worksDay{
+      padding-top:322px;
+      height:653px;
+      background: #14b7b1 url("../images/bg_worksDay.jpg") no-repeat center top;
+    }
+.pre{
+      position:relative;
+      z-index: 1;
+      margin:0 auto;
+      padding:7px 7px 0;
+      width:969px;
+      height: 45px;
+      background:url("../images/icons.png") no-repeat -2px -1613px;
+      color: #fff;
+      line-height: 1.5em
+    }
+.pro{
+      margin:0 auto;
+      width:983px;
+        
+    }
+
+.title_newYear{
+      padding-top: 30px;
+      border-bottom: 1px solid #05a47d;
+    }
+.title_newYear span{
+	display: inline-block;
+    height:19px;
+    line-height: 19px;
+    background:url("../images/bg_nBtn.png") no-repeat -48px -91px;
+    cursor: pointer;
+    }
+.title_newYear span:hover,.action_intro ul li .look:hover{color:#08b0ae;}
+.title_newYear strong{color:#05a47d;}
+.pro .action_intro ul{
+	height: 126px;
+	background: url("../images/icons.png") no-repeat -5px -1809px;
+	color:#666;
+}
+.action_intro ul li span{font-size: 70px;color:#05a47d;}
+.action_intro ul li p{font-size: 22px;}
+
+.btn{
+      display: block;
+      margin:20px 0 0 20px;
+      width:223px;
+      height: 59px;
+      line-height: 56px;
+      background: #e51b3a;
+      border-bottom: 3px solid #fff;
+      border-radius: 5px;
+      color: #fff;
+      font-weight: bold;
+      font-size: 25px;
+      text-align: center;
+    }
+.btn:hover{
+  background: #c80d29;
+}
+.action_intro ul li .look{
+  padding-top: 10px;
+  font-size: 14px;
+  color:#999999;
+  text-decoration: underline;
+  text-align: center;
+  cursor: pointer
+}
+.gift{
+  margin:0 auto;
+  padding-top:45px;
+  width:983px;
+}
+.gift .title-gift{
+  margin:0 auto;
+  margin-bottom: 41px;
+  width:678px;
+  height: 33px;
+  background:url("../images/icons.png") no-repeat left -1719px;
+}
+.gift ol li{
+   float:left;
+   margin-right:40px;      
+   width:211px;
+   
+}
+.gift ol li.gift-4{margin:0;}
+.gift ol li img{
+      padding:7px 5px;
+      border:1px solid #fff;
+    }
+.gift ol li p{
+      text-align: center;
+    }
+.gift ol li p span{color:#05a47d;}
+

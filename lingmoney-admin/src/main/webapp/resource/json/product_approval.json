@@ -1,0 +1,5 @@
+[
+	{"approvalId":"0","approvalName":"初始状态"},
+	{"approvalId":"1","approvalName":"提交状态"},
+	{"approvalId":"2","approvalName":"审核通过状态"}
+]

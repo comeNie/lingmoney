@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.LingbaoGiftCartMapper">
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.LingbaoGiftCart">
+    <!--
+    @mbggenerated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="u_id" jdbcType="VARCHAR" property="uId" />
+    <result column="gift_id" jdbcType="INTEGER" property="giftId" />
+    <result column="num" jdbcType="INTEGER" property="num" />
+    <result column="integral" jdbcType="INTEGER" property="integral" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="serial_number" jdbcType="VARCHAR" property="serialNumber" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+    @mbggenerated
+    -->
+    id, u_id, gift_id, num, integral, add_time, serial_number
+  </sql>
+  <select id="selectByExample" parameterType="com.mrbt.lingmoney.model.LingbaoGiftCartExample" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from lingbao_gift_cart
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0">
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from lingbao_gift_cart
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--
+    @mbggenerated
+    -->
+    delete from lingbao_gift_cart
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.LingbaoGiftCartExample">
+    <!--
+    @mbggenerated
+    -->
+    delete from lingbao_gift_cart
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mrbt.lingmoney.model.LingbaoGiftCart">
+    <!--
+    @mbggenerated
+    -->
+    insert into lingbao_gift_cart (id, u_id, gift_id, 
+      num, integral, add_time, 
+      serial_number)
+    values (#{id,jdbcType=INTEGER}, #{uId,jdbcType=VARCHAR}, #{giftId,jdbcType=INTEGER}, 
+      #{num,jdbcType=INTEGER}, #{integral,jdbcType=INTEGER}, #{addTime,jdbcType=TIMESTAMP}, 
+      #{serialNumber,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.LingbaoGiftCart">
+    <!--
+    @mbggenerated
+    -->
+    insert into lingbao_gift_cart
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="giftId != null">
+        gift_id,
+      </if>
+      <if test="num != null">
+        num,
+      </if>
+      <if test="integral != null">
+        integral,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="serialNumber != null">
+        serial_number,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uId != null">
+        #{uId,jdbcType=VARCHAR},
+      </if>
+      <if test="giftId != null">
+        #{giftId,jdbcType=INTEGER},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="integral != null">
+        #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serialNumber != null">
+        #{serialNumber,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.LingbaoGiftCartExample" resultType="java.lang.Long">
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from lingbao_gift_cart
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update lingbao_gift_cart
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.uId != null">
+        u_id = #{record.uId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.giftId != null">
+        gift_id = #{record.giftId,jdbcType=INTEGER},
+      </if>
+      <if test="record.num != null">
+        num = #{record.num,jdbcType=INTEGER},
+      </if>
+      <if test="record.integral != null">
+        integral = #{record.integral,jdbcType=INTEGER},
+      </if>
+      <if test="record.addTime != null">
+        add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.serialNumber != null">
+        serial_number = #{record.serialNumber,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update lingbao_gift_cart
+    set id = #{record.id,jdbcType=INTEGER},
+      u_id = #{record.uId,jdbcType=VARCHAR},
+      gift_id = #{record.giftId,jdbcType=INTEGER},
+      num = #{record.num,jdbcType=INTEGER},
+      integral = #{record.integral,jdbcType=INTEGER},
+      add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      serial_number = #{record.serialNumber,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mrbt.lingmoney.model.LingbaoGiftCart">
+    <!--
+    @mbggenerated
+    -->
+    update lingbao_gift_cart
+    <set>
+      <if test="uId != null">
+        u_id = #{uId,jdbcType=VARCHAR},
+      </if>
+      <if test="giftId != null">
+        gift_id = #{giftId,jdbcType=INTEGER},
+      </if>
+      <if test="num != null">
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="integral != null">
+        integral = #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serialNumber != null">
+        serial_number = #{serialNumber,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mrbt.lingmoney.model.LingbaoGiftCart">
+    <!--
+    @mbggenerated
+    -->
+    update lingbao_gift_cart
+    set u_id = #{uId,jdbcType=VARCHAR},
+      gift_id = #{giftId,jdbcType=INTEGER},
+      num = #{num,jdbcType=INTEGER},
+      integral = #{integral,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      serial_number = #{serialNumber,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- custom setting -->
+  <select id="queryLotteryByUid" parameterType="java.lang.String" resultType="java.lang.Integer">
+  	select count(1) from lingbao_gift_cart where u_id = #{0,jdbcType=VARCHAR} and integral = 0 
+  </select>
+  
+  <select id="queryGiftCartInfoList" parameterType="java.util.Map" resultType="java.util.Map">
+  	select 
+  		lgc.id cid, lg.id giftId, lgc.num num, lg.name name, lgc.integral oldcost, 
+  		lg.integral cost, ifnull(lg.preferential_integral,0) preCost, lg.shelf_status state, 
+  		lg.picture_small pic, lg.store store, lg.apply_type applyType, lg.exchange_number exchangeNumber, 
+  		lg.receive_way receiveWay  
+  	from 
+  		lingbao_gift_cart lgc 
+  	left join 
+  		lingbao_gift lg 
+  	on 
+  		lgc.gift_id = lg.id 
+  	where 
+  		lgc.u_id = #{uid,jdbcType=INTEGER} 
+  	order by 
+  		lgc.id desc
+  	<if test="start!=null">
+  	limit #{start,jdbcType=INTEGER},#{number,jdbcType=INTEGER}
+  	</if> 
+  </select>
+  
+  <select id="countGiftCartInfoList" parameterType="java.util.Map" resultType="java.lang.Integer">
+  	select 
+  		count(1) 
+  	from 
+  		lingbao_gift_cart
+  	where 
+  		u_id = #{uid,jdbcType=INTEGER} 
+  </select>
+  
+  <update id="updateNumById" parameterType="com.mrbt.lingmoney.model.LingbaoGiftCart">
+  	update 
+  		lingbao_gift_cart 
+  	set 
+  		num=num+#{num,jdbcType=INTEGER},integral=integral+#{integral,jdbcType=INTEGER},add_time=now() 
+  	where 
+  		id=#{id,jdbcType=INTEGER}
+  </update>
+</mapper>

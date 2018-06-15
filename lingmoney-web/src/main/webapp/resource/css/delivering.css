@@ -1,0 +1,121 @@
+@charset "utf-8";
+/* CSS Document */
+.mainbody_happy {
+	position: relative;
+	z-index: 1;
+	height: 1277px;
+	background: #496bc8;
+	overflow: hidden;
+}
+
+.mainbody_happy img.bg {
+	position: absolute;
+	z-index: 2; top : 0px;
+	left: 50%;
+	right: 50%;
+	margin: 0 -960px 0 -960px;
+	top: 0px;
+}
+
+.mainbody_happy .box {
+	position: relative;
+	z-index: 10;
+	margin: 0 auto;
+	width: 864px;
+	height: 1277px;
+}
+
+.property {
+	position: absolute;
+	z-index: 20;
+	top: 449px;
+	left: 324px;
+	height: 97px;
+}
+
+.property li {
+	float: left;
+	padding-top: 13px;
+	font-size: 31px;
+	color: #323434;
+}
+
+.property li span {
+	font-family: "myImpact";
+	font-size: 42px;
+	color: #ff0102;
+}
+
+.property li p {
+	font-size: 15px;
+	color: #283c80
+}
+
+.happy-intro {
+	position: absolute;
+	z-index: 20;
+	top: 1022px;
+	left: 277px;
+}
+
+.happy-intro button {
+	float: left;
+	display: inline-block;
+	width: 313px;
+	height: 71px;
+	background: url("../images/icon2.png") no-repeat left -80px;
+	cursor: pointer
+}
+
+.happy-intro button:hover {
+	background: url("../images/icon2.png") no-repeat left top;
+}
+
+.happy-intro a {
+	margin: 24px 0 0 15px;
+	display: inline-block;
+	width: 130px;
+	height: 22px;
+	font-family: "黑体";
+	font-size: 22px;
+	color: #fff;
+	background: url("../images/icon2.png") no-repeat -5px -162px;
+}
+
+#qiqiu {
+	position: absolute;
+	z-index: 2;
+	top: 200px;
+	left: -500px;
+}
+
+#yun {
+	position: absolute;
+	z-index: 2;
+	top: 396px;
+	right: -500px;
+}
+
+#caidai {
+	position: absolute;
+	z-index: 2;
+	top: -2000px;
+	left: 50%;
+	margin-left: -960px;
+	width: 1920px;
+}
+
+#statement {
+	position: absolute;
+	z-index: 20;
+	right: 24px;
+	top: 416px;
+	width: 57px;
+	height: 17px;
+	line-height: 17px;
+	padding-left: 18px;
+	color: #fff;
+	font-size: 14px;
+	cursor: pointer;
+	background: url("../images/bg_statement.png") no-repeat left top;
+}

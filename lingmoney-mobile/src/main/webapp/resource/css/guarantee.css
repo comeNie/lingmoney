@@ -1,0 +1,69 @@
+	html{
+    font-size: 100%;
+}
+/* 整体稳定结构--------------------- */
+html,body,.screen{
+            position: relative;
+            width: 100%;
+            height: 100%;
+             /*  overflow: hidden;   */
+            margin: 0 auto;
+			
+        }
+body, h1, h2, h3, h4, h5, h6, hr, p, /* structural elements 结构元素 */
+dl, dt, dd, ul, ol, li, /* list elements 列表元素 */
+fieldset, button, input, textarea, /* form elements 表单元素 */
+th, td,section,div,span, a,header,section{ /* table elements 表格元素 */
+    margin: 0rem;
+    padding: 0rem;
+    color: #333;
+    list-style: none;display:block;  
+
+    -webkit-tap-highlight-color:transparent; 
+    font-family: '微软雅黑';
+}
+
+h1, h2, h3, h4, h5, h6{ font-weight: 400; color: #292929;}
+h1 { font-size: 0.32rem; /* 18px / 12px = 1.5 */ }
+h2 { font-size: 0.26rem; }
+h3 { font-size: 0.18rem; }
+h4, h5, h6 { font-size: 100%;}
+img{vertical-align:middle;}
+input{text-indent:0.13rem;}
+/* 重置文本格式元素 */
+a { text-decoration: none; -webkit-tap-highlight-color:transparent; -webkit-user-select: none;-moz-user-focus: none;-moz-user-select: none; color: #000;}
+a:hover { text-decoration: none; }		
+			
+.main{
+	position: absolute;
+	width: 100%;
+	max-width: 7.5rem;
+	left: 50%;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+	z-index: 9;
+	transform: translate(-50%,0);
+	-webkit-transform: translate(-50%,0);
+	-moz-transform: translate(-50%,0);
+	-o-transform: translate(-50%,0);	
+	transform: translate(-50%,0);
+}
+
+
+.error_tip {position:fixed; top: 50%; height: 0.68rem;width: 3.45rem;font-size: .24rem;line-height: .68rem;border-radius: 3px;background: rgba(0,0,0,0.5);text-align: center;color: #fff;
+left: 50%; 
+  /*  transform: translate(-50%,-50%); */z-index: 100;opacity: 0;display: none; margin-left:-1.72rem;}
+
+.guarantee-box{width:7.02rem;background:#fff;margin-left:auto;margin-right:auto; margin-bottom:0.24rem;padding-bottom:0.24rem;}
+.guarantee-box-tip{font-size:0.3rem;color:#4A4B5D;text-align:center; padding-top:0.32rem;padding-bottom:0.32rem;font-weight:bold;}
+.guarantee-box-img{text-align:center;padding-bottom:0.14rem;}
+.guarantee-box-bt{font-size:0.24rem;color:#868798;line-height:0.38rem;width:6.54rem;margin-left:auto;margin-right:auto; }
+.guarantee-box-bt span{font-weight:bold;color:#4a4b5d;padding:0.1rem 0rem 0.08rem 0rem;display:block;}
+.guarantee-suojin{ text-indent: 0.48rem;font-size: 0.24rem;
+    color: #868798;
+    line-height: 0.38rem;padding:0rem 0.24rem;}
+
+
+
+
+

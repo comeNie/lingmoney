@@ -1,0 +1,111 @@
+
+body, h1, h2, h3, h4, h5, h6, hr, p, 
+dl, dt, dd, ul, ol, li,
+fieldset, button, input, textarea, 
+th, td,img,section,div{ 
+    margin: 0px;
+    padding: 0px;
+    color: #333;
+    list-style: none;
+ 
+}
+body{
+	background:#f7e5d9;position:relative;
+}
+.Invitation-banner{position: relative;width:100%;height:461px;background:url(../../resource/images/Invitation201804-1.png) no-repeat center center;}
+.Invitation-warp{width:1024px;margin-left:auto;margin-right:auto;}
+.Invitation-bannetbs{position: absolute;top:378px;left:24.5%;font-size:24px;color:#efa48d}
+.Invitation-bannetbs span{width:230px;height:48px;cursor:pointer;sdisplay:block;float: left;    line-height: 48px;text-align: center;}
+.Invitation-bannetbs span:hover{    background: #efa48d;
+    border-radius: 100px;
+    color: #fff;}
+.Invitation-box{width:1024px;background:#fefef3; margin-bottom:40px;}
+
+.Invitation-box-tip{text-align:center;font-size:30px;padding-top:40px;padding-bottom:22px;color:#4a4b5c}
+.Invitation-box-tips{text-align:center;font-size:24px;color:#868797}
+.Invitation-box1{overflow:hidden;height:472px;}
+.Invitation-box1 ul{display:block;width:934px;margin-left:auto;margin-right:auto;overflow:hidden;margin-top:44px;}
+.Invitation-box1 li{width:182px;height:266px;float:left;margin-left:63px;margin-right:63px;}
+.Invitation-box1 li div{width:182px;height:200px;color:#fff;overflow: hidden;}
+.Invitation-cssbj{background:url(../../resource/images/Invitation201804-02.png) no-repeat ;}
+.Invitation-cssbj1{background:url(../../resource/images/Invitation201804-2.png) no-repeat ;}
+.Invitation-box1 li div span{display:block;text-align:center;padding-top:123px;line-height:28px;}
+.Invitation-box1 li div span b{font-size:30px;font-weight:normal}
+.Invitation-box1 li p{font-size:24px;text-align:center;color:#868797;line-height:66px;}
+.Invitation-visited{color:#fffb53;}
+.Invitation-box2{height:472px;}
+.Invitation-box2 ul{display:block;width:934px;margin-left:auto;margin-right:auto;overflow:hidden;margin-top:44px;}
+.Invitation-box2 li{width:182px;height:195px;float:left;margin-left:63px;margin-right:63px;}
+.Invitation-box2 li div{width:125px;height:125px;background:url(../../resource/images/Invitation4.png) no-repeat center center;margin-left:auto;margin-right:auto;font-size:58px;color:#c68d31;text-align:center;line-height:125px;}
+.Invitation-box2 li div span{font-size:24px;}
+.Invitation-box2 li p{text-align:center;line-height:70px;font-size:24px;color:#868797;}
+.Invitation-box3{height:1004px;}
+.Invitation-top{overflow:hidden;margin-top:60px;}
+
+.Invitation-top li{width:213px;height:134px;background:url(../../resource/images/Invitation5.png) no-repeat center center;float:left;margin-left:100px;margin-bottom:35px;}
+.Invitation-top li div{text-align:center;line-height:24px;padding-top:35px;color:#333;font-size:17px;}
+.Invitation-top li div span{color:#d73a22}
+.Invitation-top li p{text-align:center;padding-top:11px;color:#fff;font-size:27px;}
+.Invitation-toplist{width:840px;height:397px;border:solid #ec806a 1px;border-radius:10px;margin-left:auto;margin-right:auto;margin-top:25px;overflow:hidden;}
+.Invitation-toplist-nav{height:58px;line-height:58px;margin-top:12px;}
+.Invitation-toplist-nav span{width:33.3%;float:left;text-align:center;color:#ec806a;}
+
+.Invitationul li{height:38px;line-height:38px;}
+.Invitationul li span{width:33.3%;display:block;float:left;text-align:center;}
+.Invitation-topph-list{height:300px;overflow:hidden;}
+.Invitationul{display:block;height:300px;overflow:hidden;}
+.Invitation-guize{width:867px;margin-left:auto;margin-right:auto;font-size:24px;line-height:36px;color:#868797;}
+.Invitation-box4{height:566px;}
+
+.index-Popup-bg{width:100%;height:100%;position:fixed;opacity:0.5;background:#000;z-index:9999;left: 0; top: 0;display:none;}
+.tc-box {
+    position:fixed; 
+    top: 35%; 
+   width:648px;
+   height:398px;
+
+	
+    border-radius: 3px;
+	background:#fbf3e7;
+	border:solid #df6b50 1px;
+     left: 50%; 
+ 
+    z-index: 10000;
+    /*  opacity: 0; */   
+   display: none;  
+   margin-left:-324px;
+   overflow-y:scroll;
+   padding-bottom:25px;
+
+}
+.Invitation-hylist{width:578px;margin-left:auto;margin-right:auto;}
+.tc-box i{display:block;width:22px;height:22px;position:absolute;top:15px;right:15px;}
+.Invitation-hylist-tip{font-size:24px;text-align:center;color:#666666;line-height:77px;}
+.Invitation-hylist-yq{background:#fff;overflow:hidden;padding-bottom:15px;}
+.Invitation-hylist-yqnav{height:33px;line-height:33px; margin-top:10px;}
+
+.Invitation-hylist-yqnav span{width:25%;display:block;float:left;text-align:center;color:#df6b50;font-size:18px;}
+.Invitation-hylist-yq li{padding-top:5px;padding-bottom:5px;line-height:26px;}
+.Invitation-hylist-yq li span{width:25%;display:block;float:left;text-align:center;color:#666666;font-size:16px;}
+.nodata{text-align:center; padding-top:6%;padding-bottom:20px;}
+.nodata div img{width:40%;}
+.nodata p{font-size:14px;color:#999; padding-top:20px;}
+.closed{cursor:pointer}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

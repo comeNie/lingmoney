@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.ActivityPropertyMapper">
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.ActivityProperty">
+    <!--
+    @mbggenerated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="act_id" jdbcType="VARCHAR" property="actId" />
+    <result column="act_title_image" jdbcType="VARCHAR" property="actTitleImage" />
+    <result column="act_image" jdbcType="VARCHAR" property="actImage" />
+    <result column="act_recommendations" jdbcType="REAL" property="actRecommendations" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.mrbt.lingmoney.model.ActivityPropertyWithBLOBs">
+    <!--
+    @mbggenerated
+    -->
+    <result column="act_pro_desc1" jdbcType="LONGVARCHAR" property="actProDesc1" />
+    <result column="act_pro_desc2" jdbcType="LONGVARCHAR" property="actProDesc2" />
+    <result column="act_pro_desc3" jdbcType="LONGVARCHAR" property="actProDesc3" />
+    <result column="act_pro_desc4" jdbcType="LONGVARCHAR" property="actProDesc4" />
+    <result column="act_pro_desc5" jdbcType="LONGVARCHAR" property="actProDesc5" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+    @mbggenerated
+    -->
+    id, act_id, act_title_image, act_image, act_recommendations, status
+  </sql>
+  <sql id="Blob_Column_List">
+    <!--
+    @mbggenerated
+    -->
+    act_pro_desc1, act_pro_desc2, act_pro_desc3, act_pro_desc4, act_pro_desc5
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.mrbt.lingmoney.model.ActivityPropertyExample" resultMap="ResultMapWithBLOBs">
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from activity_property
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.mrbt.lingmoney.model.ActivityPropertyExample" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from activity_property
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0">
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    <!--
+    @mbggenerated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from activity_property
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--
+    @mbggenerated
+    -->
+    delete from activity_property
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.ActivityPropertyExample">
+    <!--
+    @mbggenerated
+    -->
+    delete from activity_property
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mrbt.lingmoney.model.ActivityPropertyWithBLOBs">
+    <!--
+    @mbggenerated
+    -->
+    insert into activity_property (id, act_id, act_title_image, 
+      act_image, act_recommendations, status, 
+      act_pro_desc1, act_pro_desc2, act_pro_desc3, 
+      act_pro_desc4, act_pro_desc5)
+    values (#{id,jdbcType=INTEGER}, #{actId,jdbcType=VARCHAR}, #{actTitleImage,jdbcType=VARCHAR}, 
+      #{actImage,jdbcType=VARCHAR}, #{actRecommendations,jdbcType=REAL}, #{status,jdbcType=INTEGER}, 
+      #{actProDesc1,jdbcType=LONGVARCHAR}, #{actProDesc2,jdbcType=LONGVARCHAR}, #{actProDesc3,jdbcType=LONGVARCHAR}, 
+      #{actProDesc4,jdbcType=LONGVARCHAR}, #{actProDesc5,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.ActivityPropertyWithBLOBs">
+    <!--
+    @mbggenerated
+    -->
+    insert into activity_property
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="actId != null">
+        act_id,
+      </if>
+      <if test="actTitleImage != null">
+        act_title_image,
+      </if>
+      <if test="actImage != null">
+        act_image,
+      </if>
+      <if test="actRecommendations != null">
+        act_recommendations,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="actProDesc1 != null">
+        act_pro_desc1,
+      </if>
+      <if test="actProDesc2 != null">
+        act_pro_desc2,
+      </if>
+      <if test="actProDesc3 != null">
+        act_pro_desc3,
+      </if>
+      <if test="actProDesc4 != null">
+        act_pro_desc4,
+      </if>
+      <if test="actProDesc5 != null">
+        act_pro_desc5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="actId != null">
+        #{actId,jdbcType=VARCHAR},
+      </if>
+      <if test="actTitleImage != null">
+        #{actTitleImage,jdbcType=VARCHAR},
+      </if>
+      <if test="actImage != null">
+        #{actImage,jdbcType=VARCHAR},
+      </if>
+      <if test="actRecommendations != null">
+        #{actRecommendations,jdbcType=REAL},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="actProDesc1 != null">
+        #{actProDesc1,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="actProDesc2 != null">
+        #{actProDesc2,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="actProDesc3 != null">
+        #{actProDesc3,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="actProDesc4 != null">
+        #{actProDesc4,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="actProDesc5 != null">
+        #{actProDesc5,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.ActivityPropertyExample" resultType="java.lang.Long">
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from activity_property
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update activity_property
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.actId != null">
+        act_id = #{record.actId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.actTitleImage != null">
+        act_title_image = #{record.actTitleImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.actImage != null">
+        act_image = #{record.actImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.actRecommendations != null">
+        act_recommendations = #{record.actRecommendations,jdbcType=REAL},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.actProDesc1 != null">
+        act_pro_desc1 = #{record.actProDesc1,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.actProDesc2 != null">
+        act_pro_desc2 = #{record.actProDesc2,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.actProDesc3 != null">
+        act_pro_desc3 = #{record.actProDesc3,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.actProDesc4 != null">
+        act_pro_desc4 = #{record.actProDesc4,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.actProDesc5 != null">
+        act_pro_desc5 = #{record.actProDesc5,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update activity_property
+    set id = #{record.id,jdbcType=INTEGER},
+      act_id = #{record.actId,jdbcType=VARCHAR},
+      act_title_image = #{record.actTitleImage,jdbcType=VARCHAR},
+      act_image = #{record.actImage,jdbcType=VARCHAR},
+      act_recommendations = #{record.actRecommendations,jdbcType=REAL},
+      status = #{record.status,jdbcType=INTEGER},
+      act_pro_desc1 = #{record.actProDesc1,jdbcType=LONGVARCHAR},
+      act_pro_desc2 = #{record.actProDesc2,jdbcType=LONGVARCHAR},
+      act_pro_desc3 = #{record.actProDesc3,jdbcType=LONGVARCHAR},
+      act_pro_desc4 = #{record.actProDesc4,jdbcType=LONGVARCHAR},
+      act_pro_desc5 = #{record.actProDesc5,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update activity_property
+    set id = #{record.id,jdbcType=INTEGER},
+      act_id = #{record.actId,jdbcType=VARCHAR},
+      act_title_image = #{record.actTitleImage,jdbcType=VARCHAR},
+      act_image = #{record.actImage,jdbcType=VARCHAR},
+      act_recommendations = #{record.actRecommendations,jdbcType=REAL},
+      status = #{record.status,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mrbt.lingmoney.model.ActivityPropertyWithBLOBs">
+    <!--
+    @mbggenerated
+    -->
+    update activity_property
+    <set>
+      <if test="actId != null">
+        act_id = #{actId,jdbcType=VARCHAR},
+      </if>
+      <if test="actTitleImage != null">
+        act_title_image = #{actTitleImage,jdbcType=VARCHAR},
+      </if>
+      <if test="actImage != null">
+        act_image = #{actImage,jdbcType=VARCHAR},
+      </if>
+      <if test="actRecommendations != null">
+        act_recommendations = #{actRecommendations,jdbcType=REAL},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="actProDesc1 != null">
+        act_pro_desc1 = #{actProDesc1,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="actProDesc2 != null">
+        act_pro_desc2 = #{actProDesc2,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="actProDesc3 != null">
+        act_pro_desc3 = #{actProDesc3,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="actProDesc4 != null">
+        act_pro_desc4 = #{actProDesc4,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="actProDesc5 != null">
+        act_pro_desc5 = #{actProDesc5,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mrbt.lingmoney.model.ActivityPropertyWithBLOBs">
+    <!--
+    @mbggenerated
+    -->
+    update activity_property
+    set act_id = #{actId,jdbcType=VARCHAR},
+      act_title_image = #{actTitleImage,jdbcType=VARCHAR},
+      act_image = #{actImage,jdbcType=VARCHAR},
+      act_recommendations = #{actRecommendations,jdbcType=REAL},
+      status = #{status,jdbcType=INTEGER},
+      act_pro_desc1 = #{actProDesc1,jdbcType=LONGVARCHAR},
+      act_pro_desc2 = #{actProDesc2,jdbcType=LONGVARCHAR},
+      act_pro_desc3 = #{actProDesc3,jdbcType=LONGVARCHAR},
+      act_pro_desc4 = #{actProDesc4,jdbcType=LONGVARCHAR},
+      act_pro_desc5 = #{actProDesc5,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mrbt.lingmoney.model.ActivityProperty">
+    <!--
+    @mbggenerated
+    -->
+    update activity_property
+    set act_id = #{actId,jdbcType=VARCHAR},
+      act_title_image = #{actTitleImage,jdbcType=VARCHAR},
+      act_image = #{actImage,jdbcType=VARCHAR},
+      act_recommendations = #{actRecommendations,jdbcType=REAL},
+      status = #{status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

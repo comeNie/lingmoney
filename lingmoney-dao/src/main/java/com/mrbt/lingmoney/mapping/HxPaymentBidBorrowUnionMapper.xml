@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mrbt.lingmoney.mapper.HxPaymentBidBorrowUnionMapper" >
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.HxPaymentBidBorrowUnionInfo" >
+    <!--
+    @mbggenerated
+    -->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="bw_id" jdbcType="VARCHAR" property="bwId" />
+    <result column="channel_flow" jdbcType="VARCHAR" property="channelFlow" />
+    <result column="old_channel_flow" jdbcType="VARCHAR" property="oldChannelFlow" />
+    <result column="payment_type" jdbcType="INTEGER" property="paymentType" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="payment_date" jdbcType="TIMESTAMP" property="paymentDate" />
+    <result column="fee_amt" jdbcType="DECIMAL" property="feeAmt" />
+    <result column="bank_flow" jdbcType="VARCHAR" property="bankFlow" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="submit_detail_status" property="submitDetailStatus" jdbcType="INTEGER" />
+    <result column="submit_channel_flow" property="submitChannelFlow" jdbcType="VARCHAR" />
+    <result column="days" property="days" jdbcType="INTEGER" />
+    
+    <result column="bw_amt" jdbcType="DECIMAL" property="bwAmt" />
+    <result column="mortgage_id" jdbcType="VARCHAR" property="mortgageId" />
+   
+    <result column="bw_acname" property="bwAcname" jdbcType="VARCHAR" />
+    <result column="bw_acno" property="bwAcno" jdbcType="VARCHAR" />
+    <result column="bw_acbankname" property="bwAcbankname" jdbcType="VARCHAR" />
+    <result column="u_id" jdbcType="VARCHAR" property="uId" /><!-- 取自hx_account u_id字段 -->
+    
+    <result column="loan_no" property="loanNo" jdbcType="VARCHAR" />
+    <result column="p_id" property="pId" jdbcType="INTEGER" />
+    
+    <result column="name" property="name" jdbcType="VARCHAR" /><!-- 取自产品表 name字段 -->
+    
+    
+   
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <!--
+    @mbggenerated
+    -->
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <!--
+    @mbggenerated
+    -->
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <!--
+    @mbggenerated
+    -->
+   	p.*,
+	bwInfo.bw_amt,
+	bwInfo.mortgage_id,
+	acc.u_id,
+	bwr.bw_acbankname,
+	bid.p_id,
+	bid.loan_no,
+	product.name,
+	ifnull(acc.ac_name, ea.enterprise_name) bw_acname, 
+	ifnull(acc.ac_no, ea.bank_no) bw_acno
+	
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mrbt.lingmoney.model.HxPaymentBidBorrowUnionExample" >
+    SELECT
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    FROM
+		hx_payment p
+	LEFT JOIN hx_borrower_info bwInfo ON p.bw_id = bwInfo.id
+	LEFT JOIN hx_borrower bwr ON bwInfo.bw_id = bwr.id
+	LEFT JOIN hx_bidding bid ON bwInfo.bidding_id = bid.id
+	LEFT JOIN product product ON bid.p_id = product.id
+	LEFT JOIN hx_account acc ON acc.id=bwr.acc_id
+	LEFT JOIN enterprise_account ea on bwr.acc_id = ea.id
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    <!--
+    @mbggenerated
+    -->
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM
+		hx_payment p
+	LEFT JOIN hx_borrower_info bwInfo ON p.bw_id = bwInfo.id
+	LEFT JOIN hx_borrower bwr ON bwInfo.bw_id = bwr.id
+	LEFT JOIN hx_bidding bid ON bwInfo.bidding_id = bid.id
+	LEFT JOIN product product ON bid.p_id=product.id
+	LEFT JOIN hx_account acc ON acc.id=bwr.acc_id
+	LEFT JOIN enterprise_account ea on bwr.acc_id = ea.id
+    where p.id = #{p.id,jdbcType=VARCHAR}
+  </select>
+   <select id="countByExample" parameterType="com.mrbt.lingmoney.model.HxPaymentBidBorrowUnionExample" resultType="java.lang.Long">
+    <!--
+    @mbggenerated
+    -->
+    select count(*)  
+	FROM
+		hx_payment p
+	LEFT JOIN hx_borrower_info bwInfo ON p.bw_id = bwInfo.id
+	LEFT JOIN hx_borrower bwr ON bwInfo.bw_id = bwr.id
+	LEFT JOIN hx_bidding bid ON bwInfo.bidding_id = bid.id
+	LEFT JOIN product product ON bid.p_id=product.id
+	LEFT JOIN hx_account acc ON acc.id=bwr.acc_id
+	LEFT JOIN enterprise_account ea on bwr.acc_id = ea.id
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+</mapper>

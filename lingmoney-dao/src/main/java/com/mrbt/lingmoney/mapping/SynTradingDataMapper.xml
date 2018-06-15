@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.SynTradingDataMapper">
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.SynTradingData">
+    <!--
+    @mbggenerated
+    -->
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="u_id" jdbcType="VARCHAR" property="uId" />
+    <result column="p_id" jdbcType="INTEGER" property="pId" />
+    <result column="p_code" jdbcType="VARCHAR" property="pCode" />
+    <result column="pc_type" jdbcType="INTEGER" property="pcType" />
+    <result column="pc_id" jdbcType="INTEGER" property="pcId" />
+    <result column="buy_money" jdbcType="DECIMAL" property="buyMoney" />
+    <result column="financial_money" jdbcType="DECIMAL" property="financialMoney" />
+    <result column="buy_dt" jdbcType="TIMESTAMP" property="buyDt" />
+    <result column="value_dt" jdbcType="DATE" property="valueDt" />
+    <result column="w_value_dt" jdbcType="DATE" property="wValueDt" />
+    <result column="min_sell_dt" jdbcType="DATE" property="minSellDt" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="biz_code" jdbcType="VARCHAR" property="bizCode" />
+    <result column="sell_dt" jdbcType="TIMESTAMP" property="sellDt" />
+    <result column="sell_money" jdbcType="DECIMAL" property="sellMoney" />
+    <result column="out_biz_code" jdbcType="VARCHAR" property="outBizCode" />
+    <result column="interest" jdbcType="DECIMAL" property="interest" />
+    <result column="id_card" jdbcType="VARCHAR" property="idCard" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+    @mbggenerated
+    -->
+    id, u_id, p_id, p_code, pc_type, pc_id, buy_money, financial_money, buy_dt, value_dt, 
+    w_value_dt, min_sell_dt, status, biz_code, sell_dt, sell_money, out_biz_code, interest, 
+    id_card
+  </sql>
+  <select id="selectByExample" parameterType="com.mrbt.lingmoney.model.SynTradingDataExample" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from syn_trading_data
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0">
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.SynTradingDataExample">
+    <!--
+    @mbggenerated
+    -->
+    delete from syn_trading_data
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mrbt.lingmoney.model.SynTradingData">
+    <!--
+    @mbggenerated
+    -->
+    insert into syn_trading_data (id, u_id, p_id, 
+      p_code, pc_type, pc_id, 
+      buy_money, financial_money, buy_dt, 
+      value_dt, w_value_dt, min_sell_dt, 
+      status, biz_code, sell_dt, 
+      sell_money, out_biz_code, interest, 
+      id_card)
+    values (#{id,jdbcType=INTEGER}, #{uId,jdbcType=VARCHAR}, #{pId,jdbcType=INTEGER}, 
+      #{pCode,jdbcType=VARCHAR}, #{pcType,jdbcType=INTEGER}, #{pcId,jdbcType=INTEGER}, 
+      #{buyMoney,jdbcType=DECIMAL}, #{financialMoney,jdbcType=DECIMAL}, #{buyDt,jdbcType=TIMESTAMP}, 
+      #{valueDt,jdbcType=DATE}, #{wValueDt,jdbcType=DATE}, #{minSellDt,jdbcType=DATE}, 
+      #{status,jdbcType=INTEGER}, #{bizCode,jdbcType=VARCHAR}, #{sellDt,jdbcType=TIMESTAMP}, 
+      #{sellMoney,jdbcType=DECIMAL}, #{outBizCode,jdbcType=VARCHAR}, #{interest,jdbcType=DECIMAL}, 
+      #{idCard,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.SynTradingData">
+    <!--
+    @mbggenerated
+    -->
+    insert into syn_trading_data
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="pId != null">
+        p_id,
+      </if>
+      <if test="pCode != null">
+        p_code,
+      </if>
+      <if test="pcType != null">
+        pc_type,
+      </if>
+      <if test="pcId != null">
+        pc_id,
+      </if>
+      <if test="buyMoney != null">
+        buy_money,
+      </if>
+      <if test="financialMoney != null">
+        financial_money,
+      </if>
+      <if test="buyDt != null">
+        buy_dt,
+      </if>
+      <if test="valueDt != null">
+        value_dt,
+      </if>
+      <if test="wValueDt != null">
+        w_value_dt,
+      </if>
+      <if test="minSellDt != null">
+        min_sell_dt,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="bizCode != null">
+        biz_code,
+      </if>
+      <if test="sellDt != null">
+        sell_dt,
+      </if>
+      <if test="sellMoney != null">
+        sell_money,
+      </if>
+      <if test="outBizCode != null">
+        out_biz_code,
+      </if>
+      <if test="interest != null">
+        interest,
+      </if>
+      <if test="idCard != null">
+        id_card,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uId != null">
+        #{uId,jdbcType=VARCHAR},
+      </if>
+      <if test="pId != null">
+        #{pId,jdbcType=INTEGER},
+      </if>
+      <if test="pCode != null">
+        #{pCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pcType != null">
+        #{pcType,jdbcType=INTEGER},
+      </if>
+      <if test="pcId != null">
+        #{pcId,jdbcType=INTEGER},
+      </if>
+      <if test="buyMoney != null">
+        #{buyMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="financialMoney != null">
+        #{financialMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="buyDt != null">
+        #{buyDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="valueDt != null">
+        #{valueDt,jdbcType=DATE},
+      </if>
+      <if test="wValueDt != null">
+        #{wValueDt,jdbcType=DATE},
+      </if>
+      <if test="minSellDt != null">
+        #{minSellDt,jdbcType=DATE},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="bizCode != null">
+        #{bizCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sellDt != null">
+        #{sellDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sellMoney != null">
+        #{sellMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="outBizCode != null">
+        #{outBizCode,jdbcType=VARCHAR},
+      </if>
+      <if test="interest != null">
+        #{interest,jdbcType=DECIMAL},
+      </if>
+      <if test="idCard != null">
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.SynTradingDataExample" resultType="java.lang.Long">
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from syn_trading_data
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update syn_trading_data
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.uId != null">
+        u_id = #{record.uId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pId != null">
+        p_id = #{record.pId,jdbcType=INTEGER},
+      </if>
+      <if test="record.pCode != null">
+        p_code = #{record.pCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pcType != null">
+        pc_type = #{record.pcType,jdbcType=INTEGER},
+      </if>
+      <if test="record.pcId != null">
+        pc_id = #{record.pcId,jdbcType=INTEGER},
+      </if>
+      <if test="record.buyMoney != null">
+        buy_money = #{record.buyMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.financialMoney != null">
+        financial_money = #{record.financialMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.buyDt != null">
+        buy_dt = #{record.buyDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.valueDt != null">
+        value_dt = #{record.valueDt,jdbcType=DATE},
+      </if>
+      <if test="record.wValueDt != null">
+        w_value_dt = #{record.wValueDt,jdbcType=DATE},
+      </if>
+      <if test="record.minSellDt != null">
+        min_sell_dt = #{record.minSellDt,jdbcType=DATE},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.bizCode != null">
+        biz_code = #{record.bizCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellDt != null">
+        sell_dt = #{record.sellDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sellMoney != null">
+        sell_money = #{record.sellMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.outBizCode != null">
+        out_biz_code = #{record.outBizCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.interest != null">
+        interest = #{record.interest,jdbcType=DECIMAL},
+      </if>
+      <if test="record.idCard != null">
+        id_card = #{record.idCard,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update syn_trading_data
+    set id = #{record.id,jdbcType=INTEGER},
+      u_id = #{record.uId,jdbcType=VARCHAR},
+      p_id = #{record.pId,jdbcType=INTEGER},
+      p_code = #{record.pCode,jdbcType=VARCHAR},
+      pc_type = #{record.pcType,jdbcType=INTEGER},
+      pc_id = #{record.pcId,jdbcType=INTEGER},
+      buy_money = #{record.buyMoney,jdbcType=DECIMAL},
+      financial_money = #{record.financialMoney,jdbcType=DECIMAL},
+      buy_dt = #{record.buyDt,jdbcType=TIMESTAMP},
+      value_dt = #{record.valueDt,jdbcType=DATE},
+      w_value_dt = #{record.wValueDt,jdbcType=DATE},
+      min_sell_dt = #{record.minSellDt,jdbcType=DATE},
+      status = #{record.status,jdbcType=INTEGER},
+      biz_code = #{record.bizCode,jdbcType=VARCHAR},
+      sell_dt = #{record.sellDt,jdbcType=TIMESTAMP},
+      sell_money = #{record.sellMoney,jdbcType=DECIMAL},
+      out_biz_code = #{record.outBizCode,jdbcType=VARCHAR},
+      interest = #{record.interest,jdbcType=DECIMAL},
+      id_card = #{record.idCard,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

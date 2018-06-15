@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.WorldCupMatchInfoMapper">
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.WorldCupMatchInfo">
+    <!--
+    @mbggenerated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="match_date" jdbcType="DATE" property="matchDate" />
+    <result column="match_time" jdbcType="TIMESTAMP" property="matchTime" />
+    <result column="group_name" jdbcType="VARCHAR" property="groupName" />
+    <result column="left_team" jdbcType="VARCHAR" property="leftTeam" />
+    <result column="right_team" jdbcType="VARCHAR" property="rightTeam" />
+    <result column="left_score" jdbcType="INTEGER" property="leftScore" />
+    <result column="right_score" jdbcType="INTEGER" property="rightScore" />
+    <result column="left_image" jdbcType="VARCHAR" property="leftImage" />
+    <result column="right_image" jdbcType="VARCHAR" property="rightImage" />
+    <result column="game_result" jdbcType="INTEGER" property="gameResult" />
+    <result column="guess_status" jdbcType="INTEGER" property="guessStatus" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+    @mbggenerated
+    -->
+    id, match_date, match_time, group_name, left_team, right_team, left_score, right_score, 
+    left_image, right_image, game_result, guess_status
+  </sql>
+  <select id="selectByExample" parameterType="com.mrbt.lingmoney.model.WorldCupMatchInfoExample" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from world_cup_match_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0">
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from world_cup_match_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--
+    @mbggenerated
+    -->
+    delete from world_cup_match_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.WorldCupMatchInfoExample">
+    <!--
+    @mbggenerated
+    -->
+    delete from world_cup_match_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mrbt.lingmoney.model.WorldCupMatchInfo">
+    <!--
+    @mbggenerated
+    -->
+    insert into world_cup_match_info (id, match_date, match_time, 
+      group_name, left_team, right_team, 
+      left_score, right_score, left_image, 
+      right_image, game_result, guess_status
+      )
+    values (#{id,jdbcType=INTEGER}, #{matchDate,jdbcType=DATE}, #{matchTime,jdbcType=TIMESTAMP}, 
+      #{groupName,jdbcType=VARCHAR}, #{leftTeam,jdbcType=VARCHAR}, #{rightTeam,jdbcType=VARCHAR}, 
+      #{leftScore,jdbcType=INTEGER}, #{rightScore,jdbcType=INTEGER}, #{leftImage,jdbcType=VARCHAR}, 
+      #{rightImage,jdbcType=VARCHAR}, #{gameResult,jdbcType=INTEGER}, #{guessStatus,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.WorldCupMatchInfo">
+    <!--
+    @mbggenerated
+    -->
+    insert into world_cup_match_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="matchDate != null">
+        match_date,
+      </if>
+      <if test="matchTime != null">
+        match_time,
+      </if>
+      <if test="groupName != null">
+        group_name,
+      </if>
+      <if test="leftTeam != null">
+        left_team,
+      </if>
+      <if test="rightTeam != null">
+        right_team,
+      </if>
+      <if test="leftScore != null">
+        left_score,
+      </if>
+      <if test="rightScore != null">
+        right_score,
+      </if>
+      <if test="leftImage != null">
+        left_image,
+      </if>
+      <if test="rightImage != null">
+        right_image,
+      </if>
+      <if test="gameResult != null">
+        game_result,
+      </if>
+      <if test="guessStatus != null">
+        guess_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="matchDate != null">
+        #{matchDate,jdbcType=DATE},
+      </if>
+      <if test="matchTime != null">
+        #{matchTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="groupName != null">
+        #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="leftTeam != null">
+        #{leftTeam,jdbcType=VARCHAR},
+      </if>
+      <if test="rightTeam != null">
+        #{rightTeam,jdbcType=VARCHAR},
+      </if>
+      <if test="leftScore != null">
+        #{leftScore,jdbcType=INTEGER},
+      </if>
+      <if test="rightScore != null">
+        #{rightScore,jdbcType=INTEGER},
+      </if>
+      <if test="leftImage != null">
+        #{leftImage,jdbcType=VARCHAR},
+      </if>
+      <if test="rightImage != null">
+        #{rightImage,jdbcType=VARCHAR},
+      </if>
+      <if test="gameResult != null">
+        #{gameResult,jdbcType=INTEGER},
+      </if>
+      <if test="guessStatus != null">
+        #{guessStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.WorldCupMatchInfoExample" resultType="java.lang.Long">
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from world_cup_match_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update world_cup_match_info
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.matchDate != null">
+        match_date = #{record.matchDate,jdbcType=DATE},
+      </if>
+      <if test="record.matchTime != null">
+        match_time = #{record.matchTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.groupName != null">
+        group_name = #{record.groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.leftTeam != null">
+        left_team = #{record.leftTeam,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rightTeam != null">
+        right_team = #{record.rightTeam,jdbcType=VARCHAR},
+      </if>
+      <if test="record.leftScore != null">
+        left_score = #{record.leftScore,jdbcType=INTEGER},
+      </if>
+      <if test="record.rightScore != null">
+        right_score = #{record.rightScore,jdbcType=INTEGER},
+      </if>
+      <if test="record.leftImage != null">
+        left_image = #{record.leftImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rightImage != null">
+        right_image = #{record.rightImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gameResult != null">
+        game_result = #{record.gameResult,jdbcType=INTEGER},
+      </if>
+      <if test="record.guessStatus != null">
+        guess_status = #{record.guessStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update world_cup_match_info
+    set id = #{record.id,jdbcType=INTEGER},
+      match_date = #{record.matchDate,jdbcType=DATE},
+      match_time = #{record.matchTime,jdbcType=TIMESTAMP},
+      group_name = #{record.groupName,jdbcType=VARCHAR},
+      left_team = #{record.leftTeam,jdbcType=VARCHAR},
+      right_team = #{record.rightTeam,jdbcType=VARCHAR},
+      left_score = #{record.leftScore,jdbcType=INTEGER},
+      right_score = #{record.rightScore,jdbcType=INTEGER},
+      left_image = #{record.leftImage,jdbcType=VARCHAR},
+      right_image = #{record.rightImage,jdbcType=VARCHAR},
+      game_result = #{record.gameResult,jdbcType=INTEGER},
+      guess_status = #{record.guessStatus,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mrbt.lingmoney.model.WorldCupMatchInfo">
+    <!--
+    @mbggenerated
+    -->
+    update world_cup_match_info
+    <set>
+      <if test="matchDate != null">
+        match_date = #{matchDate,jdbcType=DATE},
+      </if>
+      <if test="matchTime != null">
+        match_time = #{matchTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="groupName != null">
+        group_name = #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="leftTeam != null">
+        left_team = #{leftTeam,jdbcType=VARCHAR},
+      </if>
+      <if test="rightTeam != null">
+        right_team = #{rightTeam,jdbcType=VARCHAR},
+      </if>
+      <if test="leftScore != null">
+        left_score = #{leftScore,jdbcType=INTEGER},
+      </if>
+      <if test="rightScore != null">
+        right_score = #{rightScore,jdbcType=INTEGER},
+      </if>
+      <if test="leftImage != null">
+        left_image = #{leftImage,jdbcType=VARCHAR},
+      </if>
+      <if test="rightImage != null">
+        right_image = #{rightImage,jdbcType=VARCHAR},
+      </if>
+      <if test="gameResult != null">
+        game_result = #{gameResult,jdbcType=INTEGER},
+      </if>
+      <if test="guessStatus != null">
+        guess_status = #{guessStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mrbt.lingmoney.model.WorldCupMatchInfo">
+    <!--
+    @mbggenerated
+    -->
+    update world_cup_match_info
+    set match_date = #{matchDate,jdbcType=DATE},
+      match_time = #{matchTime,jdbcType=TIMESTAMP},
+      group_name = #{groupName,jdbcType=VARCHAR},
+      left_team = #{leftTeam,jdbcType=VARCHAR},
+      right_team = #{rightTeam,jdbcType=VARCHAR},
+      left_score = #{leftScore,jdbcType=INTEGER},
+      right_score = #{rightScore,jdbcType=INTEGER},
+      left_image = #{leftImage,jdbcType=VARCHAR},
+      right_image = #{rightImage,jdbcType=VARCHAR},
+      game_result = #{gameResult,jdbcType=INTEGER},
+      guess_status = #{guessStatus,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

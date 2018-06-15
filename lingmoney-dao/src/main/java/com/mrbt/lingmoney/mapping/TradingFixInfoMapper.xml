@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.TradingFixInfoMapper">
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.TradingFixInfo">
+    <!--
+    @mbggenerated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="t_id" jdbcType="INTEGER" property="tId" />
+    <result column="interest_rate" jdbcType="DECIMAL" property="interestRate" />
+    <result column="interest" jdbcType="DECIMAL" property="interest" />
+    <result column="expiry_dt" jdbcType="DATE" property="expiryDt" />
+    <result column="f_time" jdbcType="INTEGER" property="fTime" />
+    <result column="w_time" jdbcType="INTEGER" property="wTime" />
+    <result column="biz_code" jdbcType="VARCHAR" property="bizCode" />
+    <result column="financial_money" jdbcType="DECIMAL" property="financialMoney" />
+    <result column="buy_dt" jdbcType="TIMESTAMP" property="buyDt" />
+    <result column="value_dt" jdbcType="DATE" property="valueDt" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="sell_submit" jdbcType="INTEGER" property="sellSubmit" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+    @mbggenerated
+    -->
+    id, t_id, interest_rate, interest, expiry_dt, f_time, w_time, biz_code, financial_money, 
+    buy_dt, value_dt, status, sell_submit
+  </sql>
+  <select id="selectByExample" parameterType="com.mrbt.lingmoney.model.TradingFixInfoExample" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from trading_fix_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0">
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from trading_fix_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--
+    @mbggenerated
+    -->
+    delete from trading_fix_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.TradingFixInfoExample">
+    <!--
+    @mbggenerated
+    -->
+    delete from trading_fix_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mrbt.lingmoney.model.TradingFixInfo">
+    <!--
+    @mbggenerated
+    -->
+    insert into trading_fix_info (id, t_id, interest_rate, 
+      interest, expiry_dt, f_time, 
+      w_time, biz_code, financial_money, 
+      buy_dt, value_dt, status, 
+      sell_submit)
+    values (#{id,jdbcType=INTEGER}, #{tId,jdbcType=INTEGER}, #{interestRate,jdbcType=DECIMAL}, 
+      #{interest,jdbcType=DECIMAL}, #{expiryDt,jdbcType=DATE}, #{fTime,jdbcType=INTEGER}, 
+      #{wTime,jdbcType=INTEGER}, #{bizCode,jdbcType=VARCHAR}, #{financialMoney,jdbcType=DECIMAL}, 
+      #{buyDt,jdbcType=TIMESTAMP}, #{valueDt,jdbcType=DATE}, #{status,jdbcType=INTEGER}, 
+      #{sellSubmit,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.TradingFixInfo">
+    <!--
+    @mbggenerated
+    -->
+    insert into trading_fix_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="tId != null">
+        t_id,
+      </if>
+      <if test="interestRate != null">
+        interest_rate,
+      </if>
+      <if test="interest != null">
+        interest,
+      </if>
+      <if test="expiryDt != null">
+        expiry_dt,
+      </if>
+      <if test="fTime != null">
+        f_time,
+      </if>
+      <if test="wTime != null">
+        w_time,
+      </if>
+      <if test="bizCode != null">
+        biz_code,
+      </if>
+      <if test="financialMoney != null">
+        financial_money,
+      </if>
+      <if test="buyDt != null">
+        buy_dt,
+      </if>
+      <if test="valueDt != null">
+        value_dt,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="sellSubmit != null">
+        sell_submit,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="tId != null">
+        #{tId,jdbcType=INTEGER},
+      </if>
+      <if test="interestRate != null">
+        #{interestRate,jdbcType=DECIMAL},
+      </if>
+      <if test="interest != null">
+        #{interest,jdbcType=DECIMAL},
+      </if>
+      <if test="expiryDt != null">
+        #{expiryDt,jdbcType=DATE},
+      </if>
+      <if test="fTime != null">
+        #{fTime,jdbcType=INTEGER},
+      </if>
+      <if test="wTime != null">
+        #{wTime,jdbcType=INTEGER},
+      </if>
+      <if test="bizCode != null">
+        #{bizCode,jdbcType=VARCHAR},
+      </if>
+      <if test="financialMoney != null">
+        #{financialMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="buyDt != null">
+        #{buyDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="valueDt != null">
+        #{valueDt,jdbcType=DATE},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="sellSubmit != null">
+        #{sellSubmit,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.TradingFixInfoExample" resultType="java.lang.Long">
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from trading_fix_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update trading_fix_info
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.tId != null">
+        t_id = #{record.tId,jdbcType=INTEGER},
+      </if>
+      <if test="record.interestRate != null">
+        interest_rate = #{record.interestRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.interest != null">
+        interest = #{record.interest,jdbcType=DECIMAL},
+      </if>
+      <if test="record.expiryDt != null">
+        expiry_dt = #{record.expiryDt,jdbcType=DATE},
+      </if>
+      <if test="record.fTime != null">
+        f_time = #{record.fTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.wTime != null">
+        w_time = #{record.wTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.bizCode != null">
+        biz_code = #{record.bizCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.financialMoney != null">
+        financial_money = #{record.financialMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.buyDt != null">
+        buy_dt = #{record.buyDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.valueDt != null">
+        value_dt = #{record.valueDt,jdbcType=DATE},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.sellSubmit != null">
+        sell_submit = #{record.sellSubmit,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update trading_fix_info
+    set id = #{record.id,jdbcType=INTEGER},
+      t_id = #{record.tId,jdbcType=INTEGER},
+      interest_rate = #{record.interestRate,jdbcType=DECIMAL},
+      interest = #{record.interest,jdbcType=DECIMAL},
+      expiry_dt = #{record.expiryDt,jdbcType=DATE},
+      f_time = #{record.fTime,jdbcType=INTEGER},
+      w_time = #{record.wTime,jdbcType=INTEGER},
+      biz_code = #{record.bizCode,jdbcType=VARCHAR},
+      financial_money = #{record.financialMoney,jdbcType=DECIMAL},
+      buy_dt = #{record.buyDt,jdbcType=TIMESTAMP},
+      value_dt = #{record.valueDt,jdbcType=DATE},
+      status = #{record.status,jdbcType=INTEGER},
+      sell_submit = #{record.sellSubmit,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mrbt.lingmoney.model.TradingFixInfo">
+    <!--
+    @mbggenerated
+    -->
+    update trading_fix_info
+    <set>
+      <if test="tId != null">
+        t_id = #{tId,jdbcType=INTEGER},
+      </if>
+      <if test="interestRate != null">
+        interest_rate = #{interestRate,jdbcType=DECIMAL},
+      </if>
+      <if test="interest != null">
+        interest = #{interest,jdbcType=DECIMAL},
+      </if>
+      <if test="expiryDt != null">
+        expiry_dt = #{expiryDt,jdbcType=DATE},
+      </if>
+      <if test="fTime != null">
+        f_time = #{fTime,jdbcType=INTEGER},
+      </if>
+      <if test="wTime != null">
+        w_time = #{wTime,jdbcType=INTEGER},
+      </if>
+      <if test="bizCode != null">
+        biz_code = #{bizCode,jdbcType=VARCHAR},
+      </if>
+      <if test="financialMoney != null">
+        financial_money = #{financialMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="buyDt != null">
+        buy_dt = #{buyDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="valueDt != null">
+        value_dt = #{valueDt,jdbcType=DATE},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="sellSubmit != null">
+        sell_submit = #{sellSubmit,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mrbt.lingmoney.model.TradingFixInfo">
+    <!--
+    @mbggenerated
+    -->
+    update trading_fix_info
+    set t_id = #{tId,jdbcType=INTEGER},
+      interest_rate = #{interestRate,jdbcType=DECIMAL},
+      interest = #{interest,jdbcType=DECIMAL},
+      expiry_dt = #{expiryDt,jdbcType=DATE},
+      f_time = #{fTime,jdbcType=INTEGER},
+      w_time = #{wTime,jdbcType=INTEGER},
+      biz_code = #{bizCode,jdbcType=VARCHAR},
+      financial_money = #{financialMoney,jdbcType=DECIMAL},
+      buy_dt = #{buyDt,jdbcType=TIMESTAMP},
+      value_dt = #{valueDt,jdbcType=DATE},
+      status = #{status,jdbcType=INTEGER},
+      sell_submit = #{sellSubmit,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  <!-- custom setting -->
+  <insert id="insertSelectiveReturnId" parameterType="com.mrbt.lingmoney.model.TradingFixInfo" useGeneratedKeys="true" keyProperty="id">
+    <!--
+    @mbggenerated
+    -->
+    insert into trading_fix_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="tId != null">
+        t_id,
+      </if>
+      <if test="interestRate != null">
+        interest_rate,
+      </if>
+      <if test="interest != null">
+        interest,
+      </if>
+      <if test="expiryDt != null">
+        expiry_dt,
+      </if>
+      <if test="fTime != null">
+        f_time,
+      </if>
+      <if test="wTime != null">
+        w_time,
+      </if>
+      <if test="bizCode != null">
+        biz_code,
+      </if>
+      <if test="financialMoney != null">
+        financial_money,
+      </if>
+      <if test="buyDt != null">
+        buy_dt,
+      </if>
+      <if test="valueDt != null">
+        value_dt,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="sellSubmit != null">
+        sell_submit,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="tId != null">
+        #{tId,jdbcType=INTEGER},
+      </if>
+      <if test="interestRate != null">
+        #{interestRate,jdbcType=DECIMAL},
+      </if>
+      <if test="interest != null">
+        #{interest,jdbcType=DECIMAL},
+      </if>
+      <if test="expiryDt != null">
+        #{expiryDt,jdbcType=DATE},
+      </if>
+      <if test="fTime != null">
+        #{fTime,jdbcType=INTEGER},
+      </if>
+      <if test="wTime != null">
+        #{wTime,jdbcType=INTEGER},
+      </if>
+      <if test="bizCode != null">
+        #{bizCode,jdbcType=VARCHAR},
+      </if>
+      <if test="financialMoney != null">
+        #{financialMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="buyDt != null">
+        #{buyDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="valueDt != null">
+        #{valueDt,jdbcType=DATE},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="sellSubmit != null">
+        #{sellSubmit,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  
+  <!-- custom setting -->
+  <update id="updateStatusAfterPayment">
+  	update 
+  		trading_fix_info info 
+  	set 
+  		info.status=#{status,jdbcType=INTEGER} 
+  	where 
+  		info.id=#{id,jdbcType=INTEGER} and (info.status=0 or info.status = 12)
+  </update>
+  
+  <select id="selectByBizCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List" />
+  	from trading_fix_info where  biz_code = #{0,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectFixInfoByTid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List" /> from trading_fix_info where t_id = #{tid,jdbcType=INTEGER} limit 0,1
+  </select>
+</mapper>

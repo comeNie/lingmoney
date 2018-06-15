@@ -1,0 +1,5 @@
+[
+	{"statusId":"0","statusName":"待审批"},
+	{"statusId":"1","statusName":"审批退回"},
+	{"statusId":"2","statusName":"审批同意"}
+]

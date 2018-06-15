@@ -1,0 +1,52 @@
+@CHARSET "UTF-8";
+
+.ymcalendar {
+	border:1px solid #ccc;
+	font-size:13px;
+	cursor:hand;
+}
+.ymcalendar-Div {
+	position:absolute;
+	border:1px solid #ddd;
+	background:#fff;
+	padding:1px;
+	overflow:hidden;
+	width:130px;
+}
+.ymcalendar-selected {
+	background:#ea5513;
+	width:30px;
+	height:22px;
+	font-size:13px;
+	text-align:center;
+	cursor:default;
+	color:#fff;
+	
+}
+.ymcalendar-selected-over {
+	background:#ea5513s;
+	width:30px;
+	height:22px;
+	font-size:13px;
+	text-align:center;
+	cursor:default;
+	color:#fff;
+}
+.ymcalendar-text {
+	background:#fff;
+	width:30px;
+	height:22px;
+	font-size:13px;
+	text-align:center;
+	cursor:default;
+	color:#434343;
+}
+.ymcalendar-text-over{
+	background:#ea5513;
+	width:30px;
+	height:22px;
+	font-size:13px;
+	text-align:center;
+	cursor:default;
+	color:#fff;
+}

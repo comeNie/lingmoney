@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.TradingFloatInfoMapper">
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.TradingFloatInfo">
+    <!--
+    @mbggenerated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="t_id" jdbcType="INTEGER" property="tId" />
+    <result column="in_net_value" jdbcType="DECIMAL" property="inNetValue" />
+    <result column="in_net_dt" jdbcType="DATE" property="inNetDt" />
+    <result column="num" jdbcType="DECIMAL" property="num" />
+    <result column="out_net_dt" jdbcType="DATE" property="outNetDt" />
+    <result column="out_net_value" jdbcType="DECIMAL" property="outNetValue" />
+    <result column="profit" jdbcType="DECIMAL" property="profit" />
+    <result column="cost_value" jdbcType="DECIMAL" property="costValue" />
+    <result column="expiry_dt" jdbcType="DATE" property="expiryDt" />
+    <result column="biz_code" jdbcType="VARCHAR" property="bizCode" />
+    <result column="financial_money" jdbcType="DECIMAL" property="financialMoney" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="value_dt" jdbcType="DATE" property="valueDt" />
+    <result column="sell_submit" jdbcType="INTEGER" property="sellSubmit" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+    @mbggenerated
+    -->
+    id, t_id, in_net_value, in_net_dt, num, out_net_dt, out_net_value, profit, cost_value, 
+    expiry_dt, biz_code, financial_money, status, value_dt, sell_submit
+  </sql>
+  <select id="selectByExample" parameterType="com.mrbt.lingmoney.model.TradingFloatInfoExample" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from trading_float_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0">
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from trading_float_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--
+    @mbggenerated
+    -->
+    delete from trading_float_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.TradingFloatInfoExample">
+    <!--
+    @mbggenerated
+    -->
+    delete from trading_float_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mrbt.lingmoney.model.TradingFloatInfo">
+    <!--
+    @mbggenerated
+    -->
+    insert into trading_float_info (id, t_id, in_net_value, 
+      in_net_dt, num, out_net_dt, out_net_value, 
+      profit, cost_value, expiry_dt, 
+      biz_code, financial_money, status, 
+      value_dt, sell_submit)
+    values (#{id,jdbcType=INTEGER}, #{tId,jdbcType=INTEGER}, #{inNetValue,jdbcType=DECIMAL}, 
+      #{inNetDt,jdbcType=DATE}, #{num,jdbcType=DECIMAL}, #{outNetDt,jdbcType=DATE}, #{outNetValue,jdbcType=DECIMAL}, 
+      #{profit,jdbcType=DECIMAL}, #{costValue,jdbcType=DECIMAL}, #{expiryDt,jdbcType=DATE}, 
+      #{bizCode,jdbcType=VARCHAR}, #{financialMoney,jdbcType=DECIMAL}, #{status,jdbcType=INTEGER}, 
+      #{valueDt,jdbcType=DATE}, #{sellSubmit,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.TradingFloatInfo">
+    <!--
+    @mbggenerated
+    -->
+    insert into trading_float_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="tId != null">
+        t_id,
+      </if>
+      <if test="inNetValue != null">
+        in_net_value,
+      </if>
+      <if test="inNetDt != null">
+        in_net_dt,
+      </if>
+      <if test="num != null">
+        num,
+      </if>
+      <if test="outNetDt != null">
+        out_net_dt,
+      </if>
+      <if test="outNetValue != null">
+        out_net_value,
+      </if>
+      <if test="profit != null">
+        profit,
+      </if>
+      <if test="costValue != null">
+        cost_value,
+      </if>
+      <if test="expiryDt != null">
+        expiry_dt,
+      </if>
+      <if test="bizCode != null">
+        biz_code,
+      </if>
+      <if test="financialMoney != null">
+        financial_money,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="valueDt != null">
+        value_dt,
+      </if>
+      <if test="sellSubmit != null">
+        sell_submit,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="tId != null">
+        #{tId,jdbcType=INTEGER},
+      </if>
+      <if test="inNetValue != null">
+        #{inNetValue,jdbcType=DECIMAL},
+      </if>
+      <if test="inNetDt != null">
+        #{inNetDt,jdbcType=DATE},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=DECIMAL},
+      </if>
+      <if test="outNetDt != null">
+        #{outNetDt,jdbcType=DATE},
+      </if>
+      <if test="outNetValue != null">
+        #{outNetValue,jdbcType=DECIMAL},
+      </if>
+      <if test="profit != null">
+        #{profit,jdbcType=DECIMAL},
+      </if>
+      <if test="costValue != null">
+        #{costValue,jdbcType=DECIMAL},
+      </if>
+      <if test="expiryDt != null">
+        #{expiryDt,jdbcType=DATE},
+      </if>
+      <if test="bizCode != null">
+        #{bizCode,jdbcType=VARCHAR},
+      </if>
+      <if test="financialMoney != null">
+        #{financialMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="valueDt != null">
+        #{valueDt,jdbcType=DATE},
+      </if>
+      <if test="sellSubmit != null">
+        #{sellSubmit,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.TradingFloatInfoExample" resultType="java.lang.Long">
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from trading_float_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update trading_float_info
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.tId != null">
+        t_id = #{record.tId,jdbcType=INTEGER},
+      </if>
+      <if test="record.inNetValue != null">
+        in_net_value = #{record.inNetValue,jdbcType=DECIMAL},
+      </if>
+      <if test="record.inNetDt != null">
+        in_net_dt = #{record.inNetDt,jdbcType=DATE},
+      </if>
+      <if test="record.num != null">
+        num = #{record.num,jdbcType=DECIMAL},
+      </if>
+      <if test="record.outNetDt != null">
+        out_net_dt = #{record.outNetDt,jdbcType=DATE},
+      </if>
+      <if test="record.outNetValue != null">
+        out_net_value = #{record.outNetValue,jdbcType=DECIMAL},
+      </if>
+      <if test="record.profit != null">
+        profit = #{record.profit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.costValue != null">
+        cost_value = #{record.costValue,jdbcType=DECIMAL},
+      </if>
+      <if test="record.expiryDt != null">
+        expiry_dt = #{record.expiryDt,jdbcType=DATE},
+      </if>
+      <if test="record.bizCode != null">
+        biz_code = #{record.bizCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.financialMoney != null">
+        financial_money = #{record.financialMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.valueDt != null">
+        value_dt = #{record.valueDt,jdbcType=DATE},
+      </if>
+      <if test="record.sellSubmit != null">
+        sell_submit = #{record.sellSubmit,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update trading_float_info
+    set id = #{record.id,jdbcType=INTEGER},
+      t_id = #{record.tId,jdbcType=INTEGER},
+      in_net_value = #{record.inNetValue,jdbcType=DECIMAL},
+      in_net_dt = #{record.inNetDt,jdbcType=DATE},
+      num = #{record.num,jdbcType=DECIMAL},
+      out_net_dt = #{record.outNetDt,jdbcType=DATE},
+      out_net_value = #{record.outNetValue,jdbcType=DECIMAL},
+      profit = #{record.profit,jdbcType=DECIMAL},
+      cost_value = #{record.costValue,jdbcType=DECIMAL},
+      expiry_dt = #{record.expiryDt,jdbcType=DATE},
+      biz_code = #{record.bizCode,jdbcType=VARCHAR},
+      financial_money = #{record.financialMoney,jdbcType=DECIMAL},
+      status = #{record.status,jdbcType=INTEGER},
+      value_dt = #{record.valueDt,jdbcType=DATE},
+      sell_submit = #{record.sellSubmit,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mrbt.lingmoney.model.TradingFloatInfo">
+    <!--
+    @mbggenerated
+    -->
+    update trading_float_info
+    <set>
+      <if test="tId != null">
+        t_id = #{tId,jdbcType=INTEGER},
+      </if>
+      <if test="inNetValue != null">
+        in_net_value = #{inNetValue,jdbcType=DECIMAL},
+      </if>
+      <if test="inNetDt != null">
+        in_net_dt = #{inNetDt,jdbcType=DATE},
+      </if>
+      <if test="num != null">
+        num = #{num,jdbcType=DECIMAL},
+      </if>
+      <if test="outNetDt != null">
+        out_net_dt = #{outNetDt,jdbcType=DATE},
+      </if>
+      <if test="outNetValue != null">
+        out_net_value = #{outNetValue,jdbcType=DECIMAL},
+      </if>
+      <if test="profit != null">
+        profit = #{profit,jdbcType=DECIMAL},
+      </if>
+      <if test="costValue != null">
+        cost_value = #{costValue,jdbcType=DECIMAL},
+      </if>
+      <if test="expiryDt != null">
+        expiry_dt = #{expiryDt,jdbcType=DATE},
+      </if>
+      <if test="bizCode != null">
+        biz_code = #{bizCode,jdbcType=VARCHAR},
+      </if>
+      <if test="financialMoney != null">
+        financial_money = #{financialMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="valueDt != null">
+        value_dt = #{valueDt,jdbcType=DATE},
+      </if>
+      <if test="sellSubmit != null">
+        sell_submit = #{sellSubmit,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mrbt.lingmoney.model.TradingFloatInfo">
+    <!--
+    @mbggenerated
+    -->
+    update trading_float_info
+    set t_id = #{tId,jdbcType=INTEGER},
+      in_net_value = #{inNetValue,jdbcType=DECIMAL},
+      in_net_dt = #{inNetDt,jdbcType=DATE},
+      num = #{num,jdbcType=DECIMAL},
+      out_net_dt = #{outNetDt,jdbcType=DATE},
+      out_net_value = #{outNetValue,jdbcType=DECIMAL},
+      profit = #{profit,jdbcType=DECIMAL},
+      cost_value = #{costValue,jdbcType=DECIMAL},
+      expiry_dt = #{expiryDt,jdbcType=DATE},
+      biz_code = #{bizCode,jdbcType=VARCHAR},
+      financial_money = #{financialMoney,jdbcType=DECIMAL},
+      status = #{status,jdbcType=INTEGER},
+      value_dt = #{valueDt,jdbcType=DATE},
+      sell_submit = #{sellSubmit,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  <!-- custom setting -->
+  <select id="selectTradingFloatInfoByTID" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from trading_float_info
+    where 
+    	t_id = #{0,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectSUMMoney" resultType="java.lang.Double" parameterType="java.util.Map">
+	SELECT 
+		sum( ({#inNetValue}-in_net_value)* num) as money 
+	from
+		trading_float_info 
+	where 
+		in_net_dt!=NULL and status=1 and t_id={#tId}
+  </select>
+  
+  <select id="getFolatFeesRateByTid" resultType="java.math.BigDecimal" parameterType="java.lang.Integer">
+	select
+		sum(cost_value)
+	from 
+		trading_float_info
+	where 
+		t_id = #{tId,jdbcType=INTEGER}
+  </select>
+</mapper>

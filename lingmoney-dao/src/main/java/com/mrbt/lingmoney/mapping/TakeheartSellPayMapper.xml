@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.TakeheartSellPayMapper">
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.TakeheartSellPay">
+    <!--
+    @mbggenerated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="u_id" jdbcType="VARCHAR" property="uId" />
+    <result column="p_id" jdbcType="INTEGER" property="pId" />
+    <result column="p_code" jdbcType="VARCHAR" property="pCode" />
+    <result column="t_id" jdbcType="INTEGER" property="tId" />
+    <result column="sell_money" jdbcType="DECIMAL" property="sellMoney" />
+    <result column="plat_money" jdbcType="DECIMAL" property="platMoney" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="redeem_type" jdbcType="INTEGER" property="redeemType" />
+    <result column="financ_user" jdbcType="VARCHAR" property="financUser" />
+    <result column="operate_time" jdbcType="TIMESTAMP" property="operateTime" />
+    <result column="tf_id" jdbcType="INTEGER" property="tfId" />
+    <result column="interest" jdbcType="DECIMAL" property="interest" />
+    <result column="batch" jdbcType="VARCHAR" property="batch" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+    @mbggenerated
+    -->
+    id, u_id, p_id, p_code, t_id, sell_money, plat_money, state, redeem_type, financ_user, 
+    operate_time, tf_id, interest, batch
+  </sql>
+  <select id="selectByExample" parameterType="com.mrbt.lingmoney.model.TakeheartSellPayExample" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from takeheart_sell_pay
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0">
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from takeheart_sell_pay
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--
+    @mbggenerated
+    -->
+    delete from takeheart_sell_pay
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.TakeheartSellPayExample">
+    <!--
+    @mbggenerated
+    -->
+    delete from takeheart_sell_pay
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mrbt.lingmoney.model.TakeheartSellPay">
+    <!--
+    @mbggenerated
+    -->
+    insert into takeheart_sell_pay (id, u_id, p_id, 
+      p_code, t_id, sell_money, 
+      plat_money, state, redeem_type, 
+      financ_user, operate_time, tf_id, 
+      interest, batch)
+    values (#{id,jdbcType=INTEGER}, #{uId,jdbcType=VARCHAR}, #{pId,jdbcType=INTEGER}, 
+      #{pCode,jdbcType=VARCHAR}, #{tId,jdbcType=INTEGER}, #{sellMoney,jdbcType=DECIMAL}, 
+      #{platMoney,jdbcType=DECIMAL}, #{state,jdbcType=INTEGER}, #{redeemType,jdbcType=INTEGER}, 
+      #{financUser,jdbcType=VARCHAR}, #{operateTime,jdbcType=TIMESTAMP}, #{tfId,jdbcType=INTEGER}, 
+      #{interest,jdbcType=DECIMAL}, #{batch,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.TakeheartSellPay">
+    <!--
+    @mbggenerated
+    -->
+    insert into takeheart_sell_pay
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="pId != null">
+        p_id,
+      </if>
+      <if test="pCode != null">
+        p_code,
+      </if>
+      <if test="tId != null">
+        t_id,
+      </if>
+      <if test="sellMoney != null">
+        sell_money,
+      </if>
+      <if test="platMoney != null">
+        plat_money,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="redeemType != null">
+        redeem_type,
+      </if>
+      <if test="financUser != null">
+        financ_user,
+      </if>
+      <if test="operateTime != null">
+        operate_time,
+      </if>
+      <if test="tfId != null">
+        tf_id,
+      </if>
+      <if test="interest != null">
+        interest,
+      </if>
+      <if test="batch != null">
+        batch,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uId != null">
+        #{uId,jdbcType=VARCHAR},
+      </if>
+      <if test="pId != null">
+        #{pId,jdbcType=INTEGER},
+      </if>
+      <if test="pCode != null">
+        #{pCode,jdbcType=VARCHAR},
+      </if>
+      <if test="tId != null">
+        #{tId,jdbcType=INTEGER},
+      </if>
+      <if test="sellMoney != null">
+        #{sellMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="platMoney != null">
+        #{platMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="redeemType != null">
+        #{redeemType,jdbcType=INTEGER},
+      </if>
+      <if test="financUser != null">
+        #{financUser,jdbcType=VARCHAR},
+      </if>
+      <if test="operateTime != null">
+        #{operateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tfId != null">
+        #{tfId,jdbcType=INTEGER},
+      </if>
+      <if test="interest != null">
+        #{interest,jdbcType=DECIMAL},
+      </if>
+      <if test="batch != null">
+        #{batch,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.TakeheartSellPayExample" resultType="java.lang.Long">
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from takeheart_sell_pay
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update takeheart_sell_pay
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.uId != null">
+        u_id = #{record.uId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pId != null">
+        p_id = #{record.pId,jdbcType=INTEGER},
+      </if>
+      <if test="record.pCode != null">
+        p_code = #{record.pCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tId != null">
+        t_id = #{record.tId,jdbcType=INTEGER},
+      </if>
+      <if test="record.sellMoney != null">
+        sell_money = #{record.sellMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.platMoney != null">
+        plat_money = #{record.platMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.state != null">
+        state = #{record.state,jdbcType=INTEGER},
+      </if>
+      <if test="record.redeemType != null">
+        redeem_type = #{record.redeemType,jdbcType=INTEGER},
+      </if>
+      <if test="record.financUser != null">
+        financ_user = #{record.financUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operateTime != null">
+        operate_time = #{record.operateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.tfId != null">
+        tf_id = #{record.tfId,jdbcType=INTEGER},
+      </if>
+      <if test="record.interest != null">
+        interest = #{record.interest,jdbcType=DECIMAL},
+      </if>
+      <if test="record.batch != null">
+        batch = #{record.batch,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update takeheart_sell_pay
+    set id = #{record.id,jdbcType=INTEGER},
+      u_id = #{record.uId,jdbcType=VARCHAR},
+      p_id = #{record.pId,jdbcType=INTEGER},
+      p_code = #{record.pCode,jdbcType=VARCHAR},
+      t_id = #{record.tId,jdbcType=INTEGER},
+      sell_money = #{record.sellMoney,jdbcType=DECIMAL},
+      plat_money = #{record.platMoney,jdbcType=DECIMAL},
+      state = #{record.state,jdbcType=INTEGER},
+      redeem_type = #{record.redeemType,jdbcType=INTEGER},
+      financ_user = #{record.financUser,jdbcType=VARCHAR},
+      operate_time = #{record.operateTime,jdbcType=TIMESTAMP},
+      tf_id = #{record.tfId,jdbcType=INTEGER},
+      interest = #{record.interest,jdbcType=DECIMAL},
+      batch = #{record.batch,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mrbt.lingmoney.model.TakeheartSellPay">
+    <!--
+    @mbggenerated
+    -->
+    update takeheart_sell_pay
+    <set>
+      <if test="uId != null">
+        u_id = #{uId,jdbcType=VARCHAR},
+      </if>
+      <if test="pId != null">
+        p_id = #{pId,jdbcType=INTEGER},
+      </if>
+      <if test="pCode != null">
+        p_code = #{pCode,jdbcType=VARCHAR},
+      </if>
+      <if test="tId != null">
+        t_id = #{tId,jdbcType=INTEGER},
+      </if>
+      <if test="sellMoney != null">
+        sell_money = #{sellMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="platMoney != null">
+        plat_money = #{platMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="redeemType != null">
+        redeem_type = #{redeemType,jdbcType=INTEGER},
+      </if>
+      <if test="financUser != null">
+        financ_user = #{financUser,jdbcType=VARCHAR},
+      </if>
+      <if test="operateTime != null">
+        operate_time = #{operateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tfId != null">
+        tf_id = #{tfId,jdbcType=INTEGER},
+      </if>
+      <if test="interest != null">
+        interest = #{interest,jdbcType=DECIMAL},
+      </if>
+      <if test="batch != null">
+        batch = #{batch,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mrbt.lingmoney.model.TakeheartSellPay">
+    <!--
+    @mbggenerated
+    -->
+    update takeheart_sell_pay
+    set u_id = #{uId,jdbcType=VARCHAR},
+      p_id = #{pId,jdbcType=INTEGER},
+      p_code = #{pCode,jdbcType=VARCHAR},
+      t_id = #{tId,jdbcType=INTEGER},
+      sell_money = #{sellMoney,jdbcType=DECIMAL},
+      plat_money = #{platMoney,jdbcType=DECIMAL},
+      state = #{state,jdbcType=INTEGER},
+      redeem_type = #{redeemType,jdbcType=INTEGER},
+      financ_user = #{financUser,jdbcType=VARCHAR},
+      operate_time = #{operateTime,jdbcType=TIMESTAMP},
+      tf_id = #{tfId,jdbcType=INTEGER},
+      interest = #{interest,jdbcType=DECIMAL},
+      batch = #{batch,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  <!-- custom setting -->
+  <insert id="saveAfterSell" parameterType="java.util.Map">
+  	insert into takeheart_sell_pay 
+  		(u_id, p_id, p_code, t_id, sell_money, state, redeem_type, financ_user, operate_time, tf_id, interest) 
+  	select 
+  		u_id, p_id, #{pCode,jdbcType=VARCHAR}, t_id, money, state, redeem_type, #{platUserNo,jdbcType=VARCHAR},
+  		#{operateTime, jdbcType=TIMESTAMP}, id, interest 
+  	from 
+  		takeheart_transaction_flow 
+  	where 
+  		id = #{tfId, jdbcType=INTEGER}
+  </insert>
+</mapper>

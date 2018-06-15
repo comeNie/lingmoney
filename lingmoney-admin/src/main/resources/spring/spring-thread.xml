@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+            http://www.springframework.org/schema/beans/spring-beans-4.1.xsd  
+            http://www.springframework.org/schema/mvc  
+            http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd">
+
+	<bean id="smsSendExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <!-- 核心线程数，默认为1 -->
+        <property name="corePoolSize" value="1" /> 
+        <!-- 最大线程数，默认为Integer.MAX_VALUE -->
+        <property name="maxPoolSize" value="5" />
+        <!-- 队列最大长度，一般需要设置值>=notifyScheduledMainExecutor.maxNum；默认为Integer.MAX_VALUE
+            <property name="queueCapacity" value="1000" /> -->
+        <!-- 线程池维护线程所允许的空闲时间，默认为60s -->
+        <property name="keepAliveSeconds" value="100" />
+        <!-- 线程池对拒绝任务（无线程可用）的处理策略，目前只支持AbortPolicy、CallerRunsPolicy；默认为后者 -->
+        <property name="queueCapacity" value="100" />
+    </bean>
+   
+    <bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+ 	 <!-- 核心线程数 -->	 
+	  <property name="corePoolSize" value="5" />
+	  <!-- 最大线程数 -->  
+	  <property name="maxPoolSize" value="10" />
+	  <!-- 队列最大长度 -->
+	  <property name="queueCapacity" value="100" />
+	  <!-- 线程池维护线程所允许的空闲时间，默认为60s -->
+	  <property name="keepAliveSeconds" value="100" />
+	</bean>
+	
+</beans>

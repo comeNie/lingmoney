@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.LoanPersonalMapper">
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.LoanPersonal">
+    <!--
+    @mbggenerated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name_per" jdbcType="VARCHAR" property="namePer" />
+    <result column="phone_per" jdbcType="VARCHAR" property="phonePer" />
+    <result column="money_per" jdbcType="DECIMAL" property="moneyPer" />
+    <result column="deadline_per" jdbcType="INTEGER" property="deadlinePer" />
+    <result column="job_per" jdbcType="VARCHAR" property="jobPer" />
+    <result column="area_per" jdbcType="VARCHAR" property="areaPer" />
+    <result column="house_per" jdbcType="INTEGER" property="housePer" />
+    <result column="car_per" jdbcType="INTEGER" property="carPer" />
+    <result column="credit_per" jdbcType="INTEGER" property="creditPer" />
+    <result column="status_per" jdbcType="INTEGER" property="statusPer" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+    @mbggenerated
+    -->
+    id, name_per, phone_per, money_per, deadline_per, job_per, area_per, house_per, car_per, 
+    credit_per, status_per
+  </sql>
+  <select id="selectByExample" parameterType="com.mrbt.lingmoney.model.LoanPersonalExample" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from loan_personal
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0">
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from loan_personal
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--
+    @mbggenerated
+    -->
+    delete from loan_personal
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.LoanPersonalExample">
+    <!--
+    @mbggenerated
+    -->
+    delete from loan_personal
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mrbt.lingmoney.model.LoanPersonal">
+    <!--
+    @mbggenerated
+    -->
+    insert into loan_personal (id, name_per, phone_per, 
+      money_per, deadline_per, job_per, 
+      area_per, house_per, car_per, 
+      credit_per, status_per)
+    values (#{id,jdbcType=INTEGER}, #{namePer,jdbcType=VARCHAR}, #{phonePer,jdbcType=VARCHAR}, 
+      #{moneyPer,jdbcType=DECIMAL}, #{deadlinePer,jdbcType=INTEGER}, #{jobPer,jdbcType=VARCHAR}, 
+      #{areaPer,jdbcType=VARCHAR}, #{housePer,jdbcType=INTEGER}, #{carPer,jdbcType=INTEGER}, 
+      #{creditPer,jdbcType=INTEGER}, #{statusPer,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.LoanPersonal">
+    <!--
+    @mbggenerated
+    -->
+    insert into loan_personal
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="namePer != null">
+        name_per,
+      </if>
+      <if test="phonePer != null">
+        phone_per,
+      </if>
+      <if test="moneyPer != null">
+        money_per,
+      </if>
+      <if test="deadlinePer != null">
+        deadline_per,
+      </if>
+      <if test="jobPer != null">
+        job_per,
+      </if>
+      <if test="areaPer != null">
+        area_per,
+      </if>
+      <if test="housePer != null">
+        house_per,
+      </if>
+      <if test="carPer != null">
+        car_per,
+      </if>
+      <if test="creditPer != null">
+        credit_per,
+      </if>
+      <if test="statusPer != null">
+        status_per,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="namePer != null">
+        #{namePer,jdbcType=VARCHAR},
+      </if>
+      <if test="phonePer != null">
+        #{phonePer,jdbcType=VARCHAR},
+      </if>
+      <if test="moneyPer != null">
+        #{moneyPer,jdbcType=DECIMAL},
+      </if>
+      <if test="deadlinePer != null">
+        #{deadlinePer,jdbcType=INTEGER},
+      </if>
+      <if test="jobPer != null">
+        #{jobPer,jdbcType=VARCHAR},
+      </if>
+      <if test="areaPer != null">
+        #{areaPer,jdbcType=VARCHAR},
+      </if>
+      <if test="housePer != null">
+        #{housePer,jdbcType=INTEGER},
+      </if>
+      <if test="carPer != null">
+        #{carPer,jdbcType=INTEGER},
+      </if>
+      <if test="creditPer != null">
+        #{creditPer,jdbcType=INTEGER},
+      </if>
+      <if test="statusPer != null">
+        #{statusPer,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.LoanPersonalExample" resultType="java.lang.Long">
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from loan_personal
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update loan_personal
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.namePer != null">
+        name_per = #{record.namePer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phonePer != null">
+        phone_per = #{record.phonePer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.moneyPer != null">
+        money_per = #{record.moneyPer,jdbcType=DECIMAL},
+      </if>
+      <if test="record.deadlinePer != null">
+        deadline_per = #{record.deadlinePer,jdbcType=INTEGER},
+      </if>
+      <if test="record.jobPer != null">
+        job_per = #{record.jobPer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaPer != null">
+        area_per = #{record.areaPer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.housePer != null">
+        house_per = #{record.housePer,jdbcType=INTEGER},
+      </if>
+      <if test="record.carPer != null">
+        car_per = #{record.carPer,jdbcType=INTEGER},
+      </if>
+      <if test="record.creditPer != null">
+        credit_per = #{record.creditPer,jdbcType=INTEGER},
+      </if>
+      <if test="record.statusPer != null">
+        status_per = #{record.statusPer,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update loan_personal
+    set id = #{record.id,jdbcType=INTEGER},
+      name_per = #{record.namePer,jdbcType=VARCHAR},
+      phone_per = #{record.phonePer,jdbcType=VARCHAR},
+      money_per = #{record.moneyPer,jdbcType=DECIMAL},
+      deadline_per = #{record.deadlinePer,jdbcType=INTEGER},
+      job_per = #{record.jobPer,jdbcType=VARCHAR},
+      area_per = #{record.areaPer,jdbcType=VARCHAR},
+      house_per = #{record.housePer,jdbcType=INTEGER},
+      car_per = #{record.carPer,jdbcType=INTEGER},
+      credit_per = #{record.creditPer,jdbcType=INTEGER},
+      status_per = #{record.statusPer,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mrbt.lingmoney.model.LoanPersonal">
+    <!--
+    @mbggenerated
+    -->
+    update loan_personal
+    <set>
+      <if test="namePer != null">
+        name_per = #{namePer,jdbcType=VARCHAR},
+      </if>
+      <if test="phonePer != null">
+        phone_per = #{phonePer,jdbcType=VARCHAR},
+      </if>
+      <if test="moneyPer != null">
+        money_per = #{moneyPer,jdbcType=DECIMAL},
+      </if>
+      <if test="deadlinePer != null">
+        deadline_per = #{deadlinePer,jdbcType=INTEGER},
+      </if>
+      <if test="jobPer != null">
+        job_per = #{jobPer,jdbcType=VARCHAR},
+      </if>
+      <if test="areaPer != null">
+        area_per = #{areaPer,jdbcType=VARCHAR},
+      </if>
+      <if test="housePer != null">
+        house_per = #{housePer,jdbcType=INTEGER},
+      </if>
+      <if test="carPer != null">
+        car_per = #{carPer,jdbcType=INTEGER},
+      </if>
+      <if test="creditPer != null">
+        credit_per = #{creditPer,jdbcType=INTEGER},
+      </if>
+      <if test="statusPer != null">
+        status_per = #{statusPer,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mrbt.lingmoney.model.LoanPersonal">
+    <!--
+    @mbggenerated
+    -->
+    update loan_personal
+    set name_per = #{namePer,jdbcType=VARCHAR},
+      phone_per = #{phonePer,jdbcType=VARCHAR},
+      money_per = #{moneyPer,jdbcType=DECIMAL},
+      deadline_per = #{deadlinePer,jdbcType=INTEGER},
+      job_per = #{jobPer,jdbcType=VARCHAR},
+      area_per = #{areaPer,jdbcType=VARCHAR},
+      house_per = #{housePer,jdbcType=INTEGER},
+      car_per = #{carPer,jdbcType=INTEGER},
+      credit_per = #{creditPer,jdbcType=INTEGER},
+      status_per = #{statusPer,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

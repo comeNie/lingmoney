@@ -1,0 +1,657 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.DataUserMapper">
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.DataUser">
+    <!--
+    @mbggenerated
+    -->
+    <id column="u_id" jdbcType="VARCHAR" property="uId" />
+    <result column="constellation" jdbcType="VARCHAR" property="constellation" />
+    <result column="constellation_num" jdbcType="INTEGER" property="constellationNum" />
+    <result column="reg_date" jdbcType="DATE" property="regDate" />
+    <result column="reg_diffday" jdbcType="INTEGER" property="regDiffday" />
+    <result column="reg_level" jdbcType="INTEGER" property="regLevel" />
+    <result column="product_name" jdbcType="VARCHAR" property="productName" />
+    <result column="financial_money" jdbcType="DECIMAL" property="financialMoney" />
+    <result column="income" jdbcType="DECIMAL" property="income" />
+    <result column="buy_date" jdbcType="TIMESTAMP" property="buyDate" />
+    <result column="num" jdbcType="INTEGER" property="num" />
+    <result column="total_finance" jdbcType="DECIMAL" property="totalFinance" />
+    <result column="total_income" jdbcType="DECIMAL" property="totalIncome" />
+    <result column="beat_percent" jdbcType="DECIMAL" property="beatPercent" />
+    <result column="most_buy_month" jdbcType="VARCHAR" property="mostBuyMonth" />
+    <result column="most_buy_month_money" jdbcType="DECIMAL" property="mostBuyMonthMoney" />
+    <result column="finaicial_percent" jdbcType="DECIMAL" property="finaicialPercent" />
+    <result column="activity_percent" jdbcType="DECIMAL" property="activityPercent" />
+    <result column="income_percent" jdbcType="DECIMAL" property="incomePercent" />
+    <result column="long_term_percent" jdbcType="DECIMAL" property="longTermPercent" />
+    <result column="short_term_percent" jdbcType="DECIMAL" property="shortTermPercent" />
+    <result column="trading_point_three" jdbcType="INTEGER" property="tradingPointThree" />
+    <result column="trading_point_six" jdbcType="INTEGER" property="tradingPointSix" />
+    <result column="trading_point_nine" jdbcType="INTEGER" property="tradingPointNine" />
+    <result column="trading_point_twelve" jdbcType="INTEGER" property="tradingPointTwelve" />
+    <result column="trading_point_fifteen" jdbcType="INTEGER" property="tradingPointFifteen" />
+    <result column="trading_point_eighteen" jdbcType="INTEGER" property="tradingPointEighteen" />
+    <result column="trading_point_twentyone" jdbcType="INTEGER" property="tradingPointTwentyone" />
+    <result column="trading_point_twentyfour" jdbcType="INTEGER" property="tradingPointTwentyfour" />
+    <result column="trading_active" jdbcType="VARCHAR" property="tradingActive" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+    @mbggenerated
+    -->
+    u_id, constellation, constellation_num, reg_date, reg_diffday, reg_level, product_name, 
+    financial_money, income, buy_date, num, total_finance, total_income, beat_percent, 
+    most_buy_month, most_buy_month_money, finaicial_percent, activity_percent, income_percent, 
+    long_term_percent, short_term_percent, trading_point_three, trading_point_six, trading_point_nine, 
+    trading_point_twelve, trading_point_fifteen, trading_point_eighteen, trading_point_twentyone, 
+    trading_point_twentyfour, trading_active
+  </sql>
+  <select id="selectByExample" parameterType="com.mrbt.lingmoney.model.DataUserExample" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from data_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0">
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from data_user
+    where u_id = #{uId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--
+    @mbggenerated
+    -->
+    delete from data_user
+    where u_id = #{uId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.DataUserExample">
+    <!--
+    @mbggenerated
+    -->
+    delete from data_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mrbt.lingmoney.model.DataUser">
+    <!--
+    @mbggenerated
+    -->
+    insert into data_user (u_id, constellation, constellation_num, 
+      reg_date, reg_diffday, reg_level, 
+      product_name, financial_money, income, 
+      buy_date, num, total_finance, 
+      total_income, beat_percent, most_buy_month, 
+      most_buy_month_money, finaicial_percent, activity_percent, 
+      income_percent, long_term_percent, short_term_percent, 
+      trading_point_three, trading_point_six, trading_point_nine, 
+      trading_point_twelve, trading_point_fifteen, 
+      trading_point_eighteen, trading_point_twentyone, 
+      trading_point_twentyfour, trading_active)
+    values (#{uId,jdbcType=VARCHAR}, #{constellation,jdbcType=VARCHAR}, #{constellationNum,jdbcType=INTEGER}, 
+      #{regDate,jdbcType=DATE}, #{regDiffday,jdbcType=INTEGER}, #{regLevel,jdbcType=INTEGER}, 
+      #{productName,jdbcType=VARCHAR}, #{financialMoney,jdbcType=DECIMAL}, #{income,jdbcType=DECIMAL}, 
+      #{buyDate,jdbcType=TIMESTAMP}, #{num,jdbcType=INTEGER}, #{totalFinance,jdbcType=DECIMAL}, 
+      #{totalIncome,jdbcType=DECIMAL}, #{beatPercent,jdbcType=DECIMAL}, #{mostBuyMonth,jdbcType=VARCHAR}, 
+      #{mostBuyMonthMoney,jdbcType=DECIMAL}, #{finaicialPercent,jdbcType=DECIMAL}, #{activityPercent,jdbcType=DECIMAL}, 
+      #{incomePercent,jdbcType=DECIMAL}, #{longTermPercent,jdbcType=DECIMAL}, #{shortTermPercent,jdbcType=DECIMAL}, 
+      #{tradingPointThree,jdbcType=INTEGER}, #{tradingPointSix,jdbcType=INTEGER}, #{tradingPointNine,jdbcType=INTEGER}, 
+      #{tradingPointTwelve,jdbcType=INTEGER}, #{tradingPointFifteen,jdbcType=INTEGER}, 
+      #{tradingPointEighteen,jdbcType=INTEGER}, #{tradingPointTwentyone,jdbcType=INTEGER}, 
+      #{tradingPointTwentyfour,jdbcType=INTEGER}, #{tradingActive,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.DataUser">
+    <!--
+    @mbggenerated
+    -->
+    insert into data_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="constellation != null">
+        constellation,
+      </if>
+      <if test="constellationNum != null">
+        constellation_num,
+      </if>
+      <if test="regDate != null">
+        reg_date,
+      </if>
+      <if test="regDiffday != null">
+        reg_diffday,
+      </if>
+      <if test="regLevel != null">
+        reg_level,
+      </if>
+      <if test="productName != null">
+        product_name,
+      </if>
+      <if test="financialMoney != null">
+        financial_money,
+      </if>
+      <if test="income != null">
+        income,
+      </if>
+      <if test="buyDate != null">
+        buy_date,
+      </if>
+      <if test="num != null">
+        num,
+      </if>
+      <if test="totalFinance != null">
+        total_finance,
+      </if>
+      <if test="totalIncome != null">
+        total_income,
+      </if>
+      <if test="beatPercent != null">
+        beat_percent,
+      </if>
+      <if test="mostBuyMonth != null">
+        most_buy_month,
+      </if>
+      <if test="mostBuyMonthMoney != null">
+        most_buy_month_money,
+      </if>
+      <if test="finaicialPercent != null">
+        finaicial_percent,
+      </if>
+      <if test="activityPercent != null">
+        activity_percent,
+      </if>
+      <if test="incomePercent != null">
+        income_percent,
+      </if>
+      <if test="longTermPercent != null">
+        long_term_percent,
+      </if>
+      <if test="shortTermPercent != null">
+        short_term_percent,
+      </if>
+      <if test="tradingPointThree != null">
+        trading_point_three,
+      </if>
+      <if test="tradingPointSix != null">
+        trading_point_six,
+      </if>
+      <if test="tradingPointNine != null">
+        trading_point_nine,
+      </if>
+      <if test="tradingPointTwelve != null">
+        trading_point_twelve,
+      </if>
+      <if test="tradingPointFifteen != null">
+        trading_point_fifteen,
+      </if>
+      <if test="tradingPointEighteen != null">
+        trading_point_eighteen,
+      </if>
+      <if test="tradingPointTwentyone != null">
+        trading_point_twentyone,
+      </if>
+      <if test="tradingPointTwentyfour != null">
+        trading_point_twentyfour,
+      </if>
+      <if test="tradingActive != null">
+        trading_active,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uId != null">
+        #{uId,jdbcType=VARCHAR},
+      </if>
+      <if test="constellation != null">
+        #{constellation,jdbcType=VARCHAR},
+      </if>
+      <if test="constellationNum != null">
+        #{constellationNum,jdbcType=INTEGER},
+      </if>
+      <if test="regDate != null">
+        #{regDate,jdbcType=DATE},
+      </if>
+      <if test="regDiffday != null">
+        #{regDiffday,jdbcType=INTEGER},
+      </if>
+      <if test="regLevel != null">
+        #{regLevel,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="financialMoney != null">
+        #{financialMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="income != null">
+        #{income,jdbcType=DECIMAL},
+      </if>
+      <if test="buyDate != null">
+        #{buyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="totalFinance != null">
+        #{totalFinance,jdbcType=DECIMAL},
+      </if>
+      <if test="totalIncome != null">
+        #{totalIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="beatPercent != null">
+        #{beatPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="mostBuyMonth != null">
+        #{mostBuyMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="mostBuyMonthMoney != null">
+        #{mostBuyMonthMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="finaicialPercent != null">
+        #{finaicialPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="activityPercent != null">
+        #{activityPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="incomePercent != null">
+        #{incomePercent,jdbcType=DECIMAL},
+      </if>
+      <if test="longTermPercent != null">
+        #{longTermPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="shortTermPercent != null">
+        #{shortTermPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="tradingPointThree != null">
+        #{tradingPointThree,jdbcType=INTEGER},
+      </if>
+      <if test="tradingPointSix != null">
+        #{tradingPointSix,jdbcType=INTEGER},
+      </if>
+      <if test="tradingPointNine != null">
+        #{tradingPointNine,jdbcType=INTEGER},
+      </if>
+      <if test="tradingPointTwelve != null">
+        #{tradingPointTwelve,jdbcType=INTEGER},
+      </if>
+      <if test="tradingPointFifteen != null">
+        #{tradingPointFifteen,jdbcType=INTEGER},
+      </if>
+      <if test="tradingPointEighteen != null">
+        #{tradingPointEighteen,jdbcType=INTEGER},
+      </if>
+      <if test="tradingPointTwentyone != null">
+        #{tradingPointTwentyone,jdbcType=INTEGER},
+      </if>
+      <if test="tradingPointTwentyfour != null">
+        #{tradingPointTwentyfour,jdbcType=INTEGER},
+      </if>
+      <if test="tradingActive != null">
+        #{tradingActive,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.DataUserExample" resultType="java.lang.Long">
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from data_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update data_user
+    <set>
+      <if test="record.uId != null">
+        u_id = #{record.uId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.constellation != null">
+        constellation = #{record.constellation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.constellationNum != null">
+        constellation_num = #{record.constellationNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.regDate != null">
+        reg_date = #{record.regDate,jdbcType=DATE},
+      </if>
+      <if test="record.regDiffday != null">
+        reg_diffday = #{record.regDiffday,jdbcType=INTEGER},
+      </if>
+      <if test="record.regLevel != null">
+        reg_level = #{record.regLevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.productName != null">
+        product_name = #{record.productName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.financialMoney != null">
+        financial_money = #{record.financialMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.income != null">
+        income = #{record.income,jdbcType=DECIMAL},
+      </if>
+      <if test="record.buyDate != null">
+        buy_date = #{record.buyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.num != null">
+        num = #{record.num,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalFinance != null">
+        total_finance = #{record.totalFinance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.totalIncome != null">
+        total_income = #{record.totalIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="record.beatPercent != null">
+        beat_percent = #{record.beatPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="record.mostBuyMonth != null">
+        most_buy_month = #{record.mostBuyMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mostBuyMonthMoney != null">
+        most_buy_month_money = #{record.mostBuyMonthMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.finaicialPercent != null">
+        finaicial_percent = #{record.finaicialPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="record.activityPercent != null">
+        activity_percent = #{record.activityPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="record.incomePercent != null">
+        income_percent = #{record.incomePercent,jdbcType=DECIMAL},
+      </if>
+      <if test="record.longTermPercent != null">
+        long_term_percent = #{record.longTermPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="record.shortTermPercent != null">
+        short_term_percent = #{record.shortTermPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tradingPointThree != null">
+        trading_point_three = #{record.tradingPointThree,jdbcType=INTEGER},
+      </if>
+      <if test="record.tradingPointSix != null">
+        trading_point_six = #{record.tradingPointSix,jdbcType=INTEGER},
+      </if>
+      <if test="record.tradingPointNine != null">
+        trading_point_nine = #{record.tradingPointNine,jdbcType=INTEGER},
+      </if>
+      <if test="record.tradingPointTwelve != null">
+        trading_point_twelve = #{record.tradingPointTwelve,jdbcType=INTEGER},
+      </if>
+      <if test="record.tradingPointFifteen != null">
+        trading_point_fifteen = #{record.tradingPointFifteen,jdbcType=INTEGER},
+      </if>
+      <if test="record.tradingPointEighteen != null">
+        trading_point_eighteen = #{record.tradingPointEighteen,jdbcType=INTEGER},
+      </if>
+      <if test="record.tradingPointTwentyone != null">
+        trading_point_twentyone = #{record.tradingPointTwentyone,jdbcType=INTEGER},
+      </if>
+      <if test="record.tradingPointTwentyfour != null">
+        trading_point_twentyfour = #{record.tradingPointTwentyfour,jdbcType=INTEGER},
+      </if>
+      <if test="record.tradingActive != null">
+        trading_active = #{record.tradingActive,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update data_user
+    set u_id = #{record.uId,jdbcType=VARCHAR},
+      constellation = #{record.constellation,jdbcType=VARCHAR},
+      constellation_num = #{record.constellationNum,jdbcType=INTEGER},
+      reg_date = #{record.regDate,jdbcType=DATE},
+      reg_diffday = #{record.regDiffday,jdbcType=INTEGER},
+      reg_level = #{record.regLevel,jdbcType=INTEGER},
+      product_name = #{record.productName,jdbcType=VARCHAR},
+      financial_money = #{record.financialMoney,jdbcType=DECIMAL},
+      income = #{record.income,jdbcType=DECIMAL},
+      buy_date = #{record.buyDate,jdbcType=TIMESTAMP},
+      num = #{record.num,jdbcType=INTEGER},
+      total_finance = #{record.totalFinance,jdbcType=DECIMAL},
+      total_income = #{record.totalIncome,jdbcType=DECIMAL},
+      beat_percent = #{record.beatPercent,jdbcType=DECIMAL},
+      most_buy_month = #{record.mostBuyMonth,jdbcType=VARCHAR},
+      most_buy_month_money = #{record.mostBuyMonthMoney,jdbcType=DECIMAL},
+      finaicial_percent = #{record.finaicialPercent,jdbcType=DECIMAL},
+      activity_percent = #{record.activityPercent,jdbcType=DECIMAL},
+      income_percent = #{record.incomePercent,jdbcType=DECIMAL},
+      long_term_percent = #{record.longTermPercent,jdbcType=DECIMAL},
+      short_term_percent = #{record.shortTermPercent,jdbcType=DECIMAL},
+      trading_point_three = #{record.tradingPointThree,jdbcType=INTEGER},
+      trading_point_six = #{record.tradingPointSix,jdbcType=INTEGER},
+      trading_point_nine = #{record.tradingPointNine,jdbcType=INTEGER},
+      trading_point_twelve = #{record.tradingPointTwelve,jdbcType=INTEGER},
+      trading_point_fifteen = #{record.tradingPointFifteen,jdbcType=INTEGER},
+      trading_point_eighteen = #{record.tradingPointEighteen,jdbcType=INTEGER},
+      trading_point_twentyone = #{record.tradingPointTwentyone,jdbcType=INTEGER},
+      trading_point_twentyfour = #{record.tradingPointTwentyfour,jdbcType=INTEGER},
+      trading_active = #{record.tradingActive,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mrbt.lingmoney.model.DataUser">
+    <!--
+    @mbggenerated
+    -->
+    update data_user
+    <set>
+      <if test="constellation != null">
+        constellation = #{constellation,jdbcType=VARCHAR},
+      </if>
+      <if test="constellationNum != null">
+        constellation_num = #{constellationNum,jdbcType=INTEGER},
+      </if>
+      <if test="regDate != null">
+        reg_date = #{regDate,jdbcType=DATE},
+      </if>
+      <if test="regDiffday != null">
+        reg_diffday = #{regDiffday,jdbcType=INTEGER},
+      </if>
+      <if test="regLevel != null">
+        reg_level = #{regLevel,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null">
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="financialMoney != null">
+        financial_money = #{financialMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="income != null">
+        income = #{income,jdbcType=DECIMAL},
+      </if>
+      <if test="buyDate != null">
+        buy_date = #{buyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="num != null">
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="totalFinance != null">
+        total_finance = #{totalFinance,jdbcType=DECIMAL},
+      </if>
+      <if test="totalIncome != null">
+        total_income = #{totalIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="beatPercent != null">
+        beat_percent = #{beatPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="mostBuyMonth != null">
+        most_buy_month = #{mostBuyMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="mostBuyMonthMoney != null">
+        most_buy_month_money = #{mostBuyMonthMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="finaicialPercent != null">
+        finaicial_percent = #{finaicialPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="activityPercent != null">
+        activity_percent = #{activityPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="incomePercent != null">
+        income_percent = #{incomePercent,jdbcType=DECIMAL},
+      </if>
+      <if test="longTermPercent != null">
+        long_term_percent = #{longTermPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="shortTermPercent != null">
+        short_term_percent = #{shortTermPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="tradingPointThree != null">
+        trading_point_three = #{tradingPointThree,jdbcType=INTEGER},
+      </if>
+      <if test="tradingPointSix != null">
+        trading_point_six = #{tradingPointSix,jdbcType=INTEGER},
+      </if>
+      <if test="tradingPointNine != null">
+        trading_point_nine = #{tradingPointNine,jdbcType=INTEGER},
+      </if>
+      <if test="tradingPointTwelve != null">
+        trading_point_twelve = #{tradingPointTwelve,jdbcType=INTEGER},
+      </if>
+      <if test="tradingPointFifteen != null">
+        trading_point_fifteen = #{tradingPointFifteen,jdbcType=INTEGER},
+      </if>
+      <if test="tradingPointEighteen != null">
+        trading_point_eighteen = #{tradingPointEighteen,jdbcType=INTEGER},
+      </if>
+      <if test="tradingPointTwentyone != null">
+        trading_point_twentyone = #{tradingPointTwentyone,jdbcType=INTEGER},
+      </if>
+      <if test="tradingPointTwentyfour != null">
+        trading_point_twentyfour = #{tradingPointTwentyfour,jdbcType=INTEGER},
+      </if>
+      <if test="tradingActive != null">
+        trading_active = #{tradingActive,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where u_id = #{uId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mrbt.lingmoney.model.DataUser">
+    <!--
+    @mbggenerated
+    -->
+    update data_user
+    set constellation = #{constellation,jdbcType=VARCHAR},
+      constellation_num = #{constellationNum,jdbcType=INTEGER},
+      reg_date = #{regDate,jdbcType=DATE},
+      reg_diffday = #{regDiffday,jdbcType=INTEGER},
+      reg_level = #{regLevel,jdbcType=INTEGER},
+      product_name = #{productName,jdbcType=VARCHAR},
+      financial_money = #{financialMoney,jdbcType=DECIMAL},
+      income = #{income,jdbcType=DECIMAL},
+      buy_date = #{buyDate,jdbcType=TIMESTAMP},
+      num = #{num,jdbcType=INTEGER},
+      total_finance = #{totalFinance,jdbcType=DECIMAL},
+      total_income = #{totalIncome,jdbcType=DECIMAL},
+      beat_percent = #{beatPercent,jdbcType=DECIMAL},
+      most_buy_month = #{mostBuyMonth,jdbcType=VARCHAR},
+      most_buy_month_money = #{mostBuyMonthMoney,jdbcType=DECIMAL},
+      finaicial_percent = #{finaicialPercent,jdbcType=DECIMAL},
+      activity_percent = #{activityPercent,jdbcType=DECIMAL},
+      income_percent = #{incomePercent,jdbcType=DECIMAL},
+      long_term_percent = #{longTermPercent,jdbcType=DECIMAL},
+      short_term_percent = #{shortTermPercent,jdbcType=DECIMAL},
+      trading_point_three = #{tradingPointThree,jdbcType=INTEGER},
+      trading_point_six = #{tradingPointSix,jdbcType=INTEGER},
+      trading_point_nine = #{tradingPointNine,jdbcType=INTEGER},
+      trading_point_twelve = #{tradingPointTwelve,jdbcType=INTEGER},
+      trading_point_fifteen = #{tradingPointFifteen,jdbcType=INTEGER},
+      trading_point_eighteen = #{tradingPointEighteen,jdbcType=INTEGER},
+      trading_point_twentyone = #{tradingPointTwentyone,jdbcType=INTEGER},
+      trading_point_twentyfour = #{tradingPointTwentyfour,jdbcType=INTEGER},
+      trading_active = #{tradingActive,jdbcType=VARCHAR}
+    where u_id = #{uId,jdbcType=VARCHAR}
+  </update>
+</mapper>

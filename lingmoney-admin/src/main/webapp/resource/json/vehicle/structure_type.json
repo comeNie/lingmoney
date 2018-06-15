@@ -1,0 +1,11 @@
+[
+	{"structureId":"0","structureName":"两厢"},
+	{"structureId":"1","structureName":"三厢"},
+	{"structureId":"2","structureName":"掀背"},
+	{"structureId":"3","structureName":"旅行版"},
+	{"structureId":"4","structureName":"硬顶敞篷车"},
+	{"structureId":"5","structureName":"软顶敞篷车"},
+	{"structureId":"6","structureName":"硬顶跑车"},
+	{"structureId":"7","structureName":"客车"},
+	{"structureId":"7","structureName":"货车"}
+]

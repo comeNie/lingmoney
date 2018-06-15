@@ -1,0 +1,6 @@
+[
+	{"typeId":"0","typeName":"未生效"},
+	{"typeId":"1","typeName":"礼品冻结"},
+	{"typeId":"2","typeName":"已发送"},
+	{"typeId":"3","typeName":"未发送"}
+]

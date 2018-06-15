@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrbt.lingmoney.mapper.ActivityProductCustomerMapper">
+
+	<select id="selectActivityList" parameterType="com.mrbt.lingmoney.utils.PageInfo"
+		resultType="com.mrbt.lingmoney.model.ActivityProductCustomer">
+		select ap.id, ap.act_url actUrl, ap.act_name actName, ap.act_title actTitle,
+		apt.act_title_image actTitleImage, apt.act_recommendations actRecommendations,
+		ap.start_date startDate, ap.end_date endDate, ap.p_id pId,
+		case when (now() &gt; ap.end_date) then 2 when (now() &lt; ap.start_date) then 1 else 0 end buyState,
+		if(now() &lt; ap.start_date, ap.start_date, null) as nextBuyDate
+		from activity_product ap left join activity_property apt on ap.id = apt.act_id
+		<where>
+			<if test=" condition.status != null ">
+				and ap.status = #{condition.status}
+			</if>
+			<if test=" condition.actCenter != null ">
+				and ap.act_center = #{condition.actCenter}
+			</if>
+			<if test=" condition.actType != null ">
+				and ap.act_type = #{condition.actType}
+			</if>
+			<if test=" condition.id != null ">
+				and ap.id = #{condition.id}
+			</if>
+			<if test=" condition.priority != null ">
+				and ap.priority = #{condition.priority}
+			</if>
+			<if test=" condition.preheat != null ">
+				and ap.preheat = #{condition.preheat}
+			</if>
+			<if test=" condition.actUrl != null and condition.actUrl != '' ">
+				and ap.act_url = #{condition.actUrl}
+			</if>
+			<!-- <if test=" condition.timeLimit != null and condition.timeLimit == 1 ">
+				and ap.start_date &lt;= now()
+				and ap.end_date &gt;= now()
+			</if> -->
+		</where>
+		order by buyState, apt.act_recommendations desc
+		<if test="from !=0 or size!=0">
+			limit #{from},#{size}
+		</if>
+	</select>
+	<select id="selectActivityCount" parameterType="com.mrbt.lingmoney.utils.PageInfo"
+		resultType="java.lang.Integer">
+		select count(1)
+		from activity_product ap left join activity_property apt on ap.id = apt.act_id
+		<where>
+			<if test=" condition.status != null ">
+				and ap.status = #{condition.status}
+			</if>
+			<if test=" condition.actCenter != null ">
+				and ap.act_center = #{condition.actCenter}
+			</if>
+			<if test=" condition.actType != null ">
+				and ap.act_type = #{condition.actType}
+			</if>
+			<if test=" condition.id != null ">
+				and ap.id = #{condition.id}
+			</if>
+			<if test=" condition.priority != null ">
+				and ap.priority = #{condition.priority}
+			</if>
+			<if test=" condition.preheat != null ">
+				and ap.preheat = #{condition.preheat}
+			</if>
+			<if test=" condition.actUrl != null and condition.actUrl != '' ">
+				and ap.act_url = #{condition.actUrl}
+			</if>
+			<!-- <if test=" condition.timeLimit != null and condition.timeLimit == 1 ">
+				and ap.start_date &lt;= now()
+				and ap.end_date &gt;= now()
+			</if> -->
+		</where>
+	</select>
+	
+	<select id="selectActivityInfo" parameterType="com.mrbt.lingmoney.utils.PageInfo"
+		resultType="com.mrbt.lingmoney.model.ActivityProductCustomer">
+		select ap.id, ap.act_url actUrl, ap.act_name actName, apt.act_image actImage, ap.act_title actTitle,
+		ap.start_date startDate, ap.end_date endDate, ap.p_id pId, ap.priority, ap.link_url_pc linkUrlPc,ap.ap_id apId, 
+		ap.link_url_app linkUrlApp, ap.preheat, ap.activity_pic activityPic, ap.activity_gift activityGift, ap.activity_word activityWord,
+		case when (now() &gt; ap.end_date) then 2 when (now() &lt; ap.start_date) then 1 else 0 end buyState,
+		if(now() &lt; ap.start_date, ap.start_date, null) as nextBuyDate
+		from activity_product ap left join activity_property apt on ap.id = apt.act_id
+		<where>
+			<if test=" condition.status != null ">
+				and ap.status = #{condition.status}
+			</if>
+			<if test=" condition.actCenter != null ">
+				and ap.act_center = #{condition.actCenter}
+			</if>
+			<if test=" condition.actType != null ">
+				and ap.act_type = #{condition.actType}
+			</if>
+			<if test=" condition.id != null ">
+				and ap.id = #{condition.id}
+			</if>
+			<if test=" condition.priority != null ">
+				and ap.priority = #{condition.priority}
+			</if>
+			<if test=" condition.actUrl != null and condition.actUrl != '' ">
+				and ap.act_url = #{condition.actUrl}
+			</if>
+			<!-- <if test=" condition.timeLimit != null and condition.timeLimit == 1 ">
+				and ap.start_date &lt;= now()
+				and ap.end_date &gt;= now()
+			</if> -->
+		</where>
+		order by buyState, apt.act_recommendations desc
+		limit 0,1
+	</select>
+	
+	<select id="selectActivityTradingCount" resultType="java.lang.Integer">
+		select count(1) from trading t
+		where t.status in (1,2,3,4) and t.p_id in
+		<foreach item="item" index="index" collection="array" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+
+	<select id="selectActivityProductList" resultType="com.mrbt.lingmoney.model.ProductCustomer">
+		select
+		p.id, p.code, p.name, p.min_money minMoney, p.l_yield lYield,
+		p.h_yield hYield, p.status,
+		p.f_yield fYield, p.l_time lTime, p.h_time
+		hTime, p.f_time fTime, p.unit_time
+		unitTime, p.rule,
+		p.prior_money
+		priorMoney, p.reach_money reachMoney, p.st_dt stDt, p.ed_dt edDt,
+		p.value_dt valueDt,
+		pc.name as proType
+		from product p
+		join product_category pc on p.pc_id = pc.id
+		where p.id in
+		<foreach item="item" index="index" collection="array" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+	
+	<select id="selectActivityDesc" parameterType="java.util.Map" resultType="java.lang.String">  
+  		select ${activityDesc} from activity_property where act_id = #{activityId}  		
+  	</select>
+  	
+  	<select id="queryRecommendersByuId" parameterType="java.util.Map"
+		resultType="com.mrbt.lingmoney.model.GiftExchangeInfoVo1">
+		SELECT referralId, SUM(buyMoney) buyMoney, uId, nickName,
+		referralCode
+		FROM (
+		SELECT up.referral_id referralId,
+		IFNULL(t.buy_money,0) buyMoney, t.u_id uId,
+		IFNULL(up.nick_name,u.login_account) nickName, up.referral_code
+		referralCode
+		FROM trading t
+		LEFT JOIN product p ON t.p_id = p.id
+		LEFT
+		JOIN users_properties up ON t.u_id = up.u_id
+		LEFT JOIN users u ON
+		t.u_id = u.id
+		WHERE t.u_id IN (
+		SELECT u_id
+		FROM users_properties up
+		WHERE referral_id in (select #{uid} as u_id union
+		select up2.u_id from users_properties up1
+		LEFT JOIN users_properties
+		up2 ON up1.referral_id = up2.u_id
+		LEFT JOIN employee_relations_mapping
+		erm ON up2.referral_code = erm.employeeID
+		WHERE up1.referral_code =
+		erm.newID and up1.u_id = #{uid})
+		AND u_id NOT IN(
+		SELECT #{uid} as u_id union
+		SELECT DISTINCT u_id
+		FROM trading
+		WHERE STATUS NOT IN (0,12,18) AND buy_dt &lt;
+		#{startDate,jdbcType=TIMESTAMP}))
+		AND t.p_id != #{pid} AND t.status in (1,2,3,15) AND
+		t.buy_dt &lt;= #{endDate,jdbcType=TIMESTAMP} AND p.f_time &gt;=90
+		ORDER BY t.buy_dt ASC) g
+		WHERE g.referralId is not null
+		GROUP BY g.uId having buyMoney &gt;= 5000;
+
+	</select>
+	
+	<select id="queryActivityInfoH5" parameterType="java.util.Map" resultType="com.mrbt.lingmoney.model.ActivityProductCustomer">
+		select preheat, act_name actName,
+		case when (now() &gt; end_date) then 2 when (now() &lt; start_date) then 1 else 0 end buyState,
+		<if test=" clientType != null and clientType == 0 ">
+			act_desc as actDesc
+		</if>
+		<if test=" clientType != null and clientType == 1 ">
+			act_desc_mobile as actDescMobile
+		</if>
+		from activity_product
+		<where>
+			and status = 1
+			<if test=" activityKey != null and activityKey != '' ">
+				and act_url = #{activityKey}
+			</if>
+		</where>
+		order by id desc limit 1
+	</select>
+  	
+</mapper>

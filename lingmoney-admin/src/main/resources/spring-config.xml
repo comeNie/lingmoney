@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd"
+	default-autowire="byName">
+
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:*.properties</value>
+				<value>file:D:/prop/*.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="suffix" value=".jsp" />
+		<property name="prefix" value="/WEB-INF/jsp/" />
+	</bean>
+	
+	<!-- 启用CGliB -->
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+
+	<import resource="classpath:spring/spring-mybatis.xml" />
+	<import resource="classpath:spring/spring-redis.xml" />
+	<import resource="classpath:spring/spring-ftp.xml" />
+	<import resource="classpath:spring/spring-sendsms.xml" />
+	<import resource="classpath:spring/spring-thread.xml" />
+	<import resource="classpath:spring/spring-push.xml" />
+	<import resource="classpath:spring/spring-pay-jd.xml"/>
+	<import resource="classpath:spring/spring-mongodb.xml"/>
+	<!-- 加载quartz -->
+	<bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" />
+</beans>

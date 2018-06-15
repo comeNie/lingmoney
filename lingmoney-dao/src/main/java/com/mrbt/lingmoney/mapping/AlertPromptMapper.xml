@@ -1,0 +1,594 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mrbt.lingmoney.mapper.AlertPromptMapper" >
+  <resultMap id="BaseResultMap" type="com.mrbt.lingmoney.model.AlertPrompt" >
+    <!--
+    @mbggenerated
+    -->
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="button_title" property="buttonTitle" jdbcType="VARCHAR" />
+    <result column="button_type" property="buttonType" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="class_ios" property="classIos" jdbcType="VARCHAR" />
+    <result column="property_key_ios" property="propertyKeyIos" jdbcType="VARCHAR" />
+    <result column="property_value_ios" property="propertyValueIos" jdbcType="VARCHAR" />
+    <result column="class_android" property="classAndroid" jdbcType="VARCHAR" />
+    <result column="property_key_android" property="propertyKeyAndroid" jdbcType="VARCHAR" />
+    <result column="property_value_android" property="propertyValueAndroid" jdbcType="VARCHAR" />
+    <result column="big_img" property="bigImg" jdbcType="VARCHAR" />
+    <result column="button_img" property="buttonImg" jdbcType="VARCHAR" />
+    <result column="distance" property="distance" jdbcType="DOUBLE" />
+    <result column="android_jump_type" property="androidJumpType" jdbcType="INTEGER" />
+    <result column="alert_type" property="alertType" jdbcType="INTEGER" />
+    <result column="priority" property="priority" jdbcType="INTEGER" />
+    <result column="center_y" property="centerY" jdbcType="DOUBLE" />
+    <result column="is_full_screen" property="isFullScreen" jdbcType="INTEGER" />
+    <result column="is_close_show" property="isCloseShow" jdbcType="INTEGER" />
+    <result column="class_ios_big" property="classIosBig" jdbcType="VARCHAR" />
+    <result column="property_key_ios_big" property="propertyKeyIosBig" jdbcType="VARCHAR" />
+    <result column="property_value_ios_big" property="propertyValueIosBig" jdbcType="VARCHAR" />
+    <result column="class_android_big" property="classAndroidBig" jdbcType="VARCHAR" />
+    <result column="property_key_android_big" property="propertyKeyAndroidBig" jdbcType="VARCHAR" />
+    <result column="property_value_android_big" property="propertyValueAndroidBig" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <!--
+    @mbggenerated
+    -->
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <!--
+    @mbggenerated
+    -->
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <!--
+    @mbggenerated
+    -->
+    id, name, button_title, button_type, status, class_ios, property_key_ios, property_value_ios, 
+    class_android, property_key_android, property_value_android, big_img, button_img, 
+    distance, android_jump_type, alert_type, priority, center_y, is_full_screen, is_close_show, 
+    class_ios_big, property_key_ios_big, property_value_ios_big, class_android_big, property_key_android_big, 
+    property_value_android_big
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mrbt.lingmoney.model.AlertPromptExample" >
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from alert_prompt
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+       limit ${limitStart} , ${limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    <!--
+    @mbggenerated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from alert_prompt
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    <!--
+    @mbggenerated
+    -->
+    delete from alert_prompt
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mrbt.lingmoney.model.AlertPromptExample" >
+    <!--
+    @mbggenerated
+    -->
+    delete from alert_prompt
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mrbt.lingmoney.model.AlertPrompt" >
+    <!--
+    @mbggenerated
+    -->
+    insert into alert_prompt (id, name, button_title, 
+      button_type, status, class_ios, 
+      property_key_ios, property_value_ios, class_android, 
+      property_key_android, property_value_android, 
+      big_img, button_img, distance, 
+      android_jump_type, alert_type, priority, 
+      center_y, is_full_screen, is_close_show, 
+      class_ios_big, property_key_ios_big, property_value_ios_big, 
+      class_android_big, property_key_android_big, 
+      property_value_android_big)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{buttonTitle,jdbcType=VARCHAR}, 
+      #{buttonType,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{classIos,jdbcType=VARCHAR}, 
+      #{propertyKeyIos,jdbcType=VARCHAR}, #{propertyValueIos,jdbcType=VARCHAR}, #{classAndroid,jdbcType=VARCHAR}, 
+      #{propertyKeyAndroid,jdbcType=VARCHAR}, #{propertyValueAndroid,jdbcType=VARCHAR}, 
+      #{bigImg,jdbcType=VARCHAR}, #{buttonImg,jdbcType=VARCHAR}, #{distance,jdbcType=DOUBLE}, 
+      #{androidJumpType,jdbcType=INTEGER}, #{alertType,jdbcType=INTEGER}, #{priority,jdbcType=INTEGER}, 
+      #{centerY,jdbcType=DOUBLE}, #{isFullScreen,jdbcType=INTEGER}, #{isCloseShow,jdbcType=INTEGER}, 
+      #{classIosBig,jdbcType=VARCHAR}, #{propertyKeyIosBig,jdbcType=VARCHAR}, #{propertyValueIosBig,jdbcType=VARCHAR}, 
+      #{classAndroidBig,jdbcType=VARCHAR}, #{propertyKeyAndroidBig,jdbcType=VARCHAR}, 
+      #{propertyValueAndroidBig,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrbt.lingmoney.model.AlertPrompt" >
+    <!--
+    @mbggenerated
+    -->
+    insert into alert_prompt
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="buttonTitle != null" >
+        button_title,
+      </if>
+      <if test="buttonType != null" >
+        button_type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="classIos != null" >
+        class_ios,
+      </if>
+      <if test="propertyKeyIos != null" >
+        property_key_ios,
+      </if>
+      <if test="propertyValueIos != null" >
+        property_value_ios,
+      </if>
+      <if test="classAndroid != null" >
+        class_android,
+      </if>
+      <if test="propertyKeyAndroid != null" >
+        property_key_android,
+      </if>
+      <if test="propertyValueAndroid != null" >
+        property_value_android,
+      </if>
+      <if test="bigImg != null" >
+        big_img,
+      </if>
+      <if test="buttonImg != null" >
+        button_img,
+      </if>
+      <if test="distance != null" >
+        distance,
+      </if>
+      <if test="androidJumpType != null" >
+        android_jump_type,
+      </if>
+      <if test="alertType != null" >
+        alert_type,
+      </if>
+      <if test="priority != null" >
+        priority,
+      </if>
+      <if test="centerY != null" >
+        center_y,
+      </if>
+      <if test="isFullScreen != null" >
+        is_full_screen,
+      </if>
+      <if test="isCloseShow != null" >
+        is_close_show,
+      </if>
+      <if test="classIosBig != null" >
+        class_ios_big,
+      </if>
+      <if test="propertyKeyIosBig != null" >
+        property_key_ios_big,
+      </if>
+      <if test="propertyValueIosBig != null" >
+        property_value_ios_big,
+      </if>
+      <if test="classAndroidBig != null" >
+        class_android_big,
+      </if>
+      <if test="propertyKeyAndroidBig != null" >
+        property_key_android_big,
+      </if>
+      <if test="propertyValueAndroidBig != null" >
+        property_value_android_big,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="buttonTitle != null" >
+        #{buttonTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="buttonType != null" >
+        #{buttonType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="classIos != null" >
+        #{classIos,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyKeyIos != null" >
+        #{propertyKeyIos,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyValueIos != null" >
+        #{propertyValueIos,jdbcType=VARCHAR},
+      </if>
+      <if test="classAndroid != null" >
+        #{classAndroid,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyKeyAndroid != null" >
+        #{propertyKeyAndroid,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyValueAndroid != null" >
+        #{propertyValueAndroid,jdbcType=VARCHAR},
+      </if>
+      <if test="bigImg != null" >
+        #{bigImg,jdbcType=VARCHAR},
+      </if>
+      <if test="buttonImg != null" >
+        #{buttonImg,jdbcType=VARCHAR},
+      </if>
+      <if test="distance != null" >
+        #{distance,jdbcType=DOUBLE},
+      </if>
+      <if test="androidJumpType != null" >
+        #{androidJumpType,jdbcType=INTEGER},
+      </if>
+      <if test="alertType != null" >
+        #{alertType,jdbcType=INTEGER},
+      </if>
+      <if test="priority != null" >
+        #{priority,jdbcType=INTEGER},
+      </if>
+      <if test="centerY != null" >
+        #{centerY,jdbcType=DOUBLE},
+      </if>
+      <if test="isFullScreen != null" >
+        #{isFullScreen,jdbcType=INTEGER},
+      </if>
+      <if test="isCloseShow != null" >
+        #{isCloseShow,jdbcType=INTEGER},
+      </if>
+      <if test="classIosBig != null" >
+        #{classIosBig,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyKeyIosBig != null" >
+        #{propertyKeyIosBig,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyValueIosBig != null" >
+        #{propertyValueIosBig,jdbcType=VARCHAR},
+      </if>
+      <if test="classAndroidBig != null" >
+        #{classAndroidBig,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyKeyAndroidBig != null" >
+        #{propertyKeyAndroidBig,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyValueAndroidBig != null" >
+        #{propertyValueAndroidBig,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mrbt.lingmoney.model.AlertPromptExample" resultType="java.lang.Long" >
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from alert_prompt
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    <!--
+    @mbggenerated
+    -->
+    update alert_prompt
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buttonTitle != null" >
+        button_title = #{record.buttonTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buttonType != null" >
+        button_type = #{record.buttonType,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.classIos != null" >
+        class_ios = #{record.classIos,jdbcType=VARCHAR},
+      </if>
+      <if test="record.propertyKeyIos != null" >
+        property_key_ios = #{record.propertyKeyIos,jdbcType=VARCHAR},
+      </if>
+      <if test="record.propertyValueIos != null" >
+        property_value_ios = #{record.propertyValueIos,jdbcType=VARCHAR},
+      </if>
+      <if test="record.classAndroid != null" >
+        class_android = #{record.classAndroid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.propertyKeyAndroid != null" >
+        property_key_android = #{record.propertyKeyAndroid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.propertyValueAndroid != null" >
+        property_value_android = #{record.propertyValueAndroid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bigImg != null" >
+        big_img = #{record.bigImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buttonImg != null" >
+        button_img = #{record.buttonImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.distance != null" >
+        distance = #{record.distance,jdbcType=DOUBLE},
+      </if>
+      <if test="record.androidJumpType != null" >
+        android_jump_type = #{record.androidJumpType,jdbcType=INTEGER},
+      </if>
+      <if test="record.alertType != null" >
+        alert_type = #{record.alertType,jdbcType=INTEGER},
+      </if>
+      <if test="record.priority != null" >
+        priority = #{record.priority,jdbcType=INTEGER},
+      </if>
+      <if test="record.centerY != null" >
+        center_y = #{record.centerY,jdbcType=DOUBLE},
+      </if>
+      <if test="record.isFullScreen != null" >
+        is_full_screen = #{record.isFullScreen,jdbcType=INTEGER},
+      </if>
+      <if test="record.isCloseShow != null" >
+        is_close_show = #{record.isCloseShow,jdbcType=INTEGER},
+      </if>
+      <if test="record.classIosBig != null" >
+        class_ios_big = #{record.classIosBig,jdbcType=VARCHAR},
+      </if>
+      <if test="record.propertyKeyIosBig != null" >
+        property_key_ios_big = #{record.propertyKeyIosBig,jdbcType=VARCHAR},
+      </if>
+      <if test="record.propertyValueIosBig != null" >
+        property_value_ios_big = #{record.propertyValueIosBig,jdbcType=VARCHAR},
+      </if>
+      <if test="record.classAndroidBig != null" >
+        class_android_big = #{record.classAndroidBig,jdbcType=VARCHAR},
+      </if>
+      <if test="record.propertyKeyAndroidBig != null" >
+        property_key_android_big = #{record.propertyKeyAndroidBig,jdbcType=VARCHAR},
+      </if>
+      <if test="record.propertyValueAndroidBig != null" >
+        property_value_android_big = #{record.propertyValueAndroidBig,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    <!--
+    @mbggenerated
+    -->
+    update alert_prompt
+    set id = #{record.id,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      button_title = #{record.buttonTitle,jdbcType=VARCHAR},
+      button_type = #{record.buttonType,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      class_ios = #{record.classIos,jdbcType=VARCHAR},
+      property_key_ios = #{record.propertyKeyIos,jdbcType=VARCHAR},
+      property_value_ios = #{record.propertyValueIos,jdbcType=VARCHAR},
+      class_android = #{record.classAndroid,jdbcType=VARCHAR},
+      property_key_android = #{record.propertyKeyAndroid,jdbcType=VARCHAR},
+      property_value_android = #{record.propertyValueAndroid,jdbcType=VARCHAR},
+      big_img = #{record.bigImg,jdbcType=VARCHAR},
+      button_img = #{record.buttonImg,jdbcType=VARCHAR},
+      distance = #{record.distance,jdbcType=DOUBLE},
+      android_jump_type = #{record.androidJumpType,jdbcType=INTEGER},
+      alert_type = #{record.alertType,jdbcType=INTEGER},
+      priority = #{record.priority,jdbcType=INTEGER},
+      center_y = #{record.centerY,jdbcType=DOUBLE},
+      is_full_screen = #{record.isFullScreen,jdbcType=INTEGER},
+      is_close_show = #{record.isCloseShow,jdbcType=INTEGER},
+      class_ios_big = #{record.classIosBig,jdbcType=VARCHAR},
+      property_key_ios_big = #{record.propertyKeyIosBig,jdbcType=VARCHAR},
+      property_value_ios_big = #{record.propertyValueIosBig,jdbcType=VARCHAR},
+      class_android_big = #{record.classAndroidBig,jdbcType=VARCHAR},
+      property_key_android_big = #{record.propertyKeyAndroidBig,jdbcType=VARCHAR},
+      property_value_android_big = #{record.propertyValueAndroidBig,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mrbt.lingmoney.model.AlertPrompt" >
+    <!--
+    @mbggenerated
+    -->
+    update alert_prompt
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="buttonTitle != null" >
+        button_title = #{buttonTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="buttonType != null" >
+        button_type = #{buttonType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="classIos != null" >
+        class_ios = #{classIos,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyKeyIos != null" >
+        property_key_ios = #{propertyKeyIos,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyValueIos != null" >
+        property_value_ios = #{propertyValueIos,jdbcType=VARCHAR},
+      </if>
+      <if test="classAndroid != null" >
+        class_android = #{classAndroid,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyKeyAndroid != null" >
+        property_key_android = #{propertyKeyAndroid,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyValueAndroid != null" >
+        property_value_android = #{propertyValueAndroid,jdbcType=VARCHAR},
+      </if>
+      <if test="bigImg != null" >
+        big_img = #{bigImg,jdbcType=VARCHAR},
+      </if>
+      <if test="buttonImg != null" >
+        button_img = #{buttonImg,jdbcType=VARCHAR},
+      </if>
+      <if test="distance != null" >
+        distance = #{distance,jdbcType=DOUBLE},
+      </if>
+      <if test="androidJumpType != null" >
+        android_jump_type = #{androidJumpType,jdbcType=INTEGER},
+      </if>
+      <if test="alertType != null" >
+        alert_type = #{alertType,jdbcType=INTEGER},
+      </if>
+      <if test="priority != null" >
+        priority = #{priority,jdbcType=INTEGER},
+      </if>
+      <if test="centerY != null" >
+        center_y = #{centerY,jdbcType=DOUBLE},
+      </if>
+      <if test="isFullScreen != null" >
+        is_full_screen = #{isFullScreen,jdbcType=INTEGER},
+      </if>
+      <if test="isCloseShow != null" >
+        is_close_show = #{isCloseShow,jdbcType=INTEGER},
+      </if>
+      <if test="classIosBig != null" >
+        class_ios_big = #{classIosBig,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyKeyIosBig != null" >
+        property_key_ios_big = #{propertyKeyIosBig,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyValueIosBig != null" >
+        property_value_ios_big = #{propertyValueIosBig,jdbcType=VARCHAR},
+      </if>
+      <if test="classAndroidBig != null" >
+        class_android_big = #{classAndroidBig,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyKeyAndroidBig != null" >
+        property_key_android_big = #{propertyKeyAndroidBig,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyValueAndroidBig != null" >
+        property_value_android_big = #{propertyValueAndroidBig,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mrbt.lingmoney.model.AlertPrompt" >
+    <!--
+    @mbggenerated
+    -->
+    update alert_prompt
+    set name = #{name,jdbcType=VARCHAR},
+      button_title = #{buttonTitle,jdbcType=VARCHAR},
+      button_type = #{buttonType,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      class_ios = #{classIos,jdbcType=VARCHAR},
+      property_key_ios = #{propertyKeyIos,jdbcType=VARCHAR},
+      property_value_ios = #{propertyValueIos,jdbcType=VARCHAR},
+      class_android = #{classAndroid,jdbcType=VARCHAR},
+      property_key_android = #{propertyKeyAndroid,jdbcType=VARCHAR},
+      property_value_android = #{propertyValueAndroid,jdbcType=VARCHAR},
+      big_img = #{bigImg,jdbcType=VARCHAR},
+      button_img = #{buttonImg,jdbcType=VARCHAR},
+      distance = #{distance,jdbcType=DOUBLE},
+      android_jump_type = #{androidJumpType,jdbcType=INTEGER},
+      alert_type = #{alertType,jdbcType=INTEGER},
+      priority = #{priority,jdbcType=INTEGER},
+      center_y = #{centerY,jdbcType=DOUBLE},
+      is_full_screen = #{isFullScreen,jdbcType=INTEGER},
+      is_close_show = #{isCloseShow,jdbcType=INTEGER},
+      class_ios_big = #{classIosBig,jdbcType=VARCHAR},
+      property_key_ios_big = #{propertyKeyIosBig,jdbcType=VARCHAR},
+      property_value_ios_big = #{propertyValueIosBig,jdbcType=VARCHAR},
+      class_android_big = #{classAndroidBig,jdbcType=VARCHAR},
+      property_key_android_big = #{propertyKeyAndroidBig,jdbcType=VARCHAR},
+      property_value_android_big = #{propertyValueAndroidBig,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
